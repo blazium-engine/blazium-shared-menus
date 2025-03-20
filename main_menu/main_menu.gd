@@ -28,7 +28,7 @@ var wrong_id_popup: CustomDialog
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	title_label.text = ProjectSettings.get("blazium/main_menu/title")
+	title_label.text = ProjectSettings.get("application/config/name")
 	# Load settings options
 	config = ConfigFile.new()
 	config.load("user://blazium.cfg")
