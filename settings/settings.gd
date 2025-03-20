@@ -16,7 +16,7 @@ const max_avatars := 28
 @export var mute_checkbutton: ToggledButton
 @export var theme_mode: ToggledButton
 
-var main_menu_scene: PackedScene = load("res://menus/main_menu/main_menu.tscn")
+var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 
 var config: ConfigFile
 var disconnect_popup: CustomDialog

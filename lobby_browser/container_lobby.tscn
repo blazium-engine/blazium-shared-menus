@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bgtlmxyy8qy4f"]
 
-[ext_resource type="Script" uid="uid://x6l6o0aj1yrg" path="res://menus/lobby_browser/container_lobby.gd" id="1_w0jgs"]
+[ext_resource type="Script" path="res://addons/blazium_shared_menus/lobby_browser/container_lobby.gd" id="1_w0jgs"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_sapb7"]
-[ext_resource type="Script" uid="uid://bq1qfsh8k2mnq" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="3_eaer0"]
+[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="3_eaer0"]
 
 [node name="ContainerLobby" type="HBoxContainer" node_paths=PackedStringArray("_lobby_name", "_lobby_players", "_join_button", "click_sound")]
 custom_minimum_size = Vector2(128, 0)

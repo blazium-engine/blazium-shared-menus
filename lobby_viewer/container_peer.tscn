@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ci8je3ah6vd01"]
 
-[ext_resource type="Script" path="res://menus/lobby_viewer/container_peer.gd" id="1_sgvo6"]
+[ext_resource type="Script" path="res://addons/blazium_shared_menus/lobby_viewer/container_peer.gd" id="1_sgvo6"]
 [ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/avatar.gd" id="2_5ych2"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="3_ijl3q"]
 [ext_resource type="Texture2D" uid="uid://cpnnenl5vontt" path="res://game/assets/avatars.svg" id="3_u8bts"]

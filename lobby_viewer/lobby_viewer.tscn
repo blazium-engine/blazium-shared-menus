@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://d1qjnqq2nagyi"]
 
-[ext_resource type="Script" uid="uid://q3baiyuh0sje" path="res://menus/lobby_viewer/lobby_viewer.gd" id="1_buss2"]
+[ext_resource type="Script" path="res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.gd" id="1_buss2"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_gujum"]
-[ext_resource type="PackedScene" uid="uid://dl8npfol8dj2h" path="res://menus/general/chat_container.tscn" id="3_jpwet"]
-[ext_resource type="Script" uid="uid://cmrd3l5x2uoty" path="res://addons/blazium_theme_editor/classes/custom_checkbox.gd" id="5_hoxet"]
-[ext_resource type="Script" uid="uid://bq1qfsh8k2mnq" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="6_3ppu3"]
-[ext_resource type="Script" uid="uid://cin0q62bruma2" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_ewirs"]
+[ext_resource type="PackedScene" uid="uid://dl8npfol8dj2h" path="res://addons/blazium_shared_menus/general/chat_container.tscn" id="3_jpwet"]
+[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/custom_checkbox.gd" id="5_hoxet"]
+[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="6_3ppu3"]
+[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_ewirs"]
 
 [node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "ready_button", "start_button", "lobby_label", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "private_checkbutton", "points_to_win", "click_sound")]
 anchors_preset = 15

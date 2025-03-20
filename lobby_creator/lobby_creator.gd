@@ -14,8 +14,8 @@ extends BlaziumPanel
 @export var max_points_line_edit: LineEdit
 @export var click_sound: AudioStreamPlayer
 
-var main_menu_scene: PackedScene = load("res://menus/main_menu/main_menu.tscn")
-var lobby_viewer_scene: PackedScene = load("res://menus/lobby_viewer/lobby_viewer.tscn")
+var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
+var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
 
 var sealed := false
 
