@@ -1,0 +1,193 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1qjnqq2nagyi"]
+
+[ext_resource type="Script" uid="uid://q3baiyuh0sje" path="res://menus/lobby_viewer/lobby_viewer.gd" id="1_buss2"]
+[ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_gujum"]
+[ext_resource type="PackedScene" uid="uid://dl8npfol8dj2h" path="res://menus/general/chat_container.tscn" id="3_jpwet"]
+[ext_resource type="Script" uid="uid://cmrd3l5x2uoty" path="res://addons/blazium_theme_editor/classes/custom_checkbox.gd" id="5_hoxet"]
+[ext_resource type="Script" uid="uid://bq1qfsh8k2mnq" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="6_3ppu3"]
+[ext_resource type="Script" uid="uid://cin0q62bruma2" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_ewirs"]
+
+[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "ready_button", "start_button", "lobby_label", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "private_checkbutton", "points_to_win", "click_sound")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"FlatNormalPanel"
+script = ExtResource("1_buss2")
+lobby_grid = NodePath("HBoxContainer/ColorRect/VBoxContainer/ScrollContainer/LobbyVBoxContainer")
+logs = NodePath("HBoxContainer/ColorRect/VBoxContainer/Logs")
+ready_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Ready")
+start_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Start")
+lobby_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/LabelLobby")
+lobby_id_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2/LabelLobbyID")
+reveal_lobby_id_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2/RevealLobbyID")
+left_spacer = NodePath("HBoxContainer/LeftSpacer")
+right_spacer = NodePath("HBoxContainer/RightSpacer")
+private_checkbutton = NodePath("HBoxContainer/ColorRect/VBoxContainer/Private")
+points_to_win = NodePath("HBoxContainer/ColorRect/VBoxContainer/PointsToWin")
+click_sound = NodePath("Click1")
+metadata/_edit_lock_ = true
+
+[node name="Click1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gujum")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftSpacer" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_type_variation = &"ContentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ColorRect"]
+layout_mode = 2
+alignment = 1
+
+[node name="PaddingTitle" type="Control" parent="HBoxContainer/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="LabelLobby" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLargeFit"
+text = "Game Name"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Private" type="CheckBox" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Private Game"
+alignment = 1
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("5_hoxet")
+user_icon = "lock"
+
+[node name="PointsToWin" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+text = "Points to win: 
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="LobbyVBoxContainer" type="VBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HBoxContainerChat" parent="HBoxContainer/ColorRect/VBoxContainer" node_paths=PackedStringArray("logs") instance=ExtResource("3_jpwet")]
+layout_mode = 2
+logs = NodePath("../Logs")
+
+[node name="Logs" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelLobbyID" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "Copy Code: ••••••••"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_3ppu3")
+user_icon = "content_copy"
+
+[node name="RevealLobbyID" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "Reveal Code"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("8_ewirs")
+pressed_icon = "visibility_off"
+unpressed_icon = "visibility"
+pressed_text = "Hide Code"
+unpressed_text = "Reveal Code"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Ready" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SelectedButton"
+toggle_mode = true
+text = "Ready"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("8_ewirs")
+pressed_icon = "sentiment_very_satisfied"
+unpressed_icon = "sentiment_very_dissatisfied"
+pressed_text = "Unready"
+unpressed_text = "Ready"
+
+[node name="Seal" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Seal"
+
+[node name="Start" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SelectedButton"
+disabled = true
+text = "Start"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_3ppu3")
+user_icon = "videogame_asset"
+
+[node name="Leave" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "Leave"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_3ppu3")
+user_icon = "arrow_back"
+
+[node name="RightSpacer" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="toggled" from="HBoxContainer/ColorRect/VBoxContainer/Private" to="." method="_on_private_toggled"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2/LabelLobbyID" to="." method="_on_label_lobby_id_pressed"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2/RevealLobbyID" to="." method="_on_reveal_lobby_id_pressed"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Ready" to="." method="_on_ready_pressed"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Seal" to="." method="_on_seal_pressed"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/Leave" to="." method="_on_back_pressed"]
+[connection signal="cancelled" from="ExitPopup" to="." method="_on_popup_cancelled"]

@@ -1,0 +1,237 @@
+[gd_scene load_steps=8 format=3 uid="uid://8r4dcxm66m3j"]
+
+[ext_resource type="Script" path="res://menus/settings/settings.gd" id="1_qnsfk"]
+[ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_46h8p"]
+[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/avatar.gd" id="3_hslym"]
+[ext_resource type="Texture2D" uid="uid://cpnnenl5vontt" path="res://game/assets/avatars.svg" id="4_ebg5c"]
+[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="6_m4ikw"]
+[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_6v4tp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sckri"]
+
+[node name="Settings" type="PanelContainer" node_paths=PackedStringArray("logs", "name_label", "edit_button", "left_spacer", "right_spacer", "prev_avatar", "avatar", "next_avatar", "click_sound", "debug_info_checkbutton", "mute_checkbutton", "theme_mode")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"FlatNormalPanel"
+script = ExtResource("1_qnsfk")
+logs = NodePath("HBoxContainer/ColorRect/VBoxContainer/Logs")
+name_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/UsernameEdit/NameLine")
+edit_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/UsernameEdit/EditButton")
+left_spacer = NodePath("HBoxContainer/LeftSpacer")
+right_spacer = NodePath("HBoxContainer/RightSpacer")
+prev_avatar = NodePath("HBoxContainer/ColorRect/VBoxContainer/Avatars/PrevAvatar")
+avatar = NodePath("HBoxContainer/ColorRect/VBoxContainer/Avatars/Avatar")
+next_avatar = NodePath("HBoxContainer/ColorRect/VBoxContainer/Avatars/NextAvatar")
+click_sound = NodePath("Click1")
+debug_info_checkbutton = NodePath("HBoxContainer/ColorRect/VBoxContainer/ShowDebug")
+mute_checkbutton = NodePath("HBoxContainer/ColorRect/VBoxContainer/SoundAndTheme/Sounds")
+theme_mode = NodePath("HBoxContainer/ColorRect/VBoxContainer/SoundAndTheme/ThemeMode")
+metadata/_edit_lock_ = true
+
+[node name="Click1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_46h8p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftSpacer" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_type_variation = &"ContentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ColorRect"]
+layout_mode = 2
+alignment = 1
+
+[node name="PaddingTitle" type="Control" parent="HBoxContainer/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="LabelSettings" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Settings"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Avatars" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Left" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/Avatars"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sckri")
+icon_alignment = 1
+script = ExtResource("6_m4ikw")
+user_icon = "arrow_left"
+
+[node name="PrevAvatar" type="Control" parent="HBoxContainer/ColorRect/VBoxContainer/Avatars"]
+modulate = Color(1, 1, 1, 0.6)
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("3_hslym")
+texture_scale = 0.5
+texture = ExtResource("4_ebg5c")
+h_frames = 8
+v_frames = 8
+
+[node name="Avatar" type="Control" parent="HBoxContainer/ColorRect/VBoxContainer/Avatars"]
+layout_mode = 2
+script = ExtResource("3_hslym")
+texture = ExtResource("4_ebg5c")
+h_frames = 8
+v_frames = 8
+
+[node name="NextAvatar" type="Control" parent="HBoxContainer/ColorRect/VBoxContainer/Avatars"]
+modulate = Color(1, 1, 1, 0.6)
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("3_hslym")
+texture_scale = 0.5
+texture = ExtResource("4_ebg5c")
+h_frames = 8
+v_frames = 8
+
+[node name="Right" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/Avatars"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sckri")
+icon_alignment = 1
+script = ExtResource("6_m4ikw")
+user_icon = "arrow_right"
+
+[node name="UsernameEdit" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+
+[node name="NameLine" type="LineEdit" parent="HBoxContainer/ColorRect/VBoxContainer/UsernameEdit"]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Name (required)"
+alignment = 1
+max_length = 16
+editable = false
+
+[node name="EditButton" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/UsernameEdit"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "Edit"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_m4ikw")
+user_icon = "edit"
+
+[node name="SoundAndTheme" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Sounds" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/SoundAndTheme"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "Mute"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("8_6v4tp")
+pressed_icon = "volume_up"
+unpressed_icon = "volume_off"
+pressed_text = "Unmute"
+unpressed_text = "Mute"
+
+[node name="ThemeMode" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/SoundAndTheme"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "Light Mode"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("8_6v4tp")
+pressed_icon = "dark_mode"
+unpressed_icon = "light_mode"
+pressed_text = "Dark Mode"
+unpressed_text = "Light Mode"
+
+[node name="ShowDebug" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "Hide Debug Info"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("8_6v4tp")
+pressed_icon = "bug_report"
+unpressed_icon = "bug_report"
+pressed_text = "Show Debug Info"
+unpressed_text = "Hide Debug Info"
+
+[node name="Logs" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonDisconnect" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Disconnect"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_m4ikw")
+user_icon = "signal_wifi_bad"
+
+[node name="ButtonBack" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Back"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_m4ikw")
+user_icon = "arrow_back"
+
+[node name="RightSpacer" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/Avatars/Left" to="." method="_on_switch_avatar" binds= [-1]]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/Avatars/Right" to="." method="_on_switch_avatar" binds= [1]]
+[connection signal="text_submitted" from="HBoxContainer/ColorRect/VBoxContainer/UsernameEdit/NameLine" to="." method="_on_name_text_submitted"]
+[connection signal="toggled" from="HBoxContainer/ColorRect/VBoxContainer/UsernameEdit/EditButton" to="." method="_on_edit_button_toggled"]
+[connection signal="toggled" from="HBoxContainer/ColorRect/VBoxContainer/SoundAndTheme/Sounds" to="." method="_on_sounds_toggled"]
+[connection signal="toggled" from="HBoxContainer/ColorRect/VBoxContainer/SoundAndTheme/ThemeMode" to="." method="_on_theme_mode_toggled"]
+[connection signal="toggled" from="HBoxContainer/ColorRect/VBoxContainer/ShowDebug" to="." method="_on_show_debug_toggled"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/VBoxContainer/ButtonDisconnect" to="." method="_on_button_disconnect_pressed"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/VBoxContainer/ButtonBack" to="." method="_on_back_pressed"]

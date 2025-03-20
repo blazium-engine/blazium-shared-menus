@@ -1,0 +1,155 @@
+[gd_scene load_steps=4 format=3 uid="uid://7blyjegi70l6"]
+
+[ext_resource type="Script" uid="uid://b0n6rlkhgsrlw" path="res://menus/lobby_browser/lobby_browser.gd" id="1_cirsv"]
+[ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_kfob6"]
+[ext_resource type="Script" uid="uid://bq1qfsh8k2mnq" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_ube8s"]
+
+[node name="LobbyBrowser" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "lobby_id", "left_spacer", "right_spacer", "click_sound")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"FlatNormalPanel"
+script = ExtResource("1_cirsv")
+lobby_grid = NodePath("HBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainerLobbies")
+logs = NodePath("HBoxContainer/PanelContainer/VBoxContainer/Logs")
+lobby_id = NodePath("HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/LobbyId")
+left_spacer = NodePath("HBoxContainer/LeftSpacer")
+right_spacer = NodePath("HBoxContainer/RightSpacer")
+click_sound = NodePath("Click1")
+metadata/_edit_lock_ = true
+
+[node name="Click1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_kfob6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftSpacer" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_type_variation = &"ContentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PaddingTitle" type="Control" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="LabelLobbies" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Games"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="LobbyId" type="LineEdit" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Code: ABC123"
+alignment = 1
+secret = true
+
+[node name="JoinLobby" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "Join by Code"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("5_ube8s")
+user_icon = "add_circle_outline"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"ScrollPanel"
+follow_focus = true
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainerLobbies" type="VBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FoldableContainer" type="FoldableContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+folded = true
+text = "Filters"
+title_position = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Filters" type="HBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HideFull" type="CheckBox" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer/VBoxContainer/Filters"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "Hide Full"
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HidePrivate" type="CheckBox" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "Hide Password Protected"
+alignment = 1
+
+[node name="Back" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "Back"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("5_ube8s")
+user_icon = "arrow_back"
+
+[node name="Logs" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+horizontal_alignment = 1
+
+[node name="RightSpacer" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/JoinLobby" to="." method="_on_join_lobby_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer/VBoxContainer/Filters/HideFull" to="." method="_on_hide_full_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer/HidePrivate" to="." method="_on_hide_private_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
