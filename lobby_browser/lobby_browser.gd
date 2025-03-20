@@ -8,10 +8,10 @@ extends BlaziumPanel
 @export var right_spacer: Control
 @export var click_sound: AudioStreamPlayer
 
-var main_menu_scene: PackedScene = load("res://menus/main_menu/main_menu.tscn")
-var lobby_creator_scene: PackedScene = load("res://menus/lobby_creator/lobby_creator.tscn")
-var container_lobby_scene: PackedScene = preload("res://menus/lobby_browser/container_lobby.tscn")
-var lobby_viewer: PackedScene = preload("res://menus/lobby_viewer/lobby_viewer.tscn")
+var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
+var lobby_creator_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/lobby_creator.tscn")
+var container_lobby_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_browser/container_lobby.tscn")
+var lobby_viewer: PackedScene = preload("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
 var wrong_id_popup: CustomDialog
 var password_popup: CustomDialog
 var password_log := Label.new()

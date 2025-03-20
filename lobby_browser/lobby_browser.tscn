@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://7blyjegi70l6"]
 
-[ext_resource type="Script" uid="uid://b0n6rlkhgsrlw" path="res://menus/lobby_browser/lobby_browser.gd" id="1_cirsv"]
+[ext_resource type="Script" path="res://addons/blazium_shared_menus/lobby_browser/lobby_browser.gd" id="1_cirsv"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_kfob6"]
-[ext_resource type="Script" uid="uid://bq1qfsh8k2mnq" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_ube8s"]
+[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_ube8s"]
 
 [node name="LobbyBrowser" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "lobby_id", "left_spacer", "right_spacer", "click_sound")]
 anchors_preset = 15

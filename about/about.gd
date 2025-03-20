@@ -2,7 +2,7 @@
 extends BlaziumPanel
 
 @export var click_sound: AudioStreamPlayer
-var main_menu_scene: PackedScene = load("res://menus/main_menu/main_menu.tscn")
+var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 
 
 func _shortcut_input(_event: InputEvent) -> void:

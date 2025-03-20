@@ -5,7 +5,7 @@ extends Control
 @export var _join_button: Button
 @export var click_sound: AudioStreamPlayer
 
-var lobby_viewer_scene: PackedScene = load("res://menus/lobby_viewer/lobby_viewer.tscn")
+var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
 var password_popup: CustomDialog
 var lobby: LobbyInfo
 var logs: Label

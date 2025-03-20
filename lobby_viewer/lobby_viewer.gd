@@ -14,10 +14,10 @@ extends BlaziumPanel
 @export var points_to_win: Label
 @export var click_sound: AudioStreamPlayer
 
-var main_menu_scene: PackedScene = load("res://menus/main_menu/main_menu.tscn")
-var lobby_browser_scene: PackedScene = load("res://menus/lobby_browser/lobby_browser.tscn")
+var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
+var lobby_browser_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
 var game_scene: PackedScene = load("res://game/game.tscn")
-var container_peer_scene: PackedScene = preload("res://menus/lobby_viewer/container_peer.tscn")
+var container_peer_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_viewer/container_peer.tscn")
 var exit_popup: CustomDialog
 var kick_popup: CustomDialog
 

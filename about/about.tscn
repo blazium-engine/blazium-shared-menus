@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cn8bcqn8gwpxh"]
 
-[ext_resource type="Script" path="res://menus/about/about.gd" id="1_grr0r"]
+[ext_resource type="Script" path="res://addons/blazium_shared_menus/about/about.gd" id="1_grr0r"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_0pa0n"]
 [ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="2_w6h8l"]
 

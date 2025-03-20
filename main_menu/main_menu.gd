@@ -14,11 +14,11 @@ extends BlaziumPanel
 @export var right_spacer: Control
 @export var click_sound: AudioStreamPlayer
 
-var lobby_browser_scene: PackedScene = preload("res://menus/lobby_browser/lobby_browser.tscn")
-var lobby_viewer_scene: PackedScene = preload("res://menus/lobby_viewer/lobby_viewer.tscn")
-var lobby_creator_scene: PackedScene = preload("res://menus/lobby_creator/lobby_creator.tscn")
-var settings_scene: PackedScene = preload("res://menus/settings/settings.tscn")
-var about_scene: PackedScene = preload("res://menus/about/about.tscn")
+var lobby_browser_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
+var lobby_viewer_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
+var lobby_creator_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_creator/lobby_creator.tscn")
+var settings_scene: PackedScene = preload("res://addons/blazium_shared_menus/settings/settings.tscn")
+var about_scene: PackedScene = preload("res://addons/blazium_shared_menus/about/about.tscn")
 
 var config: ConfigFile
 var exit_popup: CustomDialog
@@ -28,7 +28,7 @@ var wrong_id_popup: CustomDialog
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	title_label.text = ProjectSettings.get("blazium/main_menu/title")
+	title_label.text = ProjectSettings.get("application/config/name")
 	# Load settings options
 	config = ConfigFile.new()
 	config.load("user://blazium.cfg")
