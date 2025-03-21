@@ -1,0 +1,121 @@
+class_name GameUI
+extends Control
+
+@export var private_checkbutton: CheckBox
+@export var logs: Label
+
+@export var player_list: VBoxContainer
+@export var user_element_scene: PackedScene
+@export var chat: VBoxContainer
+@export var user_list: ScrollContainer
+
+@export_group("Sounds")
+@export var click_sfx: AudioStreamPlayer
+@export var game_start_sfx: AudioStreamPlayer
+
+var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
+
+var peer_to_kick: String
+var state_was_started: bool = false
+var exit_popup: CustomDialog
+var kick_popup: CustomDialog
+
+func _ready() -> void:
+	game_start_sfx.play()
+
+	private_checkbutton.visible = GlobalLobbyClient.is_host()
+	private_checkbutton.set_pressed_no_signal(GlobalLobbyClient.lobby.sealed)
+
+	GlobalLobbyClient.lobby_sealed.connect(_lobby_sealed)
+	GlobalLobbyClient.lobby_left.connect(_lobby_left)
+	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
+	# Player list
+	GlobalLobbyClient.peer_joined.connect(_peer_joined)
+	GlobalLobbyClient.peer_left.connect(_peer_left)
+	load_peers(GlobalLobbyClient.peers)
+
+func _lobby_sealed(sealed: bool):
+	private_checkbutton.set_pressed_no_signal(sealed)
+
+func _lobby_left(_kicked: bool):
+	if is_inside_tree():
+		get_tree().change_scene_to_packed.call_deferred(main_menu_scene)
+
+func leave_lobby():
+	var result: LobbyResult = await GlobalLobbyClient.leave_lobby().finished
+
+	logs.visible = GlobalLobbyClient.show_debug
+	logs.text = result.error
+
+func kick_peer(peer: LobbyPeer) -> void:
+	if peer.id == GlobalLobbyClient.peer.id:
+		return
+	peer_to_kick = peer.id
+	kick_popup.text = "Kick %s?" % peer.user_data.get("name", "")
+	kick_popup.show()
+
+func _disconnected_from_server(_reason: String):
+	if is_inside_tree():
+		get_tree().change_scene_to_packed.call_deferred(main_menu_scene)
+
+func _on_back_pressed() -> void:
+	click_sfx.play()
+	exit_popup.show()
+
+func _input(_event):
+	if Input.is_action_just_pressed("ui_cancel"):
+		exit_popup.visible = not exit_popup.visible
+
+func _on_exit_popup_confirmed() -> void:
+	click_sfx.play()
+	leave_lobby()
+
+func _play_click_sound() -> void:
+	click_sfx.play()
+
+func _on_private_toggled(toggled_on: bool) -> void:
+	click_sfx.play()
+	var result: LobbyResult = await GlobalLobbyClient.set_lobby_sealed(toggled_on).finished
+	logs.visible = GlobalLobbyClient.show_debug
+	logs.text = result.error
+
+func _on_kick_popup_confirm() -> void:
+	click_sfx.play()
+	var result: LobbyResult = await GlobalLobbyClient.kick_peer(peer_to_kick).finished
+	logs.visible = GlobalLobbyClient.show_debug
+	logs.text = result.error
+
+func _peer_joined(_peer: LobbyPeer):
+	load_peers(GlobalLobbyClient.peers)
+
+func _peer_left(_peer: LobbyPeer, _kicked: bool):
+	load_peers(GlobalLobbyClient.peers)
+
+func load_peers(peers: Array[LobbyPeer]):
+	for child in player_list.get_children():
+		child.queue_free()
+	for peer in peers:
+		var user_node := user_element_scene.instantiate()
+		user_node.peer_info = peer
+		user_node.kick.connect(kick_peer)
+		player_list.add_child(user_node)
+
+func _init() -> void:
+	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
+	exit_popup.name = "ExitPopup"
+	exit_popup.cancelled.connect(_play_click_sound)
+	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
+	exit_popup.hide()
+	add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)
+	kick_popup = CustomDialog.new("Kick Player?")
+	kick_popup.name = "KickPopup"
+	kick_popup.cancelled.connect(_play_click_sound)
+	kick_popup.confirmed.connect(_on_kick_popup_confirm)
+	kick_popup.hide()
+	add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
+
+func _on_user_list_hider_toggled(toggled_on: bool) -> void:
+	user_list.visible = toggled_on
+
+func send_chat(peer_id: LobbyPeer, message: String):
+	chat.append_message_to_chat(peer_id, message)

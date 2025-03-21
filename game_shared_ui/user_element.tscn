@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://dow0cala2dics"]
+
+[ext_resource type="Script" path="res://addons/blazium_shared_menus/game_shared_ui/user_element.gd" id="1_q4q1m"]
+[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/avatar.gd" id="2_v3rd2"]
+[ext_resource type="Texture2D" uid="uid://cpnnenl5vontt" path="res://game/assets/avatars.svg" id="3_cu47y"]
+[ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="3_eyets"]
+[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/custom_texture_rect.gd" id="6_7h0m1"]
+[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="7_nolke"]
+
+[node name="HBoxContainer" type="PanelContainer" node_paths=PackedStringArray("label", "avatar", "kick_button", "disconnected_icon", "click_sound")]
+offset_right = 216.0
+offset_bottom = 64.0
+script = ExtResource("1_q4q1m")
+label = NodePath("HBoxContainer/Label")
+avatar = NodePath("HBoxContainer/Avatar")
+kick_button = NodePath("HBoxContainer/KickButton")
+disconnected_icon = NodePath("HBoxContainer/TextureRect")
+click_sound = NodePath("Click1")
+
+[node name="Click1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_eyets")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Avatar" type="Control" parent="HBoxContainer"]
+texture_filter = 4
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("2_v3rd2")
+texture_scale = 0.75
+texture = ExtResource("3_cu47y")
+h_frames = 8
+v_frames = 8
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+visible = false
+modulate = Color(1, 1, 0.415686, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("6_7h0m1")
+user_icon = "warning_amber"
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "User Name"
+text_overrun_behavior = 3
+
+[node name="KickButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("7_nolke")
+user_icon = "block"
+
+[connection signal="pressed" from="HBoxContainer/KickButton" to="." method="_on_kick_button_pressed"]
