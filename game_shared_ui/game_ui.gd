@@ -33,6 +33,20 @@ func _ready() -> void:
 	GlobalLobbyClient.peer_joined.connect(_peer_joined)
 	GlobalLobbyClient.peer_left.connect(_peer_left)
 	load_peers(GlobalLobbyClient.peers)
+	
+	
+	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
+	exit_popup.name = "ExitPopup"
+	exit_popup.cancelled.connect(_play_click_sound)
+	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
+	exit_popup.hide()
+	get_tree().current_scene.get_child(0).add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)
+	kick_popup = CustomDialog.new("Kick Player?")
+	kick_popup.name = "KickPopup"
+	kick_popup.cancelled.connect(_play_click_sound)
+	kick_popup.confirmed.connect(_on_kick_popup_confirm)
+	kick_popup.hide()
+	get_tree().current_scene.get_child(0).add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
 
 func _lobby_sealed(sealed: bool):
 	private_checkbutton.set_pressed_no_signal(sealed)
@@ -99,20 +113,6 @@ func load_peers(peers: Array[LobbyPeer]):
 		user_node.peer_info = peer
 		user_node.kick.connect(kick_peer)
 		player_list.add_child(user_node)
-
-func _init() -> void:
-	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
-	exit_popup.name = "ExitPopup"
-	exit_popup.cancelled.connect(_play_click_sound)
-	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
-	exit_popup.hide()
-	add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)
-	kick_popup = CustomDialog.new("Kick Player?")
-	kick_popup.name = "KickPopup"
-	kick_popup.cancelled.connect(_play_click_sound)
-	kick_popup.confirmed.connect(_on_kick_popup_confirm)
-	kick_popup.hide()
-	add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
 
 func _on_user_list_hider_toggled(toggled_on: bool) -> void:
 	user_list.visible = toggled_on
