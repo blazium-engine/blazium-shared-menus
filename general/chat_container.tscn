@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl8npfol8dj2h"]
+[gd_scene load_steps=7 format=3 uid="uid://dl8npfol8dj2h"]
 
 [ext_resource type="Script" uid="uid://dm713qi5daahh" path="res://addons/blazium_shared_menus/general/chat_container.gd" id="1_levib"]
+[ext_resource type="AudioStream" uid="uid://cvb8lwjpd5ei0" path="res://game/assets/sfx/word_is_set.mp3" id="2_p4tny"]
 [ext_resource type="AudioStream" uid="uid://dkkii20codqu" path="res://game/assets/sfx/chat_msg.mp3" id="3_oya02"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="3_wm4ih"]
 [ext_resource type="Script" uid="uid://dgi0vrfubf6pu" path="res://addons/blazium_emoji_editor/emoji_panel.gd" id="4_owajc"]
 [ext_resource type="Script" uid="uid://carmom7wmhbwr" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_bbuts"]
 
-[node name="Control" type="VBoxContainer" node_paths=PackedStringArray("chat_input", "chat_text", "chat_msg_sfx", "click_sfx", "emoji_button", "emoji_panel")]
+[node name="Control" type="VBoxContainer" node_paths=PackedStringArray("chat_input", "chat_text", "chat_msg_sfx", "click_sfx", "word_is_set_sfx", "emoji_button", "emoji_panel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,8 +20,12 @@ server_event_color = Color(0.314073, 0.392464, 0.507152, 1)
 command_error_color = Color(0.75, 0.1875, 0.1875, 1)
 chat_msg_sfx = NodePath("ChatMessage")
 click_sfx = NodePath("Click")
+word_is_set_sfx = NodePath("WordIsSet")
 emoji_button = NodePath("HBoxContainerChat/EmojiButton")
 emoji_panel = NodePath("Control/EmojiPanel")
+
+[node name="WordIsSet" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_p4tny")
 
 [node name="ChatMessage" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_oya02")
