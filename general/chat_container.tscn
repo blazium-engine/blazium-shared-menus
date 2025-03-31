@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dkkii20codqu" path="res://game/assets/sfx/chat_msg.mp3" id="3_oya02"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="3_wm4ih"]
 [ext_resource type="Script" uid="uid://dgi0vrfubf6pu" path="res://addons/blazium_emoji_editor/emoji_panel.gd" id="4_owajc"]
-[ext_resource type="Script" uid="uid://carmom7wmhbwr" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_bbuts"]
+[ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_bbuts"]
 
 [node name="Control" type="VBoxContainer" node_paths=PackedStringArray("chat_input", "chat_text", "chat_msg_sfx", "click_sfx", "word_is_set_sfx", "emoji_button", "emoji_panel")]
 anchors_preset = 15

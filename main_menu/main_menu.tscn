@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bta3yavir6chs" path="res://addons/blazium_shared_menus/main_menu/main_menu.gd" id="1_20biu"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_m7b01"]
-[ext_resource type="Script" uid="uid://carmom7wmhbwr" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_f84iw"]
+[ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_f84iw"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_v30e3"]
 device = -1
