@@ -6,7 +6,7 @@ extends Control
 
 var progress_material: ShaderMaterial
 var progress: float = 1.0
-var total_time: float = 7.0
+@export var total_time: float = 7.0
 
 func _ready() -> void:
 	progress_material = progress_bar.material as ShaderMaterial
