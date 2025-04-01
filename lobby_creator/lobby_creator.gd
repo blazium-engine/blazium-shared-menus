@@ -32,7 +32,7 @@ func _on_button_create_lobby_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
 	if title_label.text.is_empty():
-		title_label.text = "WordGame" + str(randi() % 1000)
+		title_label.text = "Game" + str(randi() % 1000)
 	var max_points = max_points_line_edit.text
 	if max_points == "":
 		max_points = 0

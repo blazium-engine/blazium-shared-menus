@@ -81,7 +81,7 @@ func _on_button_lobby_pressed() -> void:
 func _on_set_name_pressed() -> void:
 	click_sound.play()
 	if peer_name_line_edit.text == "":
-		peer_name_line_edit.text = "WordPlayer" + str(randi() % 1000)
+		peer_name_line_edit.text = "Player" + str(randi() % 1000)
 	var result: LobbyResult = await GlobalLobbyClient.add_peer_user_data({"name": peer_name_line_edit.text, "avatar": randi() % 28}).finished
 
 	logs.visible = GlobalLobbyClient.show_debug
@@ -143,7 +143,7 @@ func _on_create_lobby_pressed() -> void:
 func _on_button_quickstart_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
-	var res: ViewLobbyResult = await GlobalLobbyClient.quick_join("WordGame" + str(randi() % 1000), {"max_points": 30}, 4).finished
+	var res: ViewLobbyResult = await GlobalLobbyClient.quick_join("Game" + str(randi() % 1000), {"max_points": 30}, 4).finished
 	if res.has_error():
 		push_error(res.error)
 	elif is_inside_tree():
