@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnmd0k4gxudx7"]
+
+[ext_resource type="Shader" uid="uid://dwrv44oixf2ki" path="res://addons/blazium_shared_menus/game_shared_ui/timer_bar.gdshader" id="1_05jv1"]
+[ext_resource type="Script" uid="uid://co5yk3w0l1dj3" path="res://addons/blazium_shared_menus/game_shared_ui/timer_bar.gd" id="1_i78lo"]
+
+[sub_resource type="Gradient" id="Gradient_p4oya"]
+offsets = PackedFloat32Array(0.271429, 0.728571)
+colors = PackedColorArray(0.677708, 0, 0.183282, 1, 0.470771, 0.221247, 0.619007, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tu7k6"]
+gradient = SubResource("Gradient_p4oya")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdeox"]
+shader = ExtResource("1_05jv1")
+shader_parameter/value = 1.0
+shader_parameter/segments = 7
+shader_parameter/radius = 0.5
+shader_parameter/hollow_radius = 0.4
+shader_parameter/margin = 0.029
+shader_parameter/rotation = 4.75e-08
+shader_parameter/progress_rotation = 0.1
+shader_parameter/use_value_gradient = true
+shader_parameter/gradient = SubResource("GradientTexture2D_tu7k6")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_t456x"]
+
+[node name="Timer Bar" type="Control" node_paths=PackedStringArray("progress_bar", "progress_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 106.0
+script = ExtResource("1_i78lo")
+progress_bar = NodePath("ProgressBar")
+progress_label = NodePath("ProgressBar/ProgressLabel")
+
+[node name="ProgressBar" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_hdeox")
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("CanvasTexture_t456x")
+
+[node name="ProgressLabel" type="Label" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.5
+offset_top = -10.0
+offset_right = 4.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "7"
