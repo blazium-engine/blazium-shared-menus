@@ -143,7 +143,7 @@ func _on_create_lobby_pressed() -> void:
 func _on_button_quickstart_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
-	var res: ViewLobbyResult = await GlobalLobbyClient.quick_join("Game" + str(randi() % 1000), {"max_points": 30}, 4).finished
+	var res: ViewLobbyResult = await GlobalLobbyClient.quick_join("Game" + str(randi() % 1000), {"max_points": 30}, ProjectSettings.get_setting("blazium/game/max_players_default")).finished
 	if res.has_error():
 		push_error(res.error)
 	elif is_inside_tree():

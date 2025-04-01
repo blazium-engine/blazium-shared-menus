@@ -26,6 +26,8 @@ func _ready() -> void:
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	if not (OS.get_name() in ["Android", "iOS"]):
 		title_label.grab_focus()
+	max_players_label.text = str(ProjectSettings.get_setting("blazium/game/max_players_default", 10))
+	_update_max_players_buttons(int(max_players_label.text))
 
 
 func _on_button_create_lobby_pressed() -> void:
@@ -49,8 +51,8 @@ func _on_button_increment_pressed() -> void:
 	click_sound.play()
 	var players := int(max_players_label.text)
 	players += 1
-	if players > 10:
-		players = 10
+	if players > ProjectSettings.get_setting("blazium/game/max_players_max", 10):
+		players = ProjectSettings.get_setting("blazium/game/max_players_max", 10)
 	max_players_label.text = str(players)
 	_update_max_players_buttons(players)
 
@@ -59,15 +61,15 @@ func _on_button_decrement_pressed() -> void:
 	click_sound.play()
 	var players := int(max_players_label.text)
 	players -= 1
-	if players < 2:
-		players = 2
+	if players < ProjectSettings.get_setting("blazium/game/max_players_min", 2):
+		players = ProjectSettings.get_setting("blazium/game/max_players_min", 2)
 	max_players_label.text = str(players)
 	_update_max_players_buttons(players)
 
 
 func _update_max_players_buttons(players):
-	decrement_button.disabled = players == 2
-	increment_button.disabled = players == 10
+	decrement_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_min", 2)
+	increment_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_max", 10)
 
 
 func _on_title_text_submitted(_new_text: String) -> void:
