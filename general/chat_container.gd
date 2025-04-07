@@ -55,6 +55,7 @@ func _ready() -> void:
 			ChatCommand.create_command("discord", discord_command, "Gives a link to Blazium's Discord server"),
 			ChatCommand.create_command("kick", kick_command, "Kick a player from the lobby", "player name"),
 			ChatCommand.create_command("code", code_command, "Gives the lobby code"),
+			ChatCommand.create_command("me", me_command, "Broadcasts a narrative message in third person", "action"),
 	])
 	add_game_commands()
 	append_message_to_chat(null, "Use /help to list all commands")
@@ -181,7 +182,8 @@ func _peer_reconnected(peer: LobbyPeer):
 
 
 func _peer_messaged(peer: LobbyPeer, chat_message: String):
-	append_message_to_chat(peer, chat_message, true)
+	var is_player: bool = not peer.id.is_empty()
+	append_message_to_chat(peer if is_player else null, chat_message, is_player)
 
 
 func _on_chat_button_pressed() -> void:
@@ -321,3 +323,23 @@ func code_command() -> String:
 			[server_event_color_hex,
 			GlobalLobbyClient.lobby.id]
 	)
+
+
+func me_command(action: String) -> String:
+	if action.is_empty():
+		return (
+				"[color=#%s][i]%s[/i][/color]\n" %
+				[command_error_color_hex,
+				"Need an action."]
+		)
+	var result: ScriptedLobbyResult = await GlobalLobbyClient.lobby_call("me_command", [action]).finished
+	logs.visible = GlobalLobbyClient.show_debug
+	logs.text = result.error
+	if result.has_error():
+		return (
+				"[color=#%s][i]Server Error: %s[/i][/color]\n" %
+				[command_error_color_hex,
+				result.error]
+		)
+	# The server will send the broadcast
+	return ""
