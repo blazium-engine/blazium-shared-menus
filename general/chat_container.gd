@@ -144,7 +144,7 @@ func _process_player_message(chat_message: String, peer_name: String) -> String:
 				return await command.callback.call()
 		else:
 			# Command has argument
-			var splitted_command := chat_message.split(" ")
+			var splitted_command := chat_message.split(" ", true, 1)
 			if splitted_command[0] == command_name:
 				if splitted_command.size() < 2:
 					return (
