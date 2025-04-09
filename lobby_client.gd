@@ -35,15 +35,15 @@ func _ready() -> void:
 	connected_to_server.connect(_connected_to_server)
 	disconnected_from_server.connect(_disconnected_from_server)
 	log_updated.connect(_log_updated)
-	if discord.is_discord_environment():
-		var auth_id = await login.auth_id_flow("discord")
-		var discord_access_code = await discord.discord_access_code_flow()
-		var access_token: LoginAccessTokenResult = await login.request_access_token("discord", auth_id, discord_access_code).finished
-		if access_token.has_error():
-			push_error(access_token.error)
-			return
-	else:
-		reconnection_token = config.get_value("LobbyClient", "reconnection_token", "")
+	#if discord.is_discord_environment():
+	#	var auth_id = await login.auth_id_flow("discord")
+	#	var discord_access_code = await discord.discord_access_code_flow()
+	#	var access_token: LoginAccessTokenResult = await login.request_access_token("discord", auth_id, discord_access_code).finished
+	#	if access_token.has_error():
+	#		push_error(access_token.error)
+	#		return
+	#else:
+	reconnection_token = config.get_value("LobbyClient", "reconnection_token", "")
 	#server_url = "ws://localhost:8080/connect"
 	connect_to_server()
 	_size_changed()
