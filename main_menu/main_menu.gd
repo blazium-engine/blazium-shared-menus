@@ -116,6 +116,7 @@ func _on_button_settings_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	click_sound.play()
 	exit_popup.show()
+	exit_popup.confirm_button.grab_focus();
 
 
 func _shortcut_input(_event):
@@ -128,6 +129,9 @@ func _on_exit_popup_confirmed() -> void:
 	await click_sound.finished
 	get_tree().quit()
 
+func _on_exit_popup_cancelled() -> void:
+	_play_click_sound()
+	quit_button.grab_focus()
 
 func _play_click_sound() -> void:
 	click_sound.play()
@@ -159,7 +163,7 @@ func _on_about_button_pressed() -> void:
 func _init():
 	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
 	exit_popup.name = "ExitPopup"
-	exit_popup.cancelled.connect(_play_click_sound)
+	exit_popup.cancelled.connect(_on_exit_popup_cancelled)
 	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
 	exit_popup.hide()
 	add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)

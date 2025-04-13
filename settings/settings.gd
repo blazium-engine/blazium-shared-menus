@@ -6,6 +6,7 @@ const max_avatars := 28
 @export var logs: Label
 @export var name_label: LineEdit
 @export var edit_button: Button
+@export var disconnect_button: Button
 @export var left_spacer: Control
 @export var right_spacer: Control
 @export var prev_avatar: Avatar
@@ -88,6 +89,7 @@ func _disconnected_from_server(_reason: String):
 func _on_button_disconnect_pressed() -> void:
 	click_sound.play()
 	disconnect_popup.show()
+	disconnect_popup.confirm_button.grab_focus()
 
 
 func _on_switch_avatar(_dir: int) -> void:
@@ -114,6 +116,9 @@ func _on_disconnect_popup_confirmed() -> void:
 	GlobalLobbyClient.reconnection_token = ""
 	GlobalLobbyClient.disconnect_from_server()
 
+func _on_disconnect_popup_cancelled() -> void:
+	click_sound.play()
+	disconnect_button.grab_focus()
 
 func _play_click_sound() -> void:
 	click_sound.play()
@@ -141,7 +146,7 @@ func _on_theme_mode_toggled(toggled_on: bool) -> void:
 func _init() -> void:
 	disconnect_popup = CustomDialog.new("Are You Sure You Want To Disconnect?")
 	disconnect_popup.name = "DisconnectPopup"
-	disconnect_popup.cancelled.connect(_play_click_sound)
+	disconnect_popup.cancelled.connect(_on_disconnect_popup_cancelled)
 	disconnect_popup.confirmed.connect(_on_disconnect_popup_confirmed)
 	disconnect_popup.hide()
 	add_child(disconnect_popup, false, Node.INTERNAL_MODE_BACK)

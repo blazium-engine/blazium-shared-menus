@@ -1,9 +1,12 @@
 @tool
 extends BlaziumPanel
 
+@export var back_button: Button
 @export var click_sound: AudioStreamPlayer
 var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 
+func _ready() -> void:
+	back_button.grab_focus()
 
 func _shortcut_input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_cancel"):
