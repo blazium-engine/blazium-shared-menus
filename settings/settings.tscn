@@ -1,15 +1,15 @@
 [gd_scene load_steps=8 format=3 uid="uid://8r4dcxm66m3j"]
 
-[ext_resource type="Script" path="res://addons/blazium_shared_menus/settings/settings.gd" id="1_qnsfk"]
+[ext_resource type="Script" uid="uid://dqc3ubrnmgw1b" path="res://addons/blazium_shared_menus/settings/settings.gd" id="1_qnsfk"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_46h8p"]
-[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/avatar.gd" id="3_hslym"]
+[ext_resource type="Script" uid="uid://b3hqtawg2ww5p" path="res://addons/blazium_theme_editor/classes/avatar.gd" id="3_hslym"]
 [ext_resource type="Texture2D" uid="uid://cpnnenl5vontt" path="res://game/assets/avatars.svg" id="4_ebg5c"]
-[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="6_m4ikw"]
-[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_6v4tp"]
+[ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="6_m4ikw"]
+[ext_resource type="Script" uid="uid://dbfmeu5kh7yv4" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_6v4tp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sckri"]
 
-[node name="Settings" type="PanelContainer" node_paths=PackedStringArray("logs", "name_label", "edit_button", "left_spacer", "right_spacer", "prev_avatar", "avatar", "next_avatar", "click_sound", "debug_info_checkbutton", "mute_checkbutton", "theme_mode")]
+[node name="Settings" type="PanelContainer" node_paths=PackedStringArray("logs", "name_label", "edit_button", "disconnect_button", "left_spacer", "right_spacer", "prev_avatar", "avatar", "next_avatar", "click_sound", "debug_info_checkbutton", "mute_checkbutton", "theme_mode")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,6 +20,7 @@ script = ExtResource("1_qnsfk")
 logs = NodePath("HBoxContainer/ColorRect/VBoxContainer/Logs")
 name_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/UsernameEdit/NameLine")
 edit_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/UsernameEdit/EditButton")
+disconnect_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/VBoxContainer/ButtonDisconnect")
 left_spacer = NodePath("HBoxContainer/LeftSpacer")
 right_spacer = NodePath("HBoxContainer/RightSpacer")
 prev_avatar = NodePath("HBoxContainer/ColorRect/VBoxContainer/Avatars/PrevAvatar")
@@ -74,6 +75,7 @@ theme_override_constants/separation = 32
 [node name="Left" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/Avatars"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../Right")
 mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sckri")
 icon_alignment = 1
@@ -110,6 +112,7 @@ v_frames = 8
 [node name="Right" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/Avatars"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Left")
 mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sckri")
 icon_alignment = 1
