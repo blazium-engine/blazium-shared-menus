@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnoahk5kmvnsc"]
+
+[ext_resource type="Script" uid="uid://bpxngech2r1ao" path="res://addons/blazium_shared_menus/lobby_creator/tag_setting.gd" id="1_1q2gt"]
+
+[node name="HBoxContainerPlayers2" type="HBoxContainer" node_paths=PackedStringArray("label", "line_edit")]
+script = ExtResource("1_1q2gt")
+label = NodePath("Label")
+line_edit = NodePath("Setting")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Max Points:"
+
+[node name="Setting" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1

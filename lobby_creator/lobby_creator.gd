@@ -11,13 +11,15 @@ extends BlaziumPanel
 @export var increment_button: Button
 @export var decrement_button: Button
 @export var sealed_checkbox: CheckBox
-@export var max_points_line_edit: LineEdit
 @export var click_sound: AudioStreamPlayer
+@export var settings_vbox: VBoxContainer
 
 var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
-
+var tag_setting_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/tag_setting.tscn")
 var sealed := false
+
+var tags_settings_array: Array[TagSetting]
 
 
 func _ready() -> void:
@@ -28,17 +30,30 @@ func _ready() -> void:
 		title_label.grab_focus()
 	max_players_label.text = str(ProjectSettings.get_setting("blazium/game/max_players_default", 10))
 	_update_max_players_buttons(int(max_players_label.text))
-
+	var tags_enabled = ProjectSettings.get_setting("blazium/game/tags_enabled")
+	for tag_enabled in tags_enabled:
+		var tag_name = ProjectSettings.get_setting("blazium/game/" + tag_enabled + "/name")
+		var tag_default = ProjectSettings.get_setting("blazium/game/" + tag_enabled + "/default")
+		var tag_setting: TagSetting = tag_setting_scene.instantiate()
+		settings_vbox.add_child(tag_setting)
+		tag_setting.owner = settings_vbox
+		tag_setting.label.text = tag_name
+		tag_setting.line_edit.text = str(tag_default)
+		tag_setting.name = tag_name
+		tags_settings_array.push_back(tag_setting)
 
 func _on_button_create_lobby_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
 	if title_label.text.is_empty():
 		title_label.text = "Game" + str(randi() % 1000)
-	var max_points = max_points_line_edit.text
-	if max_points == "":
-		max_points = 0
-	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(title_label.text, sealed, { "max_points": int(max_points_line_edit.text) }, int(max_players_label.text), password_line_edit.text).finished
+	var tags = {}
+	for tag_setting in tags_settings_array:
+		var tag_setting_text = tag_setting.line_edit.text
+		if tag_setting_text == "":
+			tag_setting_text = 0
+		tags[tag_setting.name] = int(tag_setting_text)
+	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(title_label.text, sealed, tags, int(max_players_label.text), password_line_edit.text).finished
 
 	logs.visible = GlobalLobbyClient.show_debug
 	logs.text = result.error
