@@ -37,10 +37,7 @@ func _ready() -> void:
 	_connected_to_server(GlobalLobbyClient.peer, "")
 	GlobalLobbyClient.connected_to_server.connect(_connected_to_server)
 	GlobalLobbyClient.lobby_joined.connect(_lobby_joined)
-	if not (OS.get_name() in ["Android", "iOS", "Web"]):
-		quit_button.show()
-	if not (OS.get_name() in ["Android", "iOS"]):
-		peer_name_line_edit.grab_focus()
+	quit_button.visible = not (OS.get_name() in ["Android", "iOS", "Web"])
 
 
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
@@ -55,6 +52,7 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 	if peer_name == "":
 		menu.hide()
 		set_name_menu.show()
+		peer_name_line_edit.edit()
 	else: # has name already
 		menu.show()
 		name_label.show()
@@ -121,7 +119,12 @@ func _on_quit_button_pressed() -> void:
 
 func _shortcut_input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
-		exit_popup.visible = not exit_popup.visible
+		print("pressed")
+		if exit_popup.visible:
+			exit_popup.visible = false
+			_on_exit_popup_cancelled()
+		else:
+			_on_quit_button_pressed()
 
 
 func _on_exit_popup_confirmed() -> void:
@@ -129,9 +132,11 @@ func _on_exit_popup_confirmed() -> void:
 	await click_sound.finished
 	get_tree().quit()
 
+
 func _on_exit_popup_cancelled() -> void:
-	_play_click_sound()
+	click_sound.play()
 	quit_button.grab_focus()
+
 
 func _play_click_sound() -> void:
 	click_sound.play()
