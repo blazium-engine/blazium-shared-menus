@@ -6,6 +6,7 @@ extends BlaziumPanel
 @export var lobby_id: LineEdit
 @export var left_spacer: Control
 @export var right_spacer: Control
+@export var filter_foldable_container: FoldableContainer
 @export var click_sound: AudioStreamPlayer
 
 var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
@@ -28,6 +29,7 @@ func _ready() -> void:
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	GlobalLobbyClient.lobbies_listed.connect(_lobbies_listed)
 	GlobalLobbyClient.lobby_joined.connect(_lobby_joined)
+	filter_foldable_container.grab_focus()
 
 
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
@@ -101,8 +103,10 @@ func _on_join_lobby_pressed() -> void:
 	if result.has_error():
 		if result.error == "Invalid lobby password":
 			password_popup.show()
+			password_popup.confirm_button.grab_focus()
 		else:
 			wrong_id_popup.show()
+			wrong_id_popup.confirm_button.grab_focus()
 
 
 func _play_click_sound():
@@ -113,6 +117,7 @@ func _on_password_popup_cancelled() -> void:
 	click_sound.play()
 	password_log.text = ""
 	password_log.hide()
+	filter_foldable_container.grab_focus()
 
 
 func _on_password_popup_confirmed() -> void:
@@ -120,6 +125,12 @@ func _on_password_popup_confirmed() -> void:
 	var result: ViewLobbyResult = await GlobalLobbyClient.join_lobby(password_popup.get_meta("lobby_id"), password_line_edit.text).finished
 	password_log.visible = GlobalLobbyClient.show_debug
 	password_log.text = result.error
+	filter_foldable_container.grab_focus()
+
+
+func _popup_acknowledged() -> void:
+	click_sound.play()
+	filter_foldable_container.grab_focus()
 
 
 func _init() -> void:
@@ -127,7 +138,7 @@ func _init() -> void:
 	wrong_id_popup.confirm_button.user_icon = "keyboard_double_arrow_right"
 	wrong_id_popup.confirm_button.theme_type_variation = "SelectedButton"
 	wrong_id_popup.confirm_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	wrong_id_popup.confirmed.connect(_play_click_sound)
+	wrong_id_popup.confirmed.connect(_popup_acknowledged)
 	wrong_id_popup.hide()
 	add_child(wrong_id_popup, false, Node.INTERNAL_MODE_BACK)
 	password_popup = CustomDialog.new("Game Is Password Protected", "Enter", "Cancel")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://7blyjegi70l6"]
+[gd_scene load_steps=5 format=3 uid="uid://7blyjegi70l6"]
 
 [ext_resource type="Script" uid="uid://cdn6ckkplp0m8" path="res://addons/blazium_shared_menus/lobby_browser/lobby_browser.gd" id="1_cirsv"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_kfob6"]
+[ext_resource type="Script" uid="uid://cyp8juy8mxbqs" path="res://addons/blazium_shared_menus/lobby_browser/filter_container.gd" id="4_8hklr"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_ube8s"]
 
-[node name="LobbyBrowser" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "lobby_id", "left_spacer", "right_spacer", "click_sound")]
+[node name="LobbyBrowser" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "lobby_id", "left_spacer", "right_spacer", "filter_foldable_container", "click_sound")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,6 +18,7 @@ logs = NodePath("HBoxContainer/PanelContainer/VBoxContainer/Logs")
 lobby_id = NodePath("HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/LobbyId")
 left_spacer = NodePath("HBoxContainer/LeftSpacer")
 right_spacer = NodePath("HBoxContainer/RightSpacer")
+filter_foldable_container = NodePath("HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer")
 click_sound = NodePath("Click1")
 metadata/_edit_lock_ = true
 
@@ -95,34 +97,31 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="FoldableContainer" type="FoldableContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="FilterContainer" type="FoldableContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer" node_paths=PackedStringArray("expand_focus_target")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 folded = true
 text = "Filters"
 title_position = 1
+script = ExtResource("4_8hklr")
+expand_focus_target = NodePath("Filters/HidePrivate")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer"]
+[node name="Filters" type="VBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Filters" type="HBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="HideFull" type="CheckBox" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer/VBoxContainer/Filters"]
+[node name="HideFull" type="CheckBox" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 text = "Hide Full"
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="HidePrivate" type="CheckBox" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer"]
+[node name="HidePrivate" type="CheckBox" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters"]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_bottom = NodePath("../..")
 mouse_default_cursor_shape = 2
 text = "Hide Password Protected"
 alignment = 1
@@ -150,6 +149,6 @@ size_flags_horizontal = 3
 
 [connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/JoinLobby" to="." method="_on_join_lobby_pressed"]
-[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer/VBoxContainer/Filters/HideFull" to="." method="_on_hide_full_pressed"]
-[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer/HidePrivate" to="." method="_on_hide_private_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters/HideFull" to="." method="_on_hide_full_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters/HidePrivate" to="." method="_on_hide_private_pressed"]
 [connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
