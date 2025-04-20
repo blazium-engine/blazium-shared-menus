@@ -126,6 +126,7 @@ text = "Max Players:"
 [node name="ButtonDecrement" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPlayers"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../ButtonIncrement")
 mouse_default_cursor_shape = 2
 text = " "
 icon_alignment = 1
@@ -143,6 +144,7 @@ vertical_alignment = 1
 [node name="ButtonIncrement" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPlayers"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../ButtonDecrement")
 mouse_default_cursor_shape = 2
 text = " "
 icon_alignment = 1
