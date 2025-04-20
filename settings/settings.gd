@@ -36,8 +36,7 @@ func _ready() -> void:
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	avatar.frame = GlobalLobbyClient.peer.user_data.get("avatar", 0)
 	_update_other_avatars()
-	if not (OS.get_name() in ["Android", "iOS"]):
-		name_label.grab_focus()
+	name_label.grab_focus()
 
 
 func _on_resized() -> void:
