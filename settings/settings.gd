@@ -36,7 +36,7 @@ func _ready() -> void:
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	avatar.frame = GlobalLobbyClient.peer.user_data.get("avatar", 0)
 	_update_other_avatars()
-	name_label.grab_focus()
+	name_label.edit()
 
 
 func _on_resized() -> void:
