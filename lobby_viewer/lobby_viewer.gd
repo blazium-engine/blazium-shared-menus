@@ -186,6 +186,11 @@ func _on_label_lobby_id_pressed() -> void:
 	DisplayServer.clipboard_set(GlobalLobbyClient.lobby.id)
 
 
+func _on_exit_popup_cancelled() -> void:
+	click_sound.play()
+	ready_button.grab_focus()
+
+
 func _on_exit_popup_confirmed() -> void:
 	click_sound.play()
 	var result: LobbyResult = await GlobalLobbyClient.leave_lobby().finished
@@ -196,6 +201,7 @@ func _on_exit_popup_confirmed() -> void:
 func _on_back_pressed() -> void:
 	click_sound.play()
 	exit_popup.show()
+	exit_popup.confirm_button.grab_focus()
 
 
 func _on_reveal_lobby_id_pressed() -> void:
@@ -217,23 +223,29 @@ func _on_private_toggled(toggled_on: bool) -> void:
 	logs.text = result.error
 
 
+func _on_kick_popup_cancelled() -> void:
+	click_sound.play()
+	ready_button.grab_focus()
+
+
 func _on_kick_popup_confirmed() -> void:
 	click_sound.play()
 	var result: LobbyResult = await GlobalLobbyClient.kick_peer(peer_to_kick).finished
 	logs.visible = GlobalLobbyClient.show_debug
 	logs.text = result.error
+	ready_button.grab_focus()
 
 
 func _init() -> void:
 	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
 	exit_popup.name = "ExitPopup"
-	exit_popup.cancelled.connect(_play_click_sound)
+	exit_popup.cancelled.connect(_on_exit_popup_cancelled)
 	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
 	exit_popup.hide()
 	add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)
 	kick_popup = CustomDialog.new("Kick Player?")
 	kick_popup.name = "KickPopup"
-	kick_popup.cancelled.connect(_play_click_sound)
+	kick_popup.cancelled.connect(_on_kick_popup_cancelled)
 	kick_popup.confirmed.connect(_on_kick_popup_confirmed)
 	kick_popup.hide()
 	add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
