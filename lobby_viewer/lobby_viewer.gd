@@ -142,7 +142,7 @@ func kick_peer(peer: LobbyPeer) -> void:
 
 func _on_ready_pressed() -> void:
 	click_sound.play()
-	var new_ready := not GlobalLobbyClient.peer.ready
+	var new_ready = not GlobalLobbyClient.peer.ready
 	var result: LobbyResult = await GlobalLobbyClient.set_lobby_ready(new_ready).finished
 
 	logs.visible = GlobalLobbyClient.show_debug
