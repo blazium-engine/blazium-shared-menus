@@ -22,6 +22,7 @@ var about_scene: PackedScene = preload("res://addons/blazium_shared_menus/about/
 
 var config: ConfigFile
 var exit_popup: CustomDialog
+var reconnect_popup: CustomDialog
 var wrong_id_popup: CustomDialog
 
 
@@ -38,7 +39,7 @@ func _ready() -> void:
 	GlobalLobbyClient.connected_to_server.connect(_connected_to_server)
 	GlobalLobbyClient.lobby_joined.connect(_lobby_joined)
 	quit_button.visible = not (OS.get_name() in ["Android", "iOS", "Web"])
-
+	
 
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
 	# If in a lobby
@@ -126,6 +127,8 @@ func _shortcut_input(_event):
 		else:
 			_on_quit_button_pressed()
 
+func _on_reconnect_popup_confirmed() -> void:
+	GlobalLobbyClient.connect_to_server()
 
 func _on_exit_popup_confirmed() -> void:
 	click_sound.play()
@@ -166,6 +169,19 @@ func _on_about_button_pressed() -> void:
 
 
 func _init():
+	var quit_text = "Quit"
+	if OS.get_name() in ["Android", "iOS", "Web"]:
+		quit_text = ""
+	reconnect_popup = CustomDialog.new("Connection lost!", "Reconnect", quit_text)
+	reconnect_popup.name = "ReconnectPopup"
+	reconnect_popup.cancelled.connect(_on_exit_popup_confirmed)
+	reconnect_popup.confirmed.connect(_on_reconnect_popup_confirmed)
+	reconnect_popup.hide()
+	add_child(reconnect_popup, false, Node.INTERNAL_MODE_BACK)
+	GlobalLobbyClient.disconnected_from_server.connect(func (reason: String): if GlobalLobbyClient.reconnects > 3: reconnect_popup.show())
+	if GlobalLobbyClient.reconnects > 3 and not GlobalLobbyClient.connected:
+		reconnect_popup.show()
+	
 	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
 	exit_popup.name = "ExitPopup"
 	exit_popup.cancelled.connect(_on_exit_popup_cancelled)
