@@ -44,7 +44,10 @@ func _ready() -> void:
 	#		return
 	#else:
 	reconnection_token = config.get_value("LobbyClient", "reconnection_token", "")
-	#server_url = "ws://localhost:8080/connect"
+	var local_server = ProjectSettings.get_setting("blazium/game/lobby_server_local", false)
+	if local_server:
+		server_url = "ws://localhost:8080/connect"
+	
 	connect_to_server()
 	_size_changed()
 	get_tree().root.size_changed.connect(_size_changed)
