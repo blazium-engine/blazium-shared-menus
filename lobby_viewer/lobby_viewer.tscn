@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="6_3ppu3"]
 [ext_resource type="Script" uid="uid://dbfmeu5kh7yv4" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_ewirs"]
 
-[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "ready_button", "start_button", "lobby_label", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "private_checkbutton", "points_to_win", "click_sound")]
+[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "ready_button", "start_button", "leave_button", "lobby_label", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "private_checkbutton", "points_to_win", "click_sound")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,6 +19,7 @@ lobby_grid = NodePath("HBoxContainer/ColorRect/VBoxContainer/ScrollContainer/Lob
 logs = NodePath("HBoxContainer/ColorRect/VBoxContainer/Logs")
 ready_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Ready")
 start_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Start")
+leave_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/Leave")
 lobby_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/LabelLobby")
 lobby_id_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2/LabelLobbyID")
 reveal_lobby_id_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2/RevealLobbyID")

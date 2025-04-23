@@ -5,6 +5,7 @@ extends BlaziumPanel
 @export var logs: Label
 @export var ready_button: ToggledButton
 @export var start_button: Button
+@export var leave_button: Button
 @export var lobby_label: Label
 @export var lobby_id_button: Button
 @export var reveal_lobby_id_button: Button
@@ -177,7 +178,11 @@ func _on_resized() -> void:
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
-		_on_exit_popup_confirmed()
+		if exit_popup.visible:
+			exit_popup.visible = false
+			_on_exit_popup_cancelled()
+		else:
+			_on_back_pressed()
 
 
 func _on_label_lobby_id_pressed() -> void:
@@ -188,7 +193,7 @@ func _on_label_lobby_id_pressed() -> void:
 
 func _on_exit_popup_cancelled() -> void:
 	click_sound.play()
-	ready_button.grab_focus()
+	leave_button.grab_focus()
 
 
 func _on_exit_popup_confirmed() -> void:
