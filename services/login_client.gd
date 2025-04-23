@@ -4,10 +4,10 @@ extends LoginClient
 var config: ConfigFile
 
 func _init() -> void:
-	var result :LoginConnectResult= await connect_to_server().finished
-	if result.has_error():
-		push_error(result.error)
-		return
+	#var result :LoginConnectResult= await connect_to_server().finished
+	#if result.has_error():
+	#	push_error(result.error)
+	#	return
 	disconnected_from_server.connect(_disconnected_from_server)
 	received_jwt.connect(_received_jwt)
 	log_updated.connect(_log_updated)
