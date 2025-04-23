@@ -34,6 +34,7 @@ metadata/_edit_lock_ = true
 
 [node name="Click1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_46h8p")
+max_polyphony = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -80,6 +81,7 @@ mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sckri")
 icon_alignment = 1
 script = ExtResource("6_m4ikw")
+press_timeout = 0.1
 user_icon = "arrow_left"
 
 [node name="PrevAvatar" type="Control" parent="HBoxContainer/ColorRect/VBoxContainer/Avatars"]
@@ -117,6 +119,7 @@ mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sckri")
 icon_alignment = 1
 script = ExtResource("6_m4ikw")
+press_timeout = 0.1
 user_icon = "arrow_right"
 
 [node name="UsernameEdit" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
