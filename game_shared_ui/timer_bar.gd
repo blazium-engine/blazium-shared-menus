@@ -12,9 +12,9 @@ func _ready() -> void:
 	progress_material = progress_bar.material as ShaderMaterial
 
 func _process(_delta: float) -> void:
-	var current_time = Time.get_unix_time_from_system()
-	var server_time = GlobalLobbyClient.lobby.data.get("turn_timestamp", 0)
-	progress = current_time - server_time
+	var current_time = Time.get_unix_time_from_system() * 1000
+	var server_time = int(GlobalLobbyClient.lobby.data.get("turn_timestamp", 0))
+	progress = (current_time - server_time) / 1000
 	if progress > 0:
 		progress /= total_time
 	else:

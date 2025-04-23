@@ -30,7 +30,7 @@ func _ready() -> void:
 		title_label.grab_focus()
 	max_players_label.text = str(ProjectSettings.get_setting("blazium/game/max_players_default", 10))
 	_update_max_players_buttons(int(max_players_label.text))
-	var tags_enabled = ProjectSettings.get_setting("blazium/game/tags_enabled")
+	var tags_enabled = ProjectSettings.get_setting("blazium/game/tags_enabled", [])
 	for tag_enabled in tags_enabled:
 		var tag_name = ProjectSettings.get_setting("blazium/game/" + tag_enabled + "/name")
 		var tag_default = ProjectSettings.get_setting("blazium/game/" + tag_enabled + "/default")

@@ -57,4 +57,5 @@ offset_right = 4.5
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"HeaderMedium"
 text = "7"
