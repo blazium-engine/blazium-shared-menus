@@ -36,6 +36,7 @@ func _ready() -> void:
 		var tag_default = ProjectSettings.get_setting("blazium/game/" + tag_enabled + "/default")
 		var tag_setting: TagSetting = tag_setting_scene.instantiate()
 		settings_vbox.add_child(tag_setting)
+		tag_setting.tag_name = tag_enabled
 		tag_setting.owner = settings_vbox
 		tag_setting.label.text = tag_name
 		tag_setting.line_edit.text = str(tag_default)
@@ -52,7 +53,7 @@ func _on_button_create_lobby_pressed() -> void:
 		var tag_setting_text = tag_setting.line_edit.text
 		if tag_setting_text == "":
 			tag_setting_text = 0
-		tags[tag_setting.name] = int(tag_setting_text)
+		tags[tag_setting.tag_name] = int(tag_setting_text)
 	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(title_label.text, sealed, tags, int(max_players_label.text), password_line_edit.text).finished
 
 	logs.visible = GlobalLobbyClient.show_debug
