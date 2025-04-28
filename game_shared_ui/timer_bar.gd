@@ -11,6 +11,7 @@ var progress_seconds: int = 0
 var last_seconds: int = -1
 var normal_font_size: int = 220
 var enlarged_font_size: int = 300
+var critical_font_size: int = 370
 var color_tween: Tween
 
 func _ready() -> void:
@@ -38,17 +39,21 @@ func _process(_delta: float) -> void:
 	progress_label.text = str(progress_seconds)
 
 func update_visuals(seconds: int) -> void:
-	var font_tween = create_tween()
-	font_tween.tween_property(progress_label, "theme_override_font_sizes/font_size", enlarged_font_size, 0.25)
-	font_tween.tween_property(progress_label, "theme_override_font_sizes/font_size", normal_font_size, 0.25)
-	
+
 	if color_tween:
 		color_tween.kill()
 	
 	color_tween = create_tween().set_loops()
+	var font_tween = create_tween()
 	if seconds > 3:
+		font_tween.tween_property(progress_label, "theme_override_font_sizes/font_size", enlarged_font_size, 0.25)
+		font_tween.tween_property(progress_label, "theme_override_font_sizes/font_size", normal_font_size, 0.25)
+	
 		color_tween.tween_property(progress_label, "modulate", Color("#78389e"), 0.5) # Purple
 		color_tween.tween_property(progress_label, "modulate", Color("#ffffff"), 0.5) # White
 	else:
+		font_tween.tween_property(progress_label, "theme_override_font_sizes/font_size", critical_font_size, 0.25)
+		font_tween.tween_property(progress_label, "theme_override_font_sizes/font_size", normal_font_size, 0.25)
+	
 		color_tween.tween_property(progress_label, "modulate", Color("#a70000"), 0.5) # Dark red
 		color_tween.tween_property(progress_label, "modulate", Color("#ffffff"), 0.5) # White

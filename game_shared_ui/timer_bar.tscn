@@ -13,7 +13,7 @@ gradient = SubResource("Gradient_p4oya")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hdeox"]
 shader = ExtResource("1_05jv1")
 shader_parameter/value = 1.0
-shader_parameter/segments = 7
+shader_parameter/segments = 0
 shader_parameter/radius = 0.5
 shader_parameter/hollow_radius = 0.4
 shader_parameter/margin = 0.029
