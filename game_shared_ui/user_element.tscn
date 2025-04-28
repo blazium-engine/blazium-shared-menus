@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dow0cala2dics"]
 
-[ext_resource type="Script" path="res://addons/blazium_shared_menus/game_shared_ui/user_element.gd" id="1_q4q1m"]
-[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/avatar.gd" id="2_v3rd2"]
+[ext_resource type="Script" uid="uid://d0uyuil4v5jsb" path="res://addons/blazium_shared_menus/game_shared_ui/user_element.gd" id="1_q4q1m"]
+[ext_resource type="Script" uid="uid://b3hqtawg2ww5p" path="res://addons/blazium_theme_editor/classes/avatar.gd" id="2_v3rd2"]
 [ext_resource type="Texture2D" uid="uid://cpnnenl5vontt" path="res://game/assets/avatars.svg" id="3_cu47y"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="3_eyets"]
-[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/custom_texture_rect.gd" id="6_7h0m1"]
-[ext_resource type="Script" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="7_nolke"]
+[ext_resource type="Script" uid="uid://sm57u3x0xkfr" path="res://addons/blazium_theme_editor/classes/custom_texture_rect.gd" id="6_7h0m1"]
+[ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="7_nolke"]
 
 [node name="HBoxContainer" type="PanelContainer" node_paths=PackedStringArray("label", "avatar", "kick_button", "disconnected_icon", "click_sound")]
 offset_right = 216.0
