@@ -49,11 +49,6 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 6
 bbcode_enabled = true
-text = "Avatars : Kenney assets (Animal Pack Redux)
-
-Icons : Google Material Icons (filled)
-
-Emoji : Reshot (Smiley Emoji Emoticon)"
 fit_content = true
 shortcut_keys_enabled = false
 horizontal_alignment = 1
@@ -72,4 +67,5 @@ user_icon = "arrow_back"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[connection signal="meta_clicked" from="HBoxContainer/PanelContainer/VBoxContainer/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
 [connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
