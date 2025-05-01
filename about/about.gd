@@ -9,13 +9,7 @@ var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_
 
 func _ready() -> void:
 	back_button.grab_focus()
-
-	var file := FileAccess.open("res://credits.txt", FileAccess.READ)
-	if file == null:
-		push_error("No credits.txt found!")
-		return
-	rich_text_label.text = file.get_as_text()
-	file.close()
+	rich_text_label.text = GameCredits.CREDITS
 
 func _shortcut_input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_cancel"):
