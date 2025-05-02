@@ -14,6 +14,7 @@ extends BlaziumPanel
 @export var private_checkbutton: CheckBox
 @export var points_to_win: Label
 @export var click_sound: AudioStreamPlayer
+@export var invite_panel: Panel
 
 var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 var lobby_browser_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
@@ -254,3 +255,18 @@ func _init() -> void:
 	kick_popup.confirmed.connect(_on_kick_popup_confirmed)
 	kick_popup.hide()
 	add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
+
+
+func _on_close_invite_panel_pressed() -> void:
+	click_sound.play()
+	invite_panel.hide()
+
+
+func _on_open_invite_panel_pressed() -> void:
+	click_sound.play()
+	invite_panel.show()
+
+
+func _on_copy_invite_link_pressed() -> void:
+	click_sound.play()
+	DisplayServer.clipboard_set("https://%s?code=%s" % [GameCredits.HOSTNAME, GlobalLobbyClient.lobby.id])

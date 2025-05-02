@@ -47,7 +47,7 @@ func _ready() -> void:
 	var local_server = ProjectSettings.get_setting("blazium/game/lobby_server_local", false)
 	if local_server:
 		server_url = "ws://localhost:8080/connect"
-	
+
 	connect_to_server()
 	_size_changed()
 	get_tree().root.size_changed.connect(_size_changed)

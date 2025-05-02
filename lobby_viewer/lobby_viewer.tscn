@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1qjnqq2nagyi"]
+[gd_scene load_steps=9 format=3 uid="uid://d1qjnqq2nagyi"]
 
 [ext_resource type="Script" uid="uid://c4ougwk0j4147" path="res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.gd" id="1_buss2"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_gujum"]
 [ext_resource type="PackedScene" uid="uid://dl8npfol8dj2h" path="res://addons/blazium_shared_menus/general/chat_container.tscn" id="3_jpwet"]
 [ext_resource type="Script" uid="uid://88jgxnjlmbwm" path="res://addons/blazium_theme_editor/classes/custom_checkbox.gd" id="5_hoxet"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="6_3ppu3"]
+[ext_resource type="Script" uid="uid://duemqglu6reqo" path="res://addons/blazium_shared_menus/lobby_viewer/invite_panel.gd" id="7_p2bch"]
 [ext_resource type="Script" uid="uid://dbfmeu5kh7yv4" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_ewirs"]
 
-[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "ready_button", "start_button", "leave_button", "lobby_label", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "private_checkbutton", "points_to_win", "click_sound")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2bch"]
+bg_color = Color(0, 0, 0, 0.2)
+
+[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "ready_button", "start_button", "leave_button", "lobby_label", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "private_checkbutton", "points_to_win", "click_sound", "invite_panel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,15 +23,16 @@ lobby_grid = NodePath("HBoxContainer/ColorRect/VBoxContainer/ScrollContainer/Lob
 logs = NodePath("HBoxContainer/ColorRect/VBoxContainer/Logs")
 ready_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Ready")
 start_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Start")
-leave_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/Leave")
+leave_button = NodePath("InvitePanel/PanelContainer/BoxContainer/Close")
 lobby_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/LabelLobby")
-lobby_id_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2/LabelLobbyID")
-reveal_lobby_id_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2/RevealLobbyID")
+lobby_id_button = NodePath("InvitePanel/PanelContainer/BoxContainer/HBoxContainer/LabelLobbyID")
+reveal_lobby_id_button = NodePath("InvitePanel/PanelContainer/BoxContainer/HBoxContainer/RevealLobbyID")
 left_spacer = NodePath("HBoxContainer/LeftSpacer")
 right_spacer = NodePath("HBoxContainer/RightSpacer")
 private_checkbutton = NodePath("HBoxContainer/ColorRect/VBoxContainer/Private")
 points_to_win = NodePath("HBoxContainer/ColorRect/VBoxContainer/PointsToWin")
 click_sound = NodePath("Click1")
+invite_panel = NodePath("InvitePanel")
 metadata/_edit_lock_ = true
 
 [node name="Click1" type="AudioStreamPlayer" parent="."]
@@ -100,34 +105,18 @@ logs = NodePath("../Logs")
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
-layout_mode = 2
-
-[node name="LabelLobbyID" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2"]
+[node name="Invite" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-text = "Copy Code: ••••••••"
+theme_type_variation = &"SelectedButton"
+toggle_mode = true
+text = "Invite Friends"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("6_3ppu3")
-user_icon = "content_copy"
-
-[node name="RevealLobbyID" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(180, 40)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-toggle_mode = true
-text = "Reveal Code"
-expand_text = false
-icon_alignment = 1
-expand_icon = true
-script = ExtResource("8_ewirs")
-pressed_icon = "visibility_off"
-unpressed_icon = "visibility"
-pressed_text = "Hide Code"
-unpressed_text = "Reveal Code"
+user_icon = "supervised_user_circle"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
@@ -172,7 +161,8 @@ user_icon = "videogame_asset"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-text = "Leave"
+text = "Leave
+"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
@@ -183,12 +173,98 @@ user_icon = "arrow_back"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="InvitePanel" type="Panel" parent="."]
+visible = false
+z_index = 4096
+z_as_relative = false
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_p2bch")
+script = ExtResource("7_p2bch")
+
+[node name="PanelContainer" type="PanelContainer" parent="InvitePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+offset_top = -28.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="BoxContainer" type="BoxContainer" parent="InvitePanel/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+vertical = true
+
+[node name="HBoxContainer" type="BoxContainer" parent="InvitePanel/PanelContainer/BoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="LabelLobbyID" type="Button" parent="InvitePanel/PanelContainer/BoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "Copy Code: ••••••••"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_3ppu3")
+user_icon = "content_copy"
+
+[node name="RevealLobbyID" type="Button" parent="InvitePanel/PanelContainer/BoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "Reveal Code"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("8_ewirs")
+pressed_icon = "visibility_off"
+unpressed_icon = "visibility"
+pressed_text = "Hide Code"
+unpressed_text = "Reveal Code"
+
+[node name="InviteLink" type="Button" parent="InvitePanel/PanelContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SelectedButton"
+text = "Copy Invite Link"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_3ppu3")
+user_icon = "content_copy"
+
+[node name="Close" type="Button" parent="InvitePanel/PanelContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "Close"
+expand_text = false
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_3ppu3")
+user_icon = "close"
+
 [connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="toggled" from="HBoxContainer/ColorRect/VBoxContainer/Private" to="." method="_on_private_toggled"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2/LabelLobbyID" to="." method="_on_label_lobby_id_pressed"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer2/RevealLobbyID" to="." method="_on_reveal_lobby_id_pressed"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/Invite" to="." method="_on_open_invite_panel_pressed"]
 [connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Ready" to="." method="_on_ready_pressed"]
 [connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Seal" to="." method="_on_seal_pressed"]
 [connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/Leave" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="InvitePanel/PanelContainer/BoxContainer/HBoxContainer/LabelLobbyID" to="." method="_on_label_lobby_id_pressed"]
+[connection signal="pressed" from="InvitePanel/PanelContainer/BoxContainer/HBoxContainer/RevealLobbyID" to="." method="_on_reveal_lobby_id_pressed"]
+[connection signal="pressed" from="InvitePanel/PanelContainer/BoxContainer/InviteLink" to="." method="_on_copy_invite_link_pressed"]
+[connection signal="pressed" from="InvitePanel/PanelContainer/BoxContainer/Close" to="." method="_on_close_invite_panel_pressed"]
 [connection signal="cancelled" from="ExitPopup" to="." method="_on_popup_cancelled"]
