@@ -120,7 +120,6 @@ func _on_quit_button_pressed() -> void:
 
 func _shortcut_input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
-		print("pressed")
 		if exit_popup.visible:
 			exit_popup.visible = false
 			_on_exit_popup_cancelled()
