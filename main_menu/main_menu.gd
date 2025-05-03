@@ -61,6 +61,19 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 		peer_name_line_edit.text = peer_name
 		set_name_menu.hide()
 		multiplayer_button.grab_focus()
+		try_join_from_url()
+
+
+func try_join_from_url() -> void:
+	if OS.get_name() != "Web":
+		return
+	# get code from url
+	var lobby_code: String = JavaScriptBridge.eval("window.location.search", true)
+	if lobby_code.is_empty():
+		return
+	GlobalLobbyClient.join_lobby(lobby_code.split("?code=", false)[0])
+	# clear code from url
+	JavaScriptBridge.eval("history.replaceState(null, '', '/')", true)
 
 
 func _on_button_join_public_pressed() -> void:
@@ -91,6 +104,7 @@ func _on_set_name_pressed() -> void:
 		name_label.show()
 		name_label.text = "Hello, " + GlobalLobbyClient.peer.user_data["name"]
 		multiplayer_button.grab_focus()
+		try_join_from_url()
 
 
 func _on_line_edit_text_submitted(_new_text: String) -> void:
@@ -180,7 +194,7 @@ func _init():
 	GlobalLobbyClient.disconnected_from_server.connect(func (reason: String): if GlobalLobbyClient.reconnects > 3: reconnect_popup.show())
 	if GlobalLobbyClient.reconnects > 3 and not GlobalLobbyClient.connected:
 		reconnect_popup.show()
-	
+
 	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
 	exit_popup.name = "ExitPopup"
 	exit_popup.cancelled.connect(_on_exit_popup_cancelled)
