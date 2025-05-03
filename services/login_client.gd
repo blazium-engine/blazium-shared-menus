@@ -1,3 +1,4 @@
+class_name CustomLoginClient
 extends LoginClient
 
 @export var discord: DiscordEmbeddedAppClient
