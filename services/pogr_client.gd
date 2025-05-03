@@ -1,8 +1,12 @@
 class_name POGRCustomClient
 extends POGRClient
 
+@export var discord: DiscordEmbeddedAppClient
+
 func _ready() -> void:
 	log_updated.connect(_log_updated)
+	if discord.is_discord_environment():
+		pogr_url = "https://" + discord.client_id + ".discordsays.com/.proxy/blazium/pogr"
 	var res :POGRResult = await init(OS.get_unique_id()).finished
 	if res.has_error():
 		push_error(res.error)
