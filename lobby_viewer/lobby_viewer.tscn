@@ -11,7 +11,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2bch"]
 bg_color = Color(0, 0, 0, 0.2)
 
-[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "ready_button", "start_button", "leave_button", "invite_button", "lobby_label", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "private_checkbutton", "points_to_win", "click_sound", "invite_panel")]
+[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "ready_button", "start_button", "leave_button", "invite_button", "lobby_label", "lobby_id_button", "reveal_lobby_id_button", "copy_invite_link_button", "left_spacer", "right_spacer", "private_checkbutton", "points_to_win", "click_sound", "invite_panel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,6 +28,7 @@ invite_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/InviteButton")
 lobby_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/LabelLobby")
 lobby_id_button = NodePath("InvitePanel/PanelContainer/BoxContainer/HBoxContainer/LabelLobbyID")
 reveal_lobby_id_button = NodePath("InvitePanel/PanelContainer/BoxContainer/HBoxContainer/RevealLobbyID")
+copy_invite_link_button = NodePath("InvitePanel/PanelContainer/BoxContainer/CopyInviteLink")
 left_spacer = NodePath("HBoxContainer/LeftSpacer")
 right_spacer = NodePath("HBoxContainer/RightSpacer")
 private_checkbutton = NodePath("HBoxContainer/ColorRect/VBoxContainer/Private")

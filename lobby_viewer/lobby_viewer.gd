@@ -253,6 +253,7 @@ func _init() -> void:
 	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
 	exit_popup.hide()
 	add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)
+
 	kick_popup = CustomDialog.new("Kick Player?")
 	kick_popup.name = "KickPopup"
 	kick_popup.cancelled.connect(_on_kick_popup_cancelled)

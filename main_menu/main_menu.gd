@@ -60,7 +60,7 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 	else: # has name already
 		menu.show()
 		name_label.show()
-		name_label.text = "Hello, " + peer_name
+		name_label.text = tr("Hello, %s" % peer_name)
 		peer_name_line_edit.text = peer_name
 		set_name_menu.hide()
 		_set_fallback_focus(multiplayer_button)
@@ -106,7 +106,7 @@ func _on_set_name_pressed() -> void:
 		menu.show()
 		set_name_menu.hide()
 		name_label.show()
-		name_label.text = "Hello, " + GlobalLobbyClient.peer.user_data["name"]
+		name_label.text = tr("Hello, %s" % GlobalLobbyClient.peer.user_data["name"])
 		_set_fallback_focus(multiplayer_button)
 		multiplayer_button.grab_focus()
 		try_join_from_url()
@@ -138,12 +138,13 @@ func _on_quit_button_pressed() -> void:
 
 
 func _shortcut_input(_event):
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel") and not os_manages_quit:
 		if exit_popup.visible:
 			exit_popup.visible = false
 			_on_exit_popup_cancelled()
 		else:
 			_on_quit_button_pressed()
+
 
 func _on_reconnect_popup_confirmed() -> void:
 	GlobalLobbyClient.connect_to_server()
