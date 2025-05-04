@@ -6,9 +6,11 @@ extends BlaziumPanel
 @export var ready_button: ToggledButton
 @export var start_button: Button
 @export var leave_button: Button
+@export var invite_button: Button
 @export var lobby_label: Label
 @export var lobby_id_button: Button
 @export var reveal_lobby_id_button: Button
+@export var copy_invite_link_button: Button
 @export var left_spacer: Control
 @export var right_spacer: Control
 @export var private_checkbutton: CheckBox
@@ -79,6 +81,7 @@ func _ready() -> void:
 		_add_peer_container(peer)
 	# Call it once
 	_received_lobby_data.call_deferred(GlobalLobbyClient.lobby.data)
+	_set_fallback_focus(ready_button)
 
 
 func _add_peer_container(peer: LobbyPeer):
@@ -139,6 +142,7 @@ func kick_peer(peer: LobbyPeer) -> void:
 		return
 	peer_to_kick = peer.id
 	kick_popup.text = "Kick %s?" % peer.user_data.get("name", "")
+	_update_last_focus()
 	kick_popup.show()
 
 
@@ -231,7 +235,7 @@ func _on_private_toggled(toggled_on: bool) -> void:
 
 func _on_kick_popup_cancelled() -> void:
 	click_sound.play()
-	ready_button.grab_focus()
+	_restore_last_focus()
 
 
 func _on_kick_popup_confirmed() -> void:
@@ -239,7 +243,7 @@ func _on_kick_popup_confirmed() -> void:
 	var result: LobbyResult = await GlobalLobbyClient.kick_peer(peer_to_kick).finished
 	logs.visible = GlobalLobbyClient.show_debug
 	logs.text = result.error
-	ready_button.grab_focus()
+	_restore_last_focus()
 
 
 func _init() -> void:
@@ -260,11 +264,13 @@ func _init() -> void:
 func _on_close_invite_panel_pressed() -> void:
 	click_sound.play()
 	invite_panel.hide()
+	invite_button.grab_focus()
 
 
 func _on_open_invite_panel_pressed() -> void:
 	click_sound.play()
 	invite_panel.show()
+	copy_invite_link_button.grab_focus()
 
 
 func _on_copy_invite_link_pressed() -> void:

@@ -11,7 +11,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2bch"]
 bg_color = Color(0, 0, 0, 0.2)
 
-[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "ready_button", "start_button", "leave_button", "lobby_label", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "private_checkbutton", "points_to_win", "click_sound", "invite_panel")]
+[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "ready_button", "start_button", "leave_button", "invite_button", "lobby_label", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "private_checkbutton", "points_to_win", "click_sound", "invite_panel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,9 +21,10 @@ theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_buss2")
 lobby_grid = NodePath("HBoxContainer/ColorRect/VBoxContainer/ScrollContainer/LobbyVBoxContainer")
 logs = NodePath("HBoxContainer/ColorRect/VBoxContainer/Logs")
-ready_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Ready")
-start_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Start")
+ready_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/ReadyButton")
+start_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/StartButton")
 leave_button = NodePath("InvitePanel/PanelContainer/BoxContainer/Close")
+invite_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/InviteButton")
 lobby_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/LabelLobby")
 lobby_id_button = NodePath("InvitePanel/PanelContainer/BoxContainer/HBoxContainer/LabelLobbyID")
 reveal_lobby_id_button = NodePath("InvitePanel/PanelContainer/BoxContainer/HBoxContainer/RevealLobbyID")
@@ -105,7 +106,7 @@ logs = NodePath("../Logs")
 visible = false
 layout_mode = 2
 
-[node name="Invite" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer"]
+[node name="InviteButton" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -122,7 +123,7 @@ user_icon = "supervised_user_circle"
 layout_mode = 2
 alignment = 1
 
-[node name="Ready" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
+[node name="ReadyButton" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -138,13 +139,13 @@ unpressed_icon = "sentiment_very_dissatisfied"
 pressed_text = "Unready"
 unpressed_text = "Ready"
 
-[node name="Seal" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
+[node name="SealButton" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Seal"
 
-[node name="Start" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
+[node name="StartButton" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -157,7 +158,7 @@ expand_icon = true
 script = ExtResource("6_3ppu3")
 user_icon = "videogame_asset"
 
-[node name="Leave" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer"]
+[node name="LeaveButton" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -233,7 +234,7 @@ unpressed_icon = "visibility"
 pressed_text = "Hide Code"
 unpressed_text = "Reveal Code"
 
-[node name="InviteLink" type="Button" parent="InvitePanel/PanelContainer/BoxContainer"]
+[node name="CopyInviteLink" type="Button" parent="InvitePanel/PanelContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -258,13 +259,13 @@ user_icon = "close"
 
 [connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="toggled" from="HBoxContainer/ColorRect/VBoxContainer/Private" to="." method="_on_private_toggled"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/Invite" to="." method="_on_open_invite_panel_pressed"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Ready" to="." method="_on_ready_pressed"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Seal" to="." method="_on_seal_pressed"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/Leave" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/InviteButton" to="." method="_on_open_invite_panel_pressed"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/ReadyButton" to="." method="_on_ready_pressed"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/SealButton" to="." method="_on_seal_pressed"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/LeaveButton" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="InvitePanel/PanelContainer/BoxContainer/HBoxContainer/LabelLobbyID" to="." method="_on_label_lobby_id_pressed"]
 [connection signal="pressed" from="InvitePanel/PanelContainer/BoxContainer/HBoxContainer/RevealLobbyID" to="." method="_on_reveal_lobby_id_pressed"]
-[connection signal="pressed" from="InvitePanel/PanelContainer/BoxContainer/InviteLink" to="." method="_on_copy_invite_link_pressed"]
+[connection signal="pressed" from="InvitePanel/PanelContainer/BoxContainer/CopyInviteLink" to="." method="_on_copy_invite_link_pressed"]
 [connection signal="pressed" from="InvitePanel/PanelContainer/BoxContainer/Close" to="." method="_on_close_invite_panel_pressed"]
 [connection signal="cancelled" from="ExitPopup" to="." method="_on_popup_cancelled"]
