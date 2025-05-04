@@ -26,8 +26,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
-	if not (OS.get_name() in ["Android", "iOS"]):
-		title_label.grab_focus()
+	title_label.grab_focus()
 	max_players_label.text = str(ProjectSettings.get_setting("blazium/game/max_players_default", 10))
 	_update_max_players_buttons(int(max_players_label.text))
 	var tags_enabled = ProjectSettings.get_setting("blazium/game/tags_enabled", [])

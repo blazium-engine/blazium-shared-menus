@@ -70,6 +70,7 @@ focus_neighbor_left = NodePath("../EmojiButton")
 focus_neighbor_right = NodePath("../ChatButton")
 placeholder_text = "Chat:"
 max_length = 256
+emoji_menu_enabled = false
 
 [node name="ChatButton" type="Button" parent="HBoxContainerChat"]
 custom_minimum_size = Vector2(120, 0)

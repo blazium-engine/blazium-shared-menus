@@ -95,7 +95,8 @@ func _physics_process(delta: float) -> void:
 			exit_popup.visible = false
 			_on_exit_popup_cancelled()
 		else:
-			_on_exit_popup_confirmed()
+			exit_popup.show()
+			exit_popup.cancel_button.grab_focus()
 
 
 func _on_exit_popup_cancelled() -> void:
