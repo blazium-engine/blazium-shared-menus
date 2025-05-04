@@ -25,6 +25,8 @@ var exit_popup: CustomDialog
 var reconnect_popup: CustomDialog
 var wrong_id_popup: CustomDialog
 
+var os_manages_quit: bool = OS.get_name() in ["Android", "iOS", "Web"]
+
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -38,7 +40,7 @@ func _ready() -> void:
 	_connected_to_server(GlobalLobbyClient.peer, "")
 	GlobalLobbyClient.connected_to_server.connect(_connected_to_server)
 	GlobalLobbyClient.lobby_joined.connect(_lobby_joined)
-	quit_button.visible = not (OS.get_name() in ["Android", "iOS", "Web"])
+	quit_button.visible = not os_manages_quit
 
 
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
@@ -53,6 +55,7 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 	if peer_name == "":
 		menu.hide()
 		set_name_menu.show()
+		_set_fallback_focus(peer_name_line_edit)
 		peer_name_line_edit.edit()
 	else: # has name already
 		menu.show()
@@ -60,6 +63,7 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 		name_label.text = "Hello, " + peer_name
 		peer_name_line_edit.text = peer_name
 		set_name_menu.hide()
+		_set_fallback_focus(multiplayer_button)
 		multiplayer_button.grab_focus()
 		try_join_from_url()
 
@@ -103,6 +107,7 @@ func _on_set_name_pressed() -> void:
 		set_name_menu.hide()
 		name_label.show()
 		name_label.text = "Hello, " + GlobalLobbyClient.peer.user_data["name"]
+		_set_fallback_focus(multiplayer_button)
 		multiplayer_button.grab_focus()
 		try_join_from_url()
 
@@ -142,6 +147,8 @@ func _shortcut_input(_event):
 
 func _on_reconnect_popup_confirmed() -> void:
 	GlobalLobbyClient.connect_to_server()
+	_restore_last_focus()
+
 
 func _on_exit_popup_confirmed() -> void:
 	click_sound.play()
@@ -183,7 +190,7 @@ func _on_about_button_pressed() -> void:
 
 func _init():
 	var quit_text = "Quit"
-	if OS.get_name() in ["Android", "iOS", "Web"]:
+	if os_manages_quit:
 		quit_text = ""
 	reconnect_popup = CustomDialog.new("Connection lost!", "Reconnect", quit_text)
 	reconnect_popup.name = "ReconnectPopup"
@@ -193,6 +200,7 @@ func _init():
 	add_child(reconnect_popup, false, Node.INTERNAL_MODE_BACK)
 	GlobalLobbyClient.disconnected_from_server.connect(func (reason: String): if GlobalLobbyClient.reconnects > 3: reconnect_popup.show())
 	if GlobalLobbyClient.reconnects > 3 and not GlobalLobbyClient.connected:
+		_update_last_focus()
 		reconnect_popup.show()
 
 	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
@@ -201,6 +209,7 @@ func _init():
 	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
 	exit_popup.hide()
 	add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)
+
 	wrong_id_popup = CustomDialog.new("Wrong Game Code", "Continue", "")
 	wrong_id_popup.confirm_button.user_icon = "keyboard_double_arrow_right"
 	wrong_id_popup.confirm_button.theme_type_variation = "SelectedButton"
@@ -208,4 +217,5 @@ func _init():
 	wrong_id_popup.confirmed.connect(_play_click_sound)
 	wrong_id_popup.hide()
 	add_child(wrong_id_popup, false, Node.INTERNAL_MODE_BACK)
+
 	resized.connect(_on_resized)
