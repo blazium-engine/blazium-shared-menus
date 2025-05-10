@@ -1,6 +1,8 @@
 class_name TimerBar
 extends Control
 
+signal timer_finished
+
 @export var progress_bar: TextureRect
 @export var progress_label: Label
 @export var total_time: float = 7.0
@@ -13,14 +15,20 @@ var normal_font_size: int = 220
 var enlarged_font_size: int = 300
 var critical_font_size: int = 370
 var color_tween: Tween
+var server_time = 0
+var is_finished: bool = false 
 
 func _ready() -> void:
 	progress_material = progress_bar.material as ShaderMaterial
 	update_visuals(7)
+	server_time = int(GlobalLobbyClient.lobby.data.get("turn_timestamp", 0))
 
+func set_server_time(time) -> void:
+	server_time = int(time)
+	is_finished = false
+	
 func _process(_delta: float) -> void:
 	var current_time = Time.get_unix_time_from_system() * 1000
-	var server_time = int(GlobalLobbyClient.lobby.data.get("turn_timestamp", 0))
 	progress = (current_time - server_time) / 1000
 	if progress > 0:
 		progress /= total_time
@@ -31,6 +39,9 @@ func _process(_delta: float) -> void:
 	
 	if progress >= 1:
 		progress_seconds = 0
+		if not is_finished:
+			timer_finished.emit()
+			is_finished = true
 	else:
 		progress_seconds = int((1 - progress) * total_time) + 1
 	

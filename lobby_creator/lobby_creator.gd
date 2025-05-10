@@ -20,7 +20,8 @@ var tag_setting_scene: PackedScene = load("res://addons/blazium_shared_menus/lob
 var sealed := false
 
 var tags_settings_array: Array[TagSetting]
-
+var has_lobby_creator_addon = false
+var lobby_creator_addon: LobbyCreatorAddon = null
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -41,6 +42,15 @@ func _ready() -> void:
 		tag_setting.line_edit.text = str(tag_default)
 		tag_setting.name = tag_name
 		tags_settings_array.push_back(tag_setting)
+	
+	has_lobby_creator_addon = ProjectSettings.get_setting("blazium/game/has_lobby_creator_addon", false)
+	if has_lobby_creator_addon:
+		var scene_path = "res://game/lobby_creator_addon/lobby_creator_addon.tscn"
+		var addon_scene = load(scene_path) if ResourceLoader.exists(scene_path) else null
+		if addon_scene:
+			lobby_creator_addon = addon_scene.instantiate()
+			settings_vbox.add_child(lobby_creator_addon)
+
 
 func _on_button_create_lobby_pressed() -> void:
 	click_sound.play()
@@ -48,13 +58,18 @@ func _on_button_create_lobby_pressed() -> void:
 	if title_label.text.is_empty():
 		title_label.text = "Game" + str(randi() % 1000)
 	var tags = {}
+	if has_lobby_creator_addon:
+		var addon_tags = lobby_creator_addon.get_addon_tags()
+		for addon_tag in addon_tags:
+			if addon_tag.tag_name not in tags:
+				tags[addon_tag.tag_name] = addon_tag.value
 	for tag_setting in tags_settings_array:
 		var tag_setting_text = tag_setting.line_edit.text
 		if tag_setting_text == "":
 			tag_setting_text = 0
 		tags[tag_setting.tag_name] = int(tag_setting_text)
 	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(title_label.text, sealed, tags, int(max_players_label.text), password_line_edit.text).finished
-
+	
 	logs.visible = GlobalLobbyClient.show_debug
 	logs.text = result.error
 	if not result.has_error():
