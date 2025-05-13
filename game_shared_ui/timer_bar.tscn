@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ckuc7h0l5b0c"]
 
-[ext_resource type="Shader" path="res://addons/blazium_shared_menus/game_shared_ui/timer_bar.gdshader" id="1_05jv1"]
+[ext_resource type="Shader" uid="uid://dwrv44oixf2ki" path="res://addons/blazium_shared_menus/game_shared_ui/timer_bar.gdshader" id="1_05jv1"]
 [ext_resource type="Script" uid="uid://co5yk3w0l1dj3" path="res://addons/blazium_shared_menus/game_shared_ui/timer_bar.gd" id="1_i78lo"]
 
 [sub_resource type="Gradient" id="Gradient_p4oya"]
