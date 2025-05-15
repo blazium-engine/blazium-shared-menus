@@ -1,4 +1,4 @@
-class_name POGRCustomClient
+class_name CustomPOGRClient
 extends POGRClient
 
 @export var discord: DiscordEmbeddedAppClient

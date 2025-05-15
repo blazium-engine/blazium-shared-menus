@@ -3,7 +3,8 @@ extends ScriptedLobbyClient
 @export var reconnects := 0
 @export var discord: CustomDiscordEmbeddedAppClient
 @export var login: CustomLoginClient
-@export var pogr: POGRCustomClient
+@export var pogr: CustomPOGRClient
+@export var steam: CustomSteamClient
 
 var config: ConfigFile
 var show_debug := false
@@ -23,31 +24,78 @@ func _size_changed():
 		scale_factor = 1.0
 	get_tree().root.content_scale_factor = scale_factor
 
+var jwt:String
+var platform:String = "anon"
 
-func _received_jwt(_jwt: String, _type: String, access_token: String):
-	var result = await discord.authenticate(access_token).finished
-	print(result.data)
-
+func try_login() -> bool:
+	if !login.connected:
+		var result :LoginConnectResult= await login.connect_to_server().finished
+		if result.has_error():
+			login.disconnect_from_server()
+			push_error(result.error)
+			return false
+	jwt = config.get_value("LoginClient", "jwt", "")
+	platform = config.get_value("LoginClient", "platform", "anon")
+	if !jwt.is_empty():
+		var jwt_verify_result:LoginVerifyTokenResult= await login.verify_jwt_token(jwt).finished
+		if jwt_verify_result.has_error():
+			push_error(jwt_verify_result.error)
+			jwt = ""
+			platform = "anon"
+		else:
+			print("[ScriptedLobby]: Authentication already done, reusing JWT.")
+			login.disconnect_from_server()
+			return true
+	if discord.is_discord_environment():
+		var auth_id = await login.auth_id_flow(platform)
+		var discord_access_code = await discord.discord_access_code_flow()
+		var auth_code: LoginAuthResult = await login.request_auth(platform, auth_id, discord_access_code).finished
+		if auth_code.has_error():
+			login.disconnect_from_server()
+			push_error(auth_code.error)
+			return false
+		platform = "discord"
+	elif steam.login_steam():
+		var steam_ticket :String= await steam.ticket_received
+		if steam_ticket.is_empty():
+			push_error("Cannot login")
+			login.disconnect_from_server()
+			return false
+		var auth_id = await login.auth_id_flow(platform)
+		var auth_code: LoginAuthResult = await login.request_steam_auth(auth_id, steam_ticket).finished
+		if auth_code.has_error():
+			login.disconnect_from_server()
+			push_error(auth_code.error)
+			return false
+		platform = "steam"
+	else:
+		jwt = ""
+		platform = "anon"
+		return false
+		platform = "discord"
+		# Web external login
+		login.external_login("discord")
+	jwt = login.jwt
+	config.set_value("LoginClient", "jwt", login.jwt)
+	config.set_value("LoginClient", "platform", platform)
+	config.save("user://blazium.cfg")
+	login.disconnect_from_server()
+	return true
 
 func _ready() -> void:
+	var local_server = ProjectSettings.get_setting("blazium/game/lobby_server_local", false)
+	if local_server:
+		server_url = "ws://localhost:8080/connect"
 	config = ConfigFile.new()
 	config.load("user://blazium.cfg")
 	connected_to_server.connect(_connected_to_server)
 	disconnected_from_server.connect(_disconnected_from_server)
 	log_updated.connect(_log_updated)
-	if discord.is_discord_environment():
-		var auth_id = await login.auth_id_flow("discord")
-		var discord_access_code = await discord.discord_access_code_flow()
-		var access_token: LoginAccessTokenResult = await login.request_access_token("discord", auth_id, discord_access_code).finished
-		if access_token.has_error():
-			push_error(access_token.error)
-			#return
+	await try_login()
+	if jwt:
+		reconnection_token = jwt
 	else:
 		reconnection_token = config.get_value("LobbyClient", "reconnection_token", "")
-	var local_server = ProjectSettings.get_setting("blazium/game/lobby_server_local", false)
-	if local_server:
-		server_url = "ws://localhost:8080/connect"
-
 	connect_to_server()
 	_size_changed()
 	get_tree().root.size_changed.connect(_size_changed)
@@ -71,6 +119,7 @@ func _log_updated(command: String, message: String):
 func _connected_to_server(_peer: LobbyPeer, new_reconnection_token: String):
 	reconnects = 0
 	config.set_value("LobbyClient", "reconnection_token", new_reconnection_token)
+	config.save("user://blazium.cfg")
 
 	var err = config.save("user://blazium.cfg")
 	if err != OK:
@@ -83,7 +132,7 @@ func _connected_to_server(_peer: LobbyPeer, new_reconnection_token: String):
 func _disconnected_from_server(reason: String):
 	if reason == "Reconnect Close":
 		reconnection_token = ""
-	print("Disconnected. ", reason)
+	print("[ScriptedLobbyClient]: Disconnected. ", reason)
 	if reconnects > 3:
 		push_error("Cannot connect")
 		return
