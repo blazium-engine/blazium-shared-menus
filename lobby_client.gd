@@ -150,8 +150,5 @@ func update_theme(is_light_theme: bool):
 		ProjectSettings.set_setting("gui/theme/base_color", Color(0.0793, 0.10296, 0.13))
 		ProjectSettings.set_setting("gui/theme/accent_color", Color(0.2075, 0.581, 0.83))
 
-func call_settings_menu_event():
-	pogr.add_event("settings")
-
-func call_about_menu_event():
-	pogr.add_event("about")
+func call_event(event_name: String):
+	pogr.add_event(event_name)

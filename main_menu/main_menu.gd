@@ -125,6 +125,7 @@ func _on_resized() -> void:
 
 
 func _on_button_settings_pressed() -> void:
+	GlobalLobbyClient.call_event("settings")
 	click_sound.play()
 	await click_sound.finished
 	if is_inside_tree():
@@ -132,6 +133,7 @@ func _on_button_settings_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
+	GlobalLobbyClient.call_event("quit")
 	click_sound.play()
 	exit_popup.show()
 	exit_popup.confirm_button.grab_focus();
@@ -167,6 +169,7 @@ func _play_click_sound() -> void:
 
 
 func _on_create_lobby_pressed() -> void:
+	GlobalLobbyClient.call_event("create_lobby")
 	click_sound.play()
 	await click_sound.finished
 	if is_inside_tree():
@@ -174,6 +177,7 @@ func _on_create_lobby_pressed() -> void:
 
 
 func _on_button_quickstart_pressed() -> void:
+	GlobalLobbyClient.call_event("quick_start")
 	click_sound.play()
 	await click_sound.finished
 	var res: ViewLobbyResult = await GlobalLobbyClient.quick_join("Game" + str(randi() % 1000), {"max_points": 30}, ProjectSettings.get_setting("blazium/game/max_players_default")).finished
@@ -184,6 +188,7 @@ func _on_button_quickstart_pressed() -> void:
 
 
 func _on_about_button_pressed() -> void:
+	GlobalLobbyClient.call_event("about")
 	click_sound.play()
 	await click_sound.finished
 	get_tree().change_scene_to_packed(about_scene)
