@@ -37,7 +37,13 @@ func _ready() -> void:
 	config.load("user://blazium.cfg")
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), config.get_value("Settings", "mute", false))
 	GlobalLobbyClient.update_theme(config.get_value("Settings", "light_mode", false))
-	_connected_to_server(GlobalLobbyClient.peer, "")
+	if GlobalLobbyClient.connected:
+		_connected_to_server(GlobalLobbyClient.peer, "")
+	else:
+		menu.hide()
+		set_name_menu.hide()
+		name_label.show()
+		name_label.text = tr("Connecting...")
 	GlobalLobbyClient.connected_to_server.connect(_connected_to_server)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	GlobalLobbyClient.lobby_joined.connect(_lobby_joined)
@@ -62,8 +68,7 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 		menu.show()
 		name_label.show()
 		name_label.text = tr("Hello, %s" % peer_name)
-		if GlobalLobbyClient.connected:
-			peer_name_line_edit.text = peer_name
+		peer_name_line_edit.text = peer_name
 		set_name_menu.hide()
 		_set_fallback_focus(multiplayer_button)
 		multiplayer_button.grab_focus()
