@@ -25,7 +25,6 @@ func _size_changed():
 	get_tree().root.content_scale_factor = scale_factor
 
 var jwt:String
-var platform:String = "anon"
 
 func try_login() -> bool:
 	if !login.connected:
@@ -35,49 +34,42 @@ func try_login() -> bool:
 			push_error(result.error)
 			return false
 	jwt = config.get_value("LoginClient", "jwt", "")
-	platform = config.get_value("LoginClient", "platform", "anon")
 	if !jwt.is_empty():
 		var jwt_verify_result:LoginVerifyTokenResult= await login.verify_jwt_token(jwt).finished
 		if jwt_verify_result.has_error():
 			push_error(jwt_verify_result.error)
 			jwt = ""
-			platform = "anon"
 		else:
 			print("[ScriptedLobby]: Authentication already done, reusing JWT.")
 			login.disconnect_from_server()
 			return true
 	if discord.is_discord_environment():
-		var auth_id = await login.auth_id_flow(platform)
+		var auth_id = await login.auth_id_flow("discord")
 		var discord_access_code = await discord.discord_access_code_flow()
-		var auth_code: LoginAuthResult = await login.request_auth(platform, auth_id, discord_access_code).finished
+		var auth_code: LoginAuthResult = await login.request_auth("discord", auth_id, discord_access_code).finished
 		if auth_code.has_error():
 			login.disconnect_from_server()
 			push_error(auth_code.error)
 			return false
-		platform = "discord"
 	elif steam.login_steam():
 		var steam_ticket :String= await steam.ticket_received
 		if steam_ticket.is_empty():
 			push_error("Cannot login")
 			login.disconnect_from_server()
 			return false
-		var auth_id = await login.auth_id_flow(platform)
+		var auth_id = await login.auth_id_flow("steam")
 		var auth_code: LoginAuthResult = await login.request_steam_auth(auth_id, steam_ticket).finished
 		if auth_code.has_error():
 			login.disconnect_from_server()
 			push_error(auth_code.error)
 			return false
-		platform = "steam"
 	else:
 		jwt = ""
-		platform = "anon"
 		return false
-		platform = "discord"
 		# Web external login
 		login.external_login("discord")
 	jwt = login.jwt
 	config.set_value("LoginClient", "jwt", login.jwt)
-	config.set_value("LoginClient", "platform", platform)
 	config.save("user://blazium.cfg")
 	login.disconnect_from_server()
 	return true
