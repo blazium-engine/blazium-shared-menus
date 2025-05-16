@@ -39,6 +39,7 @@ func _ready() -> void:
 	GlobalLobbyClient.update_theme(config.get_value("Settings", "light_mode", false))
 	_connected_to_server(GlobalLobbyClient.peer, "")
 	GlobalLobbyClient.connected_to_server.connect(_connected_to_server)
+	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	GlobalLobbyClient.lobby_joined.connect(_lobby_joined)
 	quit_button.visible = not os_manages_quit
 
@@ -61,7 +62,8 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 		menu.show()
 		name_label.show()
 		name_label.text = tr("Hello, %s" % peer_name)
-		peer_name_line_edit.text = peer_name
+		if GlobalLobbyClient.connected:
+			peer_name_line_edit.text = peer_name
 		set_name_menu.hide()
 		_set_fallback_focus(multiplayer_button)
 		multiplayer_button.grab_focus()
@@ -125,6 +127,7 @@ func _on_resized() -> void:
 
 
 func _on_button_settings_pressed() -> void:
+	GlobalLobbyClient.call_event("settings")
 	click_sound.play()
 	await click_sound.finished
 	if is_inside_tree():
@@ -132,6 +135,7 @@ func _on_button_settings_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
+	GlobalLobbyClient.call_event("quit")
 	click_sound.play()
 	exit_popup.show()
 	exit_popup.confirm_button.grab_focus();
@@ -167,6 +171,7 @@ func _play_click_sound() -> void:
 
 
 func _on_create_lobby_pressed() -> void:
+	GlobalLobbyClient.call_event("create_lobby")
 	click_sound.play()
 	await click_sound.finished
 	if is_inside_tree():
@@ -174,6 +179,7 @@ func _on_create_lobby_pressed() -> void:
 
 
 func _on_button_quickstart_pressed() -> void:
+	GlobalLobbyClient.call_event("quick_start")
 	click_sound.play()
 	await click_sound.finished
 	var res: ViewLobbyResult = await GlobalLobbyClient.quick_join("Game" + str(randi() % 1000), {"max_points": 30}, ProjectSettings.get_setting("blazium/game/max_players_default")).finished
@@ -184,10 +190,10 @@ func _on_button_quickstart_pressed() -> void:
 
 
 func _on_about_button_pressed() -> void:
+	GlobalLobbyClient.call_event("about")
 	click_sound.play()
 	await click_sound.finished
 	get_tree().change_scene_to_packed(about_scene)
-
 
 func _init():
 	var quit_text = "Quit"
@@ -199,7 +205,6 @@ func _init():
 	reconnect_popup.confirmed.connect(_on_reconnect_popup_confirmed)
 	reconnect_popup.hide()
 	add_child(reconnect_popup, false, Node.INTERNAL_MODE_BACK)
-	GlobalLobbyClient.disconnected_from_server.connect(func (reason: String): if GlobalLobbyClient.reconnects > 3: reconnect_popup.show())
 	if GlobalLobbyClient.reconnects > 3 and not GlobalLobbyClient.connected:
 		_update_last_focus()
 		reconnect_popup.show()
@@ -220,3 +225,8 @@ func _init():
 	add_child(wrong_id_popup, false, Node.INTERNAL_MODE_BACK)
 
 	resized.connect(_on_resized)
+
+func _disconnected_from_server(reason: String):
+	if GlobalLobbyClient.reconnects > 3:
+		reconnect_popup.show()
+	peer_name_line_edit.text = ""

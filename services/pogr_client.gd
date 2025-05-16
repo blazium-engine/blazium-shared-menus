@@ -1,4 +1,4 @@
-class_name POGRCustomClient
+class_name CustomPOGRClient
 extends POGRClient
 
 @export var discord: DiscordEmbeddedAppClient
@@ -35,6 +35,7 @@ func _add_start_data():
 		"locale": OS.get_locale_language(),
 		"model_name": OS.get_model_name(),
 		"host_platform": OS.get_name(),
+		"store": ProjectSettings.get("blazium/game/store_name"),
 		"processor_count": OS.get_processor_count(),
 		"processor_name": OS.get_processor_name(),
 		"unique_id": OS.get_unique_id(),
