@@ -132,6 +132,8 @@ func _connected_to_server(_peer: LobbyPeer, new_reconnection_token: String):
 func _disconnected_from_server(reason: String):
 	if reason == "Reconnect Close":
 		reconnection_token = ""
+	else:
+		reconnection_token = jwt
 	print("[ScriptedLobbyClient]: Disconnected. ", reason)
 	if reconnects > 3:
 		push_error("Cannot connect")

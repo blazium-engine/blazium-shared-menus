@@ -89,6 +89,7 @@ func _add_peer_container(peer: LobbyPeer):
 	peer_container.selected = GlobalLobbyClient.peer.id == peer.id
 	peer_container.peer = peer
 	peer_container.avatar = peer.user_data.get("avatar", 0)
+	peer_container.platform = peer.platform
 	peer_container.logs = logs
 	peer_container.kick.connect(kick_peer)
 	lobby_grid.add_child(peer_container)
