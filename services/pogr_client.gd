@@ -30,12 +30,11 @@ func _add_start_data():
 	await data({"association_id": OS.get_unique_id()},
 		{
 		"version": Engine.get_version_info(),
-		"distribution_name": OS.get_distribution_name(),
+		"distribution_name": ProjectSettings.get("blazium/game/store_name"),
 		"arch": Engine.get_architecture_name(),
 		"locale": OS.get_locale_language(),
 		"model_name": OS.get_model_name(),
 		"host_platform": OS.get_name(),
-		"store": ProjectSettings.get("blazium/game/store_name"),
 		"processor_count": OS.get_processor_count(),
 		"processor_name": OS.get_processor_name(),
 		"unique_id": OS.get_unique_id(),
