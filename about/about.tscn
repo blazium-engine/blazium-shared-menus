@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn8bcqn8gwpxh"]
+[gd_scene load_steps=5 format=3 uid="uid://cn8bcqn8gwpxh"]
 
 [ext_resource type="Script" uid="uid://cwuj7caayyicl" path="res://addons/blazium_shared_menus/about/about.gd" id="1_grr0r"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_0pa0n"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="2_w6h8l"]
+[ext_resource type="Script" uid="uid://p5duwa8ekih3" path="res://credits.gd" id="4_jjhrc"]
 
 [node name="About" type="PanelContainer" node_paths=PackedStringArray("back_button", "click_sound")]
 anchors_preset = 15
@@ -49,6 +50,23 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 6
 bbcode_enabled = true
+text = "Developers
+[url=https://github.com/Ughuuu]Dragos Daian[/url] , [url=https://github.com/jss2a98aj]jss2a98aj[/url] , [url=https://github.com/sshiiden]sshiiden[/url]
+
+[url=https://github.com/WhalesState]WhalesState[/url] , [url=https://github.com/bioblaze]Bioblaze Payne[/url] , [url=https://github.com/rokai08]Propolys[/url]
+
+[url=https://github.com/PrzyDev]TamashiiDev[/url] , [url=https://github.com/inmorgan]Subu[/url] , [url=https://github.com/Flare199]Flare199[/url]
+
+Assets
+Video Trailer : [url=https://www.linkedin.com/in/giorgio-saroli-a8645325b]Giorgio Saroli[/url]
+
+Avatars : Kenney assets (Animal Pack Redux)
+
+Icons : Google Material Icons (filled)
+
+Emoji : Reshot (Smiley Emoji Emoticon)
+
+Special thanks to [url=https://pogr.gg/]POGR[/url]"
 fit_content = true
 shortcut_keys_enabled = false
 horizontal_alignment = 1
@@ -66,6 +84,9 @@ user_icon = "arrow_back"
 [node name="Control2" type="Control" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="CreditsText" type="Node" parent="."]
+script = ExtResource("4_jjhrc")
 
 [connection signal="meta_clicked" from="HBoxContainer/PanelContainer/VBoxContainer/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
 [connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
