@@ -27,10 +27,13 @@ func add_event(event_name: String):
 
 
 func _add_start_data():
+	var store_name : = ProjectSettings.get("blazium/game/store_name")
+	if discord.is_discord_environment():
+		store_name = "discord"
 	await data({"association_id": OS.get_unique_id()},
 		{
 		"version": Engine.get_version_info(),
-		"distribution_name": ProjectSettings.get("blazium/game/store_name"),
+		"distribution_name": store_name,
 		"arch": Engine.get_architecture_name(),
 		"locale": OS.get_locale_language(),
 		"model_name": OS.get_model_name(),
