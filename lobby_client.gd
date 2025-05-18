@@ -146,3 +146,6 @@ func update_theme(is_light_theme: bool):
 
 func call_event(event_name: String):
 	pogr.add_event(event_name)
+
+func is_discord_environment() -> bool:
+	return discord.is_discord_environment()
