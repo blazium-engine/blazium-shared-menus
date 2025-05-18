@@ -6,10 +6,11 @@ extends BlaziumPanel
 var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 
 @onready var rich_text_label: RichTextLabel = $HBoxContainer/PanelContainer/VBoxContainer/RichTextLabel
+@onready var credits: GameCredits = $Credits
 
 func _ready() -> void:
 	back_button.grab_focus()
-	rich_text_label.text = GameCredits.CREDITS
+	rich_text_label.text = credits.CREDITS
 
 func _shortcut_input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_cancel"):
