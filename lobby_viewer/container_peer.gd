@@ -15,7 +15,7 @@ var platform: String = "anon"
 var selected: bool
 
 @onready var _peer_name: Label = $HBoxContainer/VBoxContainer/Label
-@onready var _peer_platform: Avatar = $HBoxContainer/Platform
+@onready var _peer_platform: Avatar = $HBoxContainer/Avatar/Platform
 @onready var _peer_avatar: Avatar = $HBoxContainer/Avatar
 @onready var _peer_ready: Label = $HBoxContainer/VBoxContainer/Ready
 @onready var _kick_button: Button = $HBoxContainer/Button

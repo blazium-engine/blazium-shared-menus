@@ -80,12 +80,12 @@ func get_query_param(query_string: String, key: String) -> String:
 
 	# Split into key=value pairs
 	var pairs = query_string.split("&")
-	
+
 	for pair in pairs:
 		var kv = pair.split("=")
 		if kv.size() == 2 and kv[0] == key:
 			return kv[1]
-	
+
 	# Return empty string or null if key not found
 	return ""
 

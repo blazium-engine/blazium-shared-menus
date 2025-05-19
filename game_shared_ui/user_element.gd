@@ -10,6 +10,8 @@ signal kick(peer_id: String)
 
 var peer_info: LobbyPeer
 
+@onready var platform: Avatar = $HBoxContainer/Avatar/Platform
+
 
 func _ready() -> void:
 	kick_button.visible = GlobalLobbyClient.is_host() and peer_info.id != GlobalLobbyClient.peer.id
@@ -19,6 +21,10 @@ func _ready() -> void:
 	GlobalLobbyClient.peer_reconnected.connect(_peer_reconnected)
 	label.text = peer_info.user_data.get("name", "")
 	avatar.frame = peer_info.user_data.get("avatar", 0)
+	match peer_info.platform:
+		"discord": platform.frame = 0
+		"steam": platform.frame = 1
+		"anon": platform.frame = 2
 	_received_lobby_data(GlobalLobbyClient.lobby.data)
 
 
