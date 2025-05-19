@@ -24,16 +24,6 @@ stream = ExtResource("3_ijl3q")
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Platform" type="Control" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-script = ExtResource("2_5ych2")
-texture_scale = 0.5
-texture = ExtResource("4_cpsap")
-h_frames = 8
-v_frames = 8
-frame = 2
-
 [node name="Avatar" type="Control" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
@@ -42,6 +32,23 @@ texture_scale = 0.8
 texture = ExtResource("3_u8bts")
 h_frames = 8
 v_frames = 8
+
+[node name="Platform" type="Control" parent="HBoxContainer/Avatar"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("2_5ych2")
+texture_scale = 0.5
+texture = ExtResource("4_cpsap")
+h_frames = 8
+v_frames = 8
+frame = 2
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 visible = false

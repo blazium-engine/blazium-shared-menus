@@ -50,7 +50,7 @@ func _ready() -> void:
 	kick_popup.confirmed.connect(_on_kick_popup_confirm)
 	kick_popup.hide()
 	get_tree().current_scene.get_child(0).add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
-	
+
 	_set_fallback_focus(chat.chat_text)
 
 func _lobby_sealed(sealed: bool):
