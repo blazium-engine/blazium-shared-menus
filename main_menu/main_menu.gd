@@ -74,15 +74,30 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 		multiplayer_button.grab_focus()
 		try_join_from_url()
 
+func get_query_param(query_string: String, key: String) -> String:
+	if query_string.begins_with("?"):
+		query_string = query_string.substr(1)
+
+	# Split into key=value pairs
+	var pairs = query_string.split("&")
+	
+	for pair in pairs:
+		var kv = pair.split("=")
+		if kv.size() == 2 and kv[0] == key:
+			return kv[1]
+	
+	# Return empty string or null if key not found
+	return ""
 
 func try_join_from_url() -> void:
-	if OS.get_name() != "Web":
+	# If on web and not on discord
+	if OS.get_name() != "Web" || GlobalLobbyClient.is_discord_environment():
 		return
 	# get code from url
 	var lobby_code: String = JavaScriptBridge.eval("window.location.search", true)
-	if lobby_code.is_empty():
+	if lobby_code.is_empty() or !lobby_code.contains("code="):
 		return
-	GlobalLobbyClient.join_lobby(lobby_code.split("?code=", false)[0])
+	GlobalLobbyClient.join_lobby(get_query_param(lobby_code, "code"))
 	# clear code from url
 	JavaScriptBridge.eval("history.replaceState(null, '', '/')", true)
 
