@@ -38,6 +38,8 @@ func try_login() -> bool:
 		var jwt_verify_result:LoginVerifyTokenResult= await login.verify_jwt_token(jwt).finished
 		if jwt_verify_result.has_error():
 			push_error(jwt_verify_result.error)
+			config.set_value("LoginClient", "jwt", "")
+			config.save("user://blazium.cfg")
 			jwt = ""
 		else:
 			print("[ScriptedLobby]: Authentication already done, reusing JWT.")
