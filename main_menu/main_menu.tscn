@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_m7b01"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_f84iw"]
 
-[node name="MainMenu" type="PanelContainer" node_paths=PackedStringArray("peer_name_line_edit", "title_label", "name_label", "logs", "menu", "set_name_menu", "set_name_button", "multiplayer_button", "quit_button", "left_spacer", "right_spacer", "click_sound")]
+[node name="MainMenu" type="PanelContainer" node_paths=PackedStringArray("title_label", "name_label", "logs", "menu", "multiplayer_button", "quit_button", "left_spacer", "right_spacer", "click_sound")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,13 +12,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_20biu")
-peer_name_line_edit = NodePath("HBoxContainer/ColorRect/VBoxContainer/VBoxContainerName/Name")
 title_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/Title")
 name_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/NameLabel")
 logs = NodePath("HBoxContainer/ColorRect/VBoxContainer/Logs")
 menu = NodePath("HBoxContainer/ColorRect/VBoxContainer/VBoxContainerSelection")
-set_name_menu = NodePath("HBoxContainer/ColorRect/VBoxContainer/VBoxContainerName")
-set_name_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/VBoxContainerName/SetName")
 multiplayer_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/VBoxContainerSelection/HBoxContainer/ButtonFindLobby")
 quit_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/QuitButton")
 left_spacer = NodePath("HBoxContainer/LeftSpacer")

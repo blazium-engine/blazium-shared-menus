@@ -4,8 +4,6 @@ extends BlaziumPanel
 const max_avatars := 28
 
 @export var logs: Label
-@export var name_label: LineEdit
-@export var edit_button: Button
 @export var disconnect_button: Button
 @export var left_spacer: Control
 @export var right_spacer: Control
@@ -17,7 +15,7 @@ const max_avatars := 28
 @export var mute_checkbutton: ToggledButton
 @export var theme_mode: ToggledButton
 
-var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
+var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 
 var config: ConfigFile
 var disconnect_popup: CustomDialog
@@ -32,11 +30,9 @@ func _ready() -> void:
 	mute_checkbutton._update_text_and_icon()
 	debug_info_checkbutton.set_pressed_no_signal(GlobalLobbyClient.show_debug)
 	debug_info_checkbutton._update_text_and_icon()
-	name_label.text = GlobalLobbyClient.peer.user_data.get("name", "")
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	avatar.frame = GlobalLobbyClient.peer.user_data.get("avatar", 0)
 	_update_other_avatars()
-	name_label.edit()
 
 
 func _on_resized() -> void:
@@ -48,27 +44,8 @@ func _on_resized() -> void:
 func _on_button_save_pressed(data: Dictionary) -> void:
 	click_sound.play()
 	var result: LobbyResult = await GlobalLobbyClient.add_peer_user_data(data).finished
-	name_label.text = GlobalLobbyClient.peer.user_data.get("name", "")
 	logs.text = result.error
 	logs.visible = GlobalLobbyClient.show_debug
-
-
-func _on_edit_button_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		name_label.editable = true
-		edit_button.text = "Save"
-		name_label.edit()
-		name_label.select_all()
-	else:
-		if name_label.editable:
-			_on_button_save_pressed({"name": name_label.text})
-		name_label.editable = false
-		edit_button.text = "Edit"
-
-
-func _on_name_text_submitted(_new_text: String) -> void:
-	click_sound.play()
-	edit_button.button_pressed = false # to trigger button toggle
 
 
 func _shortcut_input(_event: InputEvent) -> void:
