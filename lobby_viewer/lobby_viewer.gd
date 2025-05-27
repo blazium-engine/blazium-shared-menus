@@ -18,7 +18,7 @@ extends BlaziumPanel
 @export var click_sound: AudioStreamPlayer
 @export var invite_panel: Panel
 
-var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
+var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 var lobby_browser_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
 var game_scene: PackedScene = load("res://game/game.tscn")
 var container_peer_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_viewer/container_peer.tscn")
