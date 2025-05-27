@@ -178,6 +178,7 @@ func _on_button_start_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
 	var res: ViewLobbyResult = await GlobalLobbyClient.quick_join("Game" + str(randi() % 1000), {"game_mode": "competitive_abunch_hanging"}, ProjectSettings.get_setting("blazium/game/max_players_default")).finished
+	var result: ScriptedLobbyResult = await GlobalLobbyClient.lobby_call("start_game").finished
 	if res.has_error():
 		push_error(res.error)
 	elif is_inside_tree():
