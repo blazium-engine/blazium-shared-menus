@@ -56,7 +56,12 @@ func _on_button_create_lobby_pressed() -> void:
 	config.load("user://blazium.cfg")
 	var game_mode = config.get_value("Settings", "game_mode")
 	tags["game_mode"] = game_mode
-	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(title_label.text, sealed, tags, int(max_players_label.text), password_line_edit.text).finished
+	var game_mode_title = ""
+	if game_mode == "normal_mode":
+		game_mode_title = game_mode.replace("_", " ").replace("mode", "").capitalize()
+	else:
+		game_mode_title = game_mode.replace("_", " ").replace("normal", "").capitalize()
+	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(game_mode_title + ": " + title_label.text, sealed, tags, int(max_players_label.text), password_line_edit.text).finished
 	
 	logs.visible = GlobalLobbyClient.show_debug
 	logs.text = result.error
