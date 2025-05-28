@@ -46,6 +46,8 @@ func _lobbies_listed(lobbies: Array[LobbyInfo]):
 			continue
 		if hide_private and lobby.password_protected:
 			continue
+		if lobby.tags["game_mode"] == "competitive_abunch_hanging":
+			continue
 		var lobby_container := container_lobby_scene.instantiate()
 		lobby_container.lobby = lobby
 		lobby_container.password_popup = password_popup
