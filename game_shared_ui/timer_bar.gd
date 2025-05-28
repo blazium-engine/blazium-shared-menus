@@ -1,8 +1,6 @@
 class_name TimerBar
 extends Control
 
-signal timer_finished
-
 @export var progress_bar: TextureRect
 @export var progress_label: Label
 @export var total_time: float = 7.0
@@ -40,7 +38,6 @@ func _process(_delta: float) -> void:
 	if progress >= 1:
 		progress_seconds = 0
 		if not is_finished:
-			timer_finished.emit()
 			is_finished = true
 	else:
 		progress_seconds = int((1 - progress) * total_time) + 1
