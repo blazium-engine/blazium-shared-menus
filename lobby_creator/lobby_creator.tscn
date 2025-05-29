@@ -135,6 +135,7 @@ script = ExtResource("4_qc77u")
 user_icon = "arrow_left"
 
 [node name="MaxPlayers" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPlayers"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "10"
