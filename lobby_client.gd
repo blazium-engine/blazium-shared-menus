@@ -8,21 +8,28 @@ extends ScriptedLobbyClient
 
 var config: ConfigFile
 var show_debug := false
-
+var vertical = false
+var size_bigger := false
+var size_single_row := false
 
 func _size_changed():
-	var scale_factor: float = float(get_viewport().get_window().size.y) / get_viewport().get_window().size.x
-	if scale_factor > 2.0:
-		scale_factor = 3.0
-	elif scale_factor > 1.6:
-		scale_factor = 2.4
-	elif scale_factor > 1.3:
-		scale_factor = 2.0
-	elif scale_factor > 0.7:
-		scale_factor = 1.5
-	else:
+	var window_size := Vector2(get_viewport().get_window().size)
+	var scale_factor: float = window_size.y / window_size.x
+	if scale_factor < 0.0:
 		scale_factor = 1.0
-	get_tree().root.content_scale_factor = scale_factor
+	vertical = false
+	if scale_factor > 1.05:
+		vertical = true
+	if ((window_size.y < 1200 || window_size.x < 800) && vertical) || ((window_size.x < 1100 || window_size.y < 800) && !vertical):
+		ProjectSettings.set_setting("gui/theme/font_size", 26)
+		size_bigger = false
+	else:
+		ProjectSettings.set_setting("gui/theme/font_size", 42)
+		size_bigger = true
+	if ((window_size.y < 1200 || window_size.x < 800) && vertical) || ((window_size.x < 700 || window_size.y < 700) && !vertical):
+		size_single_row = false
+	else:
+		size_single_row = true
 
 var jwt:String
 
@@ -77,6 +84,8 @@ func try_login() -> bool:
 	return true
 
 func _ready() -> void:
+	_size_changed()
+	get_tree().root.size_changed.connect(_size_changed)
 	var local_server = ProjectSettings.get_setting("blazium/game/lobby_server_local", false)
 	if local_server:
 		server_url = "ws://localhost:8080/connect"
@@ -91,8 +100,6 @@ func _ready() -> void:
 	else:
 		reconnection_token = config.get_value("LobbyClient", "reconnection_token", "")
 	connect_to_server()
-	_size_changed()
-	get_tree().root.size_changed.connect(_size_changed)
 
 
 func is_dealer():

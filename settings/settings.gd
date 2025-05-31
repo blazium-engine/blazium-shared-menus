@@ -23,6 +23,8 @@ var disconnect_popup: CustomDialog
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	resized.connect(_on_resized)
+	_on_resized()
 	config = ConfigFile.new()
 	config.load("user://blazium.cfg")
 	mute_checkbutton.set_pressed_no_signal(config.get_value("Settings", "mute", false))
@@ -36,10 +38,9 @@ func _ready() -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = size.x > 600
+	var show_spacers = GlobalLobbyClient.size_single_row
 	left_spacer.visible = show_spacers
 	right_spacer.visible = show_spacers
-
 
 func _on_button_save_pressed(data: Dictionary) -> void:
 	click_sound.play()

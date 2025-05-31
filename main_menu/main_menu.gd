@@ -29,24 +29,26 @@ var os_manages_quit: bool = OS.get_name() in ["Android", "iOS", "Web"]
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	resized.connect(_on_resized)
+	_on_resized()
 	title_label.text = ProjectSettings.get("application/config/name")
 	# Load settings options
 	config = ConfigFile.new()
 	config.load("user://blazium.cfg")
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), config.get_value("Settings", "mute", false))
 	GlobalLobbyClient.update_theme(config.get_value("Settings", "light_mode", false))
-	if GlobalLobbyClient.connected:
-		_connected_to_server(GlobalLobbyClient.peer, "")
-	else:
-		menu.hide()
-		name_label.show()
-		name_label.text = tr("Connecting...")
 	GlobalLobbyClient.connected_to_server.connect(_connected_to_server)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	GlobalLobbyClient.lobby_joined.connect(_lobby_joined)
+	if GlobalLobbyClient.connected:
+		_connected_to_server(GlobalLobbyClient.peer, "")
+	else:
+		#menu.hide()
+		name_label.show()
+		name_label.text = tr("Connecting...")
 	quit_button.visible = not os_manages_quit
-	var game_mode = config.get_value("Settings", "game_mode", "normal_mode")
-	game_modes.set_selected_game_mode(game_mode)
+	#var game_mode = config.get_value("Settings", "game_mode", "normal_mode")
+	#game_modes.set_selected_game_mode(game_mode)
 
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
 	# If in a lobby
@@ -60,9 +62,9 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 	if peer_name == "":
 		peer_name = "Player" + str(randi() % 1000)
 		var result: LobbyResult = await GlobalLobbyClient.add_peer_user_data({"name": peer_name, "avatar": randi() % 28}).finished
-	menu.show()
+	#menu.show()
 	name_label.show()
-	name_label.text = tr("Hello, %s" % peer_name)
+	name_label.text = tr("Hi, %s" % peer_name)
 	_set_fallback_focus(multiplayer_button)
 	multiplayer_button.grab_focus()
 	try_join_from_url()
@@ -116,7 +118,7 @@ func _on_start_pressed() -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = size.x > 600
+	var show_spacers = GlobalLobbyClient.size_bigger
 	left_spacer.visible = show_spacers
 	right_spacer.visible = show_spacers
 
@@ -220,7 +222,6 @@ func _init():
 	wrong_id_popup.hide()
 	add_child(wrong_id_popup, false, Node.INTERNAL_MODE_BACK)
 
-	resized.connect(_on_resized)
 
 func _disconnected_from_server(reason: String):
 	if GlobalLobbyClient.reconnects > 3:

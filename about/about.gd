@@ -5,10 +5,17 @@ extends BlaziumPanel
 @export var click_sound: AudioStreamPlayer
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 
-@onready var rich_text_label: RichTextLabel = $HBoxContainer/PanelContainer/VBoxContainer/RichTextLabel
-@onready var credits: GameCredits = $Credits
+@export var rich_text_label: RichTextLabel
+@export var credits: GameCredits
+
+@export var left_spacer: Control
+@export var right_spacer: Control
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	resized.connect(_on_resized)
+	_on_resized()
 	back_button.grab_focus()
 	rich_text_label.text = credits.CREDITS
 
@@ -25,3 +32,8 @@ func _on_back_pressed() -> void:
 
 func _on_rich_text_label_meta_clicked(meta: Variant) -> void:
 	OS.shell_open(meta)
+
+func _on_resized() -> void:
+	var show_spacers = GlobalLobbyClient.size_bigger
+	left_spacer.visible = show_spacers
+	right_spacer.visible = show_spacers
