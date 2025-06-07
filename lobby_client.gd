@@ -22,6 +22,10 @@ func breakpoint_768() -> bool:
 	var size = get_viewport().size
 	return size.x > 768
 
+func breakpoint_400() -> bool:
+	var size = get_viewport().size
+	return size.x > 400
+
 func _size_changed():
 	var window_size := Vector2(get_viewport().get_window().size)
 	var scale_factor: float = window_size.y / window_size.x

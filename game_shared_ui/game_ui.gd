@@ -15,6 +15,7 @@ extends BlaziumControl
 @export var click_sfx: AudioStreamPlayer
 @export var game_start_sfx: AudioStreamPlayer
 
+var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 
 var peer_to_kick: String
@@ -79,7 +80,7 @@ func kick_peer(peer: LobbyPeer) -> void:
 
 func _disconnected_from_server(_reason: String):
 	if is_inside_tree():
-		get_tree().change_scene_to_packed.call_deferred(main_menu_scene)
+		get_tree().change_scene_to_packed.call_deferred(loading_scene)
 
 
 func _on_back_pressed() -> void:

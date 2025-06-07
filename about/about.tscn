@@ -53,13 +53,13 @@ mouse_filter = 2
 [node name="LeftSpacer" type="Control" parent="BlaziumBG/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
 mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="BlaziumBG/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-size_flags_stretch_ratio = 3.0
 theme_type_variation = &"PaddedMarginContainer"
 
 [node name="PanelContainer" type="PanelContainer" parent="BlaziumBG/HBoxContainer/MarginContainer"]
@@ -91,7 +91,6 @@ fit_content = true
 shortcut_keys_enabled = false
 
 [node name="Discord" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 6
 mouse_default_cursor_shape = 2
@@ -99,13 +98,9 @@ text = "Join Discord"
 expand_text = false
 icon_alignment = 1
 script = ExtResource("2_w6h8l")
-hover_scale = null
-press_scale = null
-anim_time = null
 user_icon = "groups"
 
 [node name="Back" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 6
 mouse_default_cursor_shape = 2
@@ -113,14 +108,12 @@ text = "Back"
 expand_text = false
 icon_alignment = 1
 script = ExtResource("2_w6h8l")
-hover_scale = null
-press_scale = null
-anim_time = null
 user_icon = "arrow_back"
 
 [node name="RightSpacer" type="Control" parent="BlaziumBG/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
 mouse_filter = 2
 
 [node name="Click1" type="AudioStreamPlayer" parent="."]

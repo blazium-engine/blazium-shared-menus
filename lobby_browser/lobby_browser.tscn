@@ -38,6 +38,7 @@ alignment = 1
 [node name="LeftSpacer" type="Control" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
 
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -84,9 +85,6 @@ expand_text = false
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("5_ube8s")
-hover_scale = null
-press_scale = null
-anim_time = null
 user_icon = "add_circle_outline"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
@@ -146,9 +144,6 @@ expand_text = false
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("5_ube8s")
-hover_scale = null
-press_scale = null
-anim_time = null
 user_icon = "arrow_back"
 
 [node name="Logs" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
@@ -160,6 +155,7 @@ horizontal_alignment = 1
 [node name="RightSpacer" type="Control" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
 
 [connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/JoinLobby" to="." method="_on_join_lobby_pressed"]

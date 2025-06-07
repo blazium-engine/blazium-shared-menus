@@ -9,6 +9,7 @@ extends BlaziumPanel
 @export var filter_foldable_container: FoldableContainer
 @export var click_sound: AudioStreamPlayer
 
+var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 var lobby_creator_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/lobby_creator.tscn")
 var container_lobby_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_browser/container_lobby.tscn")
@@ -62,7 +63,7 @@ func load_lobbies() -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = size.x > 600
+	var show_spacers = GlobalLobbyClient.is_portrait()
 	left_spacer.visible = show_spacers
 	right_spacer.visible = show_spacers
 
@@ -74,7 +75,7 @@ func _input(_event):
 
 func _disconnected_from_server(_reason: String):
 	if is_inside_tree():
-		get_tree().change_scene_to_packed(main_menu_scene)
+		get_tree().change_scene_to_packed(loading_scene)
 
 
 func _on_back_pressed() -> void:

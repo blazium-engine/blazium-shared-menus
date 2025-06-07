@@ -14,6 +14,7 @@ extends BlaziumPanel
 @export var click_sound: AudioStreamPlayer
 @export var settings_vbox: VBoxContainer
 
+var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
 var tag_setting_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/tag_setting.tscn")
@@ -100,7 +101,7 @@ func _on_title_text_submitted(_new_text: String) -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = size.x > 600
+	var show_spacers = GlobalLobbyClient.is_portrait()
 	left_spacer.visible = show_spacers
 	right_spacer.visible = show_spacers
 
@@ -112,7 +113,7 @@ func _input(_event):
 
 func _disconnected_from_server(_reason: String):
 	if is_inside_tree():
-		get_tree().change_scene_to_packed(main_menu_scene)
+		get_tree().change_scene_to_packed(loading_scene)
 
 
 func _on_sealed_toggled(toggled_on: bool) -> void:
