@@ -216,7 +216,7 @@ func _on_chat_input_text_submitted(_new_text: String) -> void:
 
 
 func _on_rich_text_label_meta_clicked(meta: Variant) -> void:
-	OS.shell_open(meta)
+	GlobalLobbyClient.open_url(meta)
 
 
 func _on_emoji_button_toggled(toggled_on: bool) -> void:

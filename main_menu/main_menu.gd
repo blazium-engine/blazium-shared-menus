@@ -4,7 +4,6 @@ extends BlaziumPanel
 @export var title_label: Label
 @export var name_label: Label
 @export var logs: Label
-@export var menu: VBoxContainer
 @export var game_modes: GameModes
 @export var multiplayer_button: Button
 @export var quit_button: Button
@@ -36,7 +35,6 @@ func _ready() -> void:
 	config = ConfigFile.new()
 	config.load("user://blazium.cfg")
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), config.get_value("Settings", "mute", false))
-	GlobalLobbyClient.update_theme(config.get_value("Settings", "light_mode", false))
 	GlobalLobbyClient.connected_to_server.connect(_connected_to_server)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	GlobalLobbyClient.lobby_joined.connect(_lobby_joined)
@@ -62,7 +60,6 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 	if peer_name == "":
 		peer_name = "Player" + str(randi() % 1000)
 		var result: LobbyResult = await GlobalLobbyClient.add_peer_user_data({"name": peer_name, "avatar": randi() % 28}).finished
-	#menu.show()
 	name_label.show()
 	name_label.text = tr("Hi, %s" % peer_name)
 	_set_fallback_focus(multiplayer_button)
@@ -118,7 +115,7 @@ func _on_start_pressed() -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = GlobalLobbyClient.size_bigger
+	var show_spacers = GlobalLobbyClient.is_portrait()
 	left_spacer.visible = show_spacers
 	right_spacer.visible = show_spacers
 

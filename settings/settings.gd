@@ -16,6 +16,7 @@ const max_avatars := 28
 @export var theme_mode: ToggledButton
 
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
+var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 
 var config: ConfigFile
 var disconnect_popup: CustomDialog
@@ -38,7 +39,7 @@ func _ready() -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = GlobalLobbyClient.size_single_row
+	var show_spacers = GlobalLobbyClient.is_portrait()
 	left_spacer.visible = show_spacers
 	right_spacer.visible = show_spacers
 
@@ -60,7 +61,7 @@ func _shortcut_input(_event: InputEvent) -> void:
 func _disconnected_from_server(_reason: String):
 	await get_tree().create_timer(1).timeout
 	if is_inside_tree():
-		get_tree().change_scene_to_packed(main_menu_scene)
+		get_tree().change_scene_to_packed(loading_scene)
 
 
 func _on_button_disconnect_pressed() -> void:

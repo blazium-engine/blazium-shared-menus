@@ -9,8 +9,18 @@ extends ScriptedLobbyClient
 var config: ConfigFile
 var show_debug := false
 var vertical = false
-var size_bigger := false
-var size_single_row := false
+
+func is_portrait() -> bool:
+	var size = get_viewport().size
+	return size.y < size.x
+
+func is_landscape() -> bool:
+	var size = get_viewport().size
+	return size.y > size.x
+
+func breakpoint_768() -> bool:
+	var size = get_viewport().size
+	return size.x > 768
 
 func _size_changed():
 	var window_size := Vector2(get_viewport().get_window().size)
@@ -20,16 +30,15 @@ func _size_changed():
 	vertical = false
 	if scale_factor > 1.05:
 		vertical = true
-	if ((window_size.y < 1200 || window_size.x < 800) && vertical) || ((window_size.x < 1100 || window_size.y < 800) && !vertical):
-		ProjectSettings.set_setting("gui/theme/font_size", 26)
-		size_bigger = false
-	else:
-		ProjectSettings.set_setting("gui/theme/font_size", 42)
-		size_bigger = true
-	if ((window_size.y < 1200 || window_size.x < 800) && vertical) || ((window_size.x < 700 || window_size.y < 700) && !vertical):
-		size_single_row = false
-	else:
-		size_single_row = true
+	var min_dimension :float= min(window_size.x, window_size.y)
+
+	# Custom scale based on window size
+	var scale := min_dimension / 700.0
+	var font_scale = scale / 4
+	var font_size = 24
+	# Apply settings
+	#ProjectSettings.set_setting("gui/theme/font_size", font_size + font_scale * font_size)
+	#ProjectSettings.set_setting("gui/theme/default_theme_scale", scale)
 
 var jwt:String
 
@@ -91,6 +100,7 @@ func _ready() -> void:
 		server_url = "ws://localhost:8080/connect"
 	config = ConfigFile.new()
 	config.load("user://blazium.cfg")
+	GlobalLobbyClient.update_theme(config.get_value("Settings", "light_mode", false))
 	connected_to_server.connect(_connected_to_server)
 	disconnected_from_server.connect(_disconnected_from_server)
 	log_updated.connect(_log_updated)
@@ -158,3 +168,9 @@ func call_event(event_name: String):
 
 func is_discord_environment() -> bool:
 	return discord.is_discord_environment()
+	
+func open_url(url: String):
+	if is_discord_environment():
+		discord.open_external_link(url)
+	else:
+		OS.shell_open(url)

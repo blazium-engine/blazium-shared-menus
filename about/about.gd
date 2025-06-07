@@ -31,9 +31,13 @@ func _on_back_pressed() -> void:
 
 
 func _on_rich_text_label_meta_clicked(meta: Variant) -> void:
-	OS.shell_open(meta)
+	GlobalLobbyClient.open_url(meta)
 
 func _on_resized() -> void:
-	var show_spacers = GlobalLobbyClient.size_bigger
+	var show_spacers = GlobalLobbyClient.vertical
 	left_spacer.visible = show_spacers
 	right_spacer.visible = show_spacers
+
+
+func _on_discord_pressed() -> void:
+	GlobalLobbyClient.open_url("https://discord.gg/B5ArWYX3Hr")

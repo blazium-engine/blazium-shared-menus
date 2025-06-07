@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://qxcvedn11ub"]
+
+[ext_resource type="Material" uid="uid://btixxybihit3m" path="res://addons/blazium_shared_menus/general/blazium_bg.tres" id="1_4sm5m"]
+[ext_resource type="Texture2D" uid="uid://b5thl826t2lib" path="res://addons/blazium_shared_menus/general/blazium_bg.svg" id="1_582la"]
+[ext_resource type="AudioStream" uid="uid://br4gsw3sqpxj1" path="res://addons/blazium_shared_menus/general/wave_effect.ogg" id="1_lxvsa"]
+[ext_resource type="Script" uid="uid://cu6qb8nyqjsdq" path="res://addons/blazium_shared_menus/general/blazium_bg_mouse.gd" id="3_s33lw"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_pmn1e"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vevv6"]
+
+[sub_resource type="Gradient" id="Gradient_0fbet"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_62e2m"]
+gradient = SubResource("Gradient_0fbet")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+
+[node name="BlaziumBG" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WaveEffect" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPolyphonic_pmn1e")
+
+[node name="Panel" type="TextureRect" parent="."]
+self_modulate = Color(0.0823529, 0.101961, 0.12549, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_vevv6")
+stretch_mode = 6
+
+[node name="ColorRect" type="TextureRect" parent="Panel" node_paths=PackedStringArray("sound", "panel", "texture_rect")]
+material = ExtResource("1_4sm5m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("1_582la")
+stretch_mode = 1
+script = ExtResource("3_s33lw")
+sound = NodePath("../../WaveEffect")
+panel = NodePath("..")
+texture_rect = NodePath("../TextureRect")
+audio_stream = ExtResource("1_lxvsa")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+self_modulate = Color(0.0823529, 0.101961, 0.12549, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_62e2m")
+stretch_mode = 6
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="Panel/ColorRect" to="Panel/ColorRect" method="_on_gui_input"]
