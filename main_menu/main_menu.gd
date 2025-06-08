@@ -11,6 +11,7 @@ extends BlaziumPanel
 @export var right_spacer: Control
 @export var click_sound: AudioStreamPlayer
 
+var loading_scene: PackedScene = preload("res://game/loading_screen.tscn")
 var lobby_browser_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
 var lobby_viewer_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
 var lobby_creator_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_creator/lobby_creator.tscn")
@@ -19,7 +20,6 @@ var about_scene: PackedScene = preload("res://addons/blazium_shared_menus/about/
 
 var config: ConfigFile
 var exit_popup: CustomDialog
-var reconnect_popup: CustomDialog
 var wrong_id_popup: CustomDialog
 
 var os_manages_quit: bool = OS.get_name() in ["Android", "iOS", "Web"]
@@ -41,9 +41,7 @@ func _ready() -> void:
 	if GlobalLobbyClient.connected:
 		_connected_to_server(GlobalLobbyClient.peer, "")
 	else:
-		#menu.hide()
-		name_label.show()
-		name_label.text = tr("Connecting...")
+		_disconnected_from_server("")
 	quit_button.visible = not os_manages_quit
 	#var game_mode = config.get_value("Settings", "game_mode", "normal_mode")
 	#game_modes.set_selected_game_mode(game_mode)
@@ -115,9 +113,9 @@ func _on_start_pressed() -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = GlobalLobbyClient.is_portrait()
-	left_spacer.visible = show_spacers
-	right_spacer.visible = show_spacers
+	var show_spacers = GlobalLobbyClient.breakpoint_768()
+	left_spacer.visible = !show_spacers
+	right_spacer.visible = !show_spacers
 
 
 func _on_button_settings_pressed() -> void:
@@ -143,10 +141,6 @@ func _shortcut_input(_event):
 		else:
 			_on_quit_button_pressed()
 
-
-func _on_reconnect_popup_confirmed() -> void:
-	GlobalLobbyClient.connect_to_server()
-	_restore_last_focus()
 
 
 func _on_exit_popup_confirmed() -> void:
@@ -194,15 +188,6 @@ func _init():
 	var quit_text = "Quit"
 	if os_manages_quit:
 		quit_text = ""
-	reconnect_popup = CustomDialog.new("Connection lost!", "Reconnect", quit_text)
-	reconnect_popup.name = "ReconnectPopup"
-	reconnect_popup.cancelled.connect(_on_exit_popup_confirmed)
-	reconnect_popup.confirmed.connect(_on_reconnect_popup_confirmed)
-	reconnect_popup.hide()
-	add_child(reconnect_popup, false, Node.INTERNAL_MODE_BACK)
-	if GlobalLobbyClient.reconnects > 3 and not GlobalLobbyClient.connected:
-		_update_last_focus()
-		reconnect_popup.show()
 
 	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
 	exit_popup.name = "ExitPopup"
@@ -221,5 +206,4 @@ func _init():
 
 
 func _disconnected_from_server(reason: String):
-	if GlobalLobbyClient.reconnects > 3:
-		reconnect_popup.show()
+	get_tree().change_scene_to_packed(loading_scene)

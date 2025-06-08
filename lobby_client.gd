@@ -1,6 +1,5 @@
 extends ScriptedLobbyClient
 
-@export var reconnects := 0
 @export var discord: CustomDiscordEmbeddedAppClient
 @export var login: CustomLoginClient
 @export var pogr: CustomPOGRClient
@@ -9,22 +8,27 @@ extends ScriptedLobbyClient
 var config: ConfigFile
 var show_debug := false
 var vertical = false
+var disconnected
 
 func is_portrait() -> bool:
 	var size = get_viewport().size
-	return size.y < size.x
+	return size.y > size.x
 
 func is_landscape() -> bool:
 	var size = get_viewport().size
-	return size.y > size.x
+	return size.y < size.x
+
+func breakpoint_1024() -> bool:
+	var size = get_viewport().size
+	return size.x < 1024
 
 func breakpoint_768() -> bool:
 	var size = get_viewport().size
-	return size.x > 768
+	return size.x < 768
 
 func breakpoint_400() -> bool:
 	var size = get_viewport().size
-	return size.x > 400
+	return size.x < 400
 
 func _size_changed():
 	var window_size := Vector2(get_viewport().get_window().size)
@@ -132,7 +136,7 @@ func _log_updated(command: String, message: String):
 
 
 func _connected_to_server(_peer: LobbyPeer, new_reconnection_token: String):
-	reconnects = 0
+	disconnected = false
 	config.set_value("LobbyClient", "reconnection_token", new_reconnection_token)
 	config.save("user://blazium.cfg")
 
@@ -145,18 +149,11 @@ func _connected_to_server(_peer: LobbyPeer, new_reconnection_token: String):
 
 
 func _disconnected_from_server(reason: String):
+	disconnected = true
 	if reason == "Reconnect Close":
 		reconnection_token = ""
 	else:
 		reconnection_token = jwt
-	print("[ScriptedLobbyClient]: Disconnected. ", reason)
-	if reconnects > 3:
-		push_error("Cannot connect")
-		return
-	reconnects += 1
-	if is_inside_tree():
-		await get_tree().create_timer(1 * reconnects).timeout
-	connect_to_server()
 
 
 func update_theme(is_light_theme: bool):

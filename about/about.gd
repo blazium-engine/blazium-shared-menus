@@ -34,9 +34,9 @@ func _on_rich_text_label_meta_clicked(meta: Variant) -> void:
 	GlobalLobbyClient.open_url(meta)
 
 func _on_resized() -> void:
-	var show_spacers = GlobalLobbyClient.is_portrait()
-	left_spacer.visible = show_spacers
-	right_spacer.visible = show_spacers
+	var show_spacers = GlobalLobbyClient.breakpoint_1024()
+	left_spacer.visible = !show_spacers
+	right_spacer.visible = !show_spacers
 
 
 func _on_discord_pressed() -> void:

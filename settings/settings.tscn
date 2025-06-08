@@ -90,7 +90,7 @@ theme_override_constants/separation = 24
 script = ExtResource("4_oqwwc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(350, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"CustomPopupVBox"
@@ -148,35 +148,31 @@ script = ExtResource("6_m4ikw")
 press_timeout = 0.1
 user_icon = "arrow_right"
 
-[node name="Sounds" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Sounds" type="CheckButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-toggle_mode = true
-text = "Mute"
+text = "Sound On"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("8_6v4tp")
-press_timeout = null
-pressed_icon = "volume_up"
-unpressed_icon = "volume_off"
-pressed_text = "Unmute"
-unpressed_text = "Mute"
+pressed_icon = "volume_off"
+unpressed_icon = "volume_up"
+pressed_text = "Muted"
+unpressed_text = "Sound On"
 
-[node name="ThemeMode" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="ThemeMode" type="CheckButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-toggle_mode = true
-text = "Light Mode"
+text = "Dark Mode"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("8_6v4tp")
-press_timeout = null
-pressed_icon = "dark_mode"
-unpressed_icon = "light_mode"
-pressed_text = "Dark Mode"
-unpressed_text = "Light Mode"
+pressed_icon = "light_mode"
+unpressed_icon = "dark_mode"
+pressed_text = "Light Mode"
+unpressed_text = "Dark Mode"
 
 [node name="Logs" type="Label" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer"]
 visible = false
@@ -188,28 +184,27 @@ layout_mode = 2
 script = ExtResource("9_hybew")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(350, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"CustomPopupVBox"
 
-[node name="ShowDebug" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="ShowDebug" type="CheckButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-toggle_mode = true
 text = "Hide Debug Info"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("8_6v4tp")
-press_timeout = null
 pressed_icon = "bug_report"
 unpressed_icon = "bug_report"
 pressed_text = "Show Debug Info"
 unpressed_text = "Hide Debug Info"
 
 [node name="ButtonDisconnect" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Disconnect"

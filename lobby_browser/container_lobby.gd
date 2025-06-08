@@ -2,7 +2,7 @@ extends Control
 
 @export var _lobby_name: Label
 @export var _lobby_players: Label
-@export var _join_button: Button
+@export var _join_button: CustomButton
 @export var click_sound: AudioStreamPlayer
 
 var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
@@ -19,6 +19,8 @@ func _ready():
 	})
 	if lobby.sealed:
 		_join_button.text = "Reconnect"
+	if lobby.password_protected:
+		_join_button.user_icon = "lock"
 
 
 func _on_button_pressed() -> void:

@@ -10,7 +10,7 @@ extends BlaziumPanel
 @export var right_spacer: Control
 @export var increment_button: Button
 @export var decrement_button: Button
-@export var sealed_checkbox: CheckBox
+@export var sealed_checkbox: CheckButton
 @export var click_sound: AudioStreamPlayer
 @export var settings_vbox: VBoxContainer
 
@@ -20,8 +20,6 @@ var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lo
 var tag_setting_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/tag_setting.tscn")
 var sealed := false
 
-var tags_settings_array: Array[TagSetting]
-
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
@@ -29,18 +27,6 @@ func _ready() -> void:
 	title_label.grab_focus()
 	max_players_label.text = str(ProjectSettings.get_setting("blazium/game/max_players_default", 10))
 	_update_max_players_buttons(int(max_players_label.text))
-	var tags_enabled = ProjectSettings.get_setting("blazium/game/tags_enabled", [])
-	for tag_enabled in tags_enabled:
-		var tag_name = ProjectSettings.get_setting("blazium/game/" + tag_enabled + "/name")
-		var tag_default = ProjectSettings.get_setting("blazium/game/" + tag_enabled + "/default")
-		var tag_setting: TagSetting = tag_setting_scene.instantiate()
-		settings_vbox.add_child(tag_setting)
-		tag_setting.tag_name = tag_enabled
-		tag_setting.owner = settings_vbox
-		tag_setting.label.text = tag_name
-		tag_setting.line_edit.text = str(tag_default)
-		tag_setting.name = tag_name
-		tags_settings_array.push_back(tag_setting)
 
 func _on_button_create_lobby_pressed() -> void:
 	click_sound.play()
@@ -48,14 +34,9 @@ func _on_button_create_lobby_pressed() -> void:
 	if title_label.text.is_empty():
 		title_label.text = "Game" + str(randi() % 1000)
 	var tags = {}
-	for tag_setting in tags_settings_array:
-		var tag_setting_text = tag_setting.line_edit.text
-		if tag_setting_text == "":
-			tag_setting_text = 0
-		tags[tag_setting.tag_name] = int(tag_setting_text)
 	var config = ConfigFile.new()
 	config.load("user://blazium.cfg")
-	var game_mode = config.get_value("Settings", "game_mode")
+	var game_mode = "normal_mode"
 	tags["game_mode"] = game_mode
 	var game_mode_title = ""
 	if game_mode == "normal_mode":
@@ -101,9 +82,9 @@ func _on_title_text_submitted(_new_text: String) -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = GlobalLobbyClient.is_portrait()
-	left_spacer.visible = show_spacers
-	right_spacer.visible = show_spacers
+	var show_spacers = GlobalLobbyClient.breakpoint_1024()
+	left_spacer.visible = !show_spacers
+	right_spacer.visible = !show_spacers
 
 
 func _input(_event):

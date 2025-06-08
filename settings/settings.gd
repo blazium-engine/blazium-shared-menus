@@ -11,9 +11,9 @@ const max_avatars := 28
 @export var avatar: Avatar
 @export var next_avatar: Avatar
 @export var click_sound: AudioStreamPlayer
-@export var debug_info_checkbutton: ToggledButton
-@export var mute_checkbutton: ToggledButton
-@export var theme_mode: ToggledButton
+@export var debug_info_checkbutton: CheckButton
+@export var mute_checkbutton: CheckButton
+@export var theme_mode: CheckButton
 
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
@@ -39,9 +39,9 @@ func _ready() -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = GlobalLobbyClient.is_portrait()
-	left_spacer.visible = show_spacers
-	right_spacer.visible = show_spacers
+	var show_spacers = GlobalLobbyClient.breakpoint_1024()
+	left_spacer.visible = !show_spacers
+	right_spacer.visible = !show_spacers
 
 func _on_button_save_pressed(data: Dictionary) -> void:
 	click_sound.play()

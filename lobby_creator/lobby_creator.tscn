@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmwdqnvuk8nbk"]
+[gd_scene load_steps=7 format=3 uid="uid://dmwdqnvuk8nbk"]
 
 [ext_resource type="Script" uid="uid://cpe2d1xytyx6y" path="res://addons/blazium_shared_menus/lobby_creator/lobby_creator.gd" id="1_3c7gg"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_1haab"]
+[ext_resource type="PackedScene" uid="uid://qxcvedn11ub" path="res://addons/blazium_shared_menus/general/blazium_bg.tscn" id="3_47gs3"]
+[ext_resource type="Script" uid="uid://chix1djhx5hj3" path="res://addons/blazium_shared_menus/game_shared_ui/orientation_box_container.gd" id="4_2o5v5"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="4_qc77u"]
+[ext_resource type="Script" uid="uid://c6eim0n5qfl12" path="res://game/hide_if_orientation_mobile.gd" id="5_5cai8"]
 
 [node name="LobbyCreator" type="PanelContainer" node_paths=PackedStringArray("password_line_edit", "logs", "max_players_label", "title_label", "create_button", "left_spacer", "right_spacer", "increment_button", "decrement_button", "sealed_checkbox", "click_sound", "settings_vbox")]
 anchors_preset = 15
@@ -10,122 +13,164 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_3c7gg")
-password_line_edit = NodePath("HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPrivacy/PasswordLineEdit")
-logs = NodePath("HBoxContainer/ColorRect/VBoxContainer/SettingVbox/Logs")
-max_players_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPlayers/MaxPlayers")
-title_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPrivacy2/Title")
-create_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/ButtonCreateLobby")
-left_spacer = NodePath("HBoxContainer/LeftSpacer")
-right_spacer = NodePath("HBoxContainer/RightSpacer")
-increment_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPlayers/ButtonIncrement")
-decrement_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPlayers/ButtonDecrement")
-sealed_checkbox = NodePath("HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPrivacy3/Sealed")
+password_line_edit = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy/PasswordLineEdit")
+logs = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/Logs")
+max_players_label = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control/MaxPlayers")
+title_label = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy2/Title")
+create_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/ButtonCreateLobby")
+left_spacer = NodePath("BlaziumBG/HBoxContainer/LeftSpacer")
+right_spacer = NodePath("BlaziumBG/HBoxContainer/RightSpacer")
+increment_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control/ButtonIncrement")
+decrement_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control/ButtonDecrement")
+sealed_checkbox = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPrivacy3/Sealed")
 click_sound = NodePath("Click1")
-settings_vbox = NodePath("HBoxContainer/ColorRect/VBoxContainer/SettingVbox")
+settings_vbox = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox")
 metadata/_edit_lock_ = true
 
 [node name="Click1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_1haab")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="BlaziumBG" parent="." instance=ExtResource("3_47gs3")]
 layout_mode = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BlaziumBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 alignment = 1
 
-[node name="LeftSpacer" type="Control" parent="HBoxContainer"]
+[node name="LeftSpacer" type="Control" parent="BlaziumBG/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.7
+mouse_filter = 2
 
-[node name="ColorRect" type="PanelContainer" parent="HBoxContainer"]
+[node name="ColorRect" type="PanelContainer" parent="BlaziumBG/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_type_variation = &"ContentPanel"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ColorRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_type_variation = &"CustomPopupVBox"
 alignment = 1
 
-[node name="PaddingTitle" type="Control" parent="HBoxContainer/ColorRect/VBoxContainer"]
+[node name="PaddingTitle" type="Control" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="LabelLobbies" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer"]
+[node name="LabelLobbies" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 text = "Create Game"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="SettingVbox" type="VBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+script = ExtResource("4_2o5v5")
+
+[node name="SettingVbox" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_type_variation = &"CustomPopupVBox"
 alignment = 1
 
-[node name="HBoxContainerPrivacy2" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox"]
+[node name="HBoxContainerPrivacy2" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPrivacy2"]
-custom_minimum_size = Vector2(120, 0)
+[node name="Label" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy2"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "Title:"
 
-[node name="Title" type="LineEdit" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPrivacy2"]
+[node name="Title" type="LineEdit" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy2"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Game title (required)"
+placeholder_text = "Game title"
 alignment = 1
 max_length = 16
 
-[node name="HBoxContainerPrivacy" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox"]
+[node name="HBoxContainerPrivacy" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPrivacy"]
-custom_minimum_size = Vector2(120, 0)
+[node name="Label" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "Password:"
 
-[node name="PasswordLineEdit" type="LineEdit" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPrivacy"]
+[node name="PasswordLineEdit" type="LineEdit" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Password"
+placeholder_text = "Password (optional)"
 alignment = 1
 max_length = 16
 secret = true
 
-[node name="HBoxContainerPrivacy3" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox"]
+[node name="VSeparator" type="VSeparator" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer"]
+layout_mode = 2
+script = ExtResource("5_5cai8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CustomPopupVBox"
+
+[node name="HBoxContainerPrivacy3" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
+alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPrivacy3"]
-custom_minimum_size = Vector2(120, 0)
+[node name="Label" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPrivacy3"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
-text = "Private:"
+text = "Hidden:"
 
-[node name="Sealed" type="CheckBox" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPrivacy3"]
-custom_minimum_size = Vector2(0, 43)
+[node name="Sealed" type="CheckButton" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPrivacy3"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 text = "No"
 alignment = 1
 
-[node name="HBoxContainerPlayers" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox"]
+[node name="HBoxContainerPlayers" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPlayers"]
-custom_minimum_size = Vector2(120, 0)
+[node name="Label" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Max Players:"
+text = "Players:"
 
-[node name="ButtonDecrement" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPlayers"]
+[node name="Control" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonDecrement" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_right = NodePath("../ButtonIncrement")
@@ -136,7 +181,7 @@ expand_icon = true
 script = ExtResource("4_qc77u")
 user_icon = "arrow_left"
 
-[node name="MaxPlayers" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPlayers"]
+[node name="MaxPlayers" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control"]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -144,7 +189,7 @@ text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonIncrement" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPlayers"]
+[node name="ButtonIncrement" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../ButtonDecrement")
@@ -155,16 +200,12 @@ expand_icon = true
 script = ExtResource("4_qc77u")
 user_icon = "arrow_right"
 
-[node name="Logs" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer/SettingVbox"]
+[node name="Logs" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 visible = false
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="VBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="ButtonCreateLobby" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
+[node name="ButtonCreateLobby" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_type_variation = &"SelectedButton"
@@ -175,7 +216,7 @@ expand_icon = true
 script = ExtResource("4_qc77u")
 user_icon = "add_circle_outline"
 
-[node name="Back" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
+[node name="Back" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Back"
@@ -185,15 +226,16 @@ expand_icon = true
 script = ExtResource("4_qc77u")
 user_icon = "arrow_back"
 
-[node name="RightSpacer" type="Control" parent="HBoxContainer"]
+[node name="RightSpacer" type="Control" parent="BlaziumBG/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.7
+mouse_filter = 2
 
 [connection signal="resized" from="." to="." method="_on_resized"]
-[connection signal="text_submitted" from="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPrivacy2/Title" to="." method="_on_title_text_submitted"]
-[connection signal="toggled" from="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPrivacy3/Sealed" to="." method="_on_sealed_toggled"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPlayers/ButtonDecrement" to="." method="_on_button_decrement_pressed"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/SettingVbox/HBoxContainerPlayers/ButtonIncrement" to="." method="_on_button_increment_pressed"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/ButtonCreateLobby" to="." method="_on_button_create_lobby_pressed"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="text_submitted" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy2/Title" to="." method="_on_title_text_submitted"]
+[connection signal="toggled" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPrivacy3/Sealed" to="." method="_on_sealed_toggled"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control/ButtonDecrement" to="." method="_on_button_decrement_pressed"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control/ButtonIncrement" to="." method="_on_button_increment_pressed"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/ButtonCreateLobby" to="." method="_on_button_create_lobby_pressed"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/Back" to="." method="_on_back_pressed"]

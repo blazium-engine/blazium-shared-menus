@@ -39,6 +39,8 @@ text = "0/0"
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
 mouse_default_cursor_shape = 2
 theme_type_variation = &"SelectedButton"
 text = "Join"
@@ -46,6 +48,6 @@ expand_text = false
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_eaer0")
-user_icon = "add_circle_outline"
+user_icon = "add"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

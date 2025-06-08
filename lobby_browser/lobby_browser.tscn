@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://7blyjegi70l6"]
+[gd_scene load_steps=7 format=3 uid="uid://7blyjegi70l6"]
 
 [ext_resource type="Script" uid="uid://cdn6ckkplp0m8" path="res://addons/blazium_shared_menus/lobby_browser/lobby_browser.gd" id="1_cirsv"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_kfob6"]
+[ext_resource type="PackedScene" uid="uid://qxcvedn11ub" path="res://addons/blazium_shared_menus/general/blazium_bg.tscn" id="3_rmovh"]
 [ext_resource type="Script" uid="uid://cyp8juy8mxbqs" path="res://addons/blazium_shared_menus/lobby_browser/filter_container.gd" id="4_8hklr"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_ube8s"]
 
@@ -17,44 +18,57 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_cirsv")
-lobby_grid = NodePath("HBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainerLobbies")
-logs = NodePath("HBoxContainer/PanelContainer/VBoxContainer/Logs")
-lobby_id = NodePath("HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/LobbyId")
-left_spacer = NodePath("HBoxContainer/LeftSpacer")
-right_spacer = NodePath("HBoxContainer/RightSpacer")
-filter_foldable_container = NodePath("HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer")
+lobby_grid = NodePath("BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainerLobbies")
+logs = NodePath("BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/Logs")
+lobby_id = NodePath("BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/LobbyId")
+left_spacer = NodePath("BlaziumBG/HBoxContainer/LeftSpacer")
+right_spacer = NodePath("BlaziumBG/HBoxContainer/RightSpacer")
+filter_foldable_container = NodePath("BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer")
 click_sound = NodePath("Click1")
 metadata/_edit_lock_ = true
 
 [node name="Click1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_kfob6")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="BlaziumBG" parent="." instance=ExtResource("3_rmovh")]
 layout_mode = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BlaziumBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 alignment = 1
 
-[node name="LeftSpacer" type="Control" parent="HBoxContainer"]
+[node name="LeftSpacer" type="Control" parent="BlaziumBG/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+mouse_filter = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="BlaziumBG/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 theme_type_variation = &"ContentPanel"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/PanelContainer"]
 layout_mode = 2
+theme_type_variation = &"CustomPopupVBox"
 alignment = 1
 
-[node name="PaddingTitle" type="Control" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="PaddingTitle" type="Control" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="LabelLobbies" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="LabelLobbies" type="Label" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLargeFit"
 theme_override_fonts/font = SubResource("FontVariation_8hklr")
@@ -62,12 +76,12 @@ text = "Games"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="LobbyId" type="LineEdit" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="LobbyId" type="LineEdit" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -75,7 +89,7 @@ placeholder_text = "Code: ABC123"
 alignment = 1
 secret = true
 
-[node name="JoinLobby" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="JoinLobby" type="Button" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -87,37 +101,39 @@ expand_icon = true
 script = ExtResource("5_ube8s")
 user_icon = "add_circle_outline"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"ScrollPanel"
 follow_focus = true
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainerLobbies" type="VBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="VBoxContainerLobbies" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="FilterContainer" type="FoldableContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer" node_paths=PackedStringArray("expand_focus_target")]
+[node name="FilterContainer" type="FoldableContainer" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer" node_paths=PackedStringArray("expand_focus_target")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
+folded = true
 text = "Filters"
 title_position = 1
 script = ExtResource("4_8hklr")
 expand_focus_target = NodePath("Filters/HidePrivate")
 
-[node name="Filters" type="VBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer"]
+[node name="Filters" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer"]
+visible = false
 layout_mode = 2
 
-[node name="HideFull" type="CheckBox" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters"]
+[node name="HideFull" type="CheckBox" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -125,7 +141,7 @@ text = "Hide Full"
 alignment = 1
 expand_icon = true
 
-[node name="HidePrivate" type="CheckBox" parent="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters"]
+[node name="HidePrivate" type="CheckBox" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters"]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -134,7 +150,7 @@ mouse_default_cursor_shape = 2
 text = "Hide Password Protected"
 alignment = 1
 
-[node name="Back" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="Back" type="Button" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -146,19 +162,20 @@ expand_icon = true
 script = ExtResource("5_ube8s")
 user_icon = "arrow_back"
 
-[node name="Logs" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="Logs" type="Label" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 horizontal_alignment = 1
 
-[node name="RightSpacer" type="Control" parent="HBoxContainer"]
+[node name="RightSpacer" type="Control" parent="BlaziumBG/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+mouse_filter = 2
 
 [connection signal="resized" from="." to="." method="_on_resized"]
-[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/JoinLobby" to="." method="_on_join_lobby_pressed"]
-[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters/HideFull" to="." method="_on_hide_full_pressed"]
-[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters/HidePrivate" to="." method="_on_hide_private_pressed"]
-[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/JoinLobby" to="." method="_on_join_lobby_pressed"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters/HideFull" to="." method="_on_hide_full_pressed"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters/HidePrivate" to="." method="_on_hide_private_pressed"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
