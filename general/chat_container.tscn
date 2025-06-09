@@ -70,7 +70,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../EmojiButton")
 focus_neighbor_right = NodePath("../ChatButton")
-placeholder_text = "Chat:"
+placeholder_text = "chat_placeholder"
 max_length = 256
 emoji_menu_enabled = false
 
@@ -79,7 +79,7 @@ custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../ChatInput")
 mouse_default_cursor_shape = 2
-text = "Send"
+text = "chat_send"
 expand_text = false
 icon_alignment = 1
 script = ExtResource("5_bbuts")

@@ -1,0 +1,13 @@
+msgid ""
+msgstr ""
+
+
+
+
+
+
+msgid "chat_placeholder"
+msgstr ""
+
+msgid "chat_send"
+msgstr ""
