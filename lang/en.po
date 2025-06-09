@@ -12,6 +12,12 @@ msgstr "Chat:"
 msgid "chat_send"
 msgstr "Send"
 
+msgid "header_credits"
+msgstr "Credits"
+
+msgid "join_discord"
+msgstr "Join the Discord"
+
 msgid "lobby_join"
 msgstr "Join"
 
@@ -20,6 +26,18 @@ msgstr "{players}/{max_players}"
 
 msgid "lobby_reconnect"
 msgstr "Reconnect"
+
+msgid "menu_about"
+msgstr "About"
+
+msgid "menu_back"
+msgstr "Back"
+
+msgid "menu_quit"
+msgstr "Quit"
+
+msgid "menu_settings"
+msgstr "Settings"
 
 msgid "peer_kick"
 msgstr "Kick"

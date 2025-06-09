@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_m7b01"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_f84iw"]
 
-[node name="MainMenu" type="PanelContainer" node_paths=PackedStringArray("title_label", "name_label", "logs", "menu", "multiplayer_button", "quit_button", "left_spacer", "right_spacer", "click_sound")]
+[node name="MainMenu" type="PanelContainer" node_paths=PackedStringArray("title_label", "name_label", "logs", "multiplayer_button", "quit_button", "left_spacer", "right_spacer", "click_sound")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,7 +15,6 @@ script = ExtResource("1_20biu")
 title_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/Title")
 name_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/NameLabel")
 logs = NodePath("HBoxContainer/ColorRect/VBoxContainer/Logs")
-menu = NodePath("HBoxContainer/ColorRect/VBoxContainer/VBoxContainerSelection")
 multiplayer_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/VBoxContainerSelection/HBoxContainer/ButtonFindLobby")
 quit_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/QuitButton")
 left_spacer = NodePath("HBoxContainer/LeftSpacer")
@@ -136,7 +135,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-text = "Settings"
+text = "menu_settings"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
@@ -146,7 +145,7 @@ user_icon = "settings"
 [node name="AboutButton" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "About"
+text = "menu_about"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
@@ -156,7 +155,7 @@ user_icon = "help_outline"
 [node name="QuitButton" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "Quit"
+text = "menu_quit"
 expand_text = false
 icon_alignment = 1
 expand_icon = true

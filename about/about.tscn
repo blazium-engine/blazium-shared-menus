@@ -75,7 +75,7 @@ theme_type_variation = &"CustomPopupVBox"
 layout_mode = 2
 theme_type_variation = &"HeaderLargeFit"
 theme_override_fonts/font = SubResource("FontVariation_fp7sa")
-text = "Credits"
+text = "header_credits"
 horizontal_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
@@ -94,7 +94,7 @@ shortcut_keys_enabled = false
 layout_mode = 2
 size_flags_vertical = 6
 mouse_default_cursor_shape = 2
-text = "Join Discord"
+text = "join_discord"
 expand_text = false
 icon_alignment = 1
 script = ExtResource("2_w6h8l")
@@ -104,7 +104,7 @@ user_icon = "groups"
 layout_mode = 2
 size_flags_vertical = 6
 mouse_default_cursor_shape = 2
-text = "Back"
+text = "menu_back"
 expand_text = false
 icon_alignment = 1
 script = ExtResource("2_w6h8l")
