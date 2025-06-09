@@ -27,6 +27,7 @@ func _shortcut_input(_event: InputEvent) -> void:
 func _on_back_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
+	await get_tree().process_frame
 	get_tree().change_scene_to_packed(main_menu_scene)
 
 

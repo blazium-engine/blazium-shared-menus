@@ -25,6 +25,7 @@ func _ready():
 
 func _on_button_pressed() -> void:
 	click_sound.play()
+	await click_sound.finished
 	if lobby.password_protected:
 		password_popup.set_meta("lobby_id", lobby.id)
 		password_popup.show()

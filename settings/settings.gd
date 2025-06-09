@@ -31,6 +31,7 @@ func _ready() -> void:
 	mute_checkbutton.set_pressed_no_signal(config.get_value("Settings", "mute", false))
 	theme_mode.set_pressed_no_signal(config.get_value("Settings", "light_mode", false))
 	mute_checkbutton._update_text_and_icon()
+	theme_mode._update_text_and_icon()
 	debug_info_checkbutton.set_pressed_no_signal(GlobalLobbyClient.show_debug)
 	debug_info_checkbutton._update_text_and_icon()
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)

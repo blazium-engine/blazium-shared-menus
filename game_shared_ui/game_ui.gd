@@ -60,7 +60,8 @@ func _lobby_sealed(sealed: bool):
 
 func _lobby_left(_kicked: bool):
 	if is_inside_tree():
-		get_tree().change_scene_to_packed.call_deferred(main_menu_scene)
+		await get_tree().process_frame
+		get_tree().change_scene_to_packed(main_menu_scene)
 
 
 func leave_lobby():
@@ -80,7 +81,8 @@ func kick_peer(peer: LobbyPeer) -> void:
 
 func _disconnected_from_server(_reason: String):
 	if is_inside_tree():
-		get_tree().change_scene_to_packed.call_deferred(loading_scene)
+		await get_tree().process_frame
+		get_tree().change_scene_to_packed(loading_scene)
 
 
 func _on_back_pressed() -> void:

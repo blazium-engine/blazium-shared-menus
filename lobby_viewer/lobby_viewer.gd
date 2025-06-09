@@ -6,17 +6,21 @@ extends BlaziumPanel
 @export var ready_button: ToggledButton
 @export var start_button: Button
 @export var leave_button: Button
-@export var invite_button: Button
 @export var lobby_label: Label
 @export var lobby_id_button: Button
 @export var reveal_lobby_id_button: Button
 @export var copy_invite_link_button: Button
 @export var left_spacer: Control
 @export var right_spacer: Control
-@export var private_checkbutton: CheckBox
 @export var points_to_win: Label
 @export var click_sound: AudioStreamPlayer
-@export var invite_panel: Panel
+
+@export var private_checkbutton: CheckButton
+@export var password_line_edit: LineEdit
+@export var max_players_label: Label
+@export var title_label: LineEdit
+@export var increment_button: Button
+@export var decrement_button: Button
 
 var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
@@ -56,7 +60,6 @@ func _update_private_lobby_checkbox():
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	private_checkbutton.visible = GlobalLobbyClient.is_host()
 	var max_points = GlobalLobbyClient.lobby.tags.get("max_points", 0)
 	if max_points == 0:
 		points_to_win.text = "Points to win: Infinite"
@@ -116,19 +119,22 @@ func _peer_ready(_peer: LobbyPeer, _p_ready: bool):
 
 func _disconnected_from_server(_reason: String):
 	if is_inside_tree():
-		get_tree().change_scene_to_packed.call_deferred(loading_scene)
+		await get_tree().process_frame
+		get_tree().change_scene_to_packed(loading_scene)
 
 
 func _lobby_left(_kicked: bool):
 	if is_inside_tree():
-		get_tree().change_scene_to_packed.call_deferred(main_menu_scene)
+		await get_tree().process_frame
+		get_tree().change_scene_to_packed(main_menu_scene)
 
 
 func _received_lobby_data(data: Dictionary):
 	# Start game
 	if data.get("game_state", "setup") != "setup":
 		if is_inside_tree():
-			get_tree().change_scene_to_packed.call_deferred(game_scene)
+			await get_tree().process_frame
+			get_tree().change_scene_to_packed(game_scene)
 
 
 func update_ready_button(is_ready: bool):
@@ -263,19 +269,35 @@ func _init() -> void:
 	kick_popup.hide()
 	add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
 
-
-func _on_close_invite_panel_pressed() -> void:
-	click_sound.play()
-	invite_panel.hide()
-	invite_button.grab_focus()
-
-
-func _on_open_invite_panel_pressed() -> void:
-	click_sound.play()
-	invite_panel.show()
-	copy_invite_link_button.grab_focus()
-
-
 func _on_copy_invite_link_pressed() -> void:
 	click_sound.play()
 	DisplayServer.clipboard_set("https://%s?code=%s" % [GameCredits.HOSTNAME, GlobalLobbyClient.lobby.id])
+
+func _update_max_players_buttons(players):
+	decrement_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_min", 2)
+	increment_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_max", 10)
+
+func _on_title_text_submitted(new_text: String) -> void:
+	GlobalLobbyClient.set_title(new_text)
+	update_title()
+
+func _on_button_increment_pressed() -> void:
+	click_sound.play()
+	var players := int(max_players_label.text)
+	players += 1
+	if players > ProjectSettings.get_setting("blazium/game/max_players_max", 10):
+		players = ProjectSettings.get_setting("blazium/game/max_players_max", 10)
+	max_players_label.text = str(players)
+	_update_max_players_buttons(players)
+	GlobalLobbyClient.set_max_players(players)
+
+
+func _on_button_decrement_pressed() -> void:
+	click_sound.play()
+	var players := int(max_players_label.text)
+	players -= 1
+	if players < ProjectSettings.get_setting("blazium/game/max_players_min", 2):
+		players = ProjectSettings.get_setting("blazium/game/max_players_min", 2)
+	max_players_label.text = str(players)
+	_update_max_players_buttons(players)
+	GlobalLobbyClient.set_max_players(players)

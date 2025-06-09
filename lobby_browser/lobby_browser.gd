@@ -26,6 +26,7 @@ var hide_private:= false
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	resized.connect(_on_resized)
 	load_lobbies()
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	GlobalLobbyClient.lobbies_listed.connect(_lobbies_listed)
@@ -35,6 +36,7 @@ func _ready() -> void:
 
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
 	if is_inside_tree():
+		await get_tree().create_timer(0.1).timeout
 		get_tree().change_scene_to_packed(lobby_viewer)
 
 
@@ -75,6 +77,7 @@ func _input(_event):
 
 func _disconnected_from_server(_reason: String):
 	if is_inside_tree():
+		await get_tree().create_timer(0.1).timeout
 		get_tree().change_scene_to_packed(loading_scene)
 
 
@@ -82,6 +85,7 @@ func _on_back_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
 	if is_inside_tree():
+		await get_tree().create_timer(0.1).timeout
 		get_tree().change_scene_to_packed(main_menu_scene)
 
 
