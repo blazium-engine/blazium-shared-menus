@@ -80,7 +80,7 @@ text_overrun_behavior = 3
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Not Ready"
+text = "peer_not_ready"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="HBoxContainer"]
@@ -88,7 +88,7 @@ custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-text = "Kick"
+text = "peer_kick"
 expand_text = false
 icon_alignment = 1
 expand_icon = true

@@ -11,3 +11,21 @@ msgstr ""
 
 msgid "chat_send"
 msgstr ""
+
+msgid "lobby_join"
+msgstr ""
+
+msgid "lobby_player_count"
+msgstr ""
+
+msgid "lobby_reconnect"
+msgstr ""
+
+msgid "peer_kick"
+msgstr ""
+
+msgid "peer_not_ready"
+msgstr ""
+
+msgid "peer_ready"
+msgstr ""

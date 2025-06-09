@@ -13,12 +13,12 @@ var logs: Label
 
 func _ready():
 	_lobby_name.text = lobby.lobby_name
-	_lobby_players.text = tr("{players}/{max_players}").format({
+	_lobby_players.text = tr("lobby_player_count").format({
 		players = lobby.players,
 		max_players = lobby.max_players
 	})
 	if lobby.sealed:
-		_join_button.text = "Reconnect"
+		_join_button.text = "lobby_reconnect"
 	if lobby.password_protected:
 		_join_button.user_icon = "lock"
 
