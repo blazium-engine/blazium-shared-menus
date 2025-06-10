@@ -15,10 +15,28 @@ msgstr ""
 msgid "header_credits"
 msgstr ""
 
+msgid "header_lobbies"
+msgstr ""
+
 msgid "join_discord"
 msgstr ""
 
+msgid "lobby_filter_full"
+msgstr ""
+
+msgid "lobby_filter_password"
+msgstr ""
+
+msgid "lobby_filters"
+msgstr ""
+
 msgid "lobby_join"
+msgstr ""
+
+msgid "lobby_join_code"
+msgstr ""
+
+msgid "lobby_placeholder_code"
 msgstr ""
 
 msgid "lobby_player_count"

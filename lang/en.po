@@ -15,11 +15,29 @@ msgstr "Send"
 msgid "header_credits"
 msgstr "Credits"
 
+msgid "header_lobbies"
+msgstr "Lobbies"
+
 msgid "join_discord"
 msgstr "Join the Discord"
 
+msgid "lobby_filter_full"
+msgstr "Hide Full"
+
+msgid "lobby_filter_password"
+msgstr "Hide Password Protected"
+
+msgid "lobby_filters"
+msgstr "Filters"
+
 msgid "lobby_join"
 msgstr "Join"
+
+msgid "lobby_join_code"
+msgstr "Join using code"
+
+msgid "lobby_placeholder_code"
+msgstr "Code: ABC123"
 
 msgid "lobby_player_count"
 msgstr "{players}/{max_players}"

@@ -72,7 +72,7 @@ layout_mode = 2
 layout_mode = 2
 theme_type_variation = &"HeaderLargeFit"
 theme_override_fonts/font = SubResource("FontVariation_8hklr")
-text = "Games"
+text = "header_lobbies"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
@@ -82,10 +82,9 @@ theme_override_constants/separation = 24
 alignment = 1
 
 [node name="LobbyId" type="LineEdit" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
-auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Code: ABC123"
+placeholder_text = "lobby_placeholder_code"
 alignment = 1
 secret = true
 
@@ -94,7 +93,7 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-text = "Join by Code"
+text = "lobby_join_code"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
@@ -124,7 +123,7 @@ theme_override_constants/separation = 8
 layout_mode = 2
 mouse_default_cursor_shape = 2
 folded = true
-text = "Filters"
+text = "lobby_filters"
 title_position = 1
 script = ExtResource("4_8hklr")
 expand_focus_target = NodePath("Filters/HidePrivate")
@@ -137,7 +136,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-text = "Hide Full"
+text = "lobby_filter_full"
 alignment = 1
 expand_icon = true
 
@@ -147,7 +146,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_bottom = NodePath("../..")
 mouse_default_cursor_shape = 2
-text = "Hide Password Protected"
+text = "lobby_filter_password"
 alignment = 1
 
 [node name="Back" type="Button" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer"]
