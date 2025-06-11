@@ -6,29 +6,35 @@ extends ScriptedLobbyClient
 @export var steam: CustomSteamClient
 
 var config: ConfigFile
-var show_debug := false
 var vertical = false
 var disconnected
+var jwt:String
+
 
 func is_portrait() -> bool:
 	var size = get_viewport().size
 	return size.y > size.x
 
+
 func is_landscape() -> bool:
 	var size = get_viewport().size
 	return size.y < size.x
+
 
 func breakpoint_1024() -> bool:
 	var size = get_viewport().size
 	return size.x < 1024
 
+
 func breakpoint_768() -> bool:
 	var size = get_viewport().size
 	return size.x < 768
 
+
 func breakpoint_400() -> bool:
 	var size = get_viewport().size
 	return size.x < 400
+
 
 func _size_changed():
 	var window_size := Vector2(get_viewport().get_window().size)
@@ -48,7 +54,6 @@ func _size_changed():
 	#ProjectSettings.set_setting("gui/theme/font_size", font_size + font_scale * font_size)
 	#ProjectSettings.set_setting("gui/theme/default_theme_scale", scale)
 
-var jwt:String
 
 func try_login() -> bool:
 	if !login.connected:
@@ -99,6 +104,7 @@ func try_login() -> bool:
 	config.save("user://blazium.cfg")
 	login.disconnect_from_server()
 	return true
+
 
 func _ready() -> void:
 	_size_changed()
@@ -164,12 +170,15 @@ func update_theme(is_light_theme: bool):
 		ProjectSettings.set_setting("gui/theme/base_color", Color(0.0793, 0.10296, 0.13))
 		ProjectSettings.set_setting("gui/theme/accent_color", Color(0.2075, 0.581, 0.83))
 
+
 func call_event(event_name: String):
 	pogr.add_event(event_name)
 
+
 func is_discord_environment() -> bool:
 	return discord.is_discord_environment()
-	
+
+
 func open_url(url: String):
 	if is_discord_environment():
 		discord.open_external_link(url)

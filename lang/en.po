@@ -54,6 +54,9 @@ msgstr "About"
 msgid "menu_back"
 msgstr "Back"
 
+msgid "menu_prompt_exit"
+msgstr "Are you sure you want to exit?"
+
 msgid "menu_quit"
 msgstr "Quit"
 
@@ -68,12 +71,6 @@ msgstr "Not Ready"
 
 msgid "peer_ready"
 msgstr "Ready"
-
-msgid "settings_debug_hide"
-msgstr "Hide Debug Info"
-
-msgid "settings_debug_show"
-msgstr "Show Debug Info"
 
 msgid "settings_disconnect"
 msgstr "Disconnect"

@@ -7,7 +7,6 @@ class_name ChatContainer
 
 @export var chat_input: LineEdit
 @export var chat_text: RichTextLabel
-@export var logs: Label
 @export var server_event_color: Color
 @export var command_error_color: Color
 @export var chat_msg_sfx: AudioStreamPlayer
@@ -206,9 +205,7 @@ func _on_chat_button_pressed() -> void:
 	if message.begins_with("/"):
 		append_message_to_chat(GlobalLobbyClient.peer, message, true)
 	else:
-		var result: LobbyResult = await GlobalLobbyClient.send_chat_message(message).finished
-		logs.visible = GlobalLobbyClient.show_debug
-		logs.text = result.error
+		await GlobalLobbyClient.send_chat_message(message).finished
 
 
 func _on_chat_input_text_submitted(_new_text: String) -> void:
@@ -301,9 +298,7 @@ func kick_command(arg: String) -> String:
 				"You cannot kick yourself."]
 		)
 
-	var result: LobbyResult = await GlobalLobbyClient.kick_peer(peer_to_kick[0].id).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.kick_peer(peer_to_kick[0].id).finished
 
 	# Return an empty string because the _peer_left
 	# function will append the kick message
@@ -333,8 +328,6 @@ func me_command(action: String) -> String:
 				"Need an action."]
 		)
 	var result: ScriptedLobbyResult = await GlobalLobbyClient.lobby_call("me_command", [action]).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
 	if result.has_error():
 		return (
 				"[color=#%s][i]Server Error: %s[/i][/color]\n" %

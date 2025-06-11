@@ -54,6 +54,9 @@ msgstr ""
 msgid "menu_back"
 msgstr ""
 
+msgid "menu_prompt_exit"
+msgstr ""
+
 msgid "menu_quit"
 msgstr ""
 
@@ -67,12 +70,6 @@ msgid "peer_not_ready"
 msgstr ""
 
 msgid "peer_ready"
-msgstr ""
-
-msgid "settings_debug_hide"
-msgstr ""
-
-msgid "settings_debug_show"
 msgstr ""
 
 msgid "settings_disconnect"

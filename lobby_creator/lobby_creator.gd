@@ -2,7 +2,6 @@
 extends BlaziumPanel
 
 @export var password_line_edit: LineEdit
-@export var logs: Label
 @export var max_players_label: Label
 @export var title_label: LineEdit
 @export var create_button: Button
@@ -44,9 +43,7 @@ func _on_button_create_lobby_pressed() -> void:
 	else:
 		game_mode_title = game_mode.replace("_", " ").replace("normal", "").capitalize()
 	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(game_mode_title + ": " + title_label.text, sealed, tags, int(max_players_label.text), password_line_edit.text).finished
-	
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+
 	if not result.has_error():
 		if is_inside_tree():
 			await get_tree().process_frame

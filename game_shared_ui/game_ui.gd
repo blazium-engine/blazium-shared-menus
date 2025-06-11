@@ -2,7 +2,6 @@ class_name GameUI
 extends BlaziumControl
 
 @export var private_checkbutton: CheckBox
-@export var logs: Label
 
 @export var player_list: VBoxContainer
 @export var user_element_scene: PackedScene
@@ -65,9 +64,7 @@ func _lobby_left(_kicked: bool):
 
 
 func leave_lobby():
-	var result: LobbyResult = await GlobalLobbyClient.leave_lobby().finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	LobbyResult = await GlobalLobbyClient.leave_lobby().finished
 
 
 func kick_peer(peer: LobbyPeer) -> void:
@@ -118,9 +115,7 @@ func _play_click_sound() -> void:
 
 func _on_private_toggled(toggled_on: bool) -> void:
 	click_sfx.play()
-	var result: LobbyResult = await GlobalLobbyClient.set_lobby_sealed(toggled_on).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.set_lobby_sealed(toggled_on).finished
 
 
 func _on_kick_popup_cancelled() -> void:
@@ -130,9 +125,7 @@ func _on_kick_popup_cancelled() -> void:
 
 func _on_kick_popup_confirm() -> void:
 	click_sfx.play()
-	var result: LobbyResult = await GlobalLobbyClient.kick_peer(peer_to_kick).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.kick_peer(peer_to_kick).finished
 	_restore_last_focus()
 
 

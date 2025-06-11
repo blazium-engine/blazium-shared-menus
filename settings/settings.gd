@@ -3,7 +3,6 @@ extends BlaziumPanel
 
 const max_avatars := 28
 
-@export var logs: Label
 @export var disconnect_button: Button
 @export var left_spacer: Control
 @export var right_spacer: Control
@@ -11,7 +10,6 @@ const max_avatars := 28
 @export var avatar: Avatar
 @export var next_avatar: Avatar
 @export var click_sound: AudioStreamPlayer
-@export var debug_info_checkbutton: CheckButton
 @export var mute_checkbutton: CheckButton
 @export var theme_mode: CheckButton
 
@@ -20,6 +18,7 @@ var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 
 var config: ConfigFile
 var disconnect_popup: CustomDialog
+
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -32,8 +31,6 @@ func _ready() -> void:
 	theme_mode.set_pressed_no_signal(config.get_value("Settings", "light_mode", false))
 	mute_checkbutton._update_text_and_icon()
 	theme_mode._update_text_and_icon()
-	debug_info_checkbutton.set_pressed_no_signal(GlobalLobbyClient.show_debug)
-	debug_info_checkbutton._update_text_and_icon()
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	avatar.frame = GlobalLobbyClient.peer.user_data.get("avatar", 0)
 	_update_other_avatars()
@@ -46,9 +43,7 @@ func _on_resized() -> void:
 
 func _on_button_save_pressed(data: Dictionary) -> void:
 	click_sound.play()
-	var result: LobbyResult = await GlobalLobbyClient.add_peer_user_data(data).finished
-	logs.text = result.error
-	logs.visible = GlobalLobbyClient.show_debug
+	await GlobalLobbyClient.add_peer_user_data(data).finished
 
 
 func _shortcut_input(_event: InputEvent) -> void:
@@ -108,11 +103,6 @@ func _on_sounds_toggled(toggled_on: bool) -> void:
 	config.set_value("Settings", "mute", toggled_on)
 	config.save("user://blazium.cfg")
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), toggled_on)
-
-
-func _on_show_debug_toggled(toggled_on: bool) -> void:
-	click_sound.play()
-	GlobalLobbyClient.show_debug = toggled_on
 
 
 func _on_theme_mode_toggled(toggled_on: bool) -> void:

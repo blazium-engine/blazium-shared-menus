@@ -3,7 +3,6 @@ extends BlaziumPanel
 
 @export var title_label: Label
 @export var name_label: Label
-@export var logs: Label
 @export var game_modes: GameModes
 @export var multiplayer_button: Button
 @export var quit_button: Button
@@ -48,6 +47,7 @@ func _ready() -> void:
 	#var game_mode = config.get_value("Settings", "game_mode", "normal_mode")
 	#game_modes.set_selected_game_mode(game_mode)
 
+
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
 	# If in a lobby
 	if is_inside_tree():
@@ -67,6 +67,7 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 	multiplayer_button.grab_focus()
 	try_join_from_url()
 
+
 func get_query_param(query_string: String, key: String) -> String:
 	if query_string.begins_with("?"):
 		query_string = query_string.substr(1)
@@ -81,6 +82,7 @@ func get_query_param(query_string: String, key: String) -> String:
 
 	# Return empty string or null if key not found
 	return ""
+
 
 func try_join_from_url() -> void:
 	# If on web and not on discord
@@ -110,11 +112,10 @@ func _on_button_lobby_pressed() -> void:
 		await get_tree().create_timer(0.1).timeout
 		get_tree().change_scene_to_packed(lobby_creator_scene)
 
+
 func _on_start_pressed() -> void:
 	click_sound.play()
-	var result: ScriptedLobbyResult = await GlobalLobbyClient.lobby_call("start_game").finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.lobby_call("start_game").finished
 
 
 func _on_resized() -> void:
@@ -191,8 +192,9 @@ func _on_about_button_pressed() -> void:
 	await click_sound.finished
 	get_tree().change_scene_to_packed(about_scene)
 
+
 func _init():
-	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
+	exit_popup = CustomDialog.new("menu_prompt_exit")
 	exit_popup.name = "ExitPopup"
 	exit_popup.cancelled.connect(_on_exit_popup_cancelled)
 	exit_popup.confirmed.connect(_on_exit_popup_confirmed)

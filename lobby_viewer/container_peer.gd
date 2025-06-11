@@ -5,7 +5,6 @@ signal kick(peer_id: String)
 @export var disconnected_texture: TextureRect
 @export var bg_color: Color
 @export var peer: LobbyPeer
-@export var logs: Label
 @export var ready_msg: String = "peer_ready"
 @export var not_ready_msg: String = "peer_not_ready"
 @export var click_sound: AudioStreamPlayer

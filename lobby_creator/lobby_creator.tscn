@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="4_qc77u"]
 [ext_resource type="Script" uid="uid://c6eim0n5qfl12" path="res://game/hide_if_orientation_mobile.gd" id="5_5cai8"]
 
-[node name="LobbyCreator" type="PanelContainer" node_paths=PackedStringArray("password_line_edit", "logs", "max_players_label", "title_label", "create_button", "left_spacer", "right_spacer", "increment_button", "decrement_button", "sealed_checkbox", "click_sound", "settings_vbox")]
+[node name="LobbyCreator" type="PanelContainer" node_paths=PackedStringArray("password_line_edit", "max_players_label", "title_label", "create_button", "left_spacer", "right_spacer", "increment_button", "decrement_button", "sealed_checkbox", "click_sound", "settings_vbox")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,7 +18,6 @@ size_flags_vertical = 3
 theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_3c7gg")
 password_line_edit = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy/PasswordLineEdit")
-logs = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/Logs")
 max_players_label = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control/MaxPlayers")
 title_label = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy2/Title")
 create_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/ButtonCreateLobby")
@@ -200,11 +199,6 @@ expand_icon = true
 script = ExtResource("4_qc77u")
 user_icon = "arrow_right"
 
-[node name="Logs" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
-visible = false
-layout_mode = 2
-horizontal_alignment = 1
-
 [node name="ButtonCreateLobby" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -219,7 +213,7 @@ user_icon = "add_circle_outline"
 [node name="Back" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "Back"
+text = "menu_back"
 expand_text = false
 icon_alignment = 1
 expand_icon = true

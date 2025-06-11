@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dbfmeu5kh7yv4" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_ewirs"]
 [ext_resource type="Script" uid="uid://c6eim0n5qfl12" path="res://game/hide_if_orientation_mobile.gd" id="9_632ab"]
 
-[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "ready_button", "start_button", "leave_button", "lobby_label", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "points_to_win", "click_sound", "private_checkbutton", "password_line_edit", "max_players_label", "title_label", "increment_button", "decrement_button")]
+[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "ready_button", "start_button", "leave_button", "lobby_label", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "points_to_win", "click_sound", "private_checkbutton", "password_line_edit", "max_players_label", "title_label", "increment_button", "decrement_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,7 +19,6 @@ mouse_filter = 2
 theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_buss2")
 lobby_grid = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players/Players/LobbyVBoxContainer")
-logs = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/Logs")
 ready_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/ReadyButton")
 start_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/StartButton")
 leave_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/LeaveButton")
@@ -102,9 +101,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="HBoxContainerChat" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players/Players" node_paths=PackedStringArray("logs") instance=ExtResource("3_jpwet")]
+[node name="HBoxContainerChat" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players/Players" instance=ExtResource("3_jpwet")]
 layout_mode = 2
-logs = NodePath("../../../../Logs")
 
 [node name="Settings" type="PanelContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer"]
 layout_mode = 2
@@ -296,10 +294,6 @@ pressed_icon = "visibility_off"
 unpressed_icon = "visibility"
 pressed_text = "Hide Code"
 unpressed_text = "Reveal Code"
-
-[node name="Logs" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
-visible = false
-layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2

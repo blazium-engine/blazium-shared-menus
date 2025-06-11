@@ -12,7 +12,7 @@ variation_opentype = {
 2003265652: 600
 }
 
-[node name="LobbyBrowser" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "logs", "lobby_id", "left_spacer", "right_spacer", "filter_foldable_container", "click_sound")]
+[node name="LobbyBrowser" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "lobby_id", "left_spacer", "right_spacer", "filter_foldable_container", "click_sound")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,7 +22,6 @@ mouse_filter = 2
 theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_cirsv")
 lobby_grid = NodePath("BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainerLobbies")
-logs = NodePath("BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/Logs")
 lobby_id = NodePath("BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/LobbyId")
 left_spacer = NodePath("BlaziumBG/HBoxContainer/LeftSpacer")
 right_spacer = NodePath("BlaziumBG/HBoxContainer/RightSpacer")
@@ -160,12 +159,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("5_ube8s")
 user_icon = "arrow_back"
-
-[node name="Logs" type="Label" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-horizontal_alignment = 1
 
 [node name="RightSpacer" type="Control" parent="BlaziumBG/HBoxContainer"]
 layout_mode = 2

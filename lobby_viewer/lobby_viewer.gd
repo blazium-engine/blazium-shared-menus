@@ -2,7 +2,6 @@
 extends BlaziumPanel
 
 @export var lobby_grid: VBoxContainer
-@export var logs: Label
 @export var ready_button: ToggledButton
 @export var start_button: Button
 @export var leave_button: Button
@@ -94,7 +93,6 @@ func _add_peer_container(peer: LobbyPeer):
 	peer_container.peer = peer
 	peer_container.avatar = peer.user_data.get("avatar", 0)
 	peer_container.platform = peer.platform
-	peer_container.logs = logs
 	peer_container.kick.connect(kick_peer)
 	lobby_grid.add_child(peer_container)
 	update_title()
@@ -159,17 +157,13 @@ func _on_ready_pressed() -> void:
 	var new_ready = not GlobalLobbyClient.peer.ready
 	var result: LobbyResult = await GlobalLobbyClient.set_lobby_ready(new_ready).finished
 
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
 	if not result.has_error():
 		update_ready_button(new_ready)
 
 
 func _on_seal_pressed() -> void:
 	click_sound.play()
-	var result: LobbyResult = await GlobalLobbyClient.set_lobby_sealed(not GlobalLobbyClient.lobby.sealed).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.set_lobby_sealed(not GlobalLobbyClient.lobby.sealed).finished
 
 
 func _lobby_sealed(_sealed: bool):
@@ -178,9 +172,7 @@ func _lobby_sealed(_sealed: bool):
 
 func _on_start_pressed() -> void:
 	click_sound.play()
-	var result: ScriptedLobbyResult = await GlobalLobbyClient.lobby_call("start_game").finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.lobby_call("start_game").finished
 
 
 func _on_resized() -> void:
@@ -211,9 +203,7 @@ func _on_exit_popup_cancelled() -> void:
 
 func _on_exit_popup_confirmed() -> void:
 	click_sound.play()
-	var result: LobbyResult = await GlobalLobbyClient.leave_lobby().finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.leave_lobby().finished
 
 
 func _on_back_pressed() -> void:
@@ -236,9 +226,7 @@ func _play_click_sound() -> void:
 
 func _on_private_toggled(toggled_on: bool) -> void:
 	click_sound.play()
-	var result: LobbyResult = await GlobalLobbyClient.set_lobby_sealed(toggled_on).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.set_lobby_sealed(toggled_on).finished
 
 
 func _on_kick_popup_cancelled() -> void:
@@ -248,9 +236,7 @@ func _on_kick_popup_cancelled() -> void:
 
 func _on_kick_popup_confirmed() -> void:
 	click_sound.play()
-	var result: LobbyResult = await GlobalLobbyClient.kick_peer(peer_to_kick).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.kick_peer(peer_to_kick).finished
 	_restore_last_focus()
 
 

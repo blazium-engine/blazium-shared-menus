@@ -8,7 +8,6 @@ extends Control
 var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
 var password_popup: CustomDialog
 var lobby: LobbyInfo
-var logs: Label
 
 
 func _ready():
@@ -33,8 +32,6 @@ func _on_button_pressed() -> void:
 
 	var result: ViewLobbyResult = await GlobalLobbyClient.join_lobby(lobby.id).finished
 
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
 	if not result.has_error():
 		if is_inside_tree():
 			get_tree().change_scene_to_packed(lobby_viewer_scene)

@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_m7b01"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_f84iw"]
 
-[node name="MainMenu" type="PanelContainer" node_paths=PackedStringArray("title_label", "name_label", "logs", "multiplayer_button", "quit_button", "left_spacer", "right_spacer", "click_sound")]
+[node name="MainMenu" type="PanelContainer" node_paths=PackedStringArray("title_label", "name_label", "multiplayer_button", "quit_button", "left_spacer", "right_spacer", "click_sound")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,7 +14,6 @@ theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_20biu")
 title_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/Title")
 name_label = NodePath("HBoxContainer/ColorRect/VBoxContainer/NameLabel")
-logs = NodePath("HBoxContainer/ColorRect/VBoxContainer/Logs")
 multiplayer_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/VBoxContainerSelection/HBoxContainer/ButtonFindLobby")
 quit_button = NodePath("HBoxContainer/ColorRect/VBoxContainer/QuitButton")
 left_spacer = NodePath("HBoxContainer/LeftSpacer")
@@ -121,11 +120,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("5_f84iw")
 user_icon = "search"
-
-[node name="Logs" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer"]
-layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-horizontal_alignment = 1
 
 [node name="Padding2" type="Control" parent="HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2

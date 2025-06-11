@@ -16,7 +16,7 @@ variation_opentype = {
 2003265652: 600
 }
 
-[node name="Settings" type="PanelContainer" node_paths=PackedStringArray("logs", "disconnect_button", "left_spacer", "right_spacer", "prev_avatar", "avatar", "next_avatar", "click_sound", "debug_info_checkbutton", "mute_checkbutton", "theme_mode")]
+[node name="Settings" type="PanelContainer" node_paths=PackedStringArray("disconnect_button", "left_spacer", "right_spacer", "prev_avatar", "avatar", "next_avatar", "click_sound", "mute_checkbutton", "theme_mode")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,7 +24,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_qnsfk")
-logs = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer/Logs")
 disconnect_button = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2/ButtonDisconnect")
 left_spacer = NodePath("BlaziumBG/HBoxContainer/LeftSpacer")
 right_spacer = NodePath("BlaziumBG/HBoxContainer/RightSpacer")
@@ -32,7 +31,6 @@ prev_avatar = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxCo
 avatar = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer/Avatars/Avatar")
 next_avatar = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer/Avatars/NextAvatar")
 click_sound = NodePath("Click1")
-debug_info_checkbutton = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2/ShowDebug")
 mute_checkbutton = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer/Sounds")
 theme_mode = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer/ThemeMode")
 metadata/_edit_lock_ = true
@@ -174,11 +172,6 @@ unpressed_icon = "dark_mode"
 pressed_text = "settings_mode_light"
 unpressed_text = "settings_mode_dark"
 
-[node name="Logs" type="Label" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-horizontal_alignment = 1
-
 [node name="VSeparator2" type="VSeparator" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 script = ExtResource("9_hybew")
@@ -188,20 +181,6 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"CustomPopupVBox"
-
-[node name="ShowDebug" type="CheckButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "settings_debug_hide"
-expand_text = false
-icon_alignment = 1
-expand_icon = true
-script = ExtResource("8_6v4tp")
-pressed_icon = "bug_report"
-unpressed_icon = "bug_report"
-pressed_text = "settings_debug_show"
-unpressed_text = "settings_debug_hide"
 
 [node name="ButtonDisconnect" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(400, 0)
@@ -235,6 +214,5 @@ mouse_filter = 2
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer/Avatars/Right" to="." method="_on_switch_avatar" binds= [1]]
 [connection signal="toggled" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer/Sounds" to="." method="_on_sounds_toggled"]
 [connection signal="toggled" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer/ThemeMode" to="." method="_on_theme_mode_toggled"]
-[connection signal="toggled" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2/ShowDebug" to="." method="_on_show_debug_toggled"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2/ButtonDisconnect" to="." method="_on_button_disconnect_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/ButtonBack" to="." method="_on_back_pressed"]
