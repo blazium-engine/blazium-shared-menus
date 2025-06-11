@@ -18,6 +18,9 @@ msgstr "Credits"
 msgid "header_lobbies"
 msgstr "Lobbies"
 
+msgid "header_settings"
+msgstr "Settings"
+
 msgid "join_discord"
 msgstr "Join the Discord"
 
@@ -65,3 +68,27 @@ msgstr "Not Ready"
 
 msgid "peer_ready"
 msgstr "Ready"
+
+msgid "settings_debug_hide"
+msgstr "Hide Debug Info"
+
+msgid "settings_debug_show"
+msgstr "Show Debug Info"
+
+msgid "settings_disconnect"
+msgstr "Disconnect"
+
+msgid "settings_mode_dark"
+msgstr "Dark Mode"
+
+msgid "settings_mode_light"
+msgstr "Light Mode"
+
+msgid "settings_prompt_disconnect"
+msgstr "Are you sure you want to disconnect?"
+
+msgid "settings_sound_off"
+msgstr "Muted"
+
+msgid "settings_sound_on"
+msgstr "Sound On"

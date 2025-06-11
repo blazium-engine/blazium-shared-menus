@@ -123,7 +123,7 @@ func _on_theme_mode_toggled(toggled_on: bool) -> void:
 
 
 func _init() -> void:
-	disconnect_popup = CustomDialog.new("Are You Sure You Want To Disconnect?")
+	disconnect_popup = CustomDialog.new("settings_prompt_disconnect")
 	disconnect_popup.name = "DisconnectPopup"
 	disconnect_popup.cancelled.connect(_on_disconnect_popup_cancelled)
 	disconnect_popup.confirmed.connect(_on_disconnect_popup_confirmed)

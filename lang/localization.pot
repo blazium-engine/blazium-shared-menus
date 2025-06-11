@@ -18,6 +18,9 @@ msgstr ""
 msgid "header_lobbies"
 msgstr ""
 
+msgid "header_settings"
+msgstr ""
+
 msgid "join_discord"
 msgstr ""
 
@@ -64,4 +67,28 @@ msgid "peer_not_ready"
 msgstr ""
 
 msgid "peer_ready"
+msgstr ""
+
+msgid "settings_debug_hide"
+msgstr ""
+
+msgid "settings_debug_show"
+msgstr ""
+
+msgid "settings_disconnect"
+msgstr ""
+
+msgid "settings_mode_dark"
+msgstr ""
+
+msgid "settings_mode_light"
+msgstr ""
+
+msgid "settings_prompt_disconnect"
+msgstr ""
+
+msgid "settings_sound_off"
+msgstr ""
+
+msgid "settings_sound_on"
 msgstr ""

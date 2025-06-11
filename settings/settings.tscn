@@ -80,7 +80,7 @@ theme_type_variation = &"CustomPopupVBox"
 layout_mode = 2
 theme_type_variation = &"HeaderLargeFit"
 theme_override_fonts/font = SubResource("FontVariation_usqs5")
-text = "Settings"
+text = "header_settings"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -151,28 +151,28 @@ user_icon = "arrow_right"
 [node name="Sounds" type="CheckButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "Sound On"
+text = "settings_sound_on"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("8_6v4tp")
 pressed_icon = "volume_off"
 unpressed_icon = "volume_up"
-pressed_text = "Muted"
-unpressed_text = "Sound On"
+pressed_text = "settings_sound_off"
+unpressed_text = "settings_sound_on"
 
 [node name="ThemeMode" type="CheckButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "Dark Mode"
+text = "settings_mode_dark"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("8_6v4tp")
 pressed_icon = "light_mode"
 unpressed_icon = "dark_mode"
-pressed_text = "Light Mode"
-unpressed_text = "Dark Mode"
+pressed_text = "settings_mode_light"
+unpressed_text = "settings_mode_dark"
 
 [node name="Logs" type="Label" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer"]
 visible = false
@@ -193,21 +193,21 @@ theme_type_variation = &"CustomPopupVBox"
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "Hide Debug Info"
+text = "settings_debug_hide"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("8_6v4tp")
 pressed_icon = "bug_report"
 unpressed_icon = "bug_report"
-pressed_text = "Show Debug Info"
-unpressed_text = "Hide Debug Info"
+pressed_text = "settings_debug_show"
+unpressed_text = "settings_debug_hide"
 
 [node name="ButtonDisconnect" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "Disconnect"
+text = "settings_disconnect"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
