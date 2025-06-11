@@ -20,7 +20,6 @@ var about_scene: PackedScene = preload("res://addons/blazium_shared_menus/about/
 
 var config: ConfigFile
 var exit_popup: CustomDialog
-var wrong_id_popup: CustomDialog
 
 var os_manages_quit: bool = OS.get_name() in ["Android", "iOS", "Web"]
 
@@ -149,7 +148,6 @@ func _shortcut_input(_event):
 			_on_quit_button_pressed()
 
 
-
 func _on_exit_popup_confirmed() -> void:
 	click_sound.play()
 	await click_sound.finished
@@ -194,24 +192,12 @@ func _on_about_button_pressed() -> void:
 	get_tree().change_scene_to_packed(about_scene)
 
 func _init():
-	var quit_text = "Quit"
-	if os_manages_quit:
-		quit_text = ""
-
 	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
 	exit_popup.name = "ExitPopup"
 	exit_popup.cancelled.connect(_on_exit_popup_cancelled)
 	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
 	exit_popup.hide()
 	add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)
-
-	wrong_id_popup = CustomDialog.new("Wrong Game Code", "Continue", "")
-	wrong_id_popup.confirm_button.user_icon = "keyboard_double_arrow_right"
-	wrong_id_popup.confirm_button.theme_type_variation = "SelectedButton"
-	wrong_id_popup.confirm_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	wrong_id_popup.confirmed.connect(_play_click_sound)
-	wrong_id_popup.hide()
-	add_child(wrong_id_popup, false, Node.INTERNAL_MODE_BACK)
 
 
 func _disconnected_from_server(reason: String):
