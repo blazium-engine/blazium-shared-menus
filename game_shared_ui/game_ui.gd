@@ -64,7 +64,7 @@ func _lobby_left(_kicked: bool):
 
 
 func leave_lobby():
-	LobbyResult = await GlobalLobbyClient.leave_lobby().finished
+	await GlobalLobbyClient.leave_lobby().finished
 
 
 func kick_peer(peer: LobbyPeer) -> void:
