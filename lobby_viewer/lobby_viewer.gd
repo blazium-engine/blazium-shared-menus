@@ -6,6 +6,9 @@ extends BlaziumPanel
 @export var start_button: Button
 @export var leave_button: Button
 @export var lobby_label: Label
+@export var lobby_max_players_label: Label
+@export var lobby_title_line_edit: LineEdit
+@export var lobby_password_line_edit: LineEdit
 @export var lobby_id_button: Button
 @export var reveal_lobby_id_button: Button
 @export var copy_invite_link_button: Button
@@ -39,6 +42,8 @@ func update_title():
 	lobby_label.text = GlobalLobbyClient.lobby.lobby_name + " " + \
 			str(GlobalLobbyClient.lobby.players) + "/" + \
 			str(GlobalLobbyClient.lobby.max_players)
+	lobby_title_line_edit.text = GlobalLobbyClient.lobby.lobby_name
+	lobby_max_players_label.text = str(GlobalLobbyClient.lobby.max_players)
 
 
 func is_everyone_ready():
@@ -54,16 +59,20 @@ func update_start_button():
 
 func _update_private_lobby_checkbox():
 	private_checkbutton.set_pressed_no_signal(GlobalLobbyClient.lobby.sealed)
+	if GlobalLobbyClient.lobby.sealed:
+		private_checkbutton.text = "Hidden: Yes"
+	else:
+		private_checkbutton.text = "Hidden: No"
 
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	var max_points = GlobalLobbyClient.lobby.tags.get("max_points", 0)
-	if max_points == 0:
-		points_to_win.text = "Points to win: Infinite"
-	else:
-		points_to_win.text = "Points to win: " + str(max_points)
+	#if max_points == 0:
+	#	points_to_win.text = "Points to win: Infinite"
+	#else:
+	#	points_to_win.text = "Points to win: " + str(max_points)
 	_update_private_lobby_checkbox()
 	if GlobalLobbyClient.lobby.id == "":
 		# Got here by mistake, go back
@@ -72,12 +81,21 @@ func _ready() -> void:
 	GlobalLobbyClient.peer_joined.connect(_peer_joined)
 	GlobalLobbyClient.peer_left.connect(_peer_left)
 	GlobalLobbyClient.lobby_left.connect(_lobby_left)
+	GlobalLobbyClient.lobby_titled.connect(update_title)
+	GlobalLobbyClient.lobby_resized.connect(update_title)
 	GlobalLobbyClient.lobby_sealed.connect(_lobby_sealed)
 	GlobalLobbyClient.received_lobby_data.connect(_received_lobby_data)
 	GlobalLobbyClient.peer_ready.connect(_peer_ready)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	if not GlobalLobbyClient.is_host():
 		start_button.hide()
+		lobby_title_line_edit.editable = false
+		lobby_password_line_edit.editable = false
+		private_checkbutton.disabled = true
+		increment_button.disabled = true
+		decrement_button.disabled = true
+	if GlobalLobbyClient.lobby.password_protected:
+		password_line_edit.text = "123456"
 	for child in lobby_grid.get_children():
 		child.queue_free()
 	for peer in GlobalLobbyClient.peers:
@@ -176,9 +194,9 @@ func _on_start_pressed() -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = size.x > 600
-	left_spacer.visible = show_spacers
-	right_spacer.visible = show_spacers
+	var show_spacers = GlobalLobbyClient.breakpoint_1024()
+	left_spacer.visible = !show_spacers
+	right_spacer.visible = !show_spacers
 
 
 func _input(_event):
@@ -263,17 +281,13 @@ func _update_max_players_buttons(players):
 	decrement_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_min", 2)
 	increment_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_max", 10)
 
-func _on_title_text_submitted(new_text: String) -> void:
-	GlobalLobbyClient.set_title(new_text)
-	update_title()
-
 func _on_button_increment_pressed() -> void:
 	click_sound.play()
 	var players := int(max_players_label.text)
 	players += 1
 	if players > ProjectSettings.get_setting("blazium/game/max_players_max", 10):
 		players = ProjectSettings.get_setting("blazium/game/max_players_max", 10)
-	max_players_label.text = str(players)
+	max_players_label.text = "Players: " + str(players)
 	_update_max_players_buttons(players)
 	GlobalLobbyClient.set_max_players(players)
 
@@ -284,6 +298,21 @@ func _on_button_decrement_pressed() -> void:
 	players -= 1
 	if players < ProjectSettings.get_setting("blazium/game/max_players_min", 2):
 		players = ProjectSettings.get_setting("blazium/game/max_players_min", 2)
-	max_players_label.text = str(players)
+	max_players_label.text = "Players: " + str(players)
 	_update_max_players_buttons(players)
 	GlobalLobbyClient.set_max_players(players)
+
+func _on_password_line_edit_text_submitted(new_text: String) -> void:
+	await GlobalLobbyClient.set_password(new_text).finished
+
+func _on_password_line_edit_text_changed(new_text: String) -> void:
+	await GlobalLobbyClient.set_password(new_text).finished
+
+func _on_title_text_submitted(new_text: String) -> void:
+	await GlobalLobbyClient.set_title(new_text).finished
+
+func _on_title_text_changed(new_text: String) -> void:
+	await GlobalLobbyClient.set_title(new_text).finished
+
+func _on_sealed_toggled(toggled_on: bool) -> void:
+	await GlobalLobbyClient.set_lobby_sealed(toggled_on).finished

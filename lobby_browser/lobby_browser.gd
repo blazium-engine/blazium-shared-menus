@@ -25,20 +25,20 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	resized.connect(_on_resized)
-	load_lobbies()
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	GlobalLobbyClient.lobbies_listed.connect(_lobbies_listed)
 	GlobalLobbyClient.lobby_joined.connect(_lobby_joined)
+	load_lobbies()
 	filter_foldable_container.grab_focus()
 
 
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
-	if is_inside_tree():
-		await get_tree().create_timer(0.1).timeout
-		get_tree().change_scene_to_packed(lobby_viewer)
+	await get_tree().process_frame
+	get_tree().change_scene_to_packed(lobby_viewer)
 
 
 func _lobbies_listed(lobbies: Array[LobbyInfo]):
+	print(lobbies)
 	for child in lobby_grid.get_children():
 		child.queue_free()
 	for lobby in lobbies:
@@ -56,7 +56,8 @@ func _lobbies_listed(lobbies: Array[LobbyInfo]):
 
 
 func load_lobbies() -> void:
-	await GlobalLobbyClient.list_lobbies().finished
+	var result = await GlobalLobbyClient.list_lobbies().finished
+	print("Lobby List Result ", result.error)
 
 
 func _on_resized() -> void:
@@ -71,17 +72,15 @@ func _input(_event):
 
 
 func _disconnected_from_server(_reason: String):
-	if is_inside_tree():
-		await get_tree().create_timer(0.1).timeout
-		get_tree().change_scene_to_packed(loading_scene)
+	await get_tree().process_frame
+	get_tree().change_scene_to_packed(loading_scene)
 
 
 func _on_back_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
-	if is_inside_tree():
-		await get_tree().create_timer(0.1).timeout
-		get_tree().change_scene_to_packed(main_menu_scene)
+	await get_tree().process_frame
+	get_tree().change_scene_to_packed(main_menu_scene)
 
 
 func _on_hide_full_pressed() -> void:
@@ -101,7 +100,7 @@ func _on_join_lobby_pressed() -> void:
 	var result: ViewLobbyResult = await GlobalLobbyClient.join_lobby(lobby_id.text, "").finished
 
 	if result.has_error():
-		if result.error == "Invalid lobby password":
+		if result.error == "Invalid password":
 			password_popup.show()
 			password_popup.confirm_button.grab_focus()
 		else:
@@ -121,7 +120,15 @@ func _on_password_popup_cancelled() -> void:
 func _on_password_popup_confirmed() -> void:
 	click_sound.play()
 	var result: ViewLobbyResult = await GlobalLobbyClient.join_lobby(password_popup.get_meta("lobby_id"), password_line_edit.text).finished
-	filter_foldable_container.grab_focus()
+	if result.has_error():
+		if result.error == "Invalid password":
+			password_popup.show()
+			password_popup.confirm_button.grab_focus()
+		else:
+			wrong_id_popup.show()
+			wrong_id_popup.confirm_button.grab_focus()
+	else:
+		filter_foldable_container.grab_focus()
 
 
 func _popup_acknowledged() -> void:

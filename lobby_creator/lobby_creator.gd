@@ -17,7 +17,6 @@ var loading_scene: PackedScene = preload("res://game/loading_screen.tscn")
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 var lobby_viewer_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
 var tag_setting_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_creator/tag_setting.tscn")
-var sealed := false
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -37,12 +36,8 @@ func _on_button_create_lobby_pressed() -> void:
 	config.load("user://blazium.cfg")
 	var game_mode = "normal_mode"
 	tags["game_mode"] = game_mode
-	var game_mode_title = ""
-	if game_mode == "normal_mode":
-		game_mode_title = game_mode.replace("_", " ").replace("mode", "").capitalize()
-	else:
-		game_mode_title = game_mode.replace("_", " ").replace("normal", "").capitalize()
-	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(game_mode_title + ": " + title_label.text, sealed, tags, int(max_players_label.text), password_line_edit.text).finished
+	print(sealed_checkbox.button_pressed)
+	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(title_label.text, sealed_checkbox.button_pressed, tags, int(max_players_label.text), password_line_edit.text).finished
 
 	if not result.has_error():
 		if is_inside_tree():
@@ -99,7 +94,6 @@ func _disconnected_from_server(_reason: String):
 func _on_sealed_toggled(toggled_on: bool) -> void:
 	click_sound.play()
 	sealed_checkbox.text = "Yes" if toggled_on else "No"
-	sealed = toggled_on
 
 
 func _on_back_pressed() -> void:

@@ -55,9 +55,8 @@ func _shortcut_input(_event: InputEvent) -> void:
 
 
 func _disconnected_from_server(_reason: String):
-	await get_tree().create_timer(1).timeout
-	if is_inside_tree():
-		get_tree().change_scene_to_packed(loading_scene)
+	await get_tree().process_frame
+	get_tree().change_scene_to_packed(loading_scene)
 
 
 func _on_button_disconnect_pressed() -> void:

@@ -26,7 +26,6 @@ var os_manages_quit: bool = OS.get_name() in ["Android", "iOS", "Web"]
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	print("Main Menu Screen")
 	resized.connect(_on_resized)
 	_on_resized()
 	title_label.text = ProjectSettings.get("application/config/name")
@@ -50,9 +49,8 @@ func _ready() -> void:
 
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
 	# If in a lobby
-	if is_inside_tree():
-		await get_tree().create_timer(0.1).timeout
-		get_tree().change_scene_to_packed(lobby_viewer_scene)
+	await get_tree().process_frame
+	get_tree().change_scene_to_packed(lobby_viewer_scene)
 
 
 func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
@@ -100,17 +98,15 @@ func try_join_from_url() -> void:
 func _on_button_join_public_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
-	if is_inside_tree():
-		await get_tree().create_timer(0.1).timeout
-		get_tree().change_scene_to_packed(lobby_browser_scene)
+	await get_tree().process_frame
+	get_tree().change_scene_to_packed(lobby_browser_scene)
 
 
 func _on_button_lobby_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
-	if is_inside_tree():
-		await get_tree().create_timer(0.1).timeout
-		get_tree().change_scene_to_packed(lobby_creator_scene)
+	await get_tree().process_frame
+	get_tree().change_scene_to_packed(lobby_creator_scene)
 
 
 func _on_start_pressed() -> void:
@@ -128,9 +124,8 @@ func _on_button_settings_pressed() -> void:
 	GlobalLobbyClient.call_event("settings")
 	click_sound.play()
 	await click_sound.finished
-	if is_inside_tree():
-		await get_tree().create_timer(0.1).timeout
-		get_tree().change_scene_to_packed(settings_scene)
+	await get_tree().process_frame
+	get_tree().change_scene_to_packed(settings_scene)
 
 
 func _on_quit_button_pressed() -> void:
@@ -168,9 +163,8 @@ func _on_create_lobby_pressed() -> void:
 	GlobalLobbyClient.call_event("create_lobby")
 	click_sound.play()
 	await click_sound.finished
-	if is_inside_tree():
-		await get_tree().create_timer(0.1).timeout
-		get_tree().change_scene_to_packed(lobby_creator_scene)
+	await get_tree().process_frame
+	get_tree().change_scene_to_packed(lobby_creator_scene)
 
 
 func _on_button_start_pressed() -> void:
@@ -182,7 +176,7 @@ func _on_button_start_pressed() -> void:
 	if res.has_error():
 		push_error(res.error)
 	elif is_inside_tree():
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().process_frame
 		get_tree().change_scene_to_packed(lobby_viewer_scene)
 
 
@@ -203,5 +197,5 @@ func _init():
 
 
 func _disconnected_from_server(reason: String):
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().process_frame
 	get_tree().change_scene_to_packed(loading_scene)

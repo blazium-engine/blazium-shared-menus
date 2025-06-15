@@ -72,6 +72,9 @@ func try_login() -> bool:
 			jwt = ""
 		else:
 			print("[ScriptedLobby]: Authentication already done, reusing JWT.")
+			# Just in case, login to steam
+			if steam.login_steam():
+				print(steam.get_dlcs())
 			login.disconnect_from_server()
 			return true
 	if discord.is_discord_environment():
