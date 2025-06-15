@@ -14,6 +14,7 @@ var lobby_creator_scene: PackedScene = load("res://addons/blazium_shared_menus/l
 var container_lobby_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_browser/container_lobby.tscn")
 var lobby_viewer: PackedScene = preload("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
 var wrong_id_popup: CustomDialog
+var lobby_full_popup: CustomDialog
 var password_popup: CustomDialog
 var password_line_edit := LineEdit.new()
 
@@ -52,6 +53,7 @@ func _lobbies_listed(lobbies: Array[LobbyInfo]):
 		var lobby_container := container_lobby_scene.instantiate()
 		lobby_container.lobby = lobby
 		lobby_container.password_popup = password_popup
+		lobby_container.lobby_full_popup = lobby_full_popup
 		lobby_grid.add_child(lobby_container)
 
 
@@ -102,7 +104,11 @@ func _on_join_lobby_pressed() -> void:
 	if result.has_error():
 		if result.error == "Invalid password":
 			password_popup.show()
+			password_popup.set_meta("lobby_id", lobby_id.text)
 			password_popup.confirm_button.grab_focus()
+		elif result.error == "Lobby is full":
+			lobby_full_popup.show()
+			lobby_full_popup.confirm_button.grab_focus()
 		else:
 			wrong_id_popup.show()
 			wrong_id_popup.confirm_button.grab_focus()
@@ -154,3 +160,10 @@ func _init() -> void:
 	password_popup.confirmed.connect(_on_password_popup_confirmed)
 	password_popup.hide()
 	add_child(password_popup, false, Node.INTERNAL_MODE_BACK)
+	lobby_full_popup = CustomDialog.new("Lobby Is Full", "Continue", "")
+	lobby_full_popup.confirm_button.user_icon = "keyboard_double_arrow_right"
+	lobby_full_popup.confirm_button.theme_type_variation = "SelectedButton"
+	lobby_full_popup.confirm_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	lobby_full_popup.confirmed.connect(_popup_acknowledged)
+	lobby_full_popup.hide()
+	add_child(lobby_full_popup, false, Node.INTERNAL_MODE_BACK)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1qjnqq2nagyi"]
+[gd_scene load_steps=11 format=3 uid="uid://d1qjnqq2nagyi"]
 
 [ext_resource type="Script" uid="uid://c4ougwk0j4147" path="res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.gd" id="1_buss2"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_gujum"]
@@ -14,7 +14,9 @@ bg_color = Color(0.533333, 0.164706, 0.321569, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 
-[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "ready_button", "start_button", "leave_button", "lobby_label", "lobby_max_players_label", "lobby_title_line_edit", "lobby_password_line_edit", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "points_to_win", "click_sound", "private_checkbutton", "password_line_edit", "max_players_label", "title_label", "increment_button", "decrement_button")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dm10q"]
+
+[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "ready_button", "start_button", "leave_button", "lobby_label", "lobby_max_players_label", "lobby_title_line_edit", "lobby_password_line_edit", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "click_sound", "private_checkbutton", "password_line_edit", "max_players_label", "title_label", "increment_button", "decrement_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,7 +25,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_buss2")
-lobby_grid = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players/Players/VBoxContainer/LobbyVBoxContainer")
+lobby_grid = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players/VBoxContainer/Players/VBoxContainer/LobbyVBoxContainer")
 ready_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/ReadyButton")
 start_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/StartButton")
 leave_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/LeaveButton")
@@ -35,7 +37,6 @@ lobby_id_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabC
 reveal_lobby_id_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Settings/BoxContainer/VBoxContainer2/RevealLobbyID")
 left_spacer = NodePath("BlaziumBG/HBoxContainer/LeftSpacer")
 right_spacer = NodePath("BlaziumBG/HBoxContainer/RightSpacer")
-points_to_win = NodePath("")
 click_sound = NodePath("Click1")
 private_checkbutton = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Settings/BoxContainer/VBoxContainer/HBoxContainerPrivacy3/Sealed")
 password_line_edit = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Settings/BoxContainer/SettingVbox/HBoxContainerPrivacy/PasswordLineEdit")
@@ -96,6 +97,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/tab_focus = SubResource("StyleBoxFlat_632ab")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dm10q")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_632ab")
 current_tab = 0
 
@@ -103,23 +105,26 @@ current_tab = 0
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Players" type="ScrollContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players"]
+layout_mode = 2
+
+[node name="Players" type="ScrollContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players/Players"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players/VBoxContainer/Players"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="LobbyVBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players/Players/VBoxContainer"]
+[node name="LobbyVBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players/VBoxContainer/Players/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="HBoxContainerChat" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players/Players/VBoxContainer" instance=ExtResource("3_jpwet")]
+[node name="HBoxContainerChat" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Players/VBoxContainer" instance=ExtResource("3_jpwet")]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
@@ -268,10 +273,13 @@ unpressed_icon = "visibility"
 pressed_text = "Hide Code"
 unpressed_text = "Reveal Code"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
+[node name="HBoxContainer" type="BoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
+script = ExtResource("5_632ab")
+breakpoint_1024 = false
+breakpoint_768 = true
 
 [node name="ReadyButton" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -289,17 +297,10 @@ unpressed_icon = "sentiment_very_dissatisfied"
 pressed_text = "Unready"
 unpressed_text = "Ready"
 
-[node name="SealButton" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Seal"
-
 [node name="StartButton" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-theme_type_variation = &"SelectedButton"
 disabled = true
 text = "Start"
 expand_text = false
@@ -337,7 +338,6 @@ mouse_filter = 2
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Settings/BoxContainer/VBoxContainer2/LabelLobbyID" to="." method="_on_label_lobby_id_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/Settings/BoxContainer/VBoxContainer2/RevealLobbyID" to="." method="_on_reveal_lobby_id_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/ReadyButton" to="." method="_on_ready_pressed"]
-[connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/SealButton" to="." method="_on_seal_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/LeaveButton" to="." method="_on_back_pressed"]
 [connection signal="cancelled" from="ExitPopup" to="." method="_on_popup_cancelled"]

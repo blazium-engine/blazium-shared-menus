@@ -54,7 +54,18 @@ func is_everyone_ready():
 
 
 func update_start_button():
-	start_button.disabled = not is_everyone_ready() or len(GlobalLobbyClient.peers) == 1
+	if not is_everyone_ready() or len(GlobalLobbyClient.peers) == 1:
+		start_button.disabled = true
+		if not is_everyone_ready():
+			start_button.text = "Someone isn't Ready"
+		else:
+			start_button.text = "Need more Players"
+		start_button.theme_type_variation = ""
+	else:
+		start_button.disabled = false
+		start_button.text = "Start"
+		start_button.theme_type_variation = "SelectedButton"
+	
 
 
 func _update_private_lobby_checkbox():

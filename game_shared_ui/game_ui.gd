@@ -3,7 +3,7 @@ extends BlaziumControl
 
 @export var private_checkbutton: CheckBox
 
-@export var player_list: VBoxContainer
+@export var player_list: HBoxContainer
 @export var user_element_scene: PackedScene
 @export var chat: ChatContainer
 @export var user_list: ScrollContainer
@@ -145,9 +145,6 @@ func load_peers(peers: Array[LobbyPeer]):
 		user_node.peer_info = peer
 		user_node.kick.connect(kick_peer)
 		player_list.add_child(user_node)
-
-func _on_user_list_hider_toggled(toggled_on: bool) -> void:
-	user_list.visible = toggled_on
 
 
 func send_chat(peer_id: LobbyPeer, message: String):

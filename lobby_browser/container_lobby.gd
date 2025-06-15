@@ -7,6 +7,7 @@ extends Control
 
 var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
 var password_popup: CustomDialog
+var lobby_full_popup: CustomDialog
 var lobby: LobbyInfo
 
 
@@ -35,3 +36,5 @@ func _on_button_pressed() -> void:
 	if not result.has_error():
 		if is_inside_tree():
 			get_tree().change_scene_to_packed(lobby_viewer_scene)
+	elif result.error == "Lobby is full":
+		lobby_full_popup.show()
