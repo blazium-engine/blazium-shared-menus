@@ -28,7 +28,8 @@ func _on_back_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
 	await get_tree().process_frame
-	get_tree().change_scene_to_packed(main_menu_scene)
+	if is_inside_tree():
+		get_tree().change_scene_to_packed(main_menu_scene)
 
 
 func _on_rich_text_label_meta_clicked(meta: Variant) -> void:

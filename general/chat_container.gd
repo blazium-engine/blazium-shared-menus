@@ -180,7 +180,7 @@ func _peer_reconnected(peer: LobbyPeer):
 	append_message_to_chat(peer, "Reconnected to the lobby")
 
 
-func _peer_messaged(peer: LobbyPeer, chat_message: String):
+func _peer_messaged(peer: LobbyPeer, chat_message: String, chat_metada: Dictionary):
 	var is_player: bool = not peer.id.is_empty()
 	append_message_to_chat(peer if is_player else null, chat_message, is_player)
 

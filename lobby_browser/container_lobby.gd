@@ -34,6 +34,7 @@ func _on_button_pressed() -> void:
 	var result: ViewLobbyResult = await GlobalLobbyClient.join_lobby(lobby.id).finished
 
 	if not result.has_error():
+		await get_tree().process_frame
 		if is_inside_tree():
 			get_tree().change_scene_to_packed(lobby_viewer_scene)
 	elif result.error == "Lobby is full":

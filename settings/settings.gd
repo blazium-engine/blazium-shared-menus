@@ -56,7 +56,8 @@ func _shortcut_input(_event: InputEvent) -> void:
 
 func _disconnected_from_server(_reason: String):
 	await get_tree().process_frame
-	get_tree().change_scene_to_packed(loading_scene)
+	if is_inside_tree():
+		get_tree().change_scene_to_packed(loading_scene)
 
 
 func _on_button_disconnect_pressed() -> void:
@@ -80,6 +81,7 @@ func _on_back_pressed() -> void:
 	_on_button_save_pressed({"avatar": avatar.frame})
 	click_sound.play()
 	await click_sound.finished
+	await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(main_menu_scene)
 

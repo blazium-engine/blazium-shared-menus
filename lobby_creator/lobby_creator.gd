@@ -13,10 +13,10 @@ extends BlaziumPanel
 @export var click_sound: AudioStreamPlayer
 @export var settings_vbox: VBoxContainer
 
-var loading_scene: PackedScene = preload("res://game/loading_screen.tscn")
+var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
-var lobby_viewer_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
-var tag_setting_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_creator/tag_setting.tscn")
+var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
+var tag_setting_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/tag_setting.tscn")
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -40,8 +40,8 @@ func _on_button_create_lobby_pressed() -> void:
 	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(title_label.text, sealed_checkbox.button_pressed, tags, int(max_players_label.text), password_line_edit.text).finished
 
 	if not result.has_error():
+		await get_tree().process_frame
 		if is_inside_tree():
-			await get_tree().process_frame
 			get_tree().change_scene_to_packed(lobby_viewer_scene)
 
 
@@ -88,7 +88,8 @@ func _input(_event):
 func _disconnected_from_server(_reason: String):
 	if is_inside_tree():
 		await get_tree().process_frame
-		get_tree().change_scene_to_packed(loading_scene)
+		if is_inside_tree():
+			get_tree().change_scene_to_packed(loading_scene)
 
 
 func _on_sealed_toggled(toggled_on: bool) -> void:
@@ -99,6 +100,6 @@ func _on_sealed_toggled(toggled_on: bool) -> void:
 func _on_back_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
+	await get_tree().process_frame
 	if is_inside_tree():
-		await get_tree().process_frame
 		get_tree().change_scene_to_packed(main_menu_scene)

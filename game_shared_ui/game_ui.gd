@@ -26,7 +26,7 @@ var kick_popup: CustomDialog
 func _ready() -> void:
 	game_start_sfx.play()
 
-	private_checkbutton.visible = GlobalLobbyClient.is_host()
+	#private_checkbutton.visible = GlobalLobbyClient.is_host()
 	private_checkbutton.set_pressed_no_signal(GlobalLobbyClient.lobby.sealed)
 
 	GlobalLobbyClient.lobby_sealed.connect(_lobby_sealed)
@@ -58,8 +58,8 @@ func _lobby_sealed(sealed: bool):
 
 
 func _lobby_left(_kicked: bool):
+	await get_tree().process_frame
 	if is_inside_tree():
-		await get_tree().process_frame
 		get_tree().change_scene_to_packed(main_menu_scene)
 
 
@@ -77,8 +77,8 @@ func kick_peer(peer: LobbyPeer) -> void:
 
 
 func _disconnected_from_server(_reason: String):
+	await get_tree().process_frame
 	if is_inside_tree():
-		await get_tree().process_frame
 		get_tree().change_scene_to_packed(loading_scene)
 
 

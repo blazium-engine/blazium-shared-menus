@@ -52,7 +52,6 @@ func _process(_delta: float) -> void:
 func update_visuals(seconds: int) -> void:
 	if color_tween:
 		color_tween.kill()
-	color_tween = create_tween()
 	var font_tween = create_tween()
 	if seconds > 3:
 		font_tween.tween_property(progress_label, "theme_override_font_sizes/font_size", enlarged_font_size, 0.25)

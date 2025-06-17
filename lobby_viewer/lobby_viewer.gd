@@ -28,7 +28,7 @@ var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 var lobby_browser_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
 var game_scene: PackedScene = load("res://game/game.tscn")
-var container_peer_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_viewer/container_peer.tscn")
+var container_peer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/container_peer.tscn")
 var exit_popup: CustomDialog
 var kick_popup: CustomDialog
 
@@ -145,23 +145,23 @@ func _peer_ready(_peer: LobbyPeer, _p_ready: bool):
 
 
 func _disconnected_from_server(_reason: String):
+	await get_tree().process_frame
 	if is_inside_tree():
-		await get_tree().process_frame
 		get_tree().change_scene_to_packed(loading_scene)
 
 
 func _lobby_left(_kicked: bool):
+	await get_tree().process_frame
 	if is_inside_tree():
-		await get_tree().process_frame
 		get_tree().change_scene_to_packed(main_menu_scene)
 
 
 func _received_lobby_data(data: Dictionary):
 	# Start game
 	if data.get("game_state", "setup") != "setup":
+		await get_tree().process_frame
 		if is_inside_tree():
-			await get_tree().process_frame
-			get_tree().change_scene_to_packed(game_scene)
+				get_tree().change_scene_to_packed(game_scene)
 
 
 func update_ready_button(is_ready: bool):

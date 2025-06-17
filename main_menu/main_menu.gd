@@ -10,12 +10,12 @@ extends BlaziumPanel
 @export var right_spacer: Control
 @export var click_sound: AudioStreamPlayer
 
-var loading_scene: PackedScene = preload("res://game/loading_screen.tscn")
-var lobby_browser_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
-var lobby_viewer_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
-var lobby_creator_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_creator/lobby_creator.tscn")
-var settings_scene: PackedScene = preload("res://addons/blazium_shared_menus/settings/settings.tscn")
-var about_scene: PackedScene = preload("res://addons/blazium_shared_menus/about/about.tscn")
+var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
+var lobby_browser_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
+var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
+var lobby_creator_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/lobby_creator.tscn")
+var settings_scene: PackedScene = load("res://addons/blazium_shared_menus/settings/settings.tscn")
+var about_scene: PackedScene = load("res://addons/blazium_shared_menus/about/about.tscn")
 
 var config: ConfigFile
 var exit_popup: CustomDialog
@@ -50,7 +50,8 @@ func _ready() -> void:
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
 	# If in a lobby
 	await get_tree().process_frame
-	get_tree().change_scene_to_packed(lobby_viewer_scene)
+	if is_inside_tree():
+		get_tree().change_scene_to_packed(lobby_viewer_scene)
 
 
 func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
@@ -99,14 +100,16 @@ func _on_button_join_public_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
 	await get_tree().process_frame
-	get_tree().change_scene_to_packed(lobby_browser_scene)
+	if is_inside_tree():
+		get_tree().change_scene_to_packed(lobby_browser_scene)
 
 
 func _on_button_lobby_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
 	await get_tree().process_frame
-	get_tree().change_scene_to_packed(lobby_creator_scene)
+	if is_inside_tree():
+		get_tree().change_scene_to_packed(lobby_creator_scene)
 
 
 func _on_start_pressed() -> void:
@@ -125,7 +128,8 @@ func _on_button_settings_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
 	await get_tree().process_frame
-	get_tree().change_scene_to_packed(settings_scene)
+	if is_inside_tree():
+		get_tree().change_scene_to_packed(settings_scene)
 
 
 func _on_quit_button_pressed() -> void:
@@ -164,7 +168,8 @@ func _on_create_lobby_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
 	await get_tree().process_frame
-	get_tree().change_scene_to_packed(lobby_creator_scene)
+	if is_inside_tree():
+		get_tree().change_scene_to_packed(lobby_creator_scene)
 
 
 func _on_button_start_pressed() -> void:
@@ -175,16 +180,18 @@ func _on_button_start_pressed() -> void:
 	var result: ScriptedLobbyResult = await GlobalLobbyClient.lobby_call("start_game").finished
 	if res.has_error():
 		push_error(res.error)
-	elif is_inside_tree():
+	else:
 		await get_tree().process_frame
-		get_tree().change_scene_to_packed(lobby_viewer_scene)
+		if is_inside_tree():
+			get_tree().change_scene_to_packed(lobby_viewer_scene)
 
 
 func _on_about_button_pressed() -> void:
 	GlobalLobbyClient.call_event("about")
 	click_sound.play()
-	await click_sound.finished
-	get_tree().change_scene_to_packed(about_scene)
+	await get_tree().process_frame
+	if is_inside_tree():
+		get_tree().change_scene_to_packed(about_scene)
 
 
 func _init():
@@ -198,4 +205,5 @@ func _init():
 
 func _disconnected_from_server(reason: String):
 	await get_tree().process_frame
-	get_tree().change_scene_to_packed(loading_scene)
+	if is_inside_tree():
+		get_tree().change_scene_to_packed(loading_scene)
