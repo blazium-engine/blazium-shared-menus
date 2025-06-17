@@ -40,7 +40,6 @@ func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
 
 
 func _lobbies_listed(lobbies: Array[LobbyInfo]):
-	print(lobbies)
 	for child in lobby_grid.get_children():
 		child.queue_free()
 	for lobby in lobbies:
@@ -59,8 +58,7 @@ func _lobbies_listed(lobbies: Array[LobbyInfo]):
 
 
 func load_lobbies() -> void:
-	var result = await GlobalLobbyClient.list_lobbies().finished
-	print("Lobby List Result ", result.error)
+	await GlobalLobbyClient.list_lobbies().finished
 
 
 func _on_resized() -> void:

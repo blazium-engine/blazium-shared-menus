@@ -36,7 +36,6 @@ func _on_button_create_lobby_pressed() -> void:
 	config.load("user://blazium.cfg")
 	var game_mode = "normal_mode"
 	tags["game_mode"] = game_mode
-	print(sealed_checkbox.button_pressed)
 	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(title_label.text, sealed_checkbox.button_pressed, tags, int(max_players_label.text), password_line_edit.text).finished
 
 	if not result.has_error():
