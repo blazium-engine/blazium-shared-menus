@@ -40,8 +40,10 @@ var peer_to_kick: String
 
 func update_title():
 	lobby_label.text = GlobalLobbyClient.lobby.lobby_name + " " + \
-			str(GlobalLobbyClient.lobby.players) + "/" + \
-			str(GlobalLobbyClient.lobby.max_players)
+			tr("lobby_player_count").format({
+				players = GlobalLobbyClient.lobby.players,
+				max_players = GlobalLobbyClient.lobby.max_players
+			})
 	lobby_title_line_edit.text = GlobalLobbyClient.lobby.lobby_name
 	lobby_max_players_label.text = str(GlobalLobbyClient.lobby.max_players)
 
@@ -57,13 +59,13 @@ func update_start_button():
 	if not is_everyone_ready() or len(GlobalLobbyClient.peers) == 1:
 		start_button.disabled = true
 		if not is_everyone_ready():
-			start_button.text = "Someone isn't Ready"
+			start_button.text = "lobby_requires_ready"
 		else:
-			start_button.text = "Need more Players"
+			start_button.text = "lobby_requires_players"
 		start_button.theme_type_variation = ""
 	else:
 		start_button.disabled = false
-		start_button.text = "Start"
+		start_button.text = "lobby_start"
 		start_button.theme_type_variation = "SelectedButton"
 	
 
@@ -71,9 +73,9 @@ func update_start_button():
 func _update_private_lobby_checkbox():
 	private_checkbutton.set_pressed_no_signal(GlobalLobbyClient.lobby.sealed)
 	if GlobalLobbyClient.lobby.sealed:
-		private_checkbutton.text = "Hidden: Yes"
+		private_checkbutton.text = "hidden_yes"
 	else:
-		private_checkbutton.text = "Hidden: No"
+		private_checkbutton.text = "hidden_no"
 
 
 func _ready() -> void:
@@ -176,7 +178,7 @@ func kick_peer(peer: LobbyPeer) -> void:
 	if peer.id == GlobalLobbyClient.peer.id:
 		return
 	peer_to_kick = peer.id
-	kick_popup.text = "Kick %s?" % peer.user_data.get("name", "")
+	kick_popup.text = tr("lobby_prompt_kick_player").format({player = peer.user_data.get("name", "")})
 	_update_last_focus()
 	kick_popup.show()
 
@@ -244,9 +246,9 @@ func _on_back_pressed() -> void:
 func _on_reveal_lobby_id_pressed() -> void:
 	click_sound.play()
 	if reveal_lobby_id_button.button_pressed:
-		lobby_id_button.text = "Copy Code: " + GlobalLobbyClient.lobby.id
+		lobby_id_button.text = tr("code_copy").format({code = GlobalLobbyClient.lobby.id})
 	else:
-		lobby_id_button.text = "Copy Code: ••••••••"
+		lobby_id_button.text = "code_copy_hidden"
 
 
 func _play_click_sound() -> void:
@@ -270,14 +272,14 @@ func _on_kick_popup_confirmed() -> void:
 
 
 func _init() -> void:
-	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
+	exit_popup = CustomDialog.new("menu_prompt_exit")
 	exit_popup.name = "ExitPopup"
 	exit_popup.cancelled.connect(_on_exit_popup_cancelled)
 	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
 	exit_popup.hide()
 	add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)
 
-	kick_popup = CustomDialog.new("Kick Player?")
+	kick_popup = CustomDialog.new("lobby_prompt_kick")
 	kick_popup.name = "KickPopup"
 	kick_popup.cancelled.connect(_on_kick_popup_cancelled)
 	kick_popup.confirmed.connect(_on_kick_popup_confirmed)
@@ -294,24 +296,26 @@ func _update_max_players_buttons(players):
 
 func _on_button_increment_pressed() -> void:
 	click_sound.play()
-	var players := int(max_players_label.text)
-	players += 1
-	if players > ProjectSettings.get_setting("blazium/game/max_players_max", 10):
-		players = ProjectSettings.get_setting("blazium/game/max_players_max", 10)
-	max_players_label.text = "Players: " + str(players)
-	_update_max_players_buttons(players)
-	GlobalLobbyClient.set_max_players(players)
+	var player_limit := int(max_players_label.text)
+	player_limit += 1
+	var max_players = ProjectSettings.get_setting("blazium/game/max_players_max", 10)
+	if player_limit > max_players:
+		player_limit = max_players
+	max_players_label.text = tr("players_max").format({players = player_limit})
+	_update_max_players_buttons(player_limit)
+	GlobalLobbyClient.set_max_players(player_limit)
 
 
 func _on_button_decrement_pressed() -> void:
 	click_sound.play()
-	var players := int(max_players_label.text)
-	players -= 1
-	if players < ProjectSettings.get_setting("blazium/game/max_players_min", 2):
-		players = ProjectSettings.get_setting("blazium/game/max_players_min", 2)
-	max_players_label.text = "Players: " + str(players)
-	_update_max_players_buttons(players)
-	GlobalLobbyClient.set_max_players(players)
+	var player_limit := int(max_players_label.text)
+	player_limit -= 1
+	var min_players = ProjectSettings.get_setting("blazium/game/max_players_min", 2)
+	if player_limit < min_players:
+		player_limit = min_players
+	max_players_label.text = tr("players_max").format({players = player_limit})
+	_update_max_players_buttons(player_limit)
+	GlobalLobbyClient.set_max_players(player_limit)
 
 func _on_password_line_edit_text_submitted(new_text: String) -> void:
 	await GlobalLobbyClient.set_password(new_text).finished

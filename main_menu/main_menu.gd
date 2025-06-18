@@ -61,7 +61,7 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 		peer_name = "Player" + str(randi() % 1000)
 		var result: LobbyResult = await GlobalLobbyClient.add_peer_user_data({"name": peer_name, "avatar": randi() % 28}).finished
 	name_label.show()
-	name_label.text = tr("Hi, %s" % peer_name)
+	name_label.text = tr("player_greet").format({player = peer_name})
 	_set_fallback_focus(multiplayer_button)
 	multiplayer_button.grab_focus()
 	try_join_from_url()

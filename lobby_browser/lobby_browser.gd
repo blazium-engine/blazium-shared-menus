@@ -144,7 +144,7 @@ func _popup_acknowledged() -> void:
 
 
 func _init() -> void:
-	wrong_id_popup = CustomDialog.new("Wrong Game Code", "Continue", "")
+	wrong_id_popup = CustomDialog.new("lobby_prompt_wrong_code", "Continue", "")
 	wrong_id_popup.confirm_button.user_icon = "keyboard_double_arrow_right"
 	wrong_id_popup.confirm_button.theme_type_variation = "SelectedButton"
 	wrong_id_popup.confirm_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -152,7 +152,7 @@ func _init() -> void:
 	wrong_id_popup.hide()
 	add_child(wrong_id_popup, false, Node.INTERNAL_MODE_BACK)
 	password_popup = CustomDialog.new("Game Is Password Protected", "Enter", "Cancel")
-	password_line_edit.placeholder_text = "Password"
+	password_line_edit.placeholder_text = "password_placeholder"
 	password_line_edit.secret = true
 	password_popup.main_vb.add_child(password_line_edit)
 	password_popup.confirm_button.theme_type_variation = "SelectedButton"
@@ -161,7 +161,7 @@ func _init() -> void:
 	password_popup.confirmed.connect(_on_password_popup_confirmed)
 	password_popup.hide()
 	add_child(password_popup, false, Node.INTERNAL_MODE_BACK)
-	lobby_full_popup = CustomDialog.new("Lobby Is Full", "Continue", "")
+	lobby_full_popup = CustomDialog.new("lobby_prompt_full", "Continue", "")
 	lobby_full_popup.confirm_button.user_icon = "keyboard_double_arrow_right"
 	lobby_full_popup.confirm_button.theme_type_variation = "SelectedButton"
 	lobby_full_popup.confirm_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL

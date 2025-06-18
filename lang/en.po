@@ -12,6 +12,27 @@ msgstr "Chat:"
 msgid "chat_send"
 msgstr "Send"
 
+msgid "code_copy"
+msgstr "Copy Code: {code}"
+
+msgid "code_copy_hidden"
+msgstr "Copy Code: ••••••••"
+
+msgid "code_hide"
+msgstr "Hide Code"
+
+msgid "code_reveal"
+msgstr "Reveal Code"
+
+msgid "hidden_no"
+msgstr "Hidden: No"
+
+msgid "hidden_yes"
+msgstr "Hidden: Yes"
+
+msgid "header_create_lobby"
+msgstr "Create Lobby"
+
 msgid "header_credits"
 msgstr "Credits"
 
@@ -23,6 +44,9 @@ msgstr "Settings"
 
 msgid "join_discord"
 msgstr "Join the Discord"
+
+msgid "lobby_create"
+msgstr "Create Lobby"
 
 msgid "lobby_filter_full"
 msgstr "Hide Full"
@@ -39,20 +63,59 @@ msgstr "Join"
 msgid "lobby_join_code"
 msgstr "Join using code"
 
+msgid "lobby_leave"
+msgstr "Leave"
+
+msgid "lobby_requires_players"
+msgstr "Need more players"
+
+msgid "lobby_requires_ready"
+msgstr "Someone isn't ready"
+
 msgid "lobby_placeholder_code"
 msgstr "Code: ABC123"
 
 msgid "lobby_player_count"
 msgstr "{players}/{max_players}"
 
+msgid "lobby_prompt_full"
+msgstr "Lobby is full"
+
+msgid "lobby_prompt_kick"
+msgstr "Kick player?"
+
+msgid "lobby_prompt_wrong_code"
+msgstr "Wrong game code"
+
+msgid "lobby_prompt_kick_player"
+msgstr "Kick {player}"
+
+msgid "lobby_ready"
+msgstr "Ready"
+
 msgid "lobby_reconnect"
 msgstr "Reconnect"
+
+msgid "lobby_start"
+msgstr "Start"
+
+msgid "lobby_unready"
+msgstr "Unready"
 
 msgid "menu_about"
 msgstr "About"
 
 msgid "menu_back"
 msgstr "Back"
+
+msgid "menu_browse"
+msgstr "Browse"
+
+msgid "menu_competitive"
+msgstr "Competitive"
+
+msgid "menu_create"
+msgstr "Create"
 
 msgid "menu_prompt_exit"
 msgstr "Are you sure you want to exit?"
@@ -63,6 +126,12 @@ msgstr "Quit"
 msgid "menu_settings"
 msgstr "Settings"
 
+msgid "password_label"
+msgstr "Password:"
+
+msgid "password_placeholder"
+msgstr "Password"
+
 msgid "peer_kick"
 msgstr "Kick"
 
@@ -71,6 +140,12 @@ msgstr "Not Ready"
 
 msgid "peer_ready"
 msgstr "Ready"
+
+msgid "players_max"
+msgstr "Players: {players}"
+
+msgid "player_greet"
+msgstr "Hi, {player}"
 
 msgid "settings_disconnect"
 msgstr "Disconnect"
@@ -89,3 +164,15 @@ msgstr "Muted"
 
 msgid "settings_sound_on"
 msgstr "Sound On"
+
+msgid "tab_players"
+msgstr "Players"
+
+msgid "tab_settings"
+msgstr "Settings"
+
+msgid "title_label"
+msgstr "Title:"
+
+msgid "title_placeholder"
+msgstr "Lobby Title"

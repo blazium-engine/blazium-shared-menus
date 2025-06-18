@@ -12,6 +12,21 @@ msgstr ""
 msgid "chat_send"
 msgstr ""
 
+msgid "code_copy"
+msgstr ""
+
+msgid "code_copy_hidden"
+msgstr ""
+
+msgid "code_hide"
+msgstr ""
+
+msgid "code_reveal"
+msgstr ""
+
+msgid "header_create_lobby"
+msgstr ""
+
 msgid "header_credits"
 msgstr ""
 
@@ -21,7 +36,16 @@ msgstr ""
 msgid "header_settings"
 msgstr ""
 
+msgid "hidden_no"
+msgstr ""
+
+msgid "hidden_yes"
+msgstr ""
+
 msgid "join_discord"
+msgstr ""
+
+msgid "lobby_create"
 msgstr ""
 
 msgid "lobby_filter_full"
@@ -39,19 +63,58 @@ msgstr ""
 msgid "lobby_join_code"
 msgstr ""
 
+msgid "lobby_leave"
+msgstr ""
+
+msgid "lobby_requires_ready"
+msgstr ""
+
+msgid "lobby_requires_players"
+msgstr ""
+
 msgid "lobby_placeholder_code"
 msgstr ""
 
 msgid "lobby_player_count"
 msgstr ""
 
+msgid "lobby_prompt_full"
+msgstr ""
+
+msgid "lobby_prompt_kick"
+msgstr ""
+
+msgid "lobby_prompt_wrong_code"
+msgstr ""
+
+msgid "lobby_prompt_kick_player"
+msgstr ""
+
+msgid "lobby_ready"
+msgstr ""
+
 msgid "lobby_reconnect"
+msgstr ""
+
+msgid "lobby_start"
+msgstr ""
+
+msgid "lobby_unready"
 msgstr ""
 
 msgid "menu_about"
 msgstr ""
 
 msgid "menu_back"
+msgstr ""
+
+msgid "menu_browse"
+msgstr ""
+
+msgid "menu_competitive"
+msgstr ""
+
+msgid "menu_create"
 msgstr ""
 
 msgid "menu_prompt_exit"
@@ -63,6 +126,12 @@ msgstr ""
 msgid "menu_settings"
 msgstr ""
 
+msgid "password_label"
+msgstr ""
+
+msgid "password_placeholder"
+msgstr ""
+
 msgid "peer_kick"
 msgstr ""
 
@@ -70,6 +139,12 @@ msgid "peer_not_ready"
 msgstr ""
 
 msgid "peer_ready"
+msgstr ""
+
+msgid "player_greet"
+msgstr ""
+
+msgid "players_label"
 msgstr ""
 
 msgid "settings_disconnect"
@@ -88,4 +163,16 @@ msgid "settings_sound_off"
 msgstr ""
 
 msgid "settings_sound_on"
+msgstr ""
+
+msgid "tab_players"
+msgstr ""
+
+msgid "tab_settings"
+msgstr ""
+
+msgid "title_label"
+msgstr ""
+
+msgid "title_placeholder"
 msgstr ""

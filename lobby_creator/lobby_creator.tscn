@@ -73,9 +73,8 @@ layout_mode = 2
 [node name="LabelLobbies" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
-text = "Create Game"
+text = "header_create_lobby"
 horizontal_alignment = 1
-autowrap_mode = 3
 
 [node name="BoxContainer" type="BoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
@@ -98,13 +97,13 @@ alignment = 1
 [node name="Label" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy2"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
-text = "Title:"
+text = "title_label"
 
 [node name="Title" type="LineEdit" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy2"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Game title"
+placeholder_text = "title_placeholder"
 alignment = 1
 max_length = 16
 
@@ -116,13 +115,13 @@ alignment = 1
 [node name="Label" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
-text = "Password:"
+text = "password_label"
 
 [node name="PasswordLineEdit" type="LineEdit" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Password (optional)"
+placeholder_text = "password_placeholder"
 alignment = 1
 max_length = 16
 secret = true
@@ -141,28 +140,17 @@ custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPrivacy3"]
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-text = "Hidden:"
-
 [node name="Sealed" type="CheckButton" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPrivacy3"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-text = "No"
+text = "hidden_no"
 alignment = 1
 
 [node name="HBoxContainerPlayers" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
-
-[node name="Label" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers"]
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Players:"
 
 [node name="Control" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers"]
 custom_minimum_size = Vector2(200, 0)
@@ -170,13 +158,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ButtonDecrement" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_right = NodePath("../ButtonIncrement")
 mouse_default_cursor_shape = 2
 text = " "
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("4_qc77u")
 user_icon = "arrow_left"
 
@@ -184,18 +172,18 @@ user_icon = "arrow_left"
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
-text = "10"
+text = "players_max"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ButtonIncrement" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../ButtonDecrement")
 mouse_default_cursor_shape = 2
 text = " "
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("4_qc77u")
 user_icon = "arrow_right"
 
@@ -203,7 +191,7 @@ user_icon = "arrow_right"
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_type_variation = &"SelectedButton"
-text = "Create Game"
+text = "lobby_create"
 expand_text = false
 icon_alignment = 1
 expand_icon = true

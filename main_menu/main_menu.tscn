@@ -49,52 +49,22 @@ layout_mode = 2
 [node name="Title" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
-text = "Title"
+text = "TITLE"
 horizontal_alignment = 1
 
 [node name="NameLabel" type="Label" parent="HBoxContainer/ColorRect/VBoxContainer"]
 auto_translate_mode = 2
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
-text = "Hello"
+text = "player_greet"
 horizontal_alignment = 1
 
 [node name="PaddingTop" type="Control" parent="HBoxContainer/ColorRect/VBoxContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 
-[node name="VBoxContainerName" type="VBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
-layout_mode = 2
-
-[node name="Name" type="LineEdit" parent="HBoxContainer/ColorRect/VBoxContainer/VBoxContainerName"]
-layout_mode = 2
-placeholder_text = "Name (required)"
-alignment = 1
-max_length = 16
-
-[node name="SetName" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/VBoxContainerName"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "Start"
-expand_text = false
-icon_alignment = 1
-expand_icon = true
-script = ExtResource("5_f84iw")
-user_icon = "start"
-
 [node name="VBoxContainerSelection" type="VBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
-
-[node name="ButtonQuickstart" type="Button" parent="HBoxContainer/ColorRect/VBoxContainer/VBoxContainerSelection"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-text = "Quick Play"
-expand_text = false
-icon_alignment = 1
-expand_icon = true
-script = ExtResource("5_f84iw")
-user_icon = "bolt"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ColorRect/VBoxContainer/VBoxContainerSelection"]
 layout_mode = 2
@@ -103,7 +73,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-text = "Create Game"
+text = "menu_create"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
@@ -114,7 +84,7 @@ user_icon = "videogame_asset"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-text = "Browse Games"
+text = "menu_browse"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
@@ -160,9 +130,6 @@ user_icon = "exit_to_app"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[connection signal="text_submitted" from="HBoxContainer/ColorRect/VBoxContainer/VBoxContainerName/Name" to="." method="_on_line_edit_text_submitted"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/VBoxContainerName/SetName" to="." method="_on_set_name_pressed"]
-[connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/VBoxContainerSelection/ButtonQuickstart" to="." method="_on_button_quickstart_pressed"]
 [connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/VBoxContainerSelection/HBoxContainer/CreateLobby" to="." method="_on_create_lobby_pressed"]
 [connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/VBoxContainerSelection/HBoxContainer/ButtonFindLobby" to="." method="_on_button_join_public_pressed"]
 [connection signal="pressed" from="HBoxContainer/ColorRect/VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
