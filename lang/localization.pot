@@ -93,9 +93,6 @@ msgstr ""
 msgid "lobby_ready"
 msgstr ""
 
-msgid "lobby_reconnect"
-msgstr ""
-
 msgid "lobby_start"
 msgstr ""
 
@@ -130,15 +127,6 @@ msgid "password_label"
 msgstr ""
 
 msgid "password_placeholder"
-msgstr ""
-
-msgid "peer_kick"
-msgstr ""
-
-msgid "peer_not_ready"
-msgstr ""
-
-msgid "peer_ready"
 msgstr ""
 
 msgid "player_greet"

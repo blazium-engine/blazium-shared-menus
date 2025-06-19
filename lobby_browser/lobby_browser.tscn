@@ -95,7 +95,6 @@ mouse_default_cursor_shape = 2
 text = "lobby_join_code"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("5_ube8s")
 user_icon = "add_circle_outline"
 
@@ -152,11 +151,11 @@ alignment = 1
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 text = "menu_back"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("5_ube8s")
 user_icon = "arrow_back"
 

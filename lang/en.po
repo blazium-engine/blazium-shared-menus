@@ -93,9 +93,6 @@ msgstr "Kick {player}"
 msgid "lobby_ready"
 msgstr "Ready"
 
-msgid "lobby_reconnect"
-msgstr "Reconnect"
-
 msgid "lobby_start"
 msgstr "Start"
 
@@ -131,15 +128,6 @@ msgstr "Password:"
 
 msgid "password_placeholder"
 msgstr "Password"
-
-msgid "peer_kick"
-msgstr "Kick"
-
-msgid "peer_not_ready"
-msgstr "Not Ready"
-
-msgid "peer_ready"
-msgstr "Ready"
 
 msgid "players_max"
 msgstr "Players: {players}"

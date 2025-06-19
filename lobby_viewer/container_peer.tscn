@@ -25,10 +25,10 @@ layout_mode = 2
 size_flags_vertical = 4
 
 [node name="Avatar" type="Control" parent="HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 4
 script = ExtResource("2_5ych2")
-texture_scale = 0.8
 texture = ExtResource("3_u8bts")
 h_frames = 8
 v_frames = 8
@@ -38,20 +38,21 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -8.0
-offset_bottom = 8.0
+offset_left = -11.0
+offset_top = -35.0
+offset_right = 33.8
+offset_bottom = 9.8
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 script = ExtResource("2_5ych2")
-texture_scale = 0.5
+texture_scale = 0.7
 texture = ExtResource("4_cpsap")
 h_frames = 8
 v_frames = 8
 frame = 2
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
-visible = false
 modulate = Color(1, 1, 0.415686, 1)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -59,6 +60,14 @@ size_flags_vertical = 4
 stretch_mode = 2
 script = ExtResource("7_msetu")
 user_icon = "warning_amber"
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch_mode = 2
+script = ExtResource("7_msetu")
+user_icon = "hourglass_bottom"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -76,23 +85,33 @@ horizontal_alignment = 1
 vertical_alignment = 2
 text_overrun_behavior = 3
 
-[node name="Ready" type="Label" parent="HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(128, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "peer_not_ready"
-horizontal_alignment = 1
-
 [node name="Button" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(90, 0)
+custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-text = "peer_kick"
 expand_text = false
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("8_idkgm")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch_mode = 2
+script = ExtResource("7_msetu")
 user_icon = "block"
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]

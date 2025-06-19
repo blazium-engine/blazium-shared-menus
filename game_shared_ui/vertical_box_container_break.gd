@@ -16,3 +16,5 @@ func _size_changed():
 		vertical = GlobalLobbyClient.breakpoint_768()
 	if breakpoint_1024:
 		vertical = GlobalLobbyClient.breakpoint_1024()
+	if GlobalLobbyClient.is_portrait():
+		vertical = true

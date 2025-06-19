@@ -76,7 +76,7 @@ func _on_title_text_submitted(_new_text: String) -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = GlobalLobbyClient.breakpoint_1024()
+	var show_spacers = GlobalLobbyClient.is_portrait() || GlobalLobbyClient.breakpoint_1024()
 	left_spacer.visible = !show_spacers
 	right_spacer.visible = !show_spacers
 

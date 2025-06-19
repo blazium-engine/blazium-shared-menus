@@ -6,10 +6,12 @@ extends ScriptedLobbyClient
 @export var steam: CustomSteamClient
 
 var config: ConfigFile
-var vertical = false
 var disconnected
 var jwt:String
 
+func get_theme_scale() -> Vector2:
+	return Vector2(ProjectSettings.get_setting("gui/theme/default_theme_scale"), ProjectSettings.get_setting("gui/theme/default_theme_scale"))
+	
 
 func is_portrait() -> bool:
 	var size = get_viewport().size
@@ -38,22 +40,26 @@ func breakpoint_400() -> bool:
 
 func _size_changed():
 	var window_size := Vector2(get_viewport().get_window().size)
-	var scale_factor: float = window_size.y / window_size.x
-	if scale_factor < 0.0:
-		scale_factor = 1.0
-	vertical = false
-	if scale_factor > 1.05:
-		vertical = true
-	var min_dimension :float= min(window_size.x, window_size.y)
+	var max_dimension : float = max(window_size.x, window_size.y)
 
-	# Custom scale based on window size
-	var scale := min_dimension / 700.0
-	var font_scale = scale / 4
-	var font_size = 24
-	# Apply settings
-	#ProjectSettings.set_setting("gui/theme/font_size", font_size + font_scale * font_size)
-	#ProjectSettings.set_setting("gui/theme/default_theme_scale", scale)
+	# Interpolate font size based on max dimension (from 1000 to 3000 pixels)
+	var min_screen_size_x = 2500.0
+	var max_screen_size_x = 4000.0
+	var min_screen_size_y = 2000.0
+	var max_screen_size_y = 3000.0
+	var min_font_x = 32.0
+	var max_font_x = 58.0
+	var min_font_y = 32.0
+	var max_font_y = 72.0
+	var clamped_dim_x = clamp(window_size.x, min_screen_size_x, max_screen_size_x)
+	var clamped_dim_y = clamp(window_size.y, min_screen_size_y, max_screen_size_y)
+	var t_x = (clamped_dim_x - min_screen_size_x) / (max_screen_size_x - min_screen_size_x)
+	var t_y = (clamped_dim_y - min_screen_size_y) / (max_screen_size_y - min_screen_size_y)
+	var font_size_x = lerp(min_font_x, max_font_x, t_x)
+	var font_size_y = lerp(min_font_y, max_font_y, t_y)
 
+	ProjectSettings.set_setting("gui/theme/font_size", int(max(font_size_x, font_size_y)))
+	ProjectSettings.set_setting("gui/theme/default_theme_scale", 1 + max(t_x, t_y))
 
 func try_login() -> bool:
 	if !login.connected:

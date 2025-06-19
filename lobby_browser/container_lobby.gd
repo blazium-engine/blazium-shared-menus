@@ -18,7 +18,7 @@ func _ready():
 		max_players = lobby.max_players
 	})
 	if lobby.sealed:
-		_join_button.text = "lobby_reconnect"
+		_join_button.user_icon = "refresh"
 	if lobby.password_protected:
 		_join_button.user_icon = "lock"
 

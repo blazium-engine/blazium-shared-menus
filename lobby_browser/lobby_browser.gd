@@ -26,6 +26,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	resized.connect(_on_resized)
+	_on_resized()
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	GlobalLobbyClient.lobbies_listed.connect(_lobbies_listed)
 	GlobalLobbyClient.lobby_joined.connect(_lobby_joined)
@@ -62,7 +63,7 @@ func load_lobbies() -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = GlobalLobbyClient.breakpoint_1024()
+	var show_spacers = GlobalLobbyClient.is_portrait() || GlobalLobbyClient.breakpoint_1024()
 	left_spacer.visible = !show_spacers
 	right_spacer.visible = !show_spacers
 

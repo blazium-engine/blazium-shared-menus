@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://8r4dcxm66m3j"]
+[gd_scene load_steps=12 format=3 uid="uid://8r4dcxm66m3j"]
 
 [ext_resource type="Script" uid="uid://dqc3ubrnmgw1b" path="res://addons/blazium_shared_menus/settings/settings.gd" id="1_qnsfk"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_46h8p"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://qxcvedn11ub" path="res://addons/blazium_shared_menus/general/blazium_bg.tscn" id="3_usqs5"]
 [ext_resource type="Texture2D" uid="uid://cpnnenl5vontt" path="res://game/assets/avatars.svg" id="4_ebg5c"]
 [ext_resource type="Script" uid="uid://chix1djhx5hj3" path="res://addons/blazium_shared_menus/game_shared_ui/vertical_box_container_break.gd" id="4_oqwwc"]
+[ext_resource type="Script" uid="uid://bq7xes6q57vo2" path="res://addons/blazium_shared_menus/settings/avatars_scale.gd" id="5_6hgj3"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="6_m4ikw"]
 [ext_resource type="Script" uid="uid://dbfmeu5kh7yv4" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_6v4tp"]
 [ext_resource type="Script" uid="uid://c6eim0n5qfl12" path="res://game/hide_if_orientation_mobile.gd" id="9_hybew"]
@@ -93,10 +94,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"CustomPopupVBox"
 
-[node name="Avatars" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Avatars" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("prev_avatar", "cur_avatar", "next_avatar")]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 24
 alignment = 1
+script = ExtResource("5_6hgj3")
+prev_avatar = NodePath("PrevAvatar")
+cur_avatar = NodePath("Avatar")
+next_avatar = NodePath("NextAvatar")
 
 [node name="Left" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer/Avatars"]
 layout_mode = 2
@@ -152,7 +158,6 @@ mouse_default_cursor_shape = 2
 text = "settings_sound_on"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("8_6v4tp")
 pressed_icon = "volume_off"
 unpressed_icon = "volume_up"
@@ -165,7 +170,6 @@ mouse_default_cursor_shape = 2
 text = "settings_mode_dark"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("8_6v4tp")
 pressed_icon = "light_mode"
 unpressed_icon = "dark_mode"
@@ -189,7 +193,6 @@ mouse_default_cursor_shape = 2
 text = "settings_disconnect"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("6_m4ikw")
 user_icon = "signal_wifi_bad"
 
@@ -200,7 +203,6 @@ mouse_default_cursor_shape = 2
 text = "menu_back"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("6_m4ikw")
 user_icon = "arrow_back"
 
