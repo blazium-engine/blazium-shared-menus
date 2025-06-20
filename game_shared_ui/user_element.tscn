@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="7_nolke"]
 
 [node name="HBoxContainer" type="PanelContainer" node_paths=PackedStringArray("label", "avatar", "kick_button", "disconnected_icon", "click_sound")]
+custom_minimum_size = Vector2(300, 0)
 offset_right = 216.0
 offset_bottom = 64.0
 script = ExtResource("1_q4q1m")
@@ -55,6 +56,7 @@ frame = 2
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 visible = false
 modulate = Color(1, 1, 0.415686, 1)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -69,8 +71,10 @@ text = "User Name"
 text_overrun_behavior = 3
 
 [node name="KickButton" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 expand_text = false
 icon_alignment = 1

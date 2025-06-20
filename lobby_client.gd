@@ -1,30 +1,65 @@
 extends ScriptedLobbyClient
 
-@export var reconnects := 0
 @export var discord: CustomDiscordEmbeddedAppClient
 @export var login: CustomLoginClient
 @export var pogr: CustomPOGRClient
 @export var steam: CustomSteamClient
 
 var config: ConfigFile
-var show_debug := false
+var disconnected
+var jwt:String
+
+func get_theme_scale() -> Vector2:
+	return Vector2(ProjectSettings.get_setting("gui/theme/default_theme_scale"), ProjectSettings.get_setting("gui/theme/default_theme_scale"))
+	
+
+func is_portrait() -> bool:
+	var size = get_viewport().size
+	return size.y > size.x
+
+
+func is_landscape() -> bool:
+	var size = get_viewport().size
+	return size.y < size.x
+
+
+func breakpoint_1024() -> bool:
+	var size = get_viewport().size
+	return size.x < 1024
+
+
+func breakpoint_768() -> bool:
+	var size = get_viewport().size
+	return size.x < 768
+
+
+func breakpoint_400() -> bool:
+	var size = get_viewport().size
+	return size.x < 400
 
 
 func _size_changed():
-	var scale_factor: float = float(get_viewport().get_window().size.y) / get_viewport().get_window().size.x
-	if scale_factor > 2.0:
-		scale_factor = 3.0
-	elif scale_factor > 1.6:
-		scale_factor = 2.4
-	elif scale_factor > 1.3:
-		scale_factor = 2.0
-	elif scale_factor > 0.7:
-		scale_factor = 1.5
-	else:
-		scale_factor = 1.0
-	get_tree().root.content_scale_factor = scale_factor
+	var window_size := Vector2(get_viewport().get_window().size)
+	var max_dimension : float = max(window_size.x, window_size.y)
 
-var jwt:String
+	# Interpolate font size based on max dimension (from 1000 to 3000 pixels)
+	var min_screen_size_x = 2500.0
+	var max_screen_size_x = 4000.0
+	var min_screen_size_y = 2000.0
+	var max_screen_size_y = 3000.0
+	var min_font_x = 32.0
+	var max_font_x = 58.0
+	var min_font_y = 32.0
+	var max_font_y = 72.0
+	var clamped_dim_x = clamp(window_size.x, min_screen_size_x, max_screen_size_x)
+	var clamped_dim_y = clamp(window_size.y, min_screen_size_y, max_screen_size_y)
+	var t_x = (clamped_dim_x - min_screen_size_x) / (max_screen_size_x - min_screen_size_x)
+	var t_y = (clamped_dim_y - min_screen_size_y) / (max_screen_size_y - min_screen_size_y)
+	var font_size_x = lerp(min_font_x, max_font_x, t_x)
+	var font_size_y = lerp(min_font_y, max_font_y, t_y)
+
+	ProjectSettings.set_setting("gui/theme/font_size", int(max(font_size_x, font_size_y)))
+	ProjectSettings.set_setting("gui/theme/default_theme_scale", 1 + max(t_x, t_y))
 
 func try_login() -> bool:
 	if !login.connected:
@@ -43,6 +78,9 @@ func try_login() -> bool:
 			jwt = ""
 		else:
 			print("[ScriptedLobby]: Authentication already done, reusing JWT.")
+			# Just in case, login to steam
+			if steam.login_steam():
+				print(steam.get_dlcs())
 			login.disconnect_from_server()
 			return true
 	if discord.is_discord_environment():
@@ -76,12 +114,16 @@ func try_login() -> bool:
 	login.disconnect_from_server()
 	return true
 
+
 func _ready() -> void:
+	_size_changed()
+	get_tree().root.size_changed.connect(_size_changed)
 	var local_server = ProjectSettings.get_setting("blazium/game/lobby_server_local", false)
 	if local_server:
 		server_url = "ws://localhost:8080/connect"
 	config = ConfigFile.new()
 	config.load("user://blazium.cfg")
+	GlobalLobbyClient.update_theme(config.get_value("Settings", "light_mode", false))
 	connected_to_server.connect(_connected_to_server)
 	disconnected_from_server.connect(_disconnected_from_server)
 	log_updated.connect(_log_updated)
@@ -91,8 +133,6 @@ func _ready() -> void:
 	else:
 		reconnection_token = config.get_value("LobbyClient", "reconnection_token", "")
 	connect_to_server()
-	_size_changed()
-	get_tree().root.size_changed.connect(_size_changed)
 
 
 func is_dealer():
@@ -111,7 +151,7 @@ func _log_updated(command: String, message: String):
 
 
 func _connected_to_server(_peer: LobbyPeer, new_reconnection_token: String):
-	reconnects = 0
+	disconnected = false
 	config.set_value("LobbyClient", "reconnection_token", new_reconnection_token)
 	config.save("user://blazium.cfg")
 
@@ -124,18 +164,11 @@ func _connected_to_server(_peer: LobbyPeer, new_reconnection_token: String):
 
 
 func _disconnected_from_server(reason: String):
+	disconnected = true
 	if reason == "Reconnect Close":
 		reconnection_token = ""
 	else:
 		reconnection_token = jwt
-	print("[ScriptedLobbyClient]: Disconnected. ", reason)
-	if reconnects > 3:
-		push_error("Cannot connect")
-		return
-	reconnects += 1
-	if is_inside_tree():
-		await get_tree().create_timer(1 * reconnects).timeout
-	connect_to_server()
 
 
 func update_theme(is_light_theme: bool):
@@ -146,8 +179,17 @@ func update_theme(is_light_theme: bool):
 		ProjectSettings.set_setting("gui/theme/base_color", Color(0.0793, 0.10296, 0.13))
 		ProjectSettings.set_setting("gui/theme/accent_color", Color(0.2075, 0.581, 0.83))
 
+
 func call_event(event_name: String):
 	pogr.add_event(event_name)
 
+
 func is_discord_environment() -> bool:
 	return discord.is_discord_environment()
+
+
+func open_url(url: String):
+	if is_discord_environment():
+		discord.open_external_link(url)
+	else:
+		OS.shell_open(url)
