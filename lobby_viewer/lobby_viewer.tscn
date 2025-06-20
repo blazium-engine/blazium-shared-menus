@@ -99,10 +99,9 @@ size_flags_vertical = 3
 theme_override_styles/tab_focus = SubResource("StyleBoxFlat_632ab")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_dm10q")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_632ab")
-current_tab = 1
+current_tab = 0
 
 [node name="tab_players" type="PanelContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -131,6 +130,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
 [node name="tab_settings" type="PanelContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -257,7 +257,6 @@ mouse_default_cursor_shape = 2
 text = "code_copy_hidden"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("6_3ppu3")
 user_icon = "content_copy"
 
@@ -269,7 +268,6 @@ toggle_mode = true
 text = "code_reveal"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("8_ewirs")
 pressed_icon = "visibility_off"
 unpressed_icon = "visibility"
@@ -294,7 +292,6 @@ toggle_mode = true
 text = "lobby_ready"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("8_ewirs")
 pressed_icon = "sentiment_very_satisfied"
 unpressed_icon = "sentiment_very_dissatisfied"
@@ -311,7 +308,6 @@ disabled = true
 text = "lobby_start"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("6_3ppu3")
 user_icon = "videogame_asset"
 
@@ -324,7 +320,6 @@ mouse_default_cursor_shape = 2
 text = "lobby_leave"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("6_3ppu3")
 user_icon = "arrow_back"
 

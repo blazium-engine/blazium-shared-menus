@@ -235,7 +235,6 @@ theme_type_variation = &"SelectedButton"
 text = "Normal"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("4_qc77u")
 user_icon = "accessibility"
 

@@ -78,7 +78,6 @@ size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("7_nolke")
 user_icon = "block"
 
