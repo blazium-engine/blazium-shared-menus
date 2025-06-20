@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="6_m4ikw"]
 [ext_resource type="Script" uid="uid://dbfmeu5kh7yv4" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_6v4tp"]
 [ext_resource type="Script" uid="uid://c6eim0n5qfl12" path="res://game/hide_if_orientation_mobile.gd" id="9_hybew"]
-[ext_resource type="Script" uid="uid://co2fgk7y2lflo" path="res://addons/blazium_shared_menus/settings/custom_option_button.gd" id="11_vmsml"]
+[ext_resource type="Script" uid="uid://sof56ahpmktu" path="res://addons/blazium_shared_menus/settings/language_button.gd" id="11_vmsml"]
 
 [sub_resource type="FontVariation" id="FontVariation_usqs5"]
 variation_opentype = {
@@ -187,17 +187,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"CustomPopupVBox"
 
-[node name="OptionButton" type="OptionButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="ButtonLanguage" type="OptionButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
+auto_translate_mode = 2
 layout_mode = 2
 alignment = 1
 expand_text = false
 icon_alignment = 1
-selected = 0
-item_count = 1
-popup/item_0/text = "English(en)"
-popup/item_0/id = 0
 script = ExtResource("11_vmsml")
-user_icon = "language"
+locales = PackedStringArray("en")
+locale_names = PackedStringArray("English")
 
 [node name="ButtonDisconnect" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(400, 0)

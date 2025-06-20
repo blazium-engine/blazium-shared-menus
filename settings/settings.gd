@@ -1,4 +1,5 @@
 @tool
+class_name SharedSettings
 extends BlaziumPanel
 
 const max_avatars := 28

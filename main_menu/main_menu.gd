@@ -33,6 +33,23 @@ func _ready() -> void:
 	config = ConfigFile.new()
 	config.load("user://blazium.cfg")
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), config.get_value("Settings", "mute", false))
+	
+	var system_locale: String = TranslationServer.get_locale().left(2)
+	var user_locale: String = config.get_value("Settings", "lang", "null")
+	var locale_changed: bool = false
+	
+	if user_locale == "null":
+		user_locale = system_locale
+		locale_changed = true
+		if user_locale.length() > 2:
+			user_locale == system_locale
+	if system_locale != user_locale:
+		locale_changed = true
+	if locale_changed:
+		TranslationServer.set_locale(user_locale)
+		config.set_value("Settings", "lang", user_locale)
+		config.save("user://blazium.cfg")
+	
 	GlobalLobbyClient.connected_to_server.connect(_connected_to_server)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	GlobalLobbyClient.lobby_joined.connect(_lobby_joined)
