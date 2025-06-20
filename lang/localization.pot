@@ -57,6 +57,9 @@ msgstr ""
 msgid "lobby_filters"
 msgstr ""
 
+msgid "lobby_join"
+msgstr ""
+
 msgid "lobby_join_code"
 msgstr ""
 

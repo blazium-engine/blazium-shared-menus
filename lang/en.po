@@ -57,6 +57,9 @@ msgstr "Hide Password Protected"
 msgid "lobby_filters"
 msgstr "Filters"
 
+msgid "lobby_join"
+msgstr "Join"
+
 msgid "lobby_join_code"
 msgstr "Join using code"
 
