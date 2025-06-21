@@ -12,6 +12,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_levib")
 chat_input = NodePath("HBoxContainerChat/ChatInput")
 chat_text = NodePath("RichTextLabel")
@@ -29,7 +31,7 @@ stream = ExtResource("3_oya02")
 stream = ExtResource("3_wm4ih")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"ChatRichTextLabel"
@@ -72,6 +74,7 @@ focus_neighbor_right = NodePath("../ChatButton")
 placeholder_text = "chat_placeholder"
 max_length = 256
 emoji_menu_enabled = false
+caret_blink = true
 
 [node name="ChatButton" type="Button" parent="HBoxContainerChat"]
 custom_minimum_size = Vector2(120, 0)
@@ -87,5 +90,6 @@ user_icon = "send"
 [connection signal="meta_clicked" from="RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
 [connection signal="emoji_pressed" from="Control/EmojiPanel" to="." method="_on_emoji_pressed"]
 [connection signal="toggled" from="HBoxContainerChat/EmojiButton" to="." method="_on_emoji_button_toggled"]
+[connection signal="text_changed" from="HBoxContainerChat/ChatInput" to="." method="_on_chat_input_text_changed"]
 [connection signal="text_submitted" from="HBoxContainerChat/ChatInput" to="." method="_on_chat_input_text_submitted"]
 [connection signal="pressed" from="HBoxContainerChat/ChatButton" to="." method="_on_chat_button_pressed"]

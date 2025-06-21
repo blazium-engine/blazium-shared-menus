@@ -336,3 +336,10 @@ func me_command(action: String) -> String:
 		)
 	# The server will send the broadcast
 	return ""
+
+
+func _on_chat_input_text_changed(new_text: String) -> void:
+	if new_text.begins_with("/setword") || new_text.begins_with("/guessword") || new_text.begins_with("/gw") || new_text.begins_with("/sw"):
+		chat_input.secret = true
+	else:
+		chat_input.secret = false
