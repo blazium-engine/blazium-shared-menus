@@ -65,10 +65,10 @@ user_icon = "warning_amber"
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 auto_translate_mode = 2
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "User Name"
-text_overrun_behavior = 3
 
 [node name="KickButton" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(48, 48)

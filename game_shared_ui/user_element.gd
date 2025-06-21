@@ -19,6 +19,8 @@ func _ready() -> void:
 	GlobalLobbyClient.received_lobby_data.connect(_received_lobby_data)
 	GlobalLobbyClient.peer_disconnected.connect(_peer_disconnected)
 	GlobalLobbyClient.peer_reconnected.connect(_peer_reconnected)
+	ThemeDB.scale_changed.connect(_resized)
+	_resized()
 	label.text = peer_info.user_data.get("name", "")
 	avatar.frame = peer_info.user_data.get("avatar", 0)
 	match peer_info.platform:
@@ -26,6 +28,10 @@ func _ready() -> void:
 		"steam": platform.frame = 1
 		"anon": platform.frame = 2
 	_received_lobby_data(GlobalLobbyClient.lobby.data)
+
+func _resized():
+	platform.texture_scale = GlobalLobbyClient.get_theme_scale().x * 0.7
+	avatar.texture_scale = GlobalLobbyClient.get_theme_scale().x
 
 
 func _peer_disconnected(peer: LobbyPeer):

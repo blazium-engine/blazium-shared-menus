@@ -2,7 +2,7 @@ class_name GameUI
 extends BlaziumControl
 
 @export var player_list: HBoxContainer
-@export var user_element_scene: PackedScene
+var user_element_scene: PackedScene = load("res://addons/blazium_shared_menus/game_shared_ui/user_element.tscn")
 @export var chat: ChatContainer
 @export var user_list: ScrollContainer
 

@@ -25,11 +25,14 @@ shader_parameter/gradient = SubResource("GradientTexture2D_tu7k6")
 [sub_resource type="CanvasTexture" id="CanvasTexture_t456x"]
 
 [node name="Timer Bar" type="Control" node_paths=PackedStringArray("progress_bar", "progress_label")]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 100.0
-offset_bottom = 100.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 script = ExtResource("1_i78lo")
@@ -38,10 +41,12 @@ progress_label = NodePath("ProgressBar/ProgressLabel")
 
 [node name="ProgressBar" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_hdeox")
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("CanvasTexture_t456x")
 
 [node name="ProgressLabel" type="Label" parent="ProgressBar"]
@@ -50,14 +55,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 400.0
-offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.2, 0.2)
-theme_type_variation = &"HeaderMedium"
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 220
+theme_type_variation = &"HeaderLarge"
 text = "7"
 horizontal_alignment = 1
 vertical_alignment = 1
