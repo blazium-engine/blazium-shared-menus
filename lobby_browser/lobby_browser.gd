@@ -64,7 +64,7 @@ func load_lobbies() -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = GlobalLobbyClient.is_portrait() || GlobalLobbyClient.breakpoint_1024()
+	var show_spacers = GlobalLobbyClient.ui_breakpoint()
 	left_spacer.visible = !show_spacers
 	right_spacer.visible = !show_spacers
 

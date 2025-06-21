@@ -33,8 +33,8 @@ anchor_right = 1.0
 offset_left = -200.0
 offset_bottom = 200.0
 grow_horizontal = 0
-size_flags_horizontal = 8
-size_flags_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_i78lo")
 progress_bar = NodePath("ProgressBar")
 progress_label = NodePath("ProgressBar/ProgressLabel")
@@ -49,15 +49,27 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_t456x")
 
+[node name="Control" type="Control" parent="ProgressBar"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="ProgressLabel" type="Label" parent="ProgressBar"]
 auto_translate_mode = 2
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -55.8333
+offset_right = 23.0
+offset_bottom = 55.8333
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 100
 text = "7"
 horizontal_alignment = 1
 vertical_alignment = 1

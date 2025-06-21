@@ -23,43 +23,30 @@ func is_landscape() -> bool:
 	return size.y < size.x
 
 
-func breakpoint_1024() -> bool:
+func ui_breakpoint() -> bool:
 	var size = get_viewport().size
-	return size.x < 1024
-
-
-func breakpoint_768() -> bool:
-	var size = get_viewport().size
-	return size.x < 768
-
-
-func breakpoint_400() -> bool:
-	var size = get_viewport().size
-	return size.x < 400
-
+	return size.x < 768 || is_portrait()
 
 func _size_changed():
 	var window_size := Vector2(get_viewport().get_window().size)
-	var max_dimension : float = max(window_size.x, window_size.y)
+	var ref_resolution := Vector2(1920, 1080)  # Mid-range reference resolution
 
-	# Interpolate font size based on max dimension (from 1000 to 3000 pixels)
-	var min_screen_size_x = 2500.0
-	var max_screen_size_x = 4000.0
-	var min_screen_size_y = 2000.0
-	var max_screen_size_y = 3000.0
-	var min_font_x = 36.0
-	var max_font_x = 58.0
-	var min_font_y = 36.0
-	var max_font_y = 72.0
-	var clamped_dim_x = clamp(window_size.x, min_screen_size_x, max_screen_size_x)
-	var clamped_dim_y = clamp(window_size.y, min_screen_size_y, max_screen_size_y)
-	var t_x = (clamped_dim_x - min_screen_size_x) / (max_screen_size_x - min_screen_size_x)
-	var t_y = (clamped_dim_y - min_screen_size_y) / (max_screen_size_y - min_screen_size_y)
-	var font_size_x = lerp(min_font_x, max_font_x, t_x)
-	var font_size_y = lerp(min_font_y, max_font_y, t_y)
+	# Calculate relative scale factors
+	var scale_x := window_size.x / ref_resolution.x
+	var scale_y := window_size.y / ref_resolution.y
+	var scale := (scale_x + scale_y) * 0.5  # Average scale for smoother result
 
-	ProjectSettings.set_setting("gui/theme/font_size", int(max(font_size_x, font_size_y)))
-	ProjectSettings.set_setting("gui/theme/default_theme_scale", 1 + max(t_x, t_y))
+	# Clamp scale to avoid too small or too large values
+	scale = clamp(scale, 0.5, 2.0)  # Allow scaling from 50% to 200%
+
+	# Base font size and theme scale (you can tweak these)
+	var base_font_size := 36.0
+	var scaled_font_size := int(round(base_font_size * scale))
+	var theme_scale := scale  # or: clamp(scale * 0.8 + 0.2, 0.5, 2.0)
+
+	# Apply settings
+	ProjectSettings.set_setting("gui/theme/font_size", scaled_font_size)
+	ProjectSettings.set_setting("gui/theme/default_theme_scale", theme_scale)
 
 func try_login() -> bool:
 	if !login.connected:

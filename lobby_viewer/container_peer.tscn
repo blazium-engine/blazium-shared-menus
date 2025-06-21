@@ -12,6 +12,7 @@
 custom_minimum_size = Vector2(512, 0)
 offset_right = 418.0
 offset_bottom = 67.0
+size_flags_horizontal = 3
 size_flags_vertical = 4
 script = ExtResource("1_sgvo6")
 disconnected_texture = NodePath("HBoxContainer/TextureRect")
@@ -70,6 +71,7 @@ user_icon = "hourglass_bottom"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 1
 
@@ -78,7 +80,7 @@ auto_translate_mode = 2
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
+size_flags_vertical = 3
 text = "PEER NAME"
 horizontal_alignment = 1
 vertical_alignment = 2

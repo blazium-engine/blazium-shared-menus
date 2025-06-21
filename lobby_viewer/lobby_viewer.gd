@@ -204,7 +204,7 @@ func _on_start_pressed() -> void:
 func _on_resized() -> void:
 	if Engine.is_editor_hint():
 		return
-	var show_spacers = GlobalLobbyClient.is_portrait() || GlobalLobbyClient.breakpoint_1024()
+	var show_spacers = GlobalLobbyClient.ui_breakpoint()
 	left_spacer.visible = !show_spacers
 	right_spacer.visible = !show_spacers
 
