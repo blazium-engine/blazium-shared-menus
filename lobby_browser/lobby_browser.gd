@@ -18,8 +18,8 @@ var lobby_full_popup: CustomDialog
 var password_popup: CustomDialog
 var password_line_edit := LineEdit.new()
 
-var hide_full:= false
 var hide_private:= false
+var hide_other_lang:= true
 
 
 func _ready() -> void:
@@ -44,12 +44,13 @@ func _lobbies_listed(lobbies: Array[LobbyInfo]):
 	for child in lobby_grid.get_children():
 		child.queue_free()
 	for lobby in lobbies:
-		# Hide full lobbies is asked for
-		if hide_full and lobby.max_players == lobby.players:
+		if lobby.max_players == lobby.players:
 			continue
 		if hide_private and lobby.password_protected:
 			continue
 		if lobby.tags.get("game_mode", "") == "competitive_abunch_hanging":
+			continue
+		if (lobby.tags.get("lang", "") != TranslationServer.get_locale().split("_")[0]) && hide_other_lang:
 			continue
 		var lobby_container := container_lobby_scene.instantiate()
 		lobby_container.lobby = lobby
@@ -85,13 +86,6 @@ func _on_back_pressed() -> void:
 	await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(main_menu_scene)
-
-
-func _on_hide_full_pressed() -> void:
-	click_sound.play()
-	hide_full = not hide_full
-	load_lobbies()
-
 
 func _on_hide_private_pressed() -> void:
 	click_sound.play()
@@ -145,14 +139,14 @@ func _popup_acknowledged() -> void:
 
 
 func _init() -> void:
-	wrong_id_popup = CustomDialog.new("lobby_prompt_wrong_code", "Continue", "")
+	wrong_id_popup = CustomDialog.new("lobby_prompt_wrong_code", "prompt_continue", "")
 	wrong_id_popup.confirm_button.user_icon = "keyboard_double_arrow_right"
 	wrong_id_popup.confirm_button.theme_type_variation = "SelectedButton"
 	wrong_id_popup.confirm_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	wrong_id_popup.confirmed.connect(_popup_acknowledged)
 	wrong_id_popup.hide()
 	add_child(wrong_id_popup, false, Node.INTERNAL_MODE_BACK)
-	password_popup = CustomDialog.new("Game Is Password Protected", "Enter", "Cancel")
+	password_popup = CustomDialog.new("lobby_prompt_password_protected", "prompt_enter", "prompt_cancel")
 	password_line_edit.placeholder_text = "password_placeholder"
 	password_line_edit.secret = true
 	password_popup.main_vb.add_child(password_line_edit)
@@ -162,10 +156,16 @@ func _init() -> void:
 	password_popup.confirmed.connect(_on_password_popup_confirmed)
 	password_popup.hide()
 	add_child(password_popup, false, Node.INTERNAL_MODE_BACK)
-	lobby_full_popup = CustomDialog.new("lobby_prompt_full", "Continue", "")
+	lobby_full_popup = CustomDialog.new("lobby_prompt_full", "prompt_continue", "")
 	lobby_full_popup.confirm_button.user_icon = "keyboard_double_arrow_right"
 	lobby_full_popup.confirm_button.theme_type_variation = "SelectedButton"
 	lobby_full_popup.confirm_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	lobby_full_popup.confirmed.connect(_popup_acknowledged)
 	lobby_full_popup.hide()
 	add_child(lobby_full_popup, false, Node.INTERNAL_MODE_BACK)
+
+
+func _on_hide_other_lang_pressed() -> void:
+	click_sound.play()
+	hide_other_lang = not hide_other_lang
+	load_lobbies()

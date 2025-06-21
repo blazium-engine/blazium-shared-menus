@@ -1,152 +1,152 @@
 msgid ""
 msgstr ""
 
-"Language: en\n"
+"Language: pl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "chat_placeholder"
-msgstr "Chat"
+msgstr "Czat"
 
 msgid "chat_send"
-msgstr "Send"
+msgstr "Wyślij"
 
 msgid "code_copy"
-msgstr "Copy: {code}"
+msgstr "Kopiuj: {code}"
 
 msgid "dialog_yes"
-msgstr "Yes"
+msgstr "Tak"
 
 msgid "dialog_no"
-msgstr "No"
+msgstr "Nie"
 
 msgid "hide"
-msgstr "Hide"
+msgstr "Ukryj"
 
 msgid "join_discord"
-msgstr "Join our Discord"
+msgstr "Dołącz do naszego Discorda"
 
 msgid "loading_text"
-msgstr "Loading"
+msgstr "Ładowanie"
 
 msgid "loading_connection_lost"
-msgstr "Connection lost!"
+msgstr "Połączenie utracone!"
 
 msgid "loading_reconnect"
-msgstr "Reconnect"
+msgstr "Połącz ponownie"
 
 msgid "lobby_filter_only_selected_language"
-msgstr "Hide Games with Different Language"
+msgstr "Ukryj gry w innym języku"
 
 msgid "lobby_filter_password"
-msgstr "Hide Games with Password"
+msgstr "Ukryj gry z hasłem"
 
 msgid "lobby_filters"
-msgstr "Filters"
+msgstr "Filtry"
 
 msgid "lobby_join"
-msgstr "Join"
+msgstr "Dołącz"
 
 msgid "lobby_leave"
-msgstr "Leave"
+msgstr "Opuść"
 
 msgid "lobby_requires_players"
-msgstr "Waiting for more players"
+msgstr "Oczekiwanie na więcej graczy"
 
 msgid "lobby_requires_ready"
-msgstr "Waiting for all players to get ready"
+msgstr "Czekamy aż wszyscy będą gotowi"
 
 msgid "lobby_placeholder_code"
-msgstr "Code: ABC123"
+msgstr "Kod: ABC123"
 
 msgid "lobby_prompt_full"
-msgstr "This game is already full"
+msgstr "Ta gra jest już pełna"
 
 msgid "lobby_prompt_password_protected"
-msgstr "Please enter the password"
+msgstr "Proszę podać hasło"
 
 msgid "lobby_prompt_wrong_code"
-msgstr "The game code you entered is incorrect"
+msgstr "Wprowadzony kod gry jest nieprawidłowy"
 
 msgid "lobby_prompt_kick_player"
-msgstr "Kick {player}"
+msgstr "Wyrzuć {player}"
 
 msgid "lobby_ready"
-msgstr "Ready"
+msgstr "Gotowy"
 
 msgid "lobby_start"
 msgstr "Start"
 
 msgid "lobby_title_game"
-msgstr "Game"
+msgstr "Gra"
 
 msgid "lobby_unready"
-msgstr "I'm not ready"
+msgstr "Nie jestem gotowy"
 
 msgid "menu_about"
-msgstr "About"
+msgstr "O grze"
 
 msgid "menu_back"
-msgstr "Back"
+msgstr "Wstecz"
 
 msgid "menu_browse"
-msgstr "Find"
+msgstr "Szukaj"
 
 msgid "menu_competitive"
-msgstr "Competitive"
+msgstr "Rywalizacja"
 
 msgid "menu_create"
-msgstr "Create"
+msgstr "Utwórz"
 
 msgid "menu_prompt_exit"
-msgstr "Are you sure you want to exit?"
+msgstr "Czy na pewno chcesz wyjść?"
 
 msgid "menu_quit"
-msgstr "Quit"
+msgstr "Zakończ"
 
 msgid "menu_options"
-msgstr "Options"
+msgstr "Opcje"
 
 msgid "password_placeholder"
-msgstr "Password"
+msgstr "Hasło"
 
 msgid "prompt_continue"
-msgstr "Continue"
+msgstr "Kontynuuj"
 
 msgid "prompt_enter"
-msgstr "Enter"
+msgstr "Wejdź"
 
 msgid "prompt_cancel"
-msgstr "Cancel"
+msgstr "Anuluj"
 
 msgid "players_max"
-msgstr "Players: {players}"
+msgstr "Gracze: {players}"
 
 msgid "player_greet"
-msgstr "Hi, {player}"
+msgstr "Cześć, {player}"
 
 msgid "player_name"
-msgstr "Player"
+msgstr "Gracz"
 
 msgid "settings_disconnect"
-msgstr "Disconnect"
+msgstr "Rozłącz"
 
 msgid "settings_mode_dark"
-msgstr "Dark Mode"
+msgstr "Tryb ciemny"
 
 msgid "settings_mode_light"
-msgstr "Light Mode"
+msgstr "Tryb jasny"
 
 msgid "settings_prompt_disconnect"
-msgstr "Are you sure you want to disconnect?"
+msgstr "Czy na pewno chcesz się rozłączyć?"
 
 msgid "settings_sound"
-msgstr "Sound"
+msgstr "Dźwięk"
 
 msgid "tab_players"
-msgstr "Players"
+msgstr "Gracze"
 
 msgid "title_placeholder"
-msgstr "Game Title"
+msgstr "Tytuł gry"

@@ -30,12 +30,10 @@ func _on_button_create_lobby_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
 	if title_label.text.is_empty():
-		title_label.text = "Game" + str(randi() % 1000)
+		title_label.text = tr("lobby_title_game") + str(randi() % 1000)
 	var tags = {}
-	var config = ConfigFile.new()
-	config.load("user://blazium.cfg")
-	var game_mode = "normal_mode"
-	tags["game_mode"] = game_mode
+	tags["game_mode"] = "normal_mode"
+	tags["lang"] = TranslationServer.get_locale().split("_")[0]
 	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(title_label.text, sealed_checkbox.button_pressed, tags, int(max_players_label.text), password_line_edit.text).finished
 
 	if not result.has_error():
@@ -76,6 +74,8 @@ func _on_title_text_submitted(_new_text: String) -> void:
 
 
 func _on_resized() -> void:
+	if Engine.is_editor_hint():
+		return
 	var show_spacers = GlobalLobbyClient.is_portrait() || GlobalLobbyClient.breakpoint_1024()
 	left_spacer.visible = !show_spacers
 	right_spacer.visible = !show_spacers
@@ -95,8 +95,6 @@ func _disconnected_from_server(_reason: String):
 
 func _on_sealed_toggled(toggled_on: bool) -> void:
 	click_sound.play()
-	sealed_checkbox.text = "hidden_yes" if toggled_on else "hidden_no"
-
 
 func _on_back_pressed() -> void:
 	click_sound.play()

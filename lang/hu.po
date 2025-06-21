@@ -1,152 +1,152 @@
 msgid ""
 msgstr ""
 
-"Language: en\n"
+"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "chat_placeholder"
-msgstr "Chat"
+msgstr "Csevegés"
 
 msgid "chat_send"
-msgstr "Send"
+msgstr "Küldés"
 
 msgid "code_copy"
-msgstr "Copy: {code}"
+msgstr "Másolás: {code}"
 
 msgid "dialog_yes"
-msgstr "Yes"
+msgstr "Igen"
 
 msgid "dialog_no"
-msgstr "No"
+msgstr "Nem"
 
 msgid "hide"
-msgstr "Hide"
+msgstr "Elrejtés"
 
 msgid "join_discord"
-msgstr "Join our Discord"
+msgstr "Csatlakozz a Discordhoz"
 
 msgid "loading_text"
-msgstr "Loading"
+msgstr "Betöltés"
 
 msgid "loading_connection_lost"
-msgstr "Connection lost!"
+msgstr "Kapcsolat megszakadt!"
 
 msgid "loading_reconnect"
-msgstr "Reconnect"
+msgstr "Újracsatlakozás"
 
 msgid "lobby_filter_only_selected_language"
-msgstr "Hide Games with Different Language"
+msgstr "Idegen nyelvű játékok elrejtése"
 
 msgid "lobby_filter_password"
-msgstr "Hide Games with Password"
+msgstr "Jelszavas játékok elrejtése"
 
 msgid "lobby_filters"
-msgstr "Filters"
+msgstr "Szűrők"
 
 msgid "lobby_join"
-msgstr "Join"
+msgstr "Csatlakozás"
 
 msgid "lobby_leave"
-msgstr "Leave"
+msgstr "Kilépés"
 
 msgid "lobby_requires_players"
-msgstr "Waiting for more players"
+msgstr "Várakozás további játékosokra"
 
 msgid "lobby_requires_ready"
-msgstr "Waiting for all players to get ready"
+msgstr "Várakozás minden játékos készenlétére"
 
 msgid "lobby_placeholder_code"
-msgstr "Code: ABC123"
+msgstr "Kód: ABC123"
 
 msgid "lobby_prompt_full"
-msgstr "This game is already full"
+msgstr "Ez a játék már tele van"
 
 msgid "lobby_prompt_password_protected"
-msgstr "Please enter the password"
+msgstr "Kérlek, add meg a jelszót"
 
 msgid "lobby_prompt_wrong_code"
-msgstr "The game code you entered is incorrect"
+msgstr "A megadott játék kód hibás"
 
 msgid "lobby_prompt_kick_player"
-msgstr "Kick {player}"
+msgstr "{player} kirúgása"
 
 msgid "lobby_ready"
-msgstr "Ready"
+msgstr "Készen állok"
 
 msgid "lobby_start"
-msgstr "Start"
+msgstr "Indítás"
 
 msgid "lobby_title_game"
-msgstr "Game"
+msgstr "Játék"
 
 msgid "lobby_unready"
-msgstr "I'm not ready"
+msgstr "Mégsem vagyok kész"
 
 msgid "menu_about"
-msgstr "About"
+msgstr "Névjegy"
 
 msgid "menu_back"
-msgstr "Back"
+msgstr "Vissza"
 
 msgid "menu_browse"
-msgstr "Find"
+msgstr "Keresés"
 
 msgid "menu_competitive"
-msgstr "Competitive"
+msgstr "Versenyszerű"
 
 msgid "menu_create"
-msgstr "Create"
+msgstr "Létrehozás"
 
 msgid "menu_prompt_exit"
-msgstr "Are you sure you want to exit?"
+msgstr "Biztosan ki akarsz lépni?"
 
 msgid "menu_quit"
-msgstr "Quit"
+msgstr "Kilépés"
 
 msgid "menu_options"
-msgstr "Options"
+msgstr "Beállítások"
 
 msgid "password_placeholder"
-msgstr "Password"
+msgstr "Jelszó"
 
 msgid "prompt_continue"
-msgstr "Continue"
+msgstr "Folytatás"
 
 msgid "prompt_enter"
-msgstr "Enter"
+msgstr "Belépés"
 
 msgid "prompt_cancel"
-msgstr "Cancel"
+msgstr "Mégse"
 
 msgid "players_max"
-msgstr "Players: {players}"
+msgstr "Játékosok: {players}"
 
 msgid "player_greet"
-msgstr "Hi, {player}"
+msgstr "Szia, {player}"
 
 msgid "player_name"
-msgstr "Player"
+msgstr "Játékos"
 
 msgid "settings_disconnect"
-msgstr "Disconnect"
+msgstr "Lecsatlakozás"
 
 msgid "settings_mode_dark"
-msgstr "Dark Mode"
+msgstr "Sötét mód"
 
 msgid "settings_mode_light"
-msgstr "Light Mode"
+msgstr "Világos mód"
 
 msgid "settings_prompt_disconnect"
-msgstr "Are you sure you want to disconnect?"
+msgstr "Biztosan le akarsz csatlakozni?"
 
 msgid "settings_sound"
-msgstr "Sound"
+msgstr "Hang"
 
 msgid "tab_players"
-msgstr "Players"
+msgstr "Játékosok"
 
 msgid "title_placeholder"
-msgstr "Game Title"
+msgstr "Játék címe"

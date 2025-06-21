@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmwdqnvuk8nbk"]
+[gd_scene load_steps=7 format=3 uid="uid://dmwdqnvuk8nbk"]
 
 [ext_resource type="Script" uid="uid://cpe2d1xytyx6y" path="res://addons/blazium_shared_menus/lobby_creator/lobby_creator.gd" id="1_3c7gg"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_1haab"]
@@ -6,11 +6,6 @@
 [ext_resource type="Script" uid="uid://chix1djhx5hj3" path="res://addons/blazium_shared_menus/game_shared_ui/vertical_box_container_break.gd" id="4_2o5v5"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="4_qc77u"]
 [ext_resource type="Script" uid="uid://c6eim0n5qfl12" path="res://game/hide_if_orientation_mobile.gd" id="5_5cai8"]
-[ext_resource type="Texture2D" uid="uid://2q2a6yxchyib" path="res://game/game_modes/normal mode.png" id="7_g6osc"]
-[ext_resource type="Texture2D" uid="uid://bahp1sfgk1xi3" path="res://game/game_modes/selection.png" id="8_gngfc"]
-[ext_resource type="Texture2D" uid="uid://b37re3vo7kau" path="res://game/game_modes/abunch hanging.png" id="9_lg6hu"]
-[ext_resource type="Texture2D" uid="uid://dmhq3tt4c72mt" path="res://game/game_modes/all or nothing.png" id="10_acfu4"]
-[ext_resource type="Texture2D" uid="uid://cd4u1rds0glyn" path="res://game/game_modes/last wrong dies.png" id="11_fgb6o"]
 
 [node name="LobbyCreator" type="PanelContainer" node_paths=PackedStringArray("password_line_edit", "max_players_label", "title_label", "create_button", "left_spacer", "right_spacer", "increment_button", "decrement_button", "sealed_checkbox", "click_sound", "settings_vbox")]
 anchors_preset = 15
@@ -78,7 +73,7 @@ layout_mode = 2
 [node name="LabelLobbies" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
-text = "header_create_lobby"
+text = "menu_create"
 horizontal_alignment = 1
 
 [node name="BoxContainer" type="BoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer"]
@@ -99,11 +94,6 @@ custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy2"]
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-text = "title_label"
-
 [node name="Title" type="LineEdit" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy2"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -116,11 +106,6 @@ max_length = 16
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 alignment = 1
-
-[node name="Label" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy"]
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-text = "password_label"
 
 [node name="PasswordLineEdit" type="LineEdit" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy"]
 custom_minimum_size = Vector2(200, 0)
@@ -150,7 +135,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-text = "hidden_no"
+text = "hide"
 alignment = 1
 
 [node name="HBoxContainerPlayers" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/VBoxContainer"]
@@ -199,7 +184,7 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_type_variation = &"SelectedButton"
-text = "lobby_create"
+text = "prompt_continue"
 expand_text = false
 icon_alignment = 1
 script = ExtResource("4_qc77u")
@@ -220,263 +205,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.7
 mouse_filter = 2
-
-[node name="GameModesHolder" type="VBoxContainer" parent="."]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="NormalButton" type="Button" parent="GameModesHolder"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-theme_type_variation = &"SelectedButton"
-text = "Normal"
-expand_text = false
-icon_alignment = 1
-script = ExtResource("4_qc77u")
-user_icon = "accessibility"
-
-[node name="NormalModesOptions" type="HBoxContainer" parent="GameModesHolder"]
-layout_mode = 2
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="normal_mode_holder" type="Control" parent="GameModesHolder/NormalModesOptions"]
-custom_minimum_size = Vector2(102, 102)
-layout_mode = 2
-size_flags_horizontal = 6
-
-[node name="Normal_mode" type="TextureButton" parent="GameModesHolder/NormalModesOptions/normal_mode_holder"]
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 256.0
-scale = Vector2(0.4, 0.4)
-texture_normal = ExtResource("7_g6osc")
-
-[node name="Label" type="Label" parent="GameModesHolder/NormalModesOptions/normal_mode_holder/Normal_mode"]
-modulate = Color(1, 1, 1, 0.392157)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -73.0
-offset_top = -108.0
-offset_right = 183.0
-offset_bottom = -59.6667
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 0.785398
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 20
-theme_override_constants/shadow_outline_size = 20
-theme_override_font_sizes/font_size = 40
-text = "NORMAL"
-horizontal_alignment = 1
-
-[node name="selection" type="TextureRect" parent="GameModesHolder/NormalModesOptions/normal_mode_holder/Normal_mode"]
-visible = false
-modulate = Color(0.470588, 0.219608, 0.619608, 0.784314)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_gngfc")
-
-[node name="abunch_hanging_holder" type="Control" parent="GameModesHolder/NormalModesOptions"]
-visible = false
-custom_minimum_size = Vector2(102, 102)
-layout_mode = 2
-size_flags_horizontal = 6
-
-[node name="normal_abunch_hanging" type="TextureButton" parent="GameModesHolder/NormalModesOptions/abunch_hanging_holder"]
-visible = false
-layout_mode = 2
-offset_right = 256.0
-offset_bottom = 256.0
-scale = Vector2(0.4, 0.4)
-texture_normal = ExtResource("9_lg6hu")
-
-[node name="Label" type="Label" parent="GameModesHolder/NormalModesOptions/abunch_hanging_holder/normal_abunch_hanging"]
-modulate = Color(1, 1, 1, 0.392157)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = -128.0
-offset_right = 198.0
-offset_bottom = -29.333
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 0.785398
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 20
-theme_override_constants/shadow_outline_size = 20
-theme_override_font_sizes/font_size = 40
-text = "ABUNCH 
-HANGING"
-horizontal_alignment = 1
-
-[node name="selection" type="TextureRect" parent="GameModesHolder/NormalModesOptions/abunch_hanging_holder/normal_abunch_hanging"]
-visible = false
-modulate = Color(0.470588, 0.219608, 0.619608, 0.784314)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_gngfc")
-
-[node name="all_or_nothing_holder" type="Control" parent="GameModesHolder/NormalModesOptions"]
-visible = false
-custom_minimum_size = Vector2(102, 102)
-layout_mode = 2
-size_flags_horizontal = 6
-
-[node name="normal_all_or_nothing" type="TextureButton" parent="GameModesHolder/NormalModesOptions/all_or_nothing_holder"]
-layout_mode = 2
-offset_right = 256.0
-offset_bottom = 256.0
-scale = Vector2(0.4, 0.4)
-texture_normal = ExtResource("10_acfu4")
-
-[node name="Label" type="Label" parent="GameModesHolder/NormalModesOptions/all_or_nothing_holder/normal_all_or_nothing"]
-modulate = Color(1, 1, 1, 0.392157)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = -128.0
-offset_right = 198.0
-offset_bottom = -29.333
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 0.785398
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 20
-theme_override_constants/shadow_outline_size = 20
-theme_override_font_sizes/font_size = 40
-text = "ALL OR 
-NOTHING"
-horizontal_alignment = 1
-
-[node name="selection" type="TextureRect" parent="GameModesHolder/NormalModesOptions/all_or_nothing_holder/normal_all_or_nothing"]
-visible = false
-modulate = Color(0.470588, 0.219608, 0.619608, 0.784314)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_gngfc")
-
-[node name="last_wrong_dies_holder" type="Control" parent="GameModesHolder/NormalModesOptions"]
-visible = false
-custom_minimum_size = Vector2(102, 102)
-layout_mode = 2
-size_flags_horizontal = 6
-
-[node name="normal_last_wrong_dies" type="TextureButton" parent="GameModesHolder/NormalModesOptions/last_wrong_dies_holder"]
-layout_mode = 2
-offset_right = 256.0
-offset_bottom = 256.0
-scale = Vector2(0.4, 0.4)
-texture_normal = ExtResource("11_fgb6o")
-
-[node name="Label" type="Label" parent="GameModesHolder/NormalModesOptions/last_wrong_dies_holder/normal_last_wrong_dies"]
-modulate = Color(1, 1, 1, 0.392157)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = -123.0
-offset_right = 198.0
-offset_bottom = -24.333
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 0.785398
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 20
-theme_override_constants/shadow_outline_size = 20
-theme_override_font_sizes/font_size = 40
-text = "LAST WRONG 
-DIES"
-horizontal_alignment = 1
-
-[node name="selection" type="TextureRect" parent="GameModesHolder/NormalModesOptions/last_wrong_dies_holder/normal_last_wrong_dies"]
-visible = false
-modulate = Color(0.470588, 0.219608, 0.619608, 0.784314)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_gngfc")
-
-[node name="CompetitiveModesOptions" type="HBoxContainer" parent="GameModesHolder"]
-layout_mode = 2
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="abunch_hanging_holder" type="Control" parent="GameModesHolder/CompetitiveModesOptions"]
-custom_minimum_size = Vector2(102, 102)
-layout_mode = 2
-size_flags_horizontal = 6
-
-[node name="Competitive_abunch_hanging" type="TextureButton" parent="GameModesHolder/CompetitiveModesOptions/abunch_hanging_holder"]
-layout_mode = 2
-offset_right = 256.0
-offset_bottom = 256.0
-scale = Vector2(0.4, 0.4)
-texture_normal = ExtResource("9_lg6hu")
-
-[node name="Label" type="Label" parent="GameModesHolder/CompetitiveModesOptions/abunch_hanging_holder/Competitive_abunch_hanging"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -73.0
-offset_top = -108.0
-offset_right = 183.0
-offset_bottom = -59.6667
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 0.785398
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 20
-theme_override_constants/shadow_outline_size = 20
-theme_override_font_sizes/font_size = 40
-text = "E N D L E S S"
-horizontal_alignment = 1
-
-[node name="selection" type="TextureRect" parent="GameModesHolder/CompetitiveModesOptions/abunch_hanging_holder/Competitive_abunch_hanging"]
-modulate = Color(0.470588, 0.219608, 0.619608, 0.784314)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_gngfc")
 
 [connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="text_submitted" from="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/BoxContainer/SettingVbox/HBoxContainerPrivacy2/Title" to="." method="_on_title_text_submitted"]

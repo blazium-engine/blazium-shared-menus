@@ -28,7 +28,7 @@ func _ready() -> void:
 	_on_resized()
 	config = ConfigFile.new()
 	config.load("user://blazium.cfg")
-	mute_checkbutton.set_pressed_no_signal(config.get_value("Settings", "mute", false))
+	mute_checkbutton.set_pressed_no_signal(!config.get_value("Settings", "mute", false))
 	theme_mode.set_pressed_no_signal(config.get_value("Settings", "light_mode", false))
 	mute_checkbutton._update_text_and_icon()
 	theme_mode._update_text_and_icon()
@@ -102,9 +102,9 @@ func _play_click_sound() -> void:
 
 func _on_sounds_toggled(toggled_on: bool) -> void:
 	click_sound.play()
-	config.set_value("Settings", "mute", toggled_on)
+	config.set_value("Settings", "mute", !toggled_on)
 	config.save("user://blazium.cfg")
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), toggled_on)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), !toggled_on)
 
 
 func _on_theme_mode_toggled(toggled_on: bool) -> void:

@@ -13,10 +13,7 @@ var lobby: LobbyInfo
 
 func _ready():
 	_lobby_name.text = lobby.lobby_name
-	_lobby_players.text = tr("lobby_player_count").format({
-		players = lobby.players,
-		max_players = lobby.max_players
-	})
+	_lobby_players.text = str(lobby.players) + "/" + str(lobby.max_players)
 	if lobby.sealed:
 		_join_button.user_icon = "refresh"
 	if lobby.password_protected:

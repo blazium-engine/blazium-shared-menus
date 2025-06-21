@@ -1,152 +1,152 @@
 msgid ""
 msgstr ""
 
-"Language: en\n"
+"Language: id\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "chat_placeholder"
-msgstr "Chat"
+msgstr "Obrolan"
 
 msgid "chat_send"
-msgstr "Send"
+msgstr "Kirim"
 
 msgid "code_copy"
-msgstr "Copy: {code}"
+msgstr "Salin: {code}"
 
 msgid "dialog_yes"
-msgstr "Yes"
+msgstr "Ya"
 
 msgid "dialog_no"
-msgstr "No"
+msgstr "Tidak"
 
 msgid "hide"
-msgstr "Hide"
+msgstr "Sembunyikan"
 
 msgid "join_discord"
-msgstr "Join our Discord"
+msgstr "Bergabung dengan Discord kami"
 
 msgid "loading_text"
-msgstr "Loading"
+msgstr "Memuat"
 
 msgid "loading_connection_lost"
-msgstr "Connection lost!"
+msgstr "Koneksi terputus!"
 
 msgid "loading_reconnect"
-msgstr "Reconnect"
+msgstr "Sambungkan kembali"
 
 msgid "lobby_filter_only_selected_language"
-msgstr "Hide Games with Different Language"
+msgstr "Sembunyikan Game dengan Bahasa Berbeda"
 
 msgid "lobby_filter_password"
-msgstr "Hide Games with Password"
+msgstr "Sembunyikan Game dengan Kata Sandi"
 
 msgid "lobby_filters"
-msgstr "Filters"
+msgstr "Filter"
 
 msgid "lobby_join"
-msgstr "Join"
+msgstr "Gabung"
 
 msgid "lobby_leave"
-msgstr "Leave"
+msgstr "Keluar"
 
 msgid "lobby_requires_players"
-msgstr "Waiting for more players"
+msgstr "Menunggu pemain lainnya"
 
 msgid "lobby_requires_ready"
-msgstr "Waiting for all players to get ready"
+msgstr "Menunggu semua pemain siap"
 
 msgid "lobby_placeholder_code"
-msgstr "Code: ABC123"
+msgstr "Kode: ABC123"
 
 msgid "lobby_prompt_full"
-msgstr "This game is already full"
+msgstr "Game ini sudah penuh"
 
 msgid "lobby_prompt_password_protected"
-msgstr "Please enter the password"
+msgstr "Silakan masukkan kata sandi"
 
 msgid "lobby_prompt_wrong_code"
-msgstr "The game code you entered is incorrect"
+msgstr "Kode game yang Anda masukkan salah"
 
 msgid "lobby_prompt_kick_player"
-msgstr "Kick {player}"
+msgstr "Keluarkan {player}"
 
 msgid "lobby_ready"
-msgstr "Ready"
+msgstr "Siap"
 
 msgid "lobby_start"
-msgstr "Start"
+msgstr "Mulai"
 
 msgid "lobby_title_game"
-msgstr "Game"
+msgstr "Permainan"
 
 msgid "lobby_unready"
-msgstr "I'm not ready"
+msgstr "Saya belum siap"
 
 msgid "menu_about"
-msgstr "About"
+msgstr "Tentang"
 
 msgid "menu_back"
-msgstr "Back"
+msgstr "Kembali"
 
 msgid "menu_browse"
-msgstr "Find"
+msgstr "Cari"
 
 msgid "menu_competitive"
-msgstr "Competitive"
+msgstr "Kompetitif"
 
 msgid "menu_create"
-msgstr "Create"
+msgstr "Buat"
 
 msgid "menu_prompt_exit"
-msgstr "Are you sure you want to exit?"
+msgstr "Apakah Anda yakin ingin keluar?"
 
 msgid "menu_quit"
-msgstr "Quit"
+msgstr "Keluar"
 
 msgid "menu_options"
-msgstr "Options"
+msgstr "Opsi"
 
 msgid "password_placeholder"
-msgstr "Password"
+msgstr "Kata Sandi"
 
 msgid "prompt_continue"
-msgstr "Continue"
+msgstr "Lanjutkan"
 
 msgid "prompt_enter"
-msgstr "Enter"
+msgstr "Masuk"
 
 msgid "prompt_cancel"
-msgstr "Cancel"
+msgstr "Batal"
 
 msgid "players_max"
-msgstr "Players: {players}"
+msgstr "Pemain: {players}"
 
 msgid "player_greet"
-msgstr "Hi, {player}"
+msgstr "Hai, {player}"
 
 msgid "player_name"
-msgstr "Player"
+msgstr "Pemain"
 
 msgid "settings_disconnect"
-msgstr "Disconnect"
+msgstr "Putuskan Koneksi"
 
 msgid "settings_mode_dark"
-msgstr "Dark Mode"
+msgstr "Mode Gelap"
 
 msgid "settings_mode_light"
-msgstr "Light Mode"
+msgstr "Mode Terang"
 
 msgid "settings_prompt_disconnect"
-msgstr "Are you sure you want to disconnect?"
+msgstr "Apakah Anda yakin ingin memutuskan koneksi?"
 
 msgid "settings_sound"
-msgstr "Sound"
+msgstr "Suara"
 
 msgid "tab_players"
-msgstr "Players"
+msgstr "Pemain"
 
 msgid "title_placeholder"
-msgstr "Game Title"
+msgstr "Judul Permainan"

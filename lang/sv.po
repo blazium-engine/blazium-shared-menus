@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 
-"Language: en\n"
+"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,142 +11,142 @@ msgid "chat_placeholder"
 msgstr "Chat"
 
 msgid "chat_send"
-msgstr "Send"
+msgstr "Skicka"
 
 msgid "code_copy"
-msgstr "Copy: {code}"
+msgstr "Kopiera: {code}"
 
 msgid "dialog_yes"
-msgstr "Yes"
+msgstr "Ja"
 
 msgid "dialog_no"
-msgstr "No"
+msgstr "Nej"
 
 msgid "hide"
-msgstr "Hide"
+msgstr "Dölj"
 
 msgid "join_discord"
-msgstr "Join our Discord"
+msgstr "Gå med i vår Discord"
 
 msgid "loading_text"
-msgstr "Loading"
+msgstr "Laddar"
 
 msgid "loading_connection_lost"
-msgstr "Connection lost!"
+msgstr "Anslutningen bröts!"
 
 msgid "loading_reconnect"
-msgstr "Reconnect"
+msgstr "Återanslut"
 
 msgid "lobby_filter_only_selected_language"
-msgstr "Hide Games with Different Language"
+msgstr "Dölj spel med annat språk"
 
 msgid "lobby_filter_password"
-msgstr "Hide Games with Password"
+msgstr "Dölj spel med lösenord"
 
 msgid "lobby_filters"
-msgstr "Filters"
+msgstr "Filter"
 
 msgid "lobby_join"
-msgstr "Join"
+msgstr "Gå med"
 
 msgid "lobby_leave"
-msgstr "Leave"
+msgstr "Lämna"
 
 msgid "lobby_requires_players"
-msgstr "Waiting for more players"
+msgstr "Väntar på fler spelare"
 
 msgid "lobby_requires_ready"
-msgstr "Waiting for all players to get ready"
+msgstr "Väntar på att alla ska bli redo"
 
 msgid "lobby_placeholder_code"
-msgstr "Code: ABC123"
+msgstr "Kod: ABC123"
 
 msgid "lobby_prompt_full"
-msgstr "This game is already full"
+msgstr "Detta spel är redan fullt"
 
 msgid "lobby_prompt_password_protected"
-msgstr "Please enter the password"
+msgstr "Ange lösenordet"
 
 msgid "lobby_prompt_wrong_code"
-msgstr "The game code you entered is incorrect"
+msgstr "Spelkoden du angav är felaktig"
 
 msgid "lobby_prompt_kick_player"
-msgstr "Kick {player}"
+msgstr "Sparka {player}"
 
 msgid "lobby_ready"
-msgstr "Ready"
+msgstr "Redo"
 
 msgid "lobby_start"
-msgstr "Start"
+msgstr "Starta"
 
 msgid "lobby_title_game"
-msgstr "Game"
+msgstr "Spel"
 
 msgid "lobby_unready"
-msgstr "I'm not ready"
+msgstr "Jag är inte redo"
 
 msgid "menu_about"
-msgstr "About"
+msgstr "Om"
 
 msgid "menu_back"
-msgstr "Back"
+msgstr "Tillbaka"
 
 msgid "menu_browse"
-msgstr "Find"
+msgstr "Hitta"
 
 msgid "menu_competitive"
-msgstr "Competitive"
+msgstr "Tävling"
 
 msgid "menu_create"
-msgstr "Create"
+msgstr "Skapa"
 
 msgid "menu_prompt_exit"
-msgstr "Are you sure you want to exit?"
+msgstr "Är du säker på att du vill avsluta?"
 
 msgid "menu_quit"
-msgstr "Quit"
+msgstr "Avsluta"
 
 msgid "menu_options"
-msgstr "Options"
+msgstr "Alternativ"
 
 msgid "password_placeholder"
-msgstr "Password"
+msgstr "Lösenord"
 
 msgid "prompt_continue"
-msgstr "Continue"
+msgstr "Fortsätt"
 
 msgid "prompt_enter"
-msgstr "Enter"
+msgstr "Ange"
 
 msgid "prompt_cancel"
-msgstr "Cancel"
+msgstr "Avbryt"
 
 msgid "players_max"
-msgstr "Players: {players}"
+msgstr "Spelare: {players}"
 
 msgid "player_greet"
-msgstr "Hi, {player}"
+msgstr "Hej, {player}"
 
 msgid "player_name"
-msgstr "Player"
+msgstr "Spelare"
 
 msgid "settings_disconnect"
-msgstr "Disconnect"
+msgstr "Koppla från"
 
 msgid "settings_mode_dark"
-msgstr "Dark Mode"
+msgstr "Mörkt läge"
 
 msgid "settings_mode_light"
-msgstr "Light Mode"
+msgstr "Ljust läge"
 
 msgid "settings_prompt_disconnect"
-msgstr "Are you sure you want to disconnect?"
+msgstr "Är du säker på att du vill koppla från?"
 
 msgid "settings_sound"
-msgstr "Sound"
+msgstr "Ljud"
 
 msgid "tab_players"
-msgstr "Players"
+msgstr "Spelare"
 
 msgid "title_placeholder"
-msgstr "Game Title"
+msgstr "Speltitel"

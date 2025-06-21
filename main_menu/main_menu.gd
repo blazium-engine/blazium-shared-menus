@@ -3,7 +3,6 @@ extends BlaziumPanel
 
 @export var title_label: Label
 @export var name_label: Label
-@export var game_modes: GameModes
 @export var multiplayer_button: Button
 @export var quit_button: Button
 @export var left_spacer: Control
@@ -29,9 +28,6 @@ func _ready() -> void:
 	resized.connect(_on_resized)
 	_on_resized()
 	title_label.text = ProjectSettings.get("application/config/name")
-	# Load settings options
-	# config = ConfigFile.new()
-	# config.load("user://blazium.cfg")
 
 	GlobalLobbyClient.connected_to_server.connect(_connected_to_server)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
@@ -58,7 +54,7 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 	var peer_name: String = peer.user_data.get("name", "")
 	# If no name
 	if peer_name == "":
-		peer_name = "Player" + str(randi() % 1000)
+		peer_name = tr("player_name") + str(randi() % 1000)
 		var result: LobbyResult = await GlobalLobbyClient.add_peer_user_data({"name": peer_name, "avatar": randi() % 28}).finished
 	name_label.show()
 	name_label.text = tr("player_greet").format({player = peer_name})
@@ -172,20 +168,6 @@ func _on_create_lobby_pressed() -> void:
 		get_tree().change_scene_to_packed(lobby_creator_scene)
 
 
-func _on_button_start_pressed() -> void:
-	GlobalLobbyClient.call_event("competitive_start")
-	click_sound.play()
-	await click_sound.finished
-	var res: ViewLobbyResult = await GlobalLobbyClient.quick_join("Game" + str(randi() % 1000), {"game_mode": "competitive_abunch_hanging"}, ProjectSettings.get_setting("blazium/game/max_players_default")).finished
-	var result: ScriptedLobbyResult = await GlobalLobbyClient.lobby_call("start_game").finished
-	if res.has_error():
-		push_error(res.error)
-	else:
-		await get_tree().process_frame
-		if is_inside_tree():
-			get_tree().change_scene_to_packed(lobby_viewer_scene)
-
-
 func _on_about_button_pressed() -> void:
 	GlobalLobbyClient.call_event("about")
 	click_sound.play()
@@ -207,3 +189,17 @@ func _disconnected_from_server(reason: String):
 	await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(loading_scene)
+
+
+func _on_competitive_button_pressed() -> void:
+	GlobalLobbyClient.call_event("competitive_start")
+	click_sound.play()
+	await click_sound.finished
+	var res: ViewLobbyResult = await GlobalLobbyClient.quick_join(tr("lobby_title_game")  + str(randi() % 1000), {"game_mode": "competitive_abunch_hanging"}, ProjectSettings.get_setting("blazium/game/max_players_default")).finished
+	var result: ScriptedLobbyResult = await GlobalLobbyClient.lobby_call("start_game").finished
+	if res.has_error():
+		push_error(res.error)
+	else:
+		await get_tree().process_frame
+		if is_inside_tree():
+			get_tree().change_scene_to_packed(lobby_viewer_scene)

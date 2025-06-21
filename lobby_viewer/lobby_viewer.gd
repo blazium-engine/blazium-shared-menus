@@ -40,12 +40,9 @@ var peer_to_kick: String
 
 func update_title():
 	lobby_label.text = GlobalLobbyClient.lobby.lobby_name + " " + \
-			tr("lobby_player_count").format({
-				players = GlobalLobbyClient.lobby.players,
-				max_players = GlobalLobbyClient.lobby.max_players
-			})
+		str(GlobalLobbyClient.lobby.players) + "/" + str(GlobalLobbyClient.lobby.max_players)
 	lobby_title_line_edit.text = GlobalLobbyClient.lobby.lobby_name
-	lobby_max_players_label.text = str(GlobalLobbyClient.lobby.max_players)
+	lobby_max_players_label.text = tr("players_max").format({players = GlobalLobbyClient.lobby.max_players})
 
 
 func is_everyone_ready():
@@ -72,30 +69,22 @@ func update_start_button():
 
 func _update_private_lobby_checkbox():
 	private_checkbutton.set_pressed_no_signal(GlobalLobbyClient.lobby.sealed)
-	if GlobalLobbyClient.lobby.sealed:
-		private_checkbutton.text = "hidden_yes"
-	else:
-		private_checkbutton.text = "hidden_no"
 
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	var max_points = GlobalLobbyClient.lobby.tags.get("max_points", 0)
-	#if max_points == 0:
-	#	points_to_win.text = "Points to win: Infinite"
-	#else:
-	#	points_to_win.text = "Points to win: " + str(max_points)
 	_update_private_lobby_checkbox()
 	if GlobalLobbyClient.lobby.id == "":
 		# Got here by mistake, go back
 		_disconnected_from_server("")
+	lobby_id_button.text = tr("code_copy").format({code = "••••••••"})
 	update_ready_button(GlobalLobbyClient.peer.ready)
 	GlobalLobbyClient.peer_joined.connect(_peer_joined)
 	GlobalLobbyClient.peer_left.connect(_peer_left)
 	GlobalLobbyClient.lobby_left.connect(_lobby_left)
-	GlobalLobbyClient.lobby_titled.connect(update_title)
-	GlobalLobbyClient.lobby_resized.connect(update_title)
+	GlobalLobbyClient.lobby_titled.connect(_lobby_titled)
+	GlobalLobbyClient.lobby_resized.connect(_lobby_resized)
 	GlobalLobbyClient.lobby_sealed.connect(_lobby_sealed)
 	GlobalLobbyClient.received_lobby_data.connect(_received_lobby_data)
 	GlobalLobbyClient.peer_ready.connect(_peer_ready)
@@ -129,6 +118,12 @@ func _add_peer_container(peer: LobbyPeer):
 	update_title()
 	update_start_button()
 
+
+func _lobby_resized(max_peers: int):
+	update_title()
+
+func _lobby_titled(title: String):
+	update_title()
 
 func _peer_joined(peer: LobbyPeer):
 	_add_peer_container(peer)
@@ -250,7 +245,7 @@ func _on_reveal_lobby_id_pressed() -> void:
 	if reveal_lobby_id_button.button_pressed:
 		lobby_id_button.text = tr("code_copy").format({code = GlobalLobbyClient.lobby.id})
 	else:
-		lobby_id_button.text = "code_copy_hidden"
+		lobby_id_button.text = tr("code_copy").format({code = "••••••••"})
 
 
 func _play_click_sound() -> void:
@@ -333,3 +328,15 @@ func _on_title_text_changed(new_text: String) -> void:
 
 func _on_sealed_toggled(toggled_on: bool) -> void:
 	await GlobalLobbyClient.set_lobby_sealed(toggled_on).finished
+
+
+func _on_option_button_item_selected(index: int) -> void:
+	match index:
+		0:
+			GlobalLobbyClient.add_lobby_tags({"game_mode": "normal_mode"})
+		1:
+			GlobalLobbyClient.add_lobby_tags({"game_mode": "normal_abunch_hanging"})
+		2:
+			GlobalLobbyClient.add_lobby_tags({"game_mode": "normal_all_or_nothing"})
+		3:
+			GlobalLobbyClient.add_lobby_tags({"game_mode": "normal_last_wrong_dies"})

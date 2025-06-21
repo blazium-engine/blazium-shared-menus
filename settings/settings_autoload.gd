@@ -9,17 +9,13 @@ func _ready() -> void:
 	
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), config.get_value("Settings", "mute", false))
 	
-	var system_locale: String = TranslationServer.get_locale().left(2)
+	var system_locale: String = TranslationServer.get_locale().split("_")[0]
 	var user_locale: String = config.get_value("Settings", "lang", "null")
-	var locale_changed: bool = false
 	if user_locale == "null":
 		user_locale = system_locale
-		locale_changed = true
 		if user_locale.length() > 2:
-			user_locale == system_locale
+			user_locale = system_locale
 	if system_locale != user_locale:
-		locale_changed = true
-	if locale_changed:
 		TranslationServer.set_locale(user_locale)
 		config.set_value("Settings", "lang", user_locale)
 		config.save("user://blazium.cfg")

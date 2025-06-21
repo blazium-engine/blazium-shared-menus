@@ -47,9 +47,9 @@ func _size_changed():
 	var max_screen_size_x = 4000.0
 	var min_screen_size_y = 2000.0
 	var max_screen_size_y = 3000.0
-	var min_font_x = 32.0
+	var min_font_x = 36.0
 	var max_font_x = 58.0
-	var min_font_y = 32.0
+	var min_font_y = 36.0
 	var max_font_y = 72.0
 	var clamped_dim_x = clamp(window_size.x, min_screen_size_x, max_screen_size_x)
 	var clamped_dim_y = clamp(window_size.y, min_screen_size_y, max_screen_size_y)

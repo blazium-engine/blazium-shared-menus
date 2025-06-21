@@ -15,13 +15,16 @@ msgstr ""
 msgid "code_copy"
 msgstr ""
 
-msgid "code_copy_hidden"
-msgstr ""
-
 msgid "code_hide"
 msgstr ""
 
 msgid "code_reveal"
+msgstr ""
+
+msgid "dialog_yes"
+msgstr ""
+
+msgid "dialog_no"
 msgstr ""
 
 msgid "header_create_lobby"
@@ -45,7 +48,19 @@ msgstr ""
 msgid "join_discord"
 msgstr ""
 
+msgid "loading_text"
+msgstr ""
+
+msgid "loading_connection_lost"
+msgstr ""
+
+msgid "loading_reconnect"
+msgstr ""
+
 msgid "lobby_create"
+msgstr ""
+
+msgid "lobby_filter_only_selected_language"
 msgstr ""
 
 msgid "lobby_filter_full"
@@ -81,7 +96,7 @@ msgstr ""
 msgid "lobby_prompt_full"
 msgstr ""
 
-msgid "lobby_prompt_kick"
+msgid "lobby_prompt_password_protected"
 msgstr ""
 
 msgid "lobby_prompt_wrong_code"
@@ -94,6 +109,9 @@ msgid "lobby_ready"
 msgstr ""
 
 msgid "lobby_start"
+msgstr ""
+
+msgid "lobby_title_game"
 msgstr ""
 
 msgid "lobby_unready"
@@ -123,13 +141,22 @@ msgstr ""
 msgid "menu_settings"
 msgstr ""
 
-msgid "password_label"
-msgstr ""
-
 msgid "password_placeholder"
 msgstr ""
 
+msgid "prompt_continue"
+msgstr ""
+
+msgid "prompt_enter"
+msgstr ""
+
+msgid "prompt_cancel"
+msgstr ""
+
 msgid "player_greet"
+msgstr ""
+
+msgid "player_name"
 msgstr ""
 
 msgid "players_label"
@@ -157,9 +184,6 @@ msgid "tab_players"
 msgstr ""
 
 msgid "tab_settings"
-msgstr ""
-
-msgid "title_label"
 msgstr ""
 
 msgid "title_placeholder"

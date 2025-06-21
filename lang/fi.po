@@ -1,152 +1,152 @@
 msgid ""
 msgstr ""
 
-"Language: en\n"
+"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "chat_placeholder"
-msgstr "Chat"
+msgstr "Keskustelu"
 
 msgid "chat_send"
-msgstr "Send"
+msgstr "Lähetä"
 
 msgid "code_copy"
-msgstr "Copy: {code}"
+msgstr "Kopioi: {code}"
 
 msgid "dialog_yes"
-msgstr "Yes"
+msgstr "Kyllä"
 
 msgid "dialog_no"
-msgstr "No"
+msgstr "Ei"
 
 msgid "hide"
-msgstr "Hide"
+msgstr "Piilota"
 
 msgid "join_discord"
-msgstr "Join our Discord"
+msgstr "Liity Discordiin"
 
 msgid "loading_text"
-msgstr "Loading"
+msgstr "Ladataan"
 
 msgid "loading_connection_lost"
-msgstr "Connection lost!"
+msgstr "Yhteys katkesi!"
 
 msgid "loading_reconnect"
-msgstr "Reconnect"
+msgstr "Yhdistä uudelleen"
 
 msgid "lobby_filter_only_selected_language"
-msgstr "Hide Games with Different Language"
+msgstr "Piilota pelit eri kielellä"
 
 msgid "lobby_filter_password"
-msgstr "Hide Games with Password"
+msgstr "Piilota salasanalla suojatut pelit"
 
 msgid "lobby_filters"
-msgstr "Filters"
+msgstr "Suodattimet"
 
 msgid "lobby_join"
-msgstr "Join"
+msgstr "Liity"
 
 msgid "lobby_leave"
-msgstr "Leave"
+msgstr "Poistu"
 
 msgid "lobby_requires_players"
-msgstr "Waiting for more players"
+msgstr "Odotetaan lisää pelaajia"
 
 msgid "lobby_requires_ready"
-msgstr "Waiting for all players to get ready"
+msgstr "Odotetaan kaikkien olevan valmiita"
 
 msgid "lobby_placeholder_code"
-msgstr "Code: ABC123"
+msgstr "Koodi: ABC123"
 
 msgid "lobby_prompt_full"
-msgstr "This game is already full"
+msgstr "Tämä peli on jo täynnä"
 
 msgid "lobby_prompt_password_protected"
-msgstr "Please enter the password"
+msgstr "Anna salasana"
 
 msgid "lobby_prompt_wrong_code"
-msgstr "The game code you entered is incorrect"
+msgstr "Antamasi pelin koodi on virheellinen"
 
 msgid "lobby_prompt_kick_player"
-msgstr "Kick {player}"
+msgstr "Poista pelaaja {player}"
 
 msgid "lobby_ready"
-msgstr "Ready"
+msgstr "Valmis"
 
 msgid "lobby_start"
-msgstr "Start"
+msgstr "Aloita"
 
 msgid "lobby_title_game"
-msgstr "Game"
+msgstr "Peli"
 
 msgid "lobby_unready"
-msgstr "I'm not ready"
+msgstr "En ole valmis"
 
 msgid "menu_about"
-msgstr "About"
+msgstr "Tietoja"
 
 msgid "menu_back"
-msgstr "Back"
+msgstr "Takaisin"
 
 msgid "menu_browse"
-msgstr "Find"
+msgstr "Etsi"
 
 msgid "menu_competitive"
-msgstr "Competitive"
+msgstr "Kilpailullinen"
 
 msgid "menu_create"
-msgstr "Create"
+msgstr "Luo"
 
 msgid "menu_prompt_exit"
-msgstr "Are you sure you want to exit?"
+msgstr "Haluatko varmasti poistua?"
 
 msgid "menu_quit"
-msgstr "Quit"
+msgstr "Lopeta"
 
 msgid "menu_options"
-msgstr "Options"
+msgstr "Asetukset"
 
 msgid "password_placeholder"
-msgstr "Password"
+msgstr "Salasana"
 
 msgid "prompt_continue"
-msgstr "Continue"
+msgstr "Jatka"
 
 msgid "prompt_enter"
-msgstr "Enter"
+msgstr "Syötä"
 
 msgid "prompt_cancel"
-msgstr "Cancel"
+msgstr "Peruuta"
 
 msgid "players_max"
-msgstr "Players: {players}"
+msgstr "Pelaajia: {players}"
 
 msgid "player_greet"
-msgstr "Hi, {player}"
+msgstr "Hei, {player}"
 
 msgid "player_name"
-msgstr "Player"
+msgstr "Pelaaja"
 
 msgid "settings_disconnect"
-msgstr "Disconnect"
+msgstr "Katkaise yhteys"
 
 msgid "settings_mode_dark"
-msgstr "Dark Mode"
+msgstr "Tumma tila"
 
 msgid "settings_mode_light"
-msgstr "Light Mode"
+msgstr "Vaalea tila"
 
 msgid "settings_prompt_disconnect"
-msgstr "Are you sure you want to disconnect?"
+msgstr "Haluatko varmasti katkaista yhteyden?"
 
 msgid "settings_sound"
-msgstr "Sound"
+msgstr "Ääni"
 
 msgid "tab_players"
-msgstr "Players"
+msgstr "Pelaajat"
 
 msgid "title_placeholder"
-msgstr "Game Title"
+msgstr "Pelinnimi"

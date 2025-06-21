@@ -75,7 +75,7 @@ theme_type_variation = &"CustomPopupVBox"
 layout_mode = 2
 theme_type_variation = &"HeaderLargeFit"
 theme_override_fonts/font = SubResource("FontVariation_fp7sa")
-text = "header_credits"
+text = "menu_about"
 horizontal_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]

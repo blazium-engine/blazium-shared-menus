@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,142 +11,142 @@ msgid "chat_placeholder"
 msgstr "Chat"
 
 msgid "chat_send"
-msgstr "Send"
+msgstr "Odeslat"
 
 msgid "code_copy"
-msgstr "Copy: {code}"
+msgstr "Kopírovat: {code}"
 
 msgid "dialog_yes"
-msgstr "Yes"
+msgstr "Ano"
 
 msgid "dialog_no"
-msgstr "No"
+msgstr "Ne"
 
 msgid "hide"
-msgstr "Hide"
+msgstr "Skrýt"
 
 msgid "join_discord"
-msgstr "Join our Discord"
+msgstr "Připojit se na Discord"
 
 msgid "loading_text"
-msgstr "Loading"
+msgstr "Načítání"
 
 msgid "loading_connection_lost"
-msgstr "Connection lost!"
+msgstr "Připojení ztraceno!"
 
 msgid "loading_reconnect"
-msgstr "Reconnect"
+msgstr "Znovu připojit"
 
 msgid "lobby_filter_only_selected_language"
-msgstr "Hide Games with Different Language"
+msgstr "Skrýt hry s jiným jazykem"
 
 msgid "lobby_filter_password"
-msgstr "Hide Games with Password"
+msgstr "Skrýt hry s heslem"
 
 msgid "lobby_filters"
-msgstr "Filters"
+msgstr "Filtry"
 
 msgid "lobby_join"
-msgstr "Join"
+msgstr "Připojit se"
 
 msgid "lobby_leave"
-msgstr "Leave"
+msgstr "Odejít"
 
 msgid "lobby_requires_players"
-msgstr "Waiting for more players"
+msgstr "Čekání na další hráče"
 
 msgid "lobby_requires_ready"
-msgstr "Waiting for all players to get ready"
+msgstr "Čekání, až budou všichni připraveni"
 
 msgid "lobby_placeholder_code"
-msgstr "Code: ABC123"
+msgstr "Kód: ABC123"
 
 msgid "lobby_prompt_full"
-msgstr "This game is already full"
+msgstr "Tato hra je již plná"
 
 msgid "lobby_prompt_password_protected"
-msgstr "Please enter the password"
+msgstr "Zadejte prosím heslo"
 
 msgid "lobby_prompt_wrong_code"
-msgstr "The game code you entered is incorrect"
+msgstr "Zadaný kód hry je nesprávný"
 
 msgid "lobby_prompt_kick_player"
-msgstr "Kick {player}"
+msgstr "Vyhodit {player}"
 
 msgid "lobby_ready"
-msgstr "Ready"
+msgstr "Připraven"
 
 msgid "lobby_start"
 msgstr "Start"
 
 msgid "lobby_title_game"
-msgstr "Game"
+msgstr "Hra"
 
 msgid "lobby_unready"
-msgstr "I'm not ready"
+msgstr "Nejsem připraven"
 
 msgid "menu_about"
-msgstr "About"
+msgstr "O aplikaci"
 
 msgid "menu_back"
-msgstr "Back"
+msgstr "Zpět"
 
 msgid "menu_browse"
-msgstr "Find"
+msgstr "Najít"
 
 msgid "menu_competitive"
-msgstr "Competitive"
+msgstr "Soutěžní"
 
 msgid "menu_create"
-msgstr "Create"
+msgstr "Vytvořit"
 
 msgid "menu_prompt_exit"
-msgstr "Are you sure you want to exit?"
+msgstr "Opravdu chcete ukončit?"
 
 msgid "menu_quit"
-msgstr "Quit"
+msgstr "Ukončit"
 
 msgid "menu_options"
-msgstr "Options"
+msgstr "Možnosti"
 
 msgid "password_placeholder"
-msgstr "Password"
+msgstr "Heslo"
 
 msgid "prompt_continue"
-msgstr "Continue"
+msgstr "Pokračovat"
 
 msgid "prompt_enter"
-msgstr "Enter"
+msgstr "Potvrdit"
 
 msgid "prompt_cancel"
-msgstr "Cancel"
+msgstr "Zrušit"
 
 msgid "players_max"
-msgstr "Players: {players}"
+msgstr "Hráči: {players}"
 
 msgid "player_greet"
-msgstr "Hi, {player}"
+msgstr "Ahoj, {player}"
 
 msgid "player_name"
-msgstr "Player"
+msgstr "Hráč"
 
 msgid "settings_disconnect"
-msgstr "Disconnect"
+msgstr "Odpojit se"
 
 msgid "settings_mode_dark"
-msgstr "Dark Mode"
+msgstr "Tmavý režim"
 
 msgid "settings_mode_light"
-msgstr "Light Mode"
+msgstr "Světlý režim"
 
 msgid "settings_prompt_disconnect"
-msgstr "Are you sure you want to disconnect?"
+msgstr "Opravdu se chcete odpojit?"
 
 msgid "settings_sound"
-msgstr "Sound"
+msgstr "Zvuk"
 
 msgid "tab_players"
-msgstr "Players"
+msgstr "Hráči"
 
 msgid "title_placeholder"
-msgstr "Game Title"
+msgstr "Název hry"

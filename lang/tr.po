@@ -1,152 +1,152 @@
 msgid ""
 msgstr ""
 
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "chat_placeholder"
-msgstr "Chat"
+msgstr "Sohbet"
 
 msgid "chat_send"
-msgstr "Send"
+msgstr "Gönder"
 
 msgid "code_copy"
-msgstr "Copy: {code}"
+msgstr "Kopyala: {code}"
 
 msgid "dialog_yes"
-msgstr "Yes"
+msgstr "Evet"
 
 msgid "dialog_no"
-msgstr "No"
+msgstr "Hayır"
 
 msgid "hide"
-msgstr "Hide"
+msgstr "Gizle"
 
 msgid "join_discord"
-msgstr "Join our Discord"
+msgstr "Discord Sunucumuza Katıl"
 
 msgid "loading_text"
-msgstr "Loading"
+msgstr "Yükleniyor"
 
 msgid "loading_connection_lost"
-msgstr "Connection lost!"
+msgstr "Bağlantı kaybedildi!"
 
 msgid "loading_reconnect"
-msgstr "Reconnect"
+msgstr "Yeniden bağlan"
 
 msgid "lobby_filter_only_selected_language"
-msgstr "Hide Games with Different Language"
+msgstr "Farklı Dildeki Oyunları Gizle"
 
 msgid "lobby_filter_password"
-msgstr "Hide Games with Password"
+msgstr "Şifreli Oyunları Gizle"
 
 msgid "lobby_filters"
-msgstr "Filters"
+msgstr "Filtreler"
 
 msgid "lobby_join"
-msgstr "Join"
+msgstr "Katıl"
 
 msgid "lobby_leave"
-msgstr "Leave"
+msgstr "Ayrıl"
 
 msgid "lobby_requires_players"
-msgstr "Waiting for more players"
+msgstr "Daha fazla oyuncu bekleniyor"
 
 msgid "lobby_requires_ready"
-msgstr "Waiting for all players to get ready"
+msgstr "Tüm oyuncuların hazır olması bekleniyor"
 
 msgid "lobby_placeholder_code"
-msgstr "Code: ABC123"
+msgstr "Kod: ABC123"
 
 msgid "lobby_prompt_full"
-msgstr "This game is already full"
+msgstr "Bu oyun zaten dolu"
 
 msgid "lobby_prompt_password_protected"
-msgstr "Please enter the password"
+msgstr "Lütfen şifreyi girin"
 
 msgid "lobby_prompt_wrong_code"
-msgstr "The game code you entered is incorrect"
+msgstr "Girdiğiniz oyun kodu yanlış"
 
 msgid "lobby_prompt_kick_player"
-msgstr "Kick {player}"
+msgstr "{player} oyuncusunu at"
 
 msgid "lobby_ready"
-msgstr "Ready"
+msgstr "Hazırım"
 
 msgid "lobby_start"
-msgstr "Start"
+msgstr "Başlat"
 
 msgid "lobby_title_game"
-msgstr "Game"
+msgstr "Oyun"
 
 msgid "lobby_unready"
-msgstr "I'm not ready"
+msgstr "Hazır değilim"
 
 msgid "menu_about"
-msgstr "About"
+msgstr "Hakkında"
 
 msgid "menu_back"
-msgstr "Back"
+msgstr "Geri"
 
 msgid "menu_browse"
-msgstr "Find"
+msgstr "Bul"
 
 msgid "menu_competitive"
-msgstr "Competitive"
+msgstr "Rekabetçi"
 
 msgid "menu_create"
-msgstr "Create"
+msgstr "Oluştur"
 
 msgid "menu_prompt_exit"
-msgstr "Are you sure you want to exit?"
+msgstr "Çıkmak istediğinizden emin misiniz?"
 
 msgid "menu_quit"
-msgstr "Quit"
+msgstr "Çık"
 
 msgid "menu_options"
-msgstr "Options"
+msgstr "Ayarlar"
 
 msgid "password_placeholder"
-msgstr "Password"
+msgstr "Şifre"
 
 msgid "prompt_continue"
-msgstr "Continue"
+msgstr "Devam Et"
 
 msgid "prompt_enter"
-msgstr "Enter"
+msgstr "Gir"
 
 msgid "prompt_cancel"
-msgstr "Cancel"
+msgstr "İptal"
 
 msgid "players_max"
-msgstr "Players: {players}"
+msgstr "Oyuncular: {players}"
 
 msgid "player_greet"
-msgstr "Hi, {player}"
+msgstr "Merhaba, {player}"
 
 msgid "player_name"
-msgstr "Player"
+msgstr "Oyuncu"
 
 msgid "settings_disconnect"
-msgstr "Disconnect"
+msgstr "Bağlantıyı Kes"
 
 msgid "settings_mode_dark"
-msgstr "Dark Mode"
+msgstr "Karanlık Mod"
 
 msgid "settings_mode_light"
-msgstr "Light Mode"
+msgstr "Aydınlık Mod"
 
 msgid "settings_prompt_disconnect"
-msgstr "Are you sure you want to disconnect?"
+msgstr "Bağlantıyı kesmek istediğinizden emin misiniz?"
 
 msgid "settings_sound"
-msgstr "Sound"
+msgstr "Ses"
 
 msgid "tab_players"
-msgstr "Players"
+msgstr "Oyuncular"
 
 msgid "title_placeholder"
-msgstr "Game Title"
+msgstr "Oyun Başlığı"

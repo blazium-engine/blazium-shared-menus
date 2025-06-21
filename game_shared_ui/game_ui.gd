@@ -1,8 +1,6 @@
 class_name GameUI
 extends BlaziumControl
 
-@export var private_checkbutton: CheckBox
-
 @export var player_list: HBoxContainer
 @export var user_element_scene: PackedScene
 @export var chat: ChatContainer
@@ -26,10 +24,6 @@ var kick_popup: CustomDialog
 func _ready() -> void:
 	game_start_sfx.play()
 
-	#private_checkbutton.visible = GlobalLobbyClient.is_host()
-	private_checkbutton.set_pressed_no_signal(GlobalLobbyClient.lobby.sealed)
-
-	GlobalLobbyClient.lobby_sealed.connect(_lobby_sealed)
 	GlobalLobbyClient.lobby_left.connect(_lobby_left)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	# Player list
@@ -37,14 +31,14 @@ func _ready() -> void:
 	GlobalLobbyClient.peer_left.connect(_peer_left)
 	load_peers(GlobalLobbyClient.peers)
 
-	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
+	exit_popup = CustomDialog.new("menu_prompt_exit")
 	exit_popup.name = "ExitPopup"
 	exit_popup.cancelled.connect(_on_exit_popup_cancelled)
 	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
 	exit_popup.hide()
 	get_tree().current_scene.get_child(0).add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)
 
-	kick_popup = CustomDialog.new("Kick Player?")
+	kick_popup = CustomDialog.new("lobby_prompt_kick_player")
 	kick_popup.name = "KickPopup"
 	kick_popup.cancelled.connect(_on_kick_popup_cancelled)
 	kick_popup.confirmed.connect(_on_kick_popup_confirm)
@@ -52,10 +46,6 @@ func _ready() -> void:
 	get_tree().current_scene.get_child(0).add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
 
 	_set_fallback_focus(chat.chat_text)
-
-func _lobby_sealed(sealed: bool):
-	private_checkbutton.set_pressed_no_signal(sealed)
-
 
 func _lobby_left(_kicked: bool):
 	await get_tree().process_frame
@@ -71,7 +61,7 @@ func kick_peer(peer: LobbyPeer) -> void:
 	if peer.id == GlobalLobbyClient.peer.id:
 		return
 	peer_to_kick = peer.id
-	kick_popup.text = "Kick %s?" % peer.user_data.get("name", "")
+	kick_popup.text = tr("lobby_prompt_kick_player").format({player = peer.user_data.get("name", "")})
 	_update_last_focus()
 	kick_popup.show()
 
@@ -111,11 +101,6 @@ func _on_exit_popup_confirmed() -> void:
 
 func _play_click_sound() -> void:
 	click_sfx.play()
-
-
-func _on_private_toggled(toggled_on: bool) -> void:
-	click_sfx.play()
-	await GlobalLobbyClient.set_lobby_sealed(toggled_on).finished
 
 
 func _on_kick_popup_cancelled() -> void:

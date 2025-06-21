@@ -71,7 +71,7 @@ layout_mode = 2
 layout_mode = 2
 theme_type_variation = &"HeaderLargeFit"
 theme_override_fonts/font = SubResource("FontVariation_8hklr")
-text = "header_lobbies"
+text = "menu_browse"
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
@@ -92,7 +92,7 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-text = "lobby_join_code"
+text = "lobby_join"
 expand_text = false
 icon_alignment = 1
 script = ExtResource("5_ube8s")
@@ -120,22 +120,24 @@ theme_override_constants/separation = 8
 [node name="FilterContainer" type="FoldableContainer" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer" node_paths=PackedStringArray("expand_focus_target")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-folded = true
 text = "lobby_filters"
 title_position = 1
 script = ExtResource("4_8hklr")
 expand_focus_target = NodePath("Filters/HidePrivate")
 
 [node name="Filters" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer"]
-visible = false
 layout_mode = 2
 
-[node name="HideFull" type="CheckBox" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters"]
+[node name="HideOtherLang" type="CheckBox" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters"]
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_bottom = NodePath("..")
 mouse_default_cursor_shape = 2
-text = "lobby_filter_full"
+button_pressed = true
+text = "lobby_filter_only_selected_language"
 alignment = 1
+autowrap_mode = 3
 
 [node name="HidePrivate" type="CheckBox" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters"]
 custom_minimum_size = Vector2(220, 0)
@@ -145,6 +147,7 @@ focus_neighbor_bottom = NodePath("../..")
 mouse_default_cursor_shape = 2
 text = "lobby_filter_password"
 alignment = 1
+autowrap_mode = 3
 
 [node name="Back" type="Button" parent="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
@@ -165,6 +168,6 @@ size_flags_stretch_ratio = 0.5
 mouse_filter = 2
 
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/JoinLobby" to="." method="_on_join_lobby_pressed"]
-[connection signal="pressed" from="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters/HideFull" to="." method="_on_hide_full_pressed"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters/HideOtherLang" to="." method="_on_hide_other_lang_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/FilterContainer/Filters/HidePrivate" to="." method="_on_hide_private_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/PanelContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
