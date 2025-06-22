@@ -17,7 +17,7 @@ corner_radius_top_right = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dm10q"]
 
-[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "ready_button", "start_button", "leave_button", "lobby_label", "lobby_max_players_label", "lobby_title_line_edit", "lobby_password_line_edit", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "click_sound", "private_checkbutton", "password_line_edit", "max_players_label", "title_label", "increment_button", "decrement_button")]
+[node name="LobbyViewer" type="PanelContainer" node_paths=PackedStringArray("lobby_grid", "ready_button", "start_button", "leave_button", "lobby_label", "lobby_max_players_label", "lobby_title_line_edit", "lobby_password_line_edit", "lobby_id_button", "reveal_lobby_id_button", "left_spacer", "right_spacer", "click_sound", "private_checkbutton", "password_line_edit", "max_players_label", "title_label", "increment_button", "decrement_button", "mode_options")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -45,6 +45,7 @@ max_players_label = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/Ta
 title_label = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/menu_options/BoxContainer/SettingVbox/HBoxContainerPrivacy2/Title")
 increment_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/menu_options/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control/ButtonIncrement")
 decrement_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/menu_options/BoxContainer/VBoxContainer/HBoxContainerPlayers/Control/ButtonDecrement")
+mode_options = NodePath("BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/menu_options/BoxContainer/HBoxContainer/OptionButton")
 metadata/_edit_lock_ = true
 
 [node name="Click1" type="AudioStreamPlayer" parent="."]
@@ -127,7 +128,6 @@ alignment = 1
 
 [node name="HBoxContainerChat" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer/tab_players/VBoxContainer" instance=ExtResource("3_jpwet")]
 layout_mode = 2
-size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
 [node name="menu_options" type="PanelContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer"]

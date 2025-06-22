@@ -24,6 +24,8 @@ extends BlaziumPanel
 @export var increment_button: Button
 @export var decrement_button: Button
 
+@export var mode_options: OptionButton
+
 var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 var lobby_browser_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
@@ -88,9 +90,11 @@ func _ready() -> void:
 	GlobalLobbyClient.lobby_sealed.connect(_lobby_sealed)
 	GlobalLobbyClient.received_lobby_data.connect(_received_lobby_data)
 	GlobalLobbyClient.peer_ready.connect(_peer_ready)
+	GlobalLobbyClient.lobby_tagged.connect(_lobby_tagged)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	if not GlobalLobbyClient.is_host():
 		start_button.hide()
+		mode_options.disabled = true
 		lobby_title_line_edit.editable = false
 		lobby_password_line_edit.editable = false
 		private_checkbutton.disabled = true
@@ -118,6 +122,16 @@ func _add_peer_container(peer: LobbyPeer):
 	update_title()
 	update_start_button()
 
+func _lobby_tagged(tags: Dictionary):
+	match tags.get("game_mode", "normal_mode"):
+		"normal_mode":
+			mode_options.selected = 0
+		"normal_abunch_hanging":
+			mode_options.selected = 1
+		"normal_all_or_nothing":
+			mode_options.selected = 2
+		"normal_last_wrong_dies":
+			mode_options.selected = 3
 
 func _lobby_resized(max_peers: int):
 	update_title()

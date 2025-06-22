@@ -46,7 +46,7 @@ func _peer_reconnected(peer: LobbyPeer):
 
 func _received_lobby_data(data: Dictionary):
 	# Host's turn
-	if data["game_state"] == "started":
+	if data["game_state"] != "playing":
 		if data.get("dealer", "") == peer_info.id:
 			theme_type_variation = "SelectedPanel"
 		else:

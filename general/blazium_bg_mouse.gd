@@ -10,6 +10,7 @@ var click_times := []
 
 func _ready():
 	ThemeDB.font_color_changed.connect(_select_colors)
+	GlobalLobbyClient.lobby_notified.connect(_lobby_notified)
 	_select_colors()
 	click_positions.resize(MAX_RIPPLES)
 	click_times.resize(MAX_RIPPLES)
@@ -17,6 +18,9 @@ func _ready():
 		click_positions[i] = Vector2(-1000, -1000) # Offscreen
 		click_times[i] = 0.0
 	update_shader_params()
+
+func _lobby_notified(data: Dictionary):
+	add_ripple(Vector2(data["pos_x"], data["pos_y"]))
 
 func _select_colors():
 	var color = ThemeDB.get_default_theme().get_color("font_color", "Colors")
@@ -43,7 +47,10 @@ func _process(delta):
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		var local_pos = get_local_mouse_position()
-		add_ripple(local_pos)
+		if GlobalLobbyClient.lobby.id != "":
+			GlobalLobbyClient.lobby_call("ripple", [local_pos.x, local_pos.y])
+		else:
+			add_ripple(local_pos)
 
 func add_ripple(pos: Vector2):
 	if !sound.playing:
