@@ -8,6 +8,7 @@ extends BlaziumPanel
 @export var left_spacer: Control
 @export var right_spacer: Control
 @export var click_sound: AudioStreamPlayer
+@export var player: HangmanPlayer
 
 var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 var lobby_browser_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
@@ -39,6 +40,10 @@ func _ready() -> void:
 	else:
 		_disconnected_from_server("")
 	quit_button.visible = not os_manages_quit
+	config = ConfigFile.new()
+	config.load("user://blazium.cfg")
+	var hair_color = config.get_value("Settings", "hair_color", "f3bc77")
+	player.character.hair_color = Color(hair_color)
 	#var game_mode = config.get_value("Settings", "game_mode", "normal_mode")
 	#game_modes.set_selected_game_mode(game_mode)
 

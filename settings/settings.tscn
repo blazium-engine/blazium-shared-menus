@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://8r4dcxm66m3j"]
+[gd_scene load_steps=15 format=3 uid="uid://8r4dcxm66m3j"]
 
 [ext_resource type="Script" uid="uid://dqc3ubrnmgw1b" path="res://addons/blazium_shared_menus/settings/settings.gd" id="1_qnsfk"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_46h8p"]
@@ -17,6 +17,12 @@ variation_opentype = {
 2003072104: 100,
 2003265652: 600
 }
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vmsml"]
+resource_name = "hair_group"
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_rcusp"]
+resource_name = "body_group"
 
 [node name="Settings" type="PanelContainer" node_paths=PackedStringArray("disconnect_button", "left_spacer", "right_spacer", "prev_avatar", "avatar", "next_avatar", "click_sound", "mute_checkbutton", "theme_mode")]
 anchors_preset = 15
@@ -96,6 +102,7 @@ size_flags_horizontal = 3
 theme_type_variation = &"CustomPopupVBox"
 
 [node name="Avatars" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("prev_avatar", "cur_avatar", "next_avatar")]
+layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 24
@@ -182,6 +189,469 @@ unpressed_text = "settings_mode_dark"
 layout_mode = 2
 script = ExtResource("9_hybew")
 
+[node name="Colors" type="TabContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"CustomPopupVBox"
+current_tab = 0
+
+[node name="Hair" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+metadata/_tab_index = 0
+
+[node name="Row1" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Black" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair/Row1"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_vmsml")
+color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[node name="Brown" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair/Row1"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmsml")
+color = Color(0.419608, 0.266667, 0.137255, 1)
+
+[node name="Blonde" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair/Row1"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmsml")
+color = Color(0.843137, 0.72549, 0.356863, 1)
+
+[node name="Row2" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Red" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair/Row2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmsml")
+color = Color(0.639216, 0.243137, 0.180392, 1)
+
+[node name="Gray" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair/Row2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmsml")
+color = Color(0.705882, 0.705882, 0.705882, 1)
+
+[node name="White" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair/Row2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmsml")
+color = Color(0.94902, 0.94902, 0.94902, 1)
+
+[node name="Body" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors"]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+metadata/_tab_index = 1
+
+[node name="Row1" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Body"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Light" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Body/Row1"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.94902, 0.839216, 0.796078, 1)
+
+[node name="Fair" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Body/Row1"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.909804, 0.745098, 0.67451, 1)
+
+[node name="Medium" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Body/Row1"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.776471, 0.52549, 0.258824, 1)
+
+[node name="Row2" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Body"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Olive" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Body/Row2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.662745, 0.454902, 0.286275, 1)
+
+[node name="Brown" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Body/Row2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.552941, 0.333333, 0.141176, 1)
+
+[node name="Dark" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Body/Row2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.294118, 0.180392, 0.12549, 1)
+
+[node name="Clothes" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors"]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+metadata/_tab_index = 2
+
+[node name="Row1" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -5
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_right = -5
+theme_override_constants/margin_bottom = -5
+
+[node name="Normal" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.772549, 0.686275, 0.882353, 1)
+
+[node name="VBoxContainer" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/MarginContainer2/Normal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Light" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/MarginContainer2/Normal/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.34902, 0.486275, 0.796078, 1)
+
+[node name="Fair" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/MarginContainer2/Normal/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.772549, 0.686275, 0.882353, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -5
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_right = -5
+theme_override_constants/margin_bottom = -5
+
+[node name="Normal" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.772549, 0.686275, 0.882353, 1)
+
+[node name="VBoxContainer" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/MarginContainer/Normal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Light" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/MarginContainer/Normal/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.34902, 0.486275, 0.796078, 1)
+
+[node name="Fair" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/MarginContainer/Normal/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.772549, 0.686275, 0.882353, 1)
+
+[node name="Pogr" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0, 0.866667, 0.866667, 1)
+
+[node name="VBoxContainer" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/Pogr"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Light" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/Pogr/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0, 0.866667, 0.866667, 1)
+
+[node name="Fair" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/Pogr/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(1, 0.611765, 0.25098, 1)
+
+[node name="Enjoyed" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(1, 0.85098, 0, 1)
+
+[node name="VBoxContainer" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/Enjoyed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Light" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/Enjoyed/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(1, 0.847059, 0, 1)
+
+[node name="Fair" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/Enjoyed/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.960784, 0.690196, 0.254902, 1)
+
+[node name="X" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="VBoxContainer" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/X"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Light" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/X/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="Fair" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row1/HBoxContainer/X/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[node name="Row2" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Blazium" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.839216, 0.160784, 0.160784, 1)
+
+[node name="VBoxContainer" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2/Blazium"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Light" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2/Blazium/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.839216, 0.160784, 0.160784, 1)
+
+[node name="Fair" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2/Blazium/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(1, 0.419608, 0.419608, 1)
+
+[node name="Youtube" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(1, 0, 0, 1)
+
+[node name="VBoxContainer" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2/Youtube"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Light" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2/Youtube/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(1, 0, 0, 1)
+
+[node name="Fair" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2/Youtube/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[node name="Twitch" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.568627, 0.27451, 1, 1)
+
+[node name="VBoxContainer" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2/Twitch"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Light" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2/Twitch/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.568627, 0.27451, 1, 1)
+
+[node name="Fair" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2/Twitch/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.662745, 0.439216, 1, 1)
+
+[node name="Discord" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.34902, 0.396078, 0.94902, 1)
+
+[node name="VBoxContainer" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2/Discord"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Light" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2/Discord/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.345098, 0.396078, 0.94902, 1)
+
+[node name="Fair" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Clothes/Row2/Discord/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcusp")
+color = Color(0.6, 0.666667, 0.709804, 1)
+
+[node name="VSeparator3" type="VSeparator" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("9_hybew")
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
@@ -228,5 +698,11 @@ mouse_filter = 2
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer/Avatars/Right" to="." method="_on_switch_avatar" binds= [1]]
 [connection signal="toggled" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer/Sounds" to="." method="_on_sounds_toggled"]
 [connection signal="toggled" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer/ThemeMode" to="." method="_on_theme_mode_toggled"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair/Row1/Black" to="." method="_on_hair_pressed" binds= ["2e2e2e"]]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair/Row1/Brown" to="." method="_on_hair_pressed" binds= ["6b4423"]]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair/Row1/Blonde" to="." method="_on_hair_pressed" binds= ["d7b95b"]]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair/Row2/Red" to="." method="_on_hair_pressed" binds= ["a33e2e"]]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair/Row2/Gray" to="." method="_on_hair_pressed" binds= ["b4b4b4"]]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Hair/Row2/White" to="." method="_on_hair_pressed" binds= ["f2f2f2"]]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2/ButtonDisconnect" to="." method="_on_button_disconnect_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/ButtonBack" to="." method="_on_back_pressed"]

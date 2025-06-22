@@ -121,3 +121,10 @@ func _init() -> void:
 	disconnect_popup.confirmed.connect(_on_disconnect_popup_confirmed)
 	disconnect_popup.hide()
 	add_child(disconnect_popup, false, Node.INTERNAL_MODE_BACK)
+
+
+func _on_hair_pressed(color_hex: String) -> void:
+	GlobalLobbyClient.add_peer_user_data({"hair_color": color_hex})
+	config.set_value("Settings", "hair_color", color_hex)
+	config.save("user://blazium.cfg")
+	
