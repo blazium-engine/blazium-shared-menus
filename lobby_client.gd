@@ -5,7 +5,6 @@ extends ScriptedLobbyClient
 @export var pogr: CustomPOGRClient
 @export var steam: CustomSteamClient
 
-var config: ConfigFile
 var disconnected
 var jwt:String
 
@@ -55,13 +54,13 @@ func try_login() -> bool:
 			login.disconnect_from_server()
 			push_error(result.error)
 			return false
-	jwt = config.get_value("LoginClient", "jwt", "")
+	jwt = SettingsAutoload.config.get_value("LoginClient", "jwt", "")
 	if !jwt.is_empty():
 		var jwt_verify_result:LoginVerifyTokenResult= await login.verify_jwt_token(jwt).finished
 		if jwt_verify_result.has_error():
 			push_error(jwt_verify_result.error)
-			config.set_value("LoginClient", "jwt", "")
-			config.save("user://blazium.cfg")
+			SettingsAutoload.config.set_value("LoginClient", "jwt", "")
+			SettingsAutoload.save_config()
 			jwt = ""
 		else:
 			print("[ScriptedLobby]: Authentication already done, reusing JWT.")
@@ -96,8 +95,8 @@ func try_login() -> bool:
 		# Web external login
 		login.external_login("discord")
 	jwt = login.jwt
-	config.set_value("LoginClient", "jwt", login.jwt)
-	config.save("user://blazium.cfg")
+	SettingsAutoload.config.set_value("LoginClient", "jwt", login.jwt)
+	SettingsAutoload.save_config()
 	login.disconnect_from_server()
 	return true
 
@@ -108,9 +107,7 @@ func _ready() -> void:
 	var local_server = ProjectSettings.get_setting("blazium/game/lobby_server_local", false)
 	if local_server:
 		server_url = "ws://localhost:8080/connect"
-	config = ConfigFile.new()
-	config.load("user://blazium.cfg")
-	GlobalLobbyClient.update_theme(config.get_value("Settings", "light_mode", false))
+	GlobalLobbyClient.update_theme(SettingsAutoload.config.get_value("Settings", "light_mode", false))
 	connected_to_server.connect(_connected_to_server)
 	disconnected_from_server.connect(_disconnected_from_server)
 	log_updated.connect(_log_updated)
@@ -118,7 +115,7 @@ func _ready() -> void:
 	if jwt:
 		reconnection_token = jwt
 	else:
-		reconnection_token = config.get_value("LobbyClient", "reconnection_token", "")
+		reconnection_token = SettingsAutoload.config.get_value("LobbyClient", "reconnection_token", "")
 	connect_to_server()
 
 
@@ -139,10 +136,8 @@ func _log_updated(command: String, message: String):
 
 func _connected_to_server(_peer: LobbyPeer, new_reconnection_token: String):
 	disconnected = false
-	config.set_value("LobbyClient", "reconnection_token", new_reconnection_token)
-	config.save("user://blazium.cfg")
-
-	var err = config.save("user://blazium.cfg")
+	SettingsAutoload.config.set_value("LobbyClient", "reconnection_token", new_reconnection_token)
+	var err = SettingsAutoload.save_config()
 	if err != OK:
 		push_error(error_string(err))
 	# Rejoin old lobby automatically

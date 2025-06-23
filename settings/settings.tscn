@@ -658,14 +658,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"CustomPopupVBox"
 
-[node name="ButtonLanguage" type="OptionButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2" node_paths=PackedStringArray("shared_settings")]
+[node name="ButtonLanguage" type="OptionButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
 auto_translate_mode = 2
 layout_mode = 2
 alignment = 1
 expand_text = false
 icon_alignment = 1
 script = ExtResource("11_vmsml")
-shared_settings = NodePath("../../../../../../../..")
 user_icon = "language"
 
 [node name="ButtonDisconnect" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/VBoxContainer2"]

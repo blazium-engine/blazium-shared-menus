@@ -1,5 +1,4 @@
 @tool
-class_name SharedSettings
 extends BlaziumPanel
 
 const max_avatars := 28
@@ -17,7 +16,6 @@ const max_avatars := 28
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 
-var config: ConfigFile
 var disconnect_popup: CustomDialog
 
 
@@ -26,10 +24,8 @@ func _ready() -> void:
 		return
 	resized.connect(_on_resized)
 	_on_resized()
-	config = ConfigFile.new()
-	config.load("user://blazium.cfg")
-	mute_checkbutton.set_pressed_no_signal(!config.get_value("Settings", "mute", false))
-	theme_mode.set_pressed_no_signal(config.get_value("Settings", "light_mode", false))
+	mute_checkbutton.set_pressed_no_signal(!SettingsAutoload.config.get_value("Settings", "mute", false))
+	theme_mode.set_pressed_no_signal(SettingsAutoload.config.get_value("Settings", "light_mode", false))
 	mute_checkbutton._update_text_and_icon()
 	theme_mode._update_text_and_icon()
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
@@ -41,6 +37,7 @@ func _on_resized() -> void:
 	var show_spacers = GlobalLobbyClient.ui_breakpoint()
 	left_spacer.visible = !show_spacers
 	right_spacer.visible = !show_spacers
+
 
 func _on_button_save_pressed(data: Dictionary) -> void:
 	click_sound.play()
@@ -85,6 +82,7 @@ func _on_back_pressed() -> void:
 	await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(main_menu_scene)
+	SettingsAutoload.save_config()
 
 
 func _on_disconnect_popup_confirmed() -> void:
@@ -92,9 +90,11 @@ func _on_disconnect_popup_confirmed() -> void:
 	GlobalLobbyClient.reconnection_token = ""
 	GlobalLobbyClient.disconnect_from_server()
 
+
 func _on_disconnect_popup_cancelled() -> void:
 	click_sound.play()
 	disconnect_button.grab_focus()
+
 
 func _play_click_sound() -> void:
 	click_sound.play()
@@ -102,16 +102,14 @@ func _play_click_sound() -> void:
 
 func _on_sounds_toggled(toggled_on: bool) -> void:
 	click_sound.play()
-	config.set_value("Settings", "mute", !toggled_on)
-	config.save("user://blazium.cfg")
+	SettingsAutoload.config.set_value("Settings", "mute", !toggled_on)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), !toggled_on)
 
 
 func _on_theme_mode_toggled(toggled_on: bool) -> void:
 	click_sound.play()
 	GlobalLobbyClient.update_theme(toggled_on)
-	config.set_value("Settings", "light_mode", toggled_on)
-	config.save("user://blazium.cfg")
+	SettingsAutoload.config.set_value("Settings", "light_mode", toggled_on)
 
 
 func _init() -> void:
@@ -125,6 +123,4 @@ func _init() -> void:
 
 func _on_hair_pressed(color_hex: String) -> void:
 	GlobalLobbyClient.add_peer_user_data({"hair_color": color_hex})
-	config.set_value("Settings", "hair_color", color_hex)
-	config.save("user://blazium.cfg")
-	
+	SettingsAutoload.config.set_value("Settings", "hair_color", color_hex)

@@ -2,8 +2,6 @@
 class_name LanguageButton
 extends CustomOptionButton
 
-@export var shared_settings: SharedSettings
-
 var locales: PackedStringArray = [
 	"ar",  # Arabic
 	"bg",  # Bulgarian
@@ -113,5 +111,4 @@ func _set_language(index: int) -> void:
 	if index < 0 || index >= locales.size():
 		return;
 	TranslationServer.set_locale(locales[index])
-	shared_settings.config.set_value("Settings", "lang", locales[index])
-	shared_settings.config.save("user://blazium.cfg")
+	SettingsAutoload.config.set_value("Settings", "lang", locales[index])

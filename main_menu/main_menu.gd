@@ -17,7 +17,6 @@ var lobby_creator_scene: PackedScene = load("res://addons/blazium_shared_menus/l
 var settings_scene: PackedScene = load("res://addons/blazium_shared_menus/settings/settings.tscn")
 var about_scene: PackedScene = load("res://addons/blazium_shared_menus/about/about.tscn")
 
-var config: ConfigFile
 var exit_popup: CustomDialog
 
 var os_manages_quit: bool = OS.get_name() in ["Android", "iOS", "Web"]
@@ -40,11 +39,9 @@ func _ready() -> void:
 	else:
 		_disconnected_from_server("")
 	quit_button.visible = not os_manages_quit
-	config = ConfigFile.new()
-	config.load("user://blazium.cfg")
-	var hair_color = config.get_value("Settings", "hair_color", "f3bc77")
+	var hair_color = SettingsAutoload.config.get_value("Settings", "hair_color", "f3bc77")
 	player.character.hair_color = Color(hair_color)
-	#var game_mode = config.get_value("Settings", "game_mode", "normal_mode")
+	#var game_mode = SettingsAutoload.config.get_value("Settings", "game_mode", "normal_mode")
 	#game_modes.set_selected_game_mode(game_mode)
 
 

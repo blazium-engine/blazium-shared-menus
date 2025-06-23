@@ -15,7 +15,6 @@ class_name ChatContainer
 @export var emoji_panel: PanelContainer
 
 var just_sent_msg: bool
-var config: ConfigFile
 var server_event_color_hex: String
 var command_error_color_hex: String
 
@@ -30,9 +29,6 @@ var chat_command_list: Array[ChatCommand] = []
 
 
 func _ready() -> void:
-	config = ConfigFile.new()
-	config.load("user://blazium.cfg")
-
 	var font_color := ThemeDB.get_default_theme().get_color("font_color", "Colors")
 	server_event_color_hex = font_color.blend(server_event_color).to_html(false)
 	command_error_color_hex = font_color.blend(command_error_color).to_html(false)

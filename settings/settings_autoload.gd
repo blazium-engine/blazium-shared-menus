@@ -1,11 +1,13 @@
 extends Node
 
 
+var config := ConfigFile.new()
+
+
 func _ready() -> void:
 	get_window().min_size =  Vector2i(426, 240)
 	
-	var config := ConfigFile.new()
-	config.load("user://blazium.cfg")
+	load_config()
 	
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), config.get_value("Settings", "mute", false))
 	
@@ -18,4 +20,13 @@ func _ready() -> void:
 	if system_locale != user_locale:
 		TranslationServer.set_locale(user_locale)
 		config.set_value("Settings", "lang", user_locale)
-		config.save("user://blazium.cfg")
+
+	save_config()
+
+
+func load_config() -> Error:
+	return config.load("user://blazium.cfg")
+
+
+func save_config() -> Error:
+	return config.save("user://blazium.cfg")
