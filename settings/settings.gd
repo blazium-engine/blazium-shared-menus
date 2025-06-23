@@ -82,6 +82,8 @@ func _on_back_pressed() -> void:
 	await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(main_menu_scene)
+	# TODO: Decouple Hangman cosmetics from shared menus
+	CosmeticAutoload.save_to_config()
 	SettingsAutoload.save_config()
 
 
@@ -121,6 +123,7 @@ func _init() -> void:
 	add_child(disconnect_popup, false, Node.INTERNAL_MODE_BACK)
 
 
+# TODO: Decouple Hangman cosmetics from shared menus
 func _on_hair_pressed(color_hex: String) -> void:
-	GlobalLobbyClient.add_peer_user_data({"hair_color": color_hex})
-	SettingsAutoload.config.set_value("Settings", "hair_color", color_hex)
+	CosmeticAutoload.character_cosmetics.hair_color = Color(color_hex)
+	
