@@ -39,8 +39,6 @@ func _ready() -> void:
 	else:
 		_disconnected_from_server("")
 	quit_button.visible = not os_manages_quit
-	var hair_color = SettingsAutoload.config.get_value("Settings", "hair_color", "f3bc77")
-	player.character.hair_color = Color(hair_color)
 	#var game_mode = SettingsAutoload.config.get_value("Settings", "game_mode", "normal_mode")
 	#game_modes.set_selected_game_mode(game_mode)
 
@@ -57,7 +55,8 @@ func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
 	# If no name
 	if peer_name == "":
 		peer_name = tr("player_name") + str(randi() % 1000)
-		var result: LobbyResult = await GlobalLobbyClient.add_peer_user_data({"name": peer_name, "avatar": randi() % 28}).finished
+		var avatar := SettingsAutoload.config.get_value("Cosmetics", "avatar", randi() % 28)
+		await GlobalLobbyClient.add_peer_user_data({"name": peer_name, "avatar": avatar}).finished
 	name_label.show()
 	name_label.text = tr("player_greet").format({player = peer_name})
 	_set_fallback_focus(multiplayer_button)

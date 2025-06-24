@@ -77,6 +77,7 @@ func _update_other_avatars():
 
 
 func _on_back_pressed() -> void:
+	SettingsAutoload.config.set_value("Cosmetics", "avatar", avatar.frame)
 	_on_button_save_pressed({"avatar": avatar.frame})
 	click_sound.play()
 	await click_sound.finished
@@ -84,6 +85,7 @@ func _on_back_pressed() -> void:
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(main_menu_scene)
 	# TODO: Decouple Hangman cosmetics from shared menus
+	CosmeticAutoload.character_cosmetics.apply_to_user_data()
 	CosmeticAutoload.save_to_config()
 	SettingsAutoload.save_config()
 
@@ -128,20 +130,20 @@ func _init() -> void:
 func _on_hair_pressed(color_hex: String) -> void:
 	CosmeticAutoload.character_cosmetics.hair_color = Color(color_hex)
 	CosmeticAutoload.character_cosmetics.hair_shade_color = Color(color_hex) * 0.8
-	CosmeticAutoload.character_cosmetics.apply_to_user_data()	
+
 
 func _on_skin_pressed(color_hex: String) -> void:
 	CosmeticAutoload.character_cosmetics.skin_color = Color(color_hex)
 	CosmeticAutoload.character_cosmetics.skin_shade_color = Color(color_hex) * 0.8
-	CosmeticAutoload.character_cosmetics.apply_to_user_data()	
+
 
 func _on_shirt_pressed(color_hex: String) -> void:
 	CosmeticAutoload.character_cosmetics.body_color = Color(color_hex)
-	CosmeticAutoload.character_cosmetics.apply_to_user_data()	
+
 
 func _on_pants_pressed(color_hex: String) -> void:
 	CosmeticAutoload.character_cosmetics.legs_color = Color(color_hex)
-	CosmeticAutoload.character_cosmetics.apply_to_user_data()	
+
 
 func _on_filter_toggled(toggled_on: bool) -> void:
 	click_sound.play()
