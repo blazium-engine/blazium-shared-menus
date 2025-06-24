@@ -36,14 +36,14 @@ func _ready() -> void:
 	exit_popup.cancelled.connect(_on_exit_popup_cancelled)
 	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
 	exit_popup.hide()
-	get_tree().current_scene.get_child(0).add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)
+	get_tree().current_scene.add_child.call_deferred(exit_popup, false, Node.INTERNAL_MODE_BACK)
 
 	kick_popup = CustomDialog.new("lobby_prompt_kick_player")
 	kick_popup.name = "KickPopup"
 	kick_popup.cancelled.connect(_on_kick_popup_cancelled)
 	kick_popup.confirmed.connect(_on_kick_popup_confirm)
 	kick_popup.hide()
-	get_tree().current_scene.get_child(0).add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
+	get_tree().current_scene.add_child.call_deferred(kick_popup, false, Node.INTERNAL_MODE_BACK)
 
 	_set_fallback_focus(chat.chat_text)
 

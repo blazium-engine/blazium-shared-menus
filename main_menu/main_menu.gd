@@ -201,7 +201,3 @@ func _on_competitive_button_pressed() -> void:
 	var result: ScriptedLobbyResult = await GlobalLobbyClient.lobby_call("start_game").finished
 	if res.has_error():
 		push_error(res.error)
-	else:
-		await get_tree().process_frame
-		if is_inside_tree():
-			get_tree().change_scene_to_packed(lobby_viewer_scene)

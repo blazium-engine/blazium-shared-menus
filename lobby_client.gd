@@ -33,16 +33,15 @@ func _size_changed():
 	# Calculate relative scale factors
 	var scale_x := window_size.x / ref_resolution.x
 	var scale_y := window_size.y / ref_resolution.y
-	var scale := (scale_x + scale_y) * 0.5  # Average scale for smoother result
+	var scale := scale_x * 0.3 + scale_y * 0.7
 
 	# Clamp scale to avoid too small or too large values
-	scale = clamp(scale, 0.5, 2.0)  # Allow scaling from 50% to 200%
+	scale = clamp(scale, 0.5, 1.8)  # Allow scaling from 50% to 180%
 
 	# Base font size and theme scale (you can tweak these)
-	var base_font_size := 36.0
+	var base_font_size := 32.0
 	var scaled_font_size := int(round(base_font_size * scale))
-	var theme_scale := scale  # or: clamp(scale * 0.8 + 0.2, 0.5, 2.0)
-
+	var theme_scale := clamp(scale * 0.8 + 0.2, 0.5, 1.8)
 	# Apply settings
 	ProjectSettings.set_setting("gui/theme/font_size", scaled_font_size)
 	ProjectSettings.set_setting("gui/theme/default_theme_scale", theme_scale)

@@ -21,7 +21,8 @@ func _ready() -> void:
 	GlobalLobbyClient.peer_reconnected.connect(_peer_reconnected)
 	ThemeDB.scale_changed.connect(_resized)
 	_resized()
-	label.text = peer_info.user_data.get("name", "")
+	var user_name = peer_info.user_data.get("name", "")
+	label.text = WordFilterAutoload.filter_message(user_name)
 	avatar.frame = peer_info.user_data.get("avatar", 0)
 	match peer_info.platform:
 		"discord": platform.frame = 0

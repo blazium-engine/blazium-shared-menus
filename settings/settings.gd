@@ -12,12 +12,12 @@ const max_avatars := 28
 @export var click_sound: AudioStreamPlayer
 @export var mute_checkbutton: CheckButton
 @export var theme_mode: CheckButton
+@export var word_filter: CheckButton
 
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 
 var disconnect_popup: CustomDialog
-
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -26,6 +26,7 @@ func _ready() -> void:
 	_on_resized()
 	mute_checkbutton.set_pressed_no_signal(!SettingsAutoload.config.get_value("Settings", "mute", false))
 	theme_mode.set_pressed_no_signal(SettingsAutoload.config.get_value("Settings", "light_mode", false))
+	word_filter.set_pressed_no_signal(WordFilterAutoload.filter_enabled)
 	mute_checkbutton._update_text_and_icon()
 	theme_mode._update_text_and_icon()
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
@@ -126,4 +127,22 @@ func _init() -> void:
 # TODO: Decouple Hangman cosmetics from shared menus
 func _on_hair_pressed(color_hex: String) -> void:
 	CosmeticAutoload.character_cosmetics.hair_color = Color(color_hex)
-	
+	CosmeticAutoload.character_cosmetics.hair_shade_color = Color(color_hex) * 0.8
+	CosmeticAutoload.character_cosmetics.apply_to_user_data()	
+
+func _on_skin_pressed(color_hex: String) -> void:
+	CosmeticAutoload.character_cosmetics.skin_color = Color(color_hex)
+	CosmeticAutoload.character_cosmetics.skin_shade_color = Color(color_hex) * 0.8
+	CosmeticAutoload.character_cosmetics.apply_to_user_data()	
+
+func _on_shirt_pressed(color_hex: String) -> void:
+	CosmeticAutoload.character_cosmetics.body_color = Color(color_hex)
+	CosmeticAutoload.character_cosmetics.apply_to_user_data()	
+
+func _on_pants_pressed(color_hex: String) -> void:
+	CosmeticAutoload.character_cosmetics.legs_color = Color(color_hex)
+	CosmeticAutoload.character_cosmetics.apply_to_user_data()	
+
+func _on_filter_toggled(toggled_on: bool) -> void:
+	click_sound.play()
+	WordFilterAutoload.set_filter_enabled(toggled_on)

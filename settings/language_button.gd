@@ -111,4 +111,6 @@ func _set_language(index: int) -> void:
 	if index < 0 || index >= locales.size():
 		return;
 	TranslationServer.set_locale(locales[index])
+	SettingsAutoload.user_locale = locales[index]
 	SettingsAutoload.config.set_value("Settings", "lang", locales[index])
+	SettingsAutoload.config.save("user://blazium.cfg")

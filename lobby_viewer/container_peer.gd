@@ -27,7 +27,8 @@ func _ready():
 	GlobalLobbyClient.peer_reconnected.connect(_peer_reconnected)
 	ThemeDB.scale_changed.connect(_resized)
 	_resized()
-	_peer_name.text = peer.user_data.get("name", "")
+	var user_name = peer.user_data.get("name", "")
+	_peer_name.text = WordFilterAutoload.filter_message(user_name)
 	_peer_ready.user_icon = "check" if peer.ready else "hourglass_bottom"
 	_peer_avatar.frame = avatar
 	match platform:

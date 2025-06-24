@@ -102,8 +102,9 @@ func append_message_to_chat(peer: LobbyPeer, chat_message: String, is_player: bo
 				peer_name + " " if peer else "",
 				chat_message]
 		)
-
-	chat_text.text += emoji_panel.get_final_text(message)
+	var final_message = emoji_panel.get_final_text(message)
+	chat_text.text += WordFilterAutoload.filter_message(message)
+	
 	print(message)
 
 

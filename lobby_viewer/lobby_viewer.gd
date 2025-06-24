@@ -1,7 +1,7 @@
 @tool
 extends BlaziumPanel
 
-@export var lobby_grid: VBoxContainer
+@export var lobby_grid: BoxContainer
 @export var ready_button: ToggledButton
 @export var start_button: Button
 @export var leave_button: Button
@@ -11,10 +11,8 @@ extends BlaziumPanel
 @export var lobby_password_line_edit: LineEdit
 @export var lobby_id_button: Button
 @export var reveal_lobby_id_button: Button
-@export var copy_invite_link_button: Button
 @export var left_spacer: Control
 @export var right_spacer: Control
-@export var points_to_win: Label
 @export var click_sound: AudioStreamPlayer
 
 @export var private_checkbutton: CheckButton
@@ -25,6 +23,7 @@ extends BlaziumPanel
 @export var decrement_button: Button
 
 @export var mode_options: OptionButton
+@export var players_scrollcontainer: ScrollContainer
 
 var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
@@ -41,9 +40,9 @@ var peer_to_kick: String
 
 
 func update_title():
-	lobby_label.text = GlobalLobbyClient.lobby.lobby_name + " " + \
-		str(GlobalLobbyClient.lobby.players) + "/" + str(GlobalLobbyClient.lobby.max_players)
-	lobby_title_line_edit.text = GlobalLobbyClient.lobby.lobby_name
+	lobby_label.text = WordFilterAutoload.filter_message(GlobalLobbyClient.lobby.lobby_name + " " + \
+		str(GlobalLobbyClient.lobby.players) + "/" + str(GlobalLobbyClient.lobby.max_players))
+	lobby_title_line_edit.text = WordFilterAutoload.filter_message(GlobalLobbyClient.lobby.lobby_name)
 	lobby_max_players_label.text = tr("players_max").format({players = GlobalLobbyClient.lobby.max_players})
 
 
@@ -221,6 +220,10 @@ func _on_resized() -> void:
 	var show_spacers = GlobalLobbyClient.ui_breakpoint()
 	left_spacer.visible = !show_spacers
 	right_spacer.visible = !show_spacers
+	if show_spacers:
+		players_scrollcontainer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	else:
+		players_scrollcontainer.size_flags_vertical = Control.SIZE_FILL
 
 
 func _input(_event):
