@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "chat_placeholder"
+msgstr "Chat"
+
+msgid "chat_send"
+msgstr "Odeslat"
+
+msgid "code_copy"
+msgstr "Kopírovat: {code}"
+
+msgid "dialog_yes"
+msgstr "Ano"
+
+msgid "dialog_no"
+msgstr "Ne"
+
+msgid "hide"
+msgstr "Skrýt"
+
+msgid "join_discord"
+msgstr "Připojit se na Discord"
+
+msgid "loading_text"
+msgstr "Načítání"
+
+msgid "loading_connection_lost"
+msgstr "Připojení ztraceno!"
+
+msgid "loading_reconnect"
+msgstr "Znovu připojit"
+
+msgid "lobby_filter_only_selected_language"
+msgstr "Skrýt hry s jiným jazykem"
+
+msgid "lobby_filter_password"
+msgstr "Skrýt hry s heslem"
+
+msgid "lobby_filters"
+msgstr "Filtry"
+
+msgid "lobby_join"
+msgstr "Připojit se"
+
+msgid "lobby_leave"
+msgstr "Odejít"
+
+msgid "lobby_requires_players"
+msgstr "Čekání na další hráče"
+
+msgid "lobby_requires_ready"
+msgstr "Čekání, až budou všichni připraveni"
+
+msgid "lobby_placeholder_code"
+msgstr "Kód: ABC123"
+
+msgid "lobby_prompt_full"
+msgstr "Tato hra je již plná"
+
+msgid "lobby_prompt_password_protected"
+msgstr "Zadejte prosím heslo"
+
+msgid "lobby_prompt_wrong_code"
+msgstr "Zadaný kód hry je nesprávný"
+
+msgid "lobby_prompt_kick_player"
+msgstr "Vyhodit {player}"
+
+msgid "lobby_ready"
+msgstr "Připraven"
+
+msgid "lobby_start"
+msgstr "Start"
+
+msgid "lobby_title_game"
+msgstr "Hra"
+
+msgid "lobby_unready"
+msgstr "Nejsem připraven"
+
+msgid "menu_about"
+msgstr "O aplikaci"
+
+msgid "menu_back"
+msgstr "Zpět"
+
+msgid "menu_browse"
+msgstr "Najít"
+
+msgid "menu_competitive"
+msgstr "Soutěžní"
+
+msgid "menu_create"
+msgstr "Vytvořit"
+
+msgid "menu_prompt_exit"
+msgstr "Opravdu chcete ukončit?"
+
+msgid "menu_quit"
+msgstr "Ukončit"
+
+msgid "menu_options"
+msgstr "Možnosti"
+
+msgid "password_placeholder"
+msgstr "Heslo"
+
+msgid "prompt_continue"
+msgstr "Pokračovat"
+
+msgid "prompt_enter"
+msgstr "Potvrdit"
+
+msgid "prompt_cancel"
+msgstr "Zrušit"
+
+msgid "players_max"
+msgstr "Hráči: {players}"
+
+msgid "player_greet"
+msgstr "Ahoj, {player}"
+
+msgid "player_name"
+msgstr "Hráč"
+
+msgid "settings_disconnect"
+msgstr "Odpojit se"
+
+msgid "settings_mode_dark"
+msgstr "Tmavý režim"
+
+msgid "settings_mode_light"
+msgstr "Světlý režim"
+
+msgid "settings_prompt_disconnect"
+msgstr "Opravdu se chcete odpojit?"
+
+msgid "settings_sound"
+msgstr "Zvuk"
+
+msgid "tab_players"
+msgstr "Hráči"
+
+msgid "title_placeholder"
+msgstr "Název hry"

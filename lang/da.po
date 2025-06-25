@@ -1,0 +1,151 @@
+msgid ""
+msgstr ""
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "chat_placeholder"
+msgstr "Chat"
+
+msgid "chat_send"
+msgstr "Send"
+
+msgid "code_copy"
+msgstr "Kopiér: {code}"
+
+msgid "dialog_yes"
+msgstr "Ja"
+
+msgid "dialog_no"
+msgstr "Nej"
+
+msgid "hide"
+msgstr "Skjul"
+
+msgid "join_discord"
+msgstr "Deltag i vores Discord"
+
+msgid "loading_text"
+msgstr "Indlæser"
+
+msgid "loading_connection_lost"
+msgstr "Forbindelsen er mistet!"
+
+msgid "loading_reconnect"
+msgstr "Genopret forbindelse"
+
+msgid "lobby_filter_only_selected_language"
+msgstr "Skjul spil med andet sprog"
+
+msgid "lobby_filter_password"
+msgstr "Skjul spil med adgangskode"
+
+msgid "lobby_filters"
+msgstr "Filtre"
+
+msgid "lobby_join"
+msgstr "Deltag"
+
+msgid "lobby_leave"
+msgstr "Forlad"
+
+msgid "lobby_requires_players"
+msgstr "Venter på flere spillere"
+
+msgid "lobby_requires_ready"
+msgstr "Venter på at alle spillere er klar"
+
+msgid "lobby_placeholder_code"
+msgstr "Kode: ABC123"
+
+msgid "lobby_prompt_full"
+msgstr "Dette spil er allerede fyldt"
+
+msgid "lobby_prompt_password_protected"
+msgstr "Indtast adgangskoden"
+
+msgid "lobby_prompt_wrong_code"
+msgstr "Spilkoden du indtastede er forkert"
+
+msgid "lobby_prompt_kick_player"
+msgstr "Fjern {player}"
+
+msgid "lobby_ready"
+msgstr "Klar"
+
+msgid "lobby_start"
+msgstr "Start"
+
+msgid "lobby_title_game"
+msgstr "Spil"
+
+msgid "lobby_unready"
+msgstr "Jeg er ikke klar"
+
+msgid "menu_about"
+msgstr "Om"
+
+msgid "menu_back"
+msgstr "Tilbage"
+
+msgid "menu_browse"
+msgstr "Find"
+
+msgid "menu_competitive"
+msgstr "Konkurrence"
+
+msgid "menu_create"
+msgstr "Opret"
+
+msgid "menu_prompt_exit"
+msgstr "Er du sikker på, at du vil afslutte?"
+
+msgid "menu_quit"
+msgstr "Afslut"
+
+msgid "menu_options"
+msgstr "Indstillinger"
+
+msgid "password_placeholder"
+msgstr "Adgangskode"
+
+msgid "prompt_continue"
+msgstr "Fortsæt"
+
+msgid "prompt_enter"
+msgstr "Indtast"
+
+msgid "prompt_cancel"
+msgstr "Annullér"
+
+msgid "players_max"
+msgstr "Spillere: {players}"
+
+msgid "player_greet"
+msgstr "Hej, {player}"
+
+msgid "player_name"
+msgstr "Spiller"
+
+msgid "settings_disconnect"
+msgstr "Afbryd forbindelse"
+
+msgid "settings_mode_dark"
+msgstr "Mørk tilstand"
+
+msgid "settings_mode_light"
+msgstr "Lys tilstand"
+
+msgid "settings_prompt_disconnect"
+msgstr "Er du sikker på, at du vil afbryde forbindelsen?"
+
+msgid "settings_sound"
+msgstr "Lyd"
+
+msgid "tab_players"
+msgstr "Spillere"
+
+msgid "title_placeholder"
+msgstr "Spiltitel"

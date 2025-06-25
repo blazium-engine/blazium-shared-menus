@@ -7,7 +7,6 @@ class_name ChatContainer
 
 @export var chat_input: LineEdit
 @export var chat_text: RichTextLabel
-@export var logs: Label
 @export var server_event_color: Color
 @export var command_error_color: Color
 @export var chat_msg_sfx: AudioStreamPlayer
@@ -16,7 +15,6 @@ class_name ChatContainer
 @export var emoji_panel: PanelContainer
 
 var just_sent_msg: bool
-var config: ConfigFile
 var server_event_color_hex: String
 var command_error_color_hex: String
 
@@ -31,9 +29,6 @@ var chat_command_list: Array[ChatCommand] = []
 
 
 func _ready() -> void:
-	config = ConfigFile.new()
-	config.load("user://blazium.cfg")
-
 	var font_color := ThemeDB.get_default_theme().get_color("font_color", "Colors")
 	server_event_color_hex = font_color.blend(server_event_color).to_html(false)
 	command_error_color_hex = font_color.blend(command_error_color).to_html(false)
@@ -107,8 +102,9 @@ func append_message_to_chat(peer: LobbyPeer, chat_message: String, is_player: bo
 				peer_name + " " if peer else "",
 				chat_message]
 		)
-
-	chat_text.text += emoji_panel.get_final_text(message)
+	var final_message = emoji_panel.get_final_text(message)
+	chat_text.text += WordFilterAutoload.filter_message(message)
+	
 	print(message)
 
 
@@ -181,7 +177,7 @@ func _peer_reconnected(peer: LobbyPeer):
 	append_message_to_chat(peer, "Reconnected to the lobby")
 
 
-func _peer_messaged(peer: LobbyPeer, chat_message: String):
+func _peer_messaged(peer: LobbyPeer, chat_message: String, chat_metada: Dictionary):
 	var is_player: bool = not peer.id.is_empty()
 	append_message_to_chat(peer if is_player else null, chat_message, is_player)
 
@@ -206,9 +202,7 @@ func _on_chat_button_pressed() -> void:
 	if message.begins_with("/"):
 		append_message_to_chat(GlobalLobbyClient.peer, message, true)
 	else:
-		var result: LobbyResult = await GlobalLobbyClient.send_chat_message(message).finished
-		logs.visible = GlobalLobbyClient.show_debug
-		logs.text = result.error
+		await GlobalLobbyClient.send_chat_message(message).finished
 
 
 func _on_chat_input_text_submitted(_new_text: String) -> void:
@@ -216,7 +210,7 @@ func _on_chat_input_text_submitted(_new_text: String) -> void:
 
 
 func _on_rich_text_label_meta_clicked(meta: Variant) -> void:
-	OS.shell_open(meta)
+	GlobalLobbyClient.open_url(meta)
 
 
 func _on_emoji_button_toggled(toggled_on: bool) -> void:
@@ -301,9 +295,7 @@ func kick_command(arg: String) -> String:
 				"You cannot kick yourself."]
 		)
 
-	var result: LobbyResult = await GlobalLobbyClient.kick_peer(peer_to_kick[0].id).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.kick_peer(peer_to_kick[0].id).finished
 
 	# Return an empty string because the _peer_left
 	# function will append the kick message
@@ -333,8 +325,6 @@ func me_command(action: String) -> String:
 				"Need an action."]
 		)
 	var result: ScriptedLobbyResult = await GlobalLobbyClient.lobby_call("me_command", [action]).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
 	if result.has_error():
 		return (
 				"[color=#%s][i]Server Error: %s[/i][/color]\n" %
@@ -343,3 +333,10 @@ func me_command(action: String) -> String:
 		)
 	# The server will send the broadcast
 	return ""
+
+
+func _on_chat_input_text_changed(new_text: String) -> void:
+	if new_text.begins_with("/setword") || new_text.begins_with("/guessword") || new_text.begins_with("/gw") || new_text.begins_with("/sw"):
+		chat_input.secret = true
+	else:
+		chat_input.secret = false

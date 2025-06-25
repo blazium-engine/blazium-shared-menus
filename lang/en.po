@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "chat_placeholder"
+msgstr "Chat"
+
+msgid "chat_send"
+msgstr "Send"
+
+msgid "code_copy"
+msgstr "Copy: {code}"
+
+msgid "dialog_yes"
+msgstr "Yes"
+
+msgid "dialog_no"
+msgstr "No"
+
+msgid "hide"
+msgstr "Hide"
+
+msgid "join_discord"
+msgstr "Join our Discord"
+
+msgid "loading_text"
+msgstr "Loading"
+
+msgid "loading_connection_lost"
+msgstr "Connection lost!"
+
+msgid "loading_reconnect"
+msgstr "Reconnect"
+
+msgid "lobby_filter_only_selected_language"
+msgstr "Hide Games with Different Language"
+
+msgid "lobby_filter_password"
+msgstr "Hide Games with Password"
+
+msgid "lobby_filters"
+msgstr "Filters"
+
+msgid "lobby_join"
+msgstr "Join"
+
+msgid "lobby_leave"
+msgstr "Leave"
+
+msgid "lobby_requires_players"
+msgstr "Waiting for more players"
+
+msgid "lobby_requires_ready"
+msgstr "Waiting for all players to get ready"
+
+msgid "lobby_placeholder_code"
+msgstr "Code: ABC123"
+
+msgid "lobby_prompt_full"
+msgstr "This game is already full"
+
+msgid "lobby_prompt_password_protected"
+msgstr "Please enter the password"
+
+msgid "lobby_prompt_wrong_code"
+msgstr "The game code you entered is incorrect"
+
+msgid "lobby_prompt_kick_player"
+msgstr "Kick {player}"
+
+msgid "lobby_ready"
+msgstr "Ready"
+
+msgid "lobby_start"
+msgstr "Start"
+
+msgid "lobby_title_game"
+msgstr "Game"
+
+msgid "lobby_unready"
+msgstr "I'm not ready"
+
+msgid "menu_about"
+msgstr "About"
+
+msgid "menu_back"
+msgstr "Back"
+
+msgid "menu_browse"
+msgstr "Find"
+
+msgid "menu_competitive"
+msgstr "Competitive"
+
+msgid "menu_create"
+msgstr "Create"
+
+msgid "menu_prompt_exit"
+msgstr "Are you sure you want to exit?"
+
+msgid "menu_quit"
+msgstr "Quit"
+
+msgid "menu_options"
+msgstr "Options"
+
+msgid "password_placeholder"
+msgstr "Password"
+
+msgid "prompt_continue"
+msgstr "Continue"
+
+msgid "prompt_enter"
+msgstr "Enter"
+
+msgid "prompt_cancel"
+msgstr "Cancel"
+
+msgid "players_max"
+msgstr "Players: {players}"
+
+msgid "player_greet"
+msgstr "Hi, {player}"
+
+msgid "player_name"
+msgstr "Player"
+
+msgid "settings_disconnect"
+msgstr "Disconnect"
+
+msgid "settings_mode_dark"
+msgstr "Dark Mode"
+
+msgid "settings_mode_light"
+msgstr "Light Mode"
+
+msgid "settings_prompt_disconnect"
+msgstr "Are you sure you want to disconnect?"
+
+msgid "settings_sound"
+msgstr "Sound"
+
+msgid "tab_players"
+msgstr "Players"
+
+msgid "title_placeholder"
+msgstr "Game Title"

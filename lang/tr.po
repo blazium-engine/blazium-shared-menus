@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "chat_placeholder"
+msgstr "Sohbet"
+
+msgid "chat_send"
+msgstr "Gönder"
+
+msgid "code_copy"
+msgstr "Kopyala: {code}"
+
+msgid "dialog_yes"
+msgstr "Evet"
+
+msgid "dialog_no"
+msgstr "Hayır"
+
+msgid "hide"
+msgstr "Gizle"
+
+msgid "join_discord"
+msgstr "Discord Sunucumuza Katıl"
+
+msgid "loading_text"
+msgstr "Yükleniyor"
+
+msgid "loading_connection_lost"
+msgstr "Bağlantı kaybedildi!"
+
+msgid "loading_reconnect"
+msgstr "Yeniden bağlan"
+
+msgid "lobby_filter_only_selected_language"
+msgstr "Farklı Dildeki Oyunları Gizle"
+
+msgid "lobby_filter_password"
+msgstr "Şifreli Oyunları Gizle"
+
+msgid "lobby_filters"
+msgstr "Filtreler"
+
+msgid "lobby_join"
+msgstr "Katıl"
+
+msgid "lobby_leave"
+msgstr "Ayrıl"
+
+msgid "lobby_requires_players"
+msgstr "Daha fazla oyuncu bekleniyor"
+
+msgid "lobby_requires_ready"
+msgstr "Tüm oyuncuların hazır olması bekleniyor"
+
+msgid "lobby_placeholder_code"
+msgstr "Kod: ABC123"
+
+msgid "lobby_prompt_full"
+msgstr "Bu oyun zaten dolu"
+
+msgid "lobby_prompt_password_protected"
+msgstr "Lütfen şifreyi girin"
+
+msgid "lobby_prompt_wrong_code"
+msgstr "Girdiğiniz oyun kodu yanlış"
+
+msgid "lobby_prompt_kick_player"
+msgstr "{player} oyuncusunu at"
+
+msgid "lobby_ready"
+msgstr "Hazırım"
+
+msgid "lobby_start"
+msgstr "Başlat"
+
+msgid "lobby_title_game"
+msgstr "Oyun"
+
+msgid "lobby_unready"
+msgstr "Hazır değilim"
+
+msgid "menu_about"
+msgstr "Hakkında"
+
+msgid "menu_back"
+msgstr "Geri"
+
+msgid "menu_browse"
+msgstr "Bul"
+
+msgid "menu_competitive"
+msgstr "Rekabetçi"
+
+msgid "menu_create"
+msgstr "Oluştur"
+
+msgid "menu_prompt_exit"
+msgstr "Çıkmak istediğinizden emin misiniz?"
+
+msgid "menu_quit"
+msgstr "Çık"
+
+msgid "menu_options"
+msgstr "Ayarlar"
+
+msgid "password_placeholder"
+msgstr "Şifre"
+
+msgid "prompt_continue"
+msgstr "Devam Et"
+
+msgid "prompt_enter"
+msgstr "Gir"
+
+msgid "prompt_cancel"
+msgstr "İptal"
+
+msgid "players_max"
+msgstr "Oyuncular: {players}"
+
+msgid "player_greet"
+msgstr "Merhaba, {player}"
+
+msgid "player_name"
+msgstr "Oyuncu"
+
+msgid "settings_disconnect"
+msgstr "Bağlantıyı Kes"
+
+msgid "settings_mode_dark"
+msgstr "Karanlık Mod"
+
+msgid "settings_mode_light"
+msgstr "Aydınlık Mod"
+
+msgid "settings_prompt_disconnect"
+msgstr "Bağlantıyı kesmek istediğinizden emin misiniz?"
+
+msgid "settings_sound"
+msgstr "Ses"
+
+msgid "tab_players"
+msgstr "Oyuncular"
+
+msgid "title_placeholder"
+msgstr "Oyun Başlığı"

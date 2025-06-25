@@ -1,27 +1,35 @@
 @tool
 extends BlaziumPanel
 
-@export var lobby_grid: VBoxContainer
-@export var logs: Label
+@export var lobby_grid: BoxContainer
 @export var ready_button: ToggledButton
 @export var start_button: Button
 @export var leave_button: Button
-@export var invite_button: Button
 @export var lobby_label: Label
+@export var lobby_max_players_label: Label
+@export var lobby_title_line_edit: LineEdit
+@export var lobby_password_line_edit: LineEdit
 @export var lobby_id_button: Button
 @export var reveal_lobby_id_button: Button
-@export var copy_invite_link_button: Button
 @export var left_spacer: Control
 @export var right_spacer: Control
-@export var private_checkbutton: CheckBox
-@export var points_to_win: Label
 @export var click_sound: AudioStreamPlayer
-@export var invite_panel: Panel
 
+@export var private_checkbutton: CheckButton
+@export var password_line_edit: LineEdit
+@export var max_players_label: Label
+@export var title_label: LineEdit
+@export var increment_button: Button
+@export var decrement_button: Button
+
+@export var mode_options: OptionButton
+@export var players_scrollcontainer: ScrollContainer
+
+var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 var lobby_browser_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
 var game_scene: PackedScene = load("res://game/game.tscn")
-var container_peer_scene: PackedScene = preload("res://addons/blazium_shared_menus/lobby_viewer/container_peer.tscn")
+var container_peer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/container_peer.tscn")
 var exit_popup: CustomDialog
 var kick_popup: CustomDialog
 
@@ -32,9 +40,10 @@ var peer_to_kick: String
 
 
 func update_title():
-	lobby_label.text = GlobalLobbyClient.lobby.lobby_name + " " + \
-			str(GlobalLobbyClient.lobby.players) + "/" + \
-			str(GlobalLobbyClient.lobby.max_players)
+	lobby_label.text = WordFilterAutoload.filter_message(GlobalLobbyClient.lobby.lobby_name + " " + \
+		str(GlobalLobbyClient.lobby.players) + "/" + str(GlobalLobbyClient.lobby.max_players))
+	lobby_title_line_edit.text = WordFilterAutoload.filter_message(GlobalLobbyClient.lobby.lobby_name)
+	lobby_max_players_label.text = tr("players_max").format({players = GlobalLobbyClient.lobby.max_players})
 
 
 func is_everyone_ready():
@@ -45,7 +54,18 @@ func is_everyone_ready():
 
 
 func update_start_button():
-	start_button.disabled = not is_everyone_ready() or len(GlobalLobbyClient.peers) == 1
+	if not is_everyone_ready() or len(GlobalLobbyClient.peers) == 1:
+		start_button.disabled = true
+		if not is_everyone_ready():
+			start_button.text = "lobby_requires_ready"
+		else:
+			start_button.text = "lobby_requires_players"
+		start_button.theme_type_variation = ""
+	else:
+		start_button.disabled = false
+		start_button.text = "lobby_start"
+		start_button.theme_type_variation = "SelectedButton"
+	
 
 
 func _update_private_lobby_checkbox():
@@ -55,26 +75,32 @@ func _update_private_lobby_checkbox():
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	private_checkbutton.visible = GlobalLobbyClient.is_host()
-	var max_points = GlobalLobbyClient.lobby.tags.get("max_points", 0)
-	if max_points == 0:
-		points_to_win.text = "Points to win: Infinite"
-	else:
-		points_to_win.text = "Points to win: " + str(max_points)
 	_update_private_lobby_checkbox()
 	if GlobalLobbyClient.lobby.id == "":
 		# Got here by mistake, go back
 		_disconnected_from_server("")
+	lobby_id_button.text = tr("code_copy").format({code = "••••••••"})
 	update_ready_button(GlobalLobbyClient.peer.ready)
 	GlobalLobbyClient.peer_joined.connect(_peer_joined)
 	GlobalLobbyClient.peer_left.connect(_peer_left)
 	GlobalLobbyClient.lobby_left.connect(_lobby_left)
+	GlobalLobbyClient.lobby_titled.connect(_lobby_titled)
+	GlobalLobbyClient.lobby_resized.connect(_lobby_resized)
 	GlobalLobbyClient.lobby_sealed.connect(_lobby_sealed)
 	GlobalLobbyClient.received_lobby_data.connect(_received_lobby_data)
 	GlobalLobbyClient.peer_ready.connect(_peer_ready)
+	GlobalLobbyClient.lobby_tagged.connect(_lobby_tagged)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	if not GlobalLobbyClient.is_host():
 		start_button.hide()
+		mode_options.disabled = true
+		lobby_title_line_edit.editable = false
+		lobby_password_line_edit.editable = false
+		private_checkbutton.disabled = true
+		increment_button.disabled = true
+		decrement_button.disabled = true
+	if GlobalLobbyClient.lobby.password_protected:
+		password_line_edit.text = "123456"
 	for child in lobby_grid.get_children():
 		child.queue_free()
 	for peer in GlobalLobbyClient.peers:
@@ -90,12 +116,27 @@ func _add_peer_container(peer: LobbyPeer):
 	peer_container.peer = peer
 	peer_container.avatar = peer.user_data.get("avatar", 0)
 	peer_container.platform = peer.platform
-	peer_container.logs = logs
 	peer_container.kick.connect(kick_peer)
 	lobby_grid.add_child(peer_container)
 	update_title()
 	update_start_button()
 
+func _lobby_tagged(tags: Dictionary):
+	match tags.get("game_mode", "normal_mode"):
+		"normal_mode":
+			mode_options.selected = 0
+		"normal_abunch_hanging":
+			mode_options.selected = 1
+		"normal_all_or_nothing":
+			mode_options.selected = 2
+		"normal_last_wrong_dies":
+			mode_options.selected = 3
+
+func _lobby_resized(max_peers: int):
+	update_title()
+
+func _lobby_titled(title: String):
+	update_title()
 
 func _peer_joined(peer: LobbyPeer):
 	_add_peer_container(peer)
@@ -114,20 +155,23 @@ func _peer_ready(_peer: LobbyPeer, _p_ready: bool):
 
 
 func _disconnected_from_server(_reason: String):
+	await get_tree().process_frame
 	if is_inside_tree():
-		get_tree().change_scene_to_packed.call_deferred(main_menu_scene)
+		get_tree().change_scene_to_packed(loading_scene)
 
 
 func _lobby_left(_kicked: bool):
+	await get_tree().process_frame
 	if is_inside_tree():
-		get_tree().change_scene_to_packed.call_deferred(main_menu_scene)
+		get_tree().change_scene_to_packed(main_menu_scene)
 
 
 func _received_lobby_data(data: Dictionary):
 	# Start game
 	if data.get("game_state", "setup") != "setup":
+		await get_tree().process_frame
 		if is_inside_tree():
-			get_tree().change_scene_to_packed.call_deferred(game_scene)
+				get_tree().change_scene_to_packed(game_scene)
 
 
 func update_ready_button(is_ready: bool):
@@ -142,7 +186,7 @@ func kick_peer(peer: LobbyPeer) -> void:
 	if peer.id == GlobalLobbyClient.peer.id:
 		return
 	peer_to_kick = peer.id
-	kick_popup.text = "Kick %s?" % peer.user_data.get("name", "")
+	kick_popup.text = tr("lobby_prompt_kick_player").format({player = peer.user_data.get("name", "")})
 	_update_last_focus()
 	kick_popup.show()
 
@@ -152,17 +196,13 @@ func _on_ready_pressed() -> void:
 	var new_ready = not GlobalLobbyClient.peer.ready
 	var result: LobbyResult = await GlobalLobbyClient.set_lobby_ready(new_ready).finished
 
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
 	if not result.has_error():
 		update_ready_button(new_ready)
 
 
 func _on_seal_pressed() -> void:
 	click_sound.play()
-	var result: LobbyResult = await GlobalLobbyClient.set_lobby_sealed(not GlobalLobbyClient.lobby.sealed).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.set_lobby_sealed(not GlobalLobbyClient.lobby.sealed).finished
 
 
 func _lobby_sealed(_sealed: bool):
@@ -171,15 +211,19 @@ func _lobby_sealed(_sealed: bool):
 
 func _on_start_pressed() -> void:
 	click_sound.play()
-	var result: ScriptedLobbyResult = await GlobalLobbyClient.lobby_call("start_game").finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.lobby_call("start_game").finished
 
 
 func _on_resized() -> void:
-	var show_spacers = size.x > 600
-	left_spacer.visible = show_spacers
-	right_spacer.visible = show_spacers
+	if Engine.is_editor_hint():
+		return
+	var show_spacers = GlobalLobbyClient.ui_breakpoint()
+	left_spacer.visible = !show_spacers
+	right_spacer.visible = !show_spacers
+	if show_spacers:
+		players_scrollcontainer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	else:
+		players_scrollcontainer.size_flags_vertical = Control.SIZE_FILL
 
 
 func _input(_event):
@@ -204,9 +248,7 @@ func _on_exit_popup_cancelled() -> void:
 
 func _on_exit_popup_confirmed() -> void:
 	click_sound.play()
-	var result: LobbyResult = await GlobalLobbyClient.leave_lobby().finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.leave_lobby().finished
 
 
 func _on_back_pressed() -> void:
@@ -218,9 +260,9 @@ func _on_back_pressed() -> void:
 func _on_reveal_lobby_id_pressed() -> void:
 	click_sound.play()
 	if reveal_lobby_id_button.button_pressed:
-		lobby_id_button.text = "Copy Code: " + GlobalLobbyClient.lobby.id
+		lobby_id_button.text = tr("code_copy").format({code = GlobalLobbyClient.lobby.id})
 	else:
-		lobby_id_button.text = "Copy Code: ••••••••"
+		lobby_id_button.text = tr("code_copy").format({code = "••••••••"})
 
 
 func _play_click_sound() -> void:
@@ -229,9 +271,7 @@ func _play_click_sound() -> void:
 
 func _on_private_toggled(toggled_on: bool) -> void:
 	click_sound.play()
-	var result: LobbyResult = await GlobalLobbyClient.set_lobby_sealed(toggled_on).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.set_lobby_sealed(toggled_on).finished
 
 
 func _on_kick_popup_cancelled() -> void:
@@ -241,40 +281,79 @@ func _on_kick_popup_cancelled() -> void:
 
 func _on_kick_popup_confirmed() -> void:
 	click_sound.play()
-	var result: LobbyResult = await GlobalLobbyClient.kick_peer(peer_to_kick).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.kick_peer(peer_to_kick).finished
 	_restore_last_focus()
 
 
 func _init() -> void:
-	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
+	exit_popup = CustomDialog.new("menu_prompt_exit")
 	exit_popup.name = "ExitPopup"
 	exit_popup.cancelled.connect(_on_exit_popup_cancelled)
 	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
 	exit_popup.hide()
 	add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)
 
-	kick_popup = CustomDialog.new("Kick Player?")
+	kick_popup = CustomDialog.new("lobby_prompt_kick")
 	kick_popup.name = "KickPopup"
 	kick_popup.cancelled.connect(_on_kick_popup_cancelled)
 	kick_popup.confirmed.connect(_on_kick_popup_confirmed)
 	kick_popup.hide()
 	add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
 
-
-func _on_close_invite_panel_pressed() -> void:
-	click_sound.play()
-	invite_panel.hide()
-	invite_button.grab_focus()
-
-
-func _on_open_invite_panel_pressed() -> void:
-	click_sound.play()
-	invite_panel.show()
-	copy_invite_link_button.grab_focus()
-
-
 func _on_copy_invite_link_pressed() -> void:
 	click_sound.play()
 	DisplayServer.clipboard_set("https://%s?code=%s" % [GameCredits.HOSTNAME, GlobalLobbyClient.lobby.id])
+
+func _update_max_players_buttons(players):
+	decrement_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_min", 2)
+	increment_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_max", 10)
+
+func _on_button_increment_pressed() -> void:
+	click_sound.play()
+	var player_limit := int(max_players_label.text)
+	player_limit += 1
+	var max_players = ProjectSettings.get_setting("blazium/game/max_players_max", 10)
+	if player_limit > max_players:
+		player_limit = max_players
+	max_players_label.text = tr("players_max").format({players = player_limit})
+	_update_max_players_buttons(player_limit)
+	GlobalLobbyClient.set_max_players(player_limit)
+
+
+func _on_button_decrement_pressed() -> void:
+	click_sound.play()
+	var player_limit := int(max_players_label.text)
+	player_limit -= 1
+	var min_players = ProjectSettings.get_setting("blazium/game/max_players_min", 2)
+	if player_limit < min_players:
+		player_limit = min_players
+	max_players_label.text = tr("players_max").format({players = player_limit})
+	_update_max_players_buttons(player_limit)
+	GlobalLobbyClient.set_max_players(player_limit)
+
+func _on_password_line_edit_text_submitted(new_text: String) -> void:
+	await GlobalLobbyClient.set_password(new_text).finished
+
+func _on_password_line_edit_text_changed(new_text: String) -> void:
+	await GlobalLobbyClient.set_password(new_text).finished
+
+func _on_title_text_submitted(new_text: String) -> void:
+	await GlobalLobbyClient.set_title(new_text).finished
+
+func _on_title_text_changed(new_text: String) -> void:
+	await GlobalLobbyClient.set_title(new_text).finished
+
+func _on_sealed_toggled(toggled_on: bool) -> void:
+	await GlobalLobbyClient.set_lobby_sealed(toggled_on).finished
+
+
+func _on_option_button_item_selected(index: int) -> void:
+	match index:
+		0:
+			GlobalLobbyClient.add_lobby_tags({"game_mode": "normal_mode"})
+		1:
+			GlobalLobbyClient.add_lobby_tags({"game_mode": "normal_abunch_hanging"})
+		2:
+			GlobalLobbyClient.add_lobby_tags({"game_mode": "normal_all_or_nothing"})
+		3:
+			GlobalLobbyClient.add_lobby_tags({"game_mode": "normal_last_wrong_dies"})

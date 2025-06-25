@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+
+"Language: ko\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "chat_placeholder"
+msgstr "채팅"
+
+msgid "chat_send"
+msgstr "보내기"
+
+msgid "code_copy"
+msgstr "복사: {code}"
+
+msgid "dialog_yes"
+msgstr "예"
+
+msgid "dialog_no"
+msgstr "아니오"
+
+msgid "hide"
+msgstr "숨기기"
+
+msgid "join_discord"
+msgstr "디스코드 참여하기"
+
+msgid "loading_text"
+msgstr "로딩 중"
+
+msgid "loading_connection_lost"
+msgstr "연결이 끊어졌습니다!"
+
+msgid "loading_reconnect"
+msgstr "다시 연결하기"
+
+msgid "lobby_filter_only_selected_language"
+msgstr "다른 언어 게임 숨기기"
+
+msgid "lobby_filter_password"
+msgstr "비밀번호 있는 게임 숨기기"
+
+msgid "lobby_filters"
+msgstr "필터"
+
+msgid "lobby_join"
+msgstr "참가"
+
+msgid "lobby_leave"
+msgstr "나가기"
+
+msgid "lobby_requires_players"
+msgstr "더 많은 플레이어를 기다리는 중"
+
+msgid "lobby_requires_ready"
+msgstr "모든 플레이어의 준비를 기다리는 중"
+
+msgid "lobby_placeholder_code"
+msgstr "코드: ABC123"
+
+msgid "lobby_prompt_full"
+msgstr "이 게임은 이미 가득 찼습니다"
+
+msgid "lobby_prompt_password_protected"
+msgstr "비밀번호를 입력하세요"
+
+msgid "lobby_prompt_wrong_code"
+msgstr "입력한 게임 코드가 올바르지 않습니다"
+
+msgid "lobby_prompt_kick_player"
+msgstr "{player} 강퇴하기"
+
+msgid "lobby_ready"
+msgstr "준비 완료"
+
+msgid "lobby_start"
+msgstr "시작"
+
+msgid "lobby_title_game"
+msgstr "게임"
+
+msgid "lobby_unready"
+msgstr "아직 준비 안 됨"
+
+msgid "menu_about"
+msgstr "정보"
+
+msgid "menu_back"
+msgstr "뒤로"
+
+msgid "menu_browse"
+msgstr "찾기"
+
+msgid "menu_competitive"
+msgstr "경쟁전"
+
+msgid "menu_create"
+msgstr "생성"
+
+msgid "menu_prompt_exit"
+msgstr "정말로 종료하시겠습니까?"
+
+msgid "menu_quit"
+msgstr "종료"
+
+msgid "menu_options"
+msgstr "옵션"
+
+msgid "password_placeholder"
+msgstr "비밀번호"
+
+msgid "prompt_continue"
+msgstr "계속"
+
+msgid "prompt_enter"
+msgstr "입장"
+
+msgid "prompt_cancel"
+msgstr "취소"
+
+msgid "players_max"
+msgstr "플레이어: {players}"
+
+msgid "player_greet"
+msgstr "안녕하세요, {player}"
+
+msgid "player_name"
+msgstr "플레이어"
+
+msgid "settings_disconnect"
+msgstr "연결 해제"
+
+msgid "settings_mode_dark"
+msgstr "다크 모드"
+
+msgid "settings_mode_light"
+msgstr "라이트 모드"
+
+msgid "settings_prompt_disconnect"
+msgstr "정말 연결을 해제하시겠습니까?"
+
+msgid "settings_sound"
+msgstr "사운드"
+
+msgid "tab_players"
+msgstr "플레이어"
+
+msgid "title_placeholder"
+msgstr "게임 제목"

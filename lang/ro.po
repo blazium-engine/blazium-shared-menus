@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+
+"Language: ro\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "chat_placeholder"
+msgstr "Chat"
+
+msgid "chat_send"
+msgstr "Trimite"
+
+msgid "code_copy"
+msgstr "Copiază: {code}"
+
+msgid "dialog_yes"
+msgstr "Da"
+
+msgid "dialog_no"
+msgstr "Nu"
+
+msgid "hide"
+msgstr "Ascunde"
+
+msgid "join_discord"
+msgstr "Alătură-te pe Discord"
+
+msgid "loading_text"
+msgstr "Se încarcă"
+
+msgid "loading_connection_lost"
+msgstr "Conexiune pierdută!"
+
+msgid "loading_reconnect"
+msgstr "Reconectează"
+
+msgid "lobby_filter_only_selected_language"
+msgstr "Ascunde jocurile cu altă limbă"
+
+msgid "lobby_filter_password"
+msgstr "Ascunde jocurile cu parolă"
+
+msgid "lobby_filters"
+msgstr "Filtre"
+
+msgid "lobby_join"
+msgstr "Intră"
+
+msgid "lobby_leave"
+msgstr "Ieși"
+
+msgid "lobby_requires_players"
+msgstr "Se așteaptă mai mulți jucători"
+
+msgid "lobby_requires_ready"
+msgstr "Se așteaptă ca toți jucătorii să fie gata"
+
+msgid "lobby_placeholder_code"
+msgstr "Cod: ABC123"
+
+msgid "lobby_prompt_full"
+msgstr "Acest joc este deja plin"
+
+msgid "lobby_prompt_password_protected"
+msgstr "Te rugăm să introduci parola"
+
+msgid "lobby_prompt_wrong_code"
+msgstr "Codul introdus este greșit"
+
+msgid "lobby_prompt_kick_player"
+msgstr "Dă afară pe {player}"
+
+msgid "lobby_ready"
+msgstr "Gata"
+
+msgid "lobby_start"
+msgstr "Start"
+
+msgid "lobby_title_game"
+msgstr "Joc"
+
+msgid "lobby_unready"
+msgstr "Nu sunt gata"
+
+msgid "menu_about"
+msgstr "Despre"
+
+msgid "menu_back"
+msgstr "Înapoi"
+
+msgid "menu_browse"
+msgstr "Caută"
+
+msgid "menu_competitive"
+msgstr "Competitiv"
+
+msgid "menu_create"
+msgstr "Creează"
+
+msgid "menu_prompt_exit"
+msgstr "Ești sigur că vrei să ieși?"
+
+msgid "menu_quit"
+msgstr "Ieșire"
+
+msgid "menu_options"
+msgstr "Opțiuni"
+
+msgid "password_placeholder"
+msgstr "Parolă"
+
+msgid "prompt_continue"
+msgstr "Continuă"
+
+msgid "prompt_enter"
+msgstr "Intră"
+
+msgid "prompt_cancel"
+msgstr "Anulează"
+
+msgid "players_max"
+msgstr "Jucători: {players}"
+
+msgid "player_greet"
+msgstr "Salut, {player}"
+
+msgid "player_name"
+msgstr "Jucător"
+
+msgid "settings_disconnect"
+msgstr "Deconectează"
+
+msgid "settings_mode_dark"
+msgstr "Mod întunecat"
+
+msgid "settings_mode_light"
+msgstr "Mod luminos"
+
+msgid "settings_prompt_disconnect"
+msgstr "Ești sigur că vrei să te deconectezi?"
+
+msgid "settings_sound"
+msgstr "Sunet"
+
+msgid "tab_players"
+msgstr "Jucători"
+
+msgid "title_placeholder"
+msgstr "Titlul jocului"

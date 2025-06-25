@@ -1,11 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn8bcqn8gwpxh"]
+[gd_scene load_steps=9 format=3 uid="uid://cn8bcqn8gwpxh"]
 
 [ext_resource type="Script" uid="uid://cwuj7caayyicl" path="res://addons/blazium_shared_menus/about/about.gd" id="1_grr0r"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_0pa0n"]
+[ext_resource type="PackedScene" uid="uid://qxcvedn11ub" path="res://addons/blazium_shared_menus/general/blazium_bg.tscn" id="2_e5ig4"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="2_w6h8l"]
 [ext_resource type="Script" uid="uid://p5duwa8ekih3" path="res://credits.gd" id="4_jjhrc"]
 
-[node name="About" type="PanelContainer" node_paths=PackedStringArray("back_button", "click_sound")]
+[sub_resource type="FontVariation" id="FontVariation_fp7sa"]
+variation_opentype = {
+2003072104: 100,
+2003265652: 600
+}
+
+[sub_resource type="FontVariation" id="FontVariation_jjhrc"]
+variation_opentype = {
+2003265652: 200
+}
+
+[sub_resource type="FontVariation" id="FontVariation_e5ig4"]
+variation_opentype = {
+2003265652: 600
+}
+
+[node name="About" type="PanelContainer" node_paths=PackedStringArray("back_button", "click_sound", "rich_text_label", "credits", "left_spacer", "right_spacer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,63 +30,96 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_grr0r")
-back_button = NodePath("HBoxContainer/PanelContainer/VBoxContainer/Back")
+back_button = NodePath("BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/Back")
 click_sound = NodePath("Click1")
+rich_text_label = NodePath("BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/RichTextLabel")
+credits = NodePath("Credits")
+left_spacer = NodePath("BlaziumBG/HBoxContainer/LeftSpacer")
+right_spacer = NodePath("BlaziumBG/HBoxContainer/RightSpacer")
 metadata/_edit_lock_ = true
+
+[node name="BlaziumBG" parent="." instance=ExtResource("2_e5ig4")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BlaziumBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeftSpacer" type="Control" parent="BlaziumBG/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BlaziumBG/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_type_variation = &"PaddedMarginContainer"
+
+[node name="PanelContainer" type="PanelContainer" parent="BlaziumBG/HBoxContainer/MarginContainer"]
+self_modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 2
+theme_type_variation = &"FlatPanelContainer"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_type_variation = &"CustomPopupVBox"
+
+[node name="Label" type="Label" parent="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLargeFit"
+theme_override_fonts/font = SubResource("FontVariation_fp7sa")
+text = "menu_about"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/normal_font = SubResource("FontVariation_jjhrc")
+theme_override_fonts/bold_font = SubResource("FontVariation_e5ig4")
+bbcode_enabled = true
+text = "[b]Credits[/b] text."
+fit_content = true
+shortcut_keys_enabled = false
+
+[node name="Discord" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+mouse_default_cursor_shape = 2
+text = "join_discord"
+expand_text = false
+icon_alignment = 1
+script = ExtResource("2_w6h8l")
+user_icon = "groups"
+
+[node name="Back" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+mouse_default_cursor_shape = 2
+text = "menu_back"
+expand_text = false
+icon_alignment = 1
+script = ExtResource("2_w6h8l")
+user_icon = "arrow_back"
+
+[node name="RightSpacer" type="Control" parent="BlaziumBG/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+mouse_filter = 2
 
 [node name="Click1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0pa0n")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="Control" type="Control" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-theme_type_variation = &"ContentPanel"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="PaddingTitle" type="Control" parent="HBoxContainer/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_type_variation = &"HeaderLarge"
-text = "Credits"
-horizontal_alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-bbcode_enabled = true
-fit_content = true
-shortcut_keys_enabled = false
-horizontal_alignment = 1
-
-[node name="Back" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "Back"
-expand_text = false
-icon_alignment = 1
-expand_icon = true
-script = ExtResource("2_w6h8l")
-user_icon = "arrow_back"
-
-[node name="Control2" type="Control" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="Credits" type="Node" parent="."]
 script = ExtResource("4_jjhrc")
 
-[connection signal="meta_clicked" from="HBoxContainer/PanelContainer/VBoxContainer/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
-[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="meta_clicked" from="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/Discord" to="." method="_on_discord_pressed"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

@@ -12,6 +12,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_levib")
 chat_input = NodePath("HBoxContainerChat/ChatInput")
 chat_text = NodePath("RichTextLabel")
@@ -38,7 +40,7 @@ scroll_following = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_vertical = 3
 
 [node name="EmojiPanel" type="PanelContainer" parent="Control"]
 visible = false
@@ -46,13 +48,14 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -252.0
-offset_right = 492.0
+offset_top = -900.0
+offset_right = 900.0
 grow_vertical = 0
 script = ExtResource("4_owajc")
 
 [node name="HBoxContainerChat" type="HBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 24
 
 [node name="EmojiButton" type="Button" parent="HBoxContainerChat"]
 layout_mode = 2
@@ -68,16 +71,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../EmojiButton")
 focus_neighbor_right = NodePath("../ChatButton")
-placeholder_text = "Chat:"
+placeholder_text = "chat_placeholder"
 max_length = 256
 emoji_menu_enabled = false
+caret_blink = true
 
 [node name="ChatButton" type="Button" parent="HBoxContainerChat"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../ChatInput")
 mouse_default_cursor_shape = 2
-text = "Send"
+text = "chat_send"
 expand_text = false
 icon_alignment = 1
 script = ExtResource("5_bbuts")
@@ -86,5 +90,6 @@ user_icon = "send"
 [connection signal="meta_clicked" from="RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
 [connection signal="emoji_pressed" from="Control/EmojiPanel" to="." method="_on_emoji_pressed"]
 [connection signal="toggled" from="HBoxContainerChat/EmojiButton" to="." method="_on_emoji_button_toggled"]
+[connection signal="text_changed" from="HBoxContainerChat/ChatInput" to="." method="_on_chat_input_text_changed"]
 [connection signal="text_submitted" from="HBoxContainerChat/ChatInput" to="." method="_on_chat_input_text_submitted"]
 [connection signal="pressed" from="HBoxContainerChat/ChatButton" to="." method="_on_chat_button_pressed"]

@@ -19,13 +19,20 @@ func _ready() -> void:
 	GlobalLobbyClient.received_lobby_data.connect(_received_lobby_data)
 	GlobalLobbyClient.peer_disconnected.connect(_peer_disconnected)
 	GlobalLobbyClient.peer_reconnected.connect(_peer_reconnected)
-	label.text = peer_info.user_data.get("name", "")
+	ThemeDB.scale_changed.connect(_resized)
+	_resized()
+	var user_name = peer_info.user_data.get("name", "")
+	label.text = WordFilterAutoload.filter_message(user_name)
 	avatar.frame = peer_info.user_data.get("avatar", 0)
 	match peer_info.platform:
 		"discord": platform.frame = 0
 		"steam": platform.frame = 1
 		"anon": platform.frame = 2
 	_received_lobby_data(GlobalLobbyClient.lobby.data)
+
+func _resized():
+	platform.texture_scale = GlobalLobbyClient.get_theme_scale().x * 0.7
+	avatar.texture_scale = GlobalLobbyClient.get_theme_scale().x
 
 
 func _peer_disconnected(peer: LobbyPeer):
@@ -40,7 +47,7 @@ func _peer_reconnected(peer: LobbyPeer):
 
 func _received_lobby_data(data: Dictionary):
 	# Host's turn
-	if data["game_state"] == "started":
+	if data["game_state"] != "playing":
 		if data.get("dealer", "") == peer_info.id:
 			theme_type_variation = "SelectedPanel"
 		else:

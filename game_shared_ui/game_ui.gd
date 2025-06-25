@@ -1,11 +1,8 @@
 class_name GameUI
 extends BlaziumControl
 
-@export var private_checkbutton: CheckBox
-@export var logs: Label
-
-@export var player_list: VBoxContainer
-@export var user_element_scene: PackedScene
+@export var player_list: HBoxContainer
+var user_element_scene: PackedScene = load("res://addons/blazium_shared_menus/game_shared_ui/user_element.tscn")
 @export var chat: ChatContainer
 @export var user_list: ScrollContainer
 
@@ -15,6 +12,7 @@ extends BlaziumControl
 @export var click_sfx: AudioStreamPlayer
 @export var game_start_sfx: AudioStreamPlayer
 
+var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 
 var peer_to_kick: String
@@ -26,10 +24,6 @@ var kick_popup: CustomDialog
 func _ready() -> void:
 	game_start_sfx.play()
 
-	private_checkbutton.visible = GlobalLobbyClient.is_host()
-	private_checkbutton.set_pressed_no_signal(GlobalLobbyClient.lobby.sealed)
-
-	GlobalLobbyClient.lobby_sealed.connect(_lobby_sealed)
 	GlobalLobbyClient.lobby_left.connect(_lobby_left)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	# Player list
@@ -37,49 +31,45 @@ func _ready() -> void:
 	GlobalLobbyClient.peer_left.connect(_peer_left)
 	load_peers(GlobalLobbyClient.peers)
 
-	exit_popup = CustomDialog.new("Are You Sure You Want To Exit?")
+	exit_popup = CustomDialog.new("menu_prompt_exit")
 	exit_popup.name = "ExitPopup"
 	exit_popup.cancelled.connect(_on_exit_popup_cancelled)
 	exit_popup.confirmed.connect(_on_exit_popup_confirmed)
 	exit_popup.hide()
-	get_tree().current_scene.get_child(0).add_child(exit_popup, false, Node.INTERNAL_MODE_BACK)
+	get_tree().current_scene.add_child.call_deferred(exit_popup, false, Node.INTERNAL_MODE_BACK)
 
-	kick_popup = CustomDialog.new("Kick Player?")
+	kick_popup = CustomDialog.new("lobby_prompt_kick_player")
 	kick_popup.name = "KickPopup"
 	kick_popup.cancelled.connect(_on_kick_popup_cancelled)
 	kick_popup.confirmed.connect(_on_kick_popup_confirm)
 	kick_popup.hide()
-	get_tree().current_scene.get_child(0).add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
+	get_tree().current_scene.add_child.call_deferred(kick_popup, false, Node.INTERNAL_MODE_BACK)
 
 	_set_fallback_focus(chat.chat_text)
 
-func _lobby_sealed(sealed: bool):
-	private_checkbutton.set_pressed_no_signal(sealed)
-
-
 func _lobby_left(_kicked: bool):
+	await get_tree().process_frame
 	if is_inside_tree():
-		get_tree().change_scene_to_packed.call_deferred(main_menu_scene)
+		get_tree().change_scene_to_packed(main_menu_scene)
 
 
 func leave_lobby():
-	var result: LobbyResult = await GlobalLobbyClient.leave_lobby().finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.leave_lobby().finished
 
 
 func kick_peer(peer: LobbyPeer) -> void:
 	if peer.id == GlobalLobbyClient.peer.id:
 		return
 	peer_to_kick = peer.id
-	kick_popup.text = "Kick %s?" % peer.user_data.get("name", "")
+	kick_popup.text = tr("lobby_prompt_kick_player").format({player = peer.user_data.get("name", "")})
 	_update_last_focus()
 	kick_popup.show()
 
 
 func _disconnected_from_server(_reason: String):
+	await get_tree().process_frame
 	if is_inside_tree():
-		get_tree().change_scene_to_packed.call_deferred(main_menu_scene)
+		get_tree().change_scene_to_packed(loading_scene)
 
 
 func _on_back_pressed() -> void:
@@ -113,13 +103,6 @@ func _play_click_sound() -> void:
 	click_sfx.play()
 
 
-func _on_private_toggled(toggled_on: bool) -> void:
-	click_sfx.play()
-	var result: LobbyResult = await GlobalLobbyClient.set_lobby_sealed(toggled_on).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
-
-
 func _on_kick_popup_cancelled() -> void:
 	click_sfx.play()
 	_restore_last_focus()
@@ -127,9 +110,7 @@ func _on_kick_popup_cancelled() -> void:
 
 func _on_kick_popup_confirm() -> void:
 	click_sfx.play()
-	var result: LobbyResult = await GlobalLobbyClient.kick_peer(peer_to_kick).finished
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	await GlobalLobbyClient.kick_peer(peer_to_kick).finished
 	_restore_last_focus()
 
 
@@ -149,9 +130,6 @@ func load_peers(peers: Array[LobbyPeer]):
 		user_node.peer_info = peer
 		user_node.kick.connect(kick_peer)
 		player_list.add_child(user_node)
-
-func _on_user_list_hider_toggled(toggled_on: bool) -> void:
-	user_list.visible = toggled_on
 
 
 func send_chat(peer_id: LobbyPeer, message: String):

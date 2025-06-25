@@ -2,7 +2,6 @@
 extends BlaziumPanel
 
 @export var password_line_edit: LineEdit
-@export var logs: Label
 @export var max_players_label: Label
 @export var title_label: LineEdit
 @export var create_button: Button
@@ -10,84 +9,59 @@ extends BlaziumPanel
 @export var right_spacer: Control
 @export var increment_button: Button
 @export var decrement_button: Button
-@export var sealed_checkbox: CheckBox
+@export var sealed_checkbox: CheckButton
 @export var click_sound: AudioStreamPlayer
 @export var settings_vbox: VBoxContainer
 
+var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
 var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
 var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
 var tag_setting_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/tag_setting.tscn")
-var sealed := false
-
-var tags_settings_array: Array[TagSetting]
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	title_label.grab_focus()
-	max_players_label.text = str(ProjectSettings.get_setting("blazium/game/max_players_default", 10))
+	max_players_label.text = tr("players_max").format({players = ProjectSettings.get_setting("blazium/game/max_players_default", 10)})
 	_update_max_players_buttons(int(max_players_label.text))
-	var tags_enabled = ProjectSettings.get_setting("blazium/game/tags_enabled", [])
-	for tag_enabled in tags_enabled:
-		var tag_name = ProjectSettings.get_setting("blazium/game/" + tag_enabled + "/name")
-		var tag_default = ProjectSettings.get_setting("blazium/game/" + tag_enabled + "/default")
-		var tag_setting: TagSetting = tag_setting_scene.instantiate()
-		settings_vbox.add_child(tag_setting)
-		tag_setting.tag_name = tag_enabled
-		tag_setting.owner = settings_vbox
-		tag_setting.label.text = tag_name
-		tag_setting.line_edit.text = str(tag_default)
-		tag_setting.name = tag_name
-		tags_settings_array.push_back(tag_setting)
 
 func _on_button_create_lobby_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
 	if title_label.text.is_empty():
-		title_label.text = "Game" + str(randi() % 1000)
+		title_label.text = tr("lobby_title_game") + str(randi() % 1000)
 	var tags = {}
-	for tag_setting in tags_settings_array:
-		var tag_setting_text = tag_setting.line_edit.text
-		if tag_setting_text == "":
-			tag_setting_text = 0
-		tags[tag_setting.tag_name] = int(tag_setting_text)
-	var config = ConfigFile.new()
-	config.load("user://blazium.cfg")
-	var game_mode = config.get_value("Settings", "game_mode")
-	tags["game_mode"] = game_mode
-	var game_mode_title = ""
-	if game_mode == "normal_mode":
-		game_mode_title = game_mode.replace("_", " ").replace("mode", "").capitalize()
-	else:
-		game_mode_title = game_mode.replace("_", " ").replace("normal", "").capitalize()
-	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(game_mode_title + ": " + title_label.text, sealed, tags, int(max_players_label.text), password_line_edit.text).finished
-	
-	logs.visible = GlobalLobbyClient.show_debug
-	logs.text = result.error
+	tags["game_mode"] = "normal_mode"
+	tags["lang"] = TranslationServer.get_locale().split("_")[0]
+	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(title_label.text, sealed_checkbox.button_pressed, tags, int(max_players_label.text), password_line_edit.text).finished
+
 	if not result.has_error():
+		await get_tree().process_frame
 		if is_inside_tree():
 			get_tree().change_scene_to_packed(lobby_viewer_scene)
 
 
 func _on_button_increment_pressed() -> void:
 	click_sound.play()
-	var players := int(max_players_label.text)
-	players += 1
-	if players > ProjectSettings.get_setting("blazium/game/max_players_max", 10):
-		players = ProjectSettings.get_setting("blazium/game/max_players_max", 10)
-	max_players_label.text = str(players)
-	_update_max_players_buttons(players)
+	var player_limit := int(max_players_label.text)
+	player_limit += 1
+	var max_players = ProjectSettings.get_setting("blazium/game/max_players_max", 10)
+	if player_limit > max_players:
+		player_limit = max_players
+	max_players_label.text = tr("players_max").format({players = player_limit})
+	_update_max_players_buttons(player_limit)
 
 
 func _on_button_decrement_pressed() -> void:
 	click_sound.play()
-	var players := int(max_players_label.text)
-	players -= 1
-	if players < ProjectSettings.get_setting("blazium/game/max_players_min", 2):
-		players = ProjectSettings.get_setting("blazium/game/max_players_min", 2)
-	max_players_label.text = str(players)
-	_update_max_players_buttons(players)
+	var player_limit := int(max_players_label.text)
+	player_limit -= 1
+	var min_players = ProjectSettings.get_setting("blazium/game/max_players_min", 2)
+	if player_limit < min_players:
+		player_limit = min_players
+	max_players_label.text = tr("players_max").format({players = player_limit})
+	_update_max_players_buttons(player_limit)
 
 
 func _update_max_players_buttons(players):
@@ -100,9 +74,11 @@ func _on_title_text_submitted(_new_text: String) -> void:
 
 
 func _on_resized() -> void:
-	var show_spacers = size.x > 600
-	left_spacer.visible = show_spacers
-	right_spacer.visible = show_spacers
+	if Engine.is_editor_hint():
+		return
+	var show_spacers = GlobalLobbyClient.ui_breakpoint()
+	left_spacer.visible = !show_spacers
+	right_spacer.visible = !show_spacers
 
 
 func _input(_event):
@@ -112,17 +88,17 @@ func _input(_event):
 
 func _disconnected_from_server(_reason: String):
 	if is_inside_tree():
-		get_tree().change_scene_to_packed(main_menu_scene)
+		await get_tree().process_frame
+		if is_inside_tree():
+			get_tree().change_scene_to_packed(loading_scene)
 
 
 func _on_sealed_toggled(toggled_on: bool) -> void:
 	click_sound.play()
-	sealed_checkbox.text = "Yes" if toggled_on else "No"
-	sealed = toggled_on
-
 
 func _on_back_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
+	await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(main_menu_scene)

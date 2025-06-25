@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+
+"Language: pl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "chat_placeholder"
+msgstr "Czat"
+
+msgid "chat_send"
+msgstr "Wyślij"
+
+msgid "code_copy"
+msgstr "Kopiuj: {code}"
+
+msgid "dialog_yes"
+msgstr "Tak"
+
+msgid "dialog_no"
+msgstr "Nie"
+
+msgid "hide"
+msgstr "Ukryj"
+
+msgid "join_discord"
+msgstr "Dołącz do naszego Discorda"
+
+msgid "loading_text"
+msgstr "Ładowanie"
+
+msgid "loading_connection_lost"
+msgstr "Połączenie utracone!"
+
+msgid "loading_reconnect"
+msgstr "Połącz ponownie"
+
+msgid "lobby_filter_only_selected_language"
+msgstr "Ukryj gry w innym języku"
+
+msgid "lobby_filter_password"
+msgstr "Ukryj gry z hasłem"
+
+msgid "lobby_filters"
+msgstr "Filtry"
+
+msgid "lobby_join"
+msgstr "Dołącz"
+
+msgid "lobby_leave"
+msgstr "Opuść"
+
+msgid "lobby_requires_players"
+msgstr "Oczekiwanie na więcej graczy"
+
+msgid "lobby_requires_ready"
+msgstr "Czekamy aż wszyscy będą gotowi"
+
+msgid "lobby_placeholder_code"
+msgstr "Kod: ABC123"
+
+msgid "lobby_prompt_full"
+msgstr "Ta gra jest już pełna"
+
+msgid "lobby_prompt_password_protected"
+msgstr "Proszę podać hasło"
+
+msgid "lobby_prompt_wrong_code"
+msgstr "Wprowadzony kod gry jest nieprawidłowy"
+
+msgid "lobby_prompt_kick_player"
+msgstr "Wyrzuć {player}"
+
+msgid "lobby_ready"
+msgstr "Gotowy"
+
+msgid "lobby_start"
+msgstr "Start"
+
+msgid "lobby_title_game"
+msgstr "Gra"
+
+msgid "lobby_unready"
+msgstr "Nie jestem gotowy"
+
+msgid "menu_about"
+msgstr "O grze"
+
+msgid "menu_back"
+msgstr "Wstecz"
+
+msgid "menu_browse"
+msgstr "Szukaj"
+
+msgid "menu_competitive"
+msgstr "Rywalizacja"
+
+msgid "menu_create"
+msgstr "Utwórz"
+
+msgid "menu_prompt_exit"
+msgstr "Czy na pewno chcesz wyjść?"
+
+msgid "menu_quit"
+msgstr "Zakończ"
+
+msgid "menu_options"
+msgstr "Opcje"
+
+msgid "password_placeholder"
+msgstr "Hasło"
+
+msgid "prompt_continue"
+msgstr "Kontynuuj"
+
+msgid "prompt_enter"
+msgstr "Wejdź"
+
+msgid "prompt_cancel"
+msgstr "Anuluj"
+
+msgid "players_max"
+msgstr "Gracze: {players}"
+
+msgid "player_greet"
+msgstr "Cześć, {player}"
+
+msgid "player_name"
+msgstr "Gracz"
+
+msgid "settings_disconnect"
+msgstr "Rozłącz"
+
+msgid "settings_mode_dark"
+msgstr "Tryb ciemny"
+
+msgid "settings_mode_light"
+msgstr "Tryb jasny"
+
+msgid "settings_prompt_disconnect"
+msgstr "Czy na pewno chcesz się rozłączyć?"
+
+msgid "settings_sound"
+msgstr "Dźwięk"
+
+msgid "tab_players"
+msgstr "Gracze"
+
+msgid "title_placeholder"
+msgstr "Tytuł gry"
