@@ -17,15 +17,17 @@ func login_steam() -> bool:
 	steam.getAuthTicketForWebApi("blazium")
 	return true
 
-func get_dlcs() -> Array[String]:
+func get_dlcs() -> Array[Dictionary]:
 	var steam:= Engine.get_singleton("Steam")
 	var dlc_array = steam.getDLCData()
-	var owned :Array[String]= []
+	var owned :Array[Dictionary]= []
 	for dlc_data in dlc_array:
-		if steam.isDLCInstalled(dlc_data["id"]):
-			owned.push_back(dlc_data["name"])
+		# Add them all for now
+		owned.push_back(dlc_data)
 	return owned
 
+func dlc_installed(app: int):
+	print(app)
 
 func _fail_login_if_timeout():
 	# Error case will be null ticket

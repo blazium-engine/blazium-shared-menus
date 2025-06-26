@@ -46,6 +46,8 @@ func _size_changed():
 	ProjectSettings.set_setting("gui/theme/font_size", scaled_font_size)
 	ProjectSettings.set_setting("gui/theme/default_theme_scale", theme_scale)
 
+var logged_into_steam := false
+
 func try_login() -> bool:
 	if !login.connected:
 		var result :LoginConnectResult= await login.connect_to_server().finished
@@ -65,7 +67,7 @@ func try_login() -> bool:
 			print("[ScriptedLobby]: Authentication already done, reusing JWT.")
 			# Just in case, login to steam
 			if steam.login_steam():
-				print(steam.get_dlcs())
+				logged_into_steam = true
 			login.disconnect_from_server()
 			return true
 	if discord.is_discord_environment():
@@ -163,6 +165,12 @@ func update_theme(is_light_theme: bool):
 
 func call_event(event_name: String):
 	pogr.add_event(event_name)
+
+# Array of dictionary of id and name
+func get_steam_dlcs() -> Array[Dictionary]:
+	if logged_into_steam:
+		return steam.get_dlcs()
+	return []
 
 
 func is_discord_environment() -> bool:

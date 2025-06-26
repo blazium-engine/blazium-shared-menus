@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://8r4dcxm66m3j"]
+[gd_scene load_steps=18 format=3 uid="uid://8r4dcxm66m3j"]
 
 [ext_resource type="Script" uid="uid://dqc3ubrnmgw1b" path="res://addons/blazium_shared_menus/settings/settings.gd" id="1_qnsfk"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_46h8p"]
@@ -10,7 +10,9 @@
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="6_m4ikw"]
 [ext_resource type="Script" uid="uid://dbfmeu5kh7yv4" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_6v4tp"]
 [ext_resource type="Script" uid="uid://c6eim0n5qfl12" path="res://game/hide_if_orientation_mobile.gd" id="9_hybew"]
+[ext_resource type="Script" uid="uid://rl2npvhvg70l" path="res://addons/blazium_shared_menus/settings/colors_unlocker.gd" id="11_rcusp"]
 [ext_resource type="Script" uid="uid://sof56ahpmktu" path="res://addons/blazium_shared_menus/settings/language_button.gd" id="11_vmsml"]
+[ext_resource type="Script" uid="uid://sm57u3x0xkfr" path="res://addons/blazium_theme_editor/classes/custom_texture_rect.gd" id="12_psx8p"]
 
 [sub_resource type="FontVariation" id="FontVariation_usqs5"]
 variation_opentype = {
@@ -325,7 +327,7 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.294118, 0.180392, 0.12549, 1)
 
-[node name="Colors" type="TabContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer"]
+[node name="Colors" type="TabContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("shirts", "pants")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -334,6 +336,9 @@ theme_type_variation = &"CustomPopupVBox"
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_vmsml")
 current_tab = 0
 clip_tabs = false
+script = ExtResource("11_rcusp")
+shirts = [NodePath("Shirt/Row1/Normal"), NodePath("Shirt/Row1/Pogr"), NodePath("Shirt/Row1/Enjoyed"), NodePath("Shirt/Row1/X"), NodePath("Shirt/Row2/Blazium"), NodePath("Shirt/Row2/Youtube"), NodePath("Shirt/Row2/Twitch"), NodePath("Shirt/Row2/Discord")]
+pants = [NodePath("Pants/Row1/Normal"), NodePath("Pants/Row1/Pogr"), NodePath("Pants/Row1/Enjoyed"), NodePath("Pants/Row1/X"), NodePath("Pants/Row2/Blazium"), NodePath("Pants/Row2/Youtube"), NodePath("Pants/Row2/Twitch"), NodePath("Pants/Row2/Discord")]
 
 [node name="Shirt" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors"]
 custom_minimum_size = Vector2(400, 0)
@@ -353,6 +358,26 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.8, 0.607843, 0.478431, 1)
 
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row1/Normal"]
+visible = false
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
+
 [node name="Pogr" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row1"]
 custom_minimum_size = Vector2(75, 100)
 layout_mode = 2
@@ -360,6 +385,25 @@ size_flags_horizontal = 3
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.294118, 0.870588, 0.835294, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row1/Pogr"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
 
 [node name="Enjoyed" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row1"]
 custom_minimum_size = Vector2(75, 100)
@@ -369,6 +413,25 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.470588, 0.85098, 0.415686, 1)
 
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row1/Enjoyed"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
+
 [node name="X" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row1"]
 custom_minimum_size = Vector2(75, 100)
 layout_mode = 2
@@ -376,6 +439,25 @@ size_flags_horizontal = 3
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row1/X"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
 
 [node name="Row2" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt"]
 layout_mode = 2
@@ -389,6 +471,25 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.917647, 0.443137, 0.917647, 1)
 
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row2/Blazium"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
+
 [node name="Youtube" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row2"]
 custom_minimum_size = Vector2(75, 100)
 layout_mode = 2
@@ -396,6 +497,25 @@ size_flags_horizontal = 3
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.894118, 0.356863, 0.356863, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row2/Youtube"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
 
 [node name="Twitch" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row2"]
 custom_minimum_size = Vector2(75, 100)
@@ -405,6 +525,25 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.631373, 0.466667, 0.94902, 1)
 
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row2/Twitch"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
+
 [node name="Discord" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row2"]
 custom_minimum_size = Vector2(75, 100)
 layout_mode = 2
@@ -412,6 +551,25 @@ size_flags_horizontal = 3
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.34902, 0.396078, 0.94902, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Shirt/Row2/Discord"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
 
 [node name="Pants" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors"]
 visible = false
@@ -432,29 +590,109 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.772549, 0.686275, 0.882353, 1)
 
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row1/Normal"]
+visible = false
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
+
 [node name="Pogr" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row1"]
 custom_minimum_size = Vector2(75, 100)
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.988235, 0.654902, 0.411765, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row1/Pogr"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
 
 [node name="Enjoyed" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row1"]
 custom_minimum_size = Vector2(75, 100)
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.490196, 0.772549, 0.431373, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row1/Enjoyed"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
 
 [node name="X" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row1"]
 custom_minimum_size = Vector2(75, 100)
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row1/X"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
 
 [node name="Row2" type="HBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants"]
 layout_mode = 2
@@ -464,33 +702,113 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(75, 100)
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.352941, 0.211765, 0.368627, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row2/Blazium"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
 
 [node name="Youtube" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row2"]
 custom_minimum_size = Vector2(75, 100)
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.780392, 0.309804, 0.309804, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row2/Youtube"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
 
 [node name="Twitch" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row2"]
 custom_minimum_size = Vector2(75, 100)
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.729412, 0.576471, 1, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row2/Twitch"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
 
 [node name="Discord" type="ColorButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row2"]
 custom_minimum_size = Vector2(75, 100)
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rcusp")
 color = Color(0.54902, 0.619608, 1, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer/Colors/Pants/Row2/Discord"]
+modulate = Color(0, 0, 0, 0.823529)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+script = ExtResource("12_psx8p")
+user_icon = "lock"
 
 [node name="VSeparator3" type="VSeparator" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
