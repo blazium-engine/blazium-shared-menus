@@ -2,7 +2,7 @@ class_name GameUI
 extends BlaziumControl
 
 @export var player_list: HBoxContainer
-var user_element_scene: PackedScene = load("res://addons/blazium_shared_menus/game_shared_ui/user_element.tscn")
+var user_element_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/container_peer.tscn")
 @export var chat: ChatContainer
 @export var user_list: ScrollContainer
 
@@ -127,7 +127,9 @@ func load_peers(peers: Array[LobbyPeer]):
 		child.queue_free()
 	for peer in peers:
 		var user_node := user_element_scene.instantiate()
-		user_node.peer_info = peer
+		user_node.selected = GlobalLobbyClient.peer.id == peer.id
+		user_node.enable_ready = false
+		user_node.peer = peer
 		user_node.kick.connect(kick_peer)
 		player_list.add_child(user_node)
 

@@ -42,7 +42,9 @@ var peer_to_kick: String
 func update_title():
 	lobby_label.text = WordFilterAutoload.filter_message(GlobalLobbyClient.lobby.lobby_name + " " + \
 		str(GlobalLobbyClient.lobby.players) + "/" + str(GlobalLobbyClient.lobby.max_players))
-	lobby_title_line_edit.text = WordFilterAutoload.filter_message(GlobalLobbyClient.lobby.lobby_name)
+	# The host already has this updated
+	if !GlobalLobbyClient.is_host():
+		lobby_title_line_edit.text = WordFilterAutoload.filter_message(GlobalLobbyClient.lobby.lobby_name)
 	lobby_max_players_label.text = tr("players_max").format({players = GlobalLobbyClient.lobby.max_players})
 
 
@@ -91,14 +93,10 @@ func _ready() -> void:
 	GlobalLobbyClient.peer_ready.connect(_peer_ready)
 	GlobalLobbyClient.lobby_tagged.connect(_lobby_tagged)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
-	if not GlobalLobbyClient.is_host():
-		start_button.hide()
-		mode_options.disabled = true
-		lobby_title_line_edit.editable = false
-		lobby_password_line_edit.editable = false
-		private_checkbutton.disabled = true
-		increment_button.disabled = true
-		decrement_button.disabled = true
+	GlobalLobbyClient.lobby_hosted.connect(_lobby_hosted)
+	for peer in GlobalLobbyClient.peers:
+		if peer.id == GlobalLobbyClient.lobby.host:
+			_lobby_hosted(peer)
 	if GlobalLobbyClient.lobby.password_protected:
 		password_line_edit.text = "123456"
 	for child in lobby_grid.get_children():
@@ -109,13 +107,22 @@ func _ready() -> void:
 	_received_lobby_data.call_deferred(GlobalLobbyClient.lobby.data)
 	_set_fallback_focus(ready_button)
 
+func _lobby_hosted(peer: LobbyPeer):
+	# Host changed, reload scene
+	var is_host := GlobalLobbyClient.is_host()
+	start_button.visible = is_host
+	mode_options.disabled = !is_host
+	lobby_title_line_edit.editable = is_host
+	lobby_password_line_edit.editable = is_host
+	private_checkbutton.disabled = !is_host
+	increment_button.disabled = !is_host
+	decrement_button.disabled = !is_host
 
 func _add_peer_container(peer: LobbyPeer):
 	var peer_container := container_peer_scene.instantiate()
 	peer_container.selected = GlobalLobbyClient.peer.id == peer.id
+	peer_container.enable_ready = true
 	peer_container.peer = peer
-	peer_container.avatar = peer.user_data.get("avatar", 0)
-	peer_container.platform = peer.platform
 	peer_container.kick.connect(kick_peer)
 	lobby_grid.add_child(peer_container)
 	update_title()

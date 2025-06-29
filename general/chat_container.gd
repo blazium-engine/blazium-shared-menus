@@ -36,6 +36,7 @@ func _ready() -> void:
 	GlobalLobbyClient.peer_messaged.connect(_peer_messaged)
 	GlobalLobbyClient.peer_joined.connect(_peer_joined)
 	GlobalLobbyClient.peer_left.connect(_peer_left)
+	GlobalLobbyClient.lobby_hosted.connect(_lobby_hosted)
 	GlobalLobbyClient.peer_disconnected.connect(_peer_disconnected)
 	GlobalLobbyClient.peer_reconnected.connect(_peer_reconnected)
 
@@ -167,6 +168,9 @@ func _peer_left(peer: LobbyPeer, kicked: bool):
 		append_message_to_chat(peer, "Was kicked from the lobby")
 	else:
 		append_message_to_chat(peer, "Left the lobby")
+
+func _lobby_hosted(host: LobbyPeer):
+	append_message_to_chat(host, "Became the host")
 
 
 func _peer_disconnected(peer: LobbyPeer):

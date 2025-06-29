@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhhxwmhy2mm0v"]
+
+[ext_resource type="Script" uid="uid://cwneq1qetwixx" path="res://addons/blazium_shared_menus/blazium_localization_editor.gd" id="1_61sri"]
+
+[node name="BlaziumLocalization" type="Control" node_paths=PackedStringArray("languages_hbox", "message_line_edit", "word_line_edit")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_61sri")
+languages_hbox = NodePath("VBoxContainer/ScrollContainer/Languages")
+message_line_edit = NodePath("VBoxContainer/Buttons Add/Message")
+word_line_edit = NodePath("VBoxContainer/Buttons Add/Word")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons Add" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Message" type="LineEdit" parent="VBoxContainer/Buttons Add"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "word_code"
+
+[node name="Word" type="LineEdit" parent="VBoxContainer/Buttons Add"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Word"
+
+[node name="Add" type="Button" parent="VBoxContainer/Buttons Add"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add"
+
+[node name="Remove" type="Button" parent="VBoxContainer/Buttons Add"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Remove"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Languages" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/Buttons Add/Add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons Add/Remove" to="." method="_on_remove_pressed"]

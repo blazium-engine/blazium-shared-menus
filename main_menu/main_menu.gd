@@ -39,8 +39,6 @@ func _ready() -> void:
 	else:
 		_disconnected_from_server("")
 	quit_button.visible = not os_manages_quit
-	#var game_mode = SettingsAutoload.config.get_value("Settings", "game_mode", "normal_mode")
-	#game_modes.set_selected_game_mode(game_mode)
 
 
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):

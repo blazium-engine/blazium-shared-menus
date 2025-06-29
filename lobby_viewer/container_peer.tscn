@@ -8,15 +8,17 @@
 [ext_resource type="Script" uid="uid://sm57u3x0xkfr" path="res://addons/blazium_theme_editor/classes/custom_texture_rect.gd" id="7_msetu"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="8_idkgm"]
 
-[node name="ContainerLobby" type="PanelContainer" node_paths=PackedStringArray("disconnected_texture", "click_sound")]
-custom_minimum_size = Vector2(512, 0)
+[node name="ContainerLobby" type="PanelContainer" node_paths=PackedStringArray("disconnected_texture", "click_sound", "host_texture")]
+custom_minimum_size = Vector2(400, 0)
 offset_right = 418.0
 offset_bottom = 67.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
+mouse_filter = 1
 script = ExtResource("1_sgvo6")
-disconnected_texture = NodePath("HBoxContainer/TextureRect")
+disconnected_texture = NodePath("HBoxContainer/Warning")
 click_sound = NodePath("Click1")
+host_texture = NodePath("HBoxContainer/Host")
 
 [node name="Click1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ijl3q")
@@ -52,8 +54,17 @@ h_frames = 8
 v_frames = 8
 frame = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
-modulate = Color(1, 1, 0.415686, 1)
+[node name="Host" type="TextureRect" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch_mode = 2
+script = ExtResource("7_msetu")
+user_icon = "star"
+
+[node name="Warning" type="TextureRect" parent="HBoxContainer"]
+modulate = Color(0.964706, 0.572549, 0.290196, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -61,7 +72,9 @@ stretch_mode = 2
 script = ExtResource("7_msetu")
 user_icon = "warning_amber"
 
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+[node name="Ready" type="TextureRect" parent="HBoxContainer"]
+modulate = Color(1, 1, 0.415686, 1)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -81,12 +94,14 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 text = "PEER NAME"
 horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="Button" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(90, 90)
+visible = false
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
@@ -101,10 +116,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -21.0
-offset_top = -21.0
-offset_right = 21.0
-offset_bottom = 21.0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
