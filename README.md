@@ -37,6 +37,8 @@ flowchart TD
 
 All scenes are located in their own folder. The Game scene is not in this repo but instead it's loaded from `res://game/game.tscn`. This will be the screen of your game.
 
+Also the following scene has to exist: `res://game/menu_persona.tscn`. This will be used in the main menu.
+
 ## Design
 
 Each of the scenes are designed to be resizeable. This is done by having the following structure:

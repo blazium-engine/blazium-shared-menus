@@ -8,6 +8,7 @@ extends BlaziumPanel
 @export var left_spacer: Control
 @export var right_spacer: Control
 @export var click_sound: AudioStreamPlayer
+@export var greet_vbox: VBoxContainer
 
 var loading_scene: PackedScene = load("res://addons/blazium_shared_menus/loading_screen/loading_screen.tscn")
 var lobby_browser_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
@@ -15,13 +16,14 @@ var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lo
 var lobby_creator_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/lobby_creator.tscn")
 var settings_scene: PackedScene = load("res://addons/blazium_shared_menus/settings/settings.tscn")
 var about_scene: PackedScene = load("res://addons/blazium_shared_menus/about/about.tscn")
-
+var menu_persona: PackedScene = load("res://game/menu_persona.tscn")
 var exit_popup: CustomDialog
 
 var os_manages_quit: bool = OS.get_name() in ["Android", "iOS", "Web"]
 
 
 func _ready() -> void:
+	greet_vbox.add_child.call_deferred(menu_persona.instantiate())
 	if Engine.is_editor_hint():
 		return
 	resized.connect(_on_resized)

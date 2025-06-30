@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://xlk0g84j1ut0"]
+[gd_scene load_steps=9 format=3 uid="uid://xlk0g84j1ut0"]
 
 [ext_resource type="Script" uid="uid://8rnkalajisvt" path="res://addons/blazium_shared_menus/main_menu/main_menu.gd" id="1_pogt4"]
 [ext_resource type="PackedScene" uid="uid://qxcvedn11ub" path="res://addons/blazium_shared_menus/general/blazium_bg.tscn" id="2_ih0fq"]
 [ext_resource type="Script" uid="uid://chix1djhx5hj3" path="res://addons/blazium_shared_menus/game_shared_ui/vertical_box_container_break.gd" id="3_pb6x5"]
-[ext_resource type="Script" uid="uid://dfy8x7nefoycp" path="res://game/hangman_holder.gd" id="4_yvqnk"]
-[ext_resource type="PackedScene" uid="uid://bok08ue8u2d3d" path="res://game/competitive_player.tscn" id="5_aw5it"]
 [ext_resource type="Script" uid="uid://c6eim0n5qfl12" path="res://addons/blazium_shared_menus/general/hide_if_orientation_mobile.gd" id="6_m5tf8"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="7_uhal1"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://addons/blazium_shared_menus/sfx/click.ogg" id="8_30t10"]
@@ -17,9 +15,7 @@ variation_opentype = {
 2003265652: 600
 }
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_najh4"]
-
-[node name="MainMenu" type="PanelContainer" node_paths=PackedStringArray("title_label", "name_label", "multiplayer_button", "quit_button", "left_spacer", "right_spacer", "click_sound")]
+[node name="MainMenu" type="PanelContainer" node_paths=PackedStringArray("title_label", "name_label", "multiplayer_button", "quit_button", "left_spacer", "right_spacer", "click_sound", "greet_vbox")]
 material = SubResource("ShaderMaterial_p1kc8")
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,12 +26,13 @@ grow_vertical = 2
 theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_pogt4")
 title_label = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/Title")
-name_label = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer3/NameLabel")
+name_label = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/GreetVBox/NameLabel")
 multiplayer_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer/ButtonFindLobby")
 quit_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer2/QuitButton")
 left_spacer = NodePath("BlaziumBG/HBoxContainer/LeftSpacer")
 right_spacer = NodePath("BlaziumBG/HBoxContainer/RightSpacer")
 click_sound = NodePath("Click1")
+greet_vbox = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/GreetVBox")
 metadata/_edit_lock_ = true
 metadata/_edit_horizontal_guides_ = [275.0, 382.0, 491.0]
 
@@ -88,41 +85,18 @@ layout_mode = 2
 theme_override_constants/separation = 24
 script = ExtResource("3_pb6x5")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer"]
+[node name="GreetVBox" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NameLabel" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer3"]
+[node name="NameLabel" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/GreetVBox"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 text = "player_greet"
 horizontal_alignment = 1
 autowrap_mode = 3
-
-[node name="Panel" type="Panel" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer3" node_paths=PackedStringArray("player_instance")]
-clip_contents = true
-custom_minimum_size = Vector2(200, 300)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_najh4")
-script = ExtResource("4_yvqnk")
-player_instance = NodePath("CompetitivePlayer")
-
-[node name="CompetitivePlayer" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer3/Panel" instance=ExtResource("5_aw5it")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -54.0
-offset_top = -165.0
-offset_right = 46.0
-offset_bottom = 35.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="VSeparator2" type="VSeparator" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer"]
 custom_minimum_size = Vector2(0, 350)
