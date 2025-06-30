@@ -64,3 +64,8 @@ The BoxContainer is set to either be VBox or HBox based on screen orientation.
 ## Localization
 
 Add the localizations in `lang` after enabling this addon.
+
+## Example:
+
+For usage example check the [blazium-engine/project-tictactoe](https://github.com/blazium-engine/project-tictactoe) repo.
+
