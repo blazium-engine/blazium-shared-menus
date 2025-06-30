@@ -58,3 +58,7 @@ Then, inside the content, there will be:
 - BoxContainer
 
 The BoxContainer is set to either be VBox or HBox based on screen orientation.
+
+## Localization
+
+Add the localizations in `lang` after enabling this addon.
