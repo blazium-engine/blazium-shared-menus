@@ -18,7 +18,7 @@ mouse_filter = 1
 script = ExtResource("1_sgvo6")
 disconnected_texture = NodePath("HBoxContainer/Warning")
 click_sound = NodePath("Click1")
-host_texture = NodePath("HBoxContainer/Host")
+host_texture = NodePath("HBoxContainer/Avatar/Host")
 
 [node name="Click1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ijl3q")
@@ -34,6 +34,22 @@ script = ExtResource("2_5ych2")
 texture = ExtResource("3_u8bts")
 h_frames = 8
 v_frames = 8
+
+[node name="Host" type="TextureRect" parent="HBoxContainer/Avatar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_top = -25.0
+offset_right = 24.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch_mode = 2
+script = ExtResource("7_msetu")
+user_icon = "crown"
 
 [node name="Platform" type="Control" parent="HBoxContainer/Avatar"]
 layout_mode = 1
@@ -53,15 +69,6 @@ texture = ExtResource("4_cpsap")
 h_frames = 8
 v_frames = 8
 frame = 2
-
-[node name="Host" type="TextureRect" parent="HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch_mode = 2
-script = ExtResource("7_msetu")
-user_icon = "star"
 
 [node name="Warning" type="TextureRect" parent="HBoxContainer"]
 modulate = Color(0.964706, 0.572549, 0.290196, 1)

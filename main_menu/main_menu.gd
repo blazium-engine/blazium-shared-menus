@@ -45,7 +45,8 @@ func _ready() -> void:
 
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
 	# If in a lobby
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(lobby_viewer_scene)
 
@@ -96,7 +97,8 @@ func try_join_from_url() -> void:
 func _on_button_join_public_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(lobby_browser_scene)
 
@@ -104,7 +106,8 @@ func _on_button_join_public_pressed() -> void:
 func _on_button_lobby_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(lobby_creator_scene)
 
@@ -124,7 +127,8 @@ func _on_button_settings_pressed() -> void:
 	GlobalLobbyClient.call_event("settings")
 	click_sound.play()
 	await click_sound.finished
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(settings_scene)
 
@@ -164,7 +168,8 @@ func _on_create_lobby_pressed() -> void:
 	GlobalLobbyClient.call_event("create_lobby")
 	click_sound.play()
 	await click_sound.finished
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(lobby_creator_scene)
 
@@ -172,7 +177,8 @@ func _on_create_lobby_pressed() -> void:
 func _on_about_button_pressed() -> void:
 	GlobalLobbyClient.call_event("about")
 	click_sound.play()
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(about_scene)
 
@@ -187,7 +193,8 @@ func _init():
 
 
 func _disconnected_from_server(reason: String):
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(loading_scene)
 

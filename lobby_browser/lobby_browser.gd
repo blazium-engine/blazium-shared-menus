@@ -35,7 +35,8 @@ func _ready() -> void:
 
 
 func _lobby_joined(_lobby: LobbyInfo, _peers: Array[LobbyPeer]):
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(lobby_viewer)
 
@@ -75,7 +76,8 @@ func _input(_event):
 
 
 func _disconnected_from_server(_reason: String):
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(loading_scene)
 
@@ -83,7 +85,8 @@ func _disconnected_from_server(_reason: String):
 func _on_back_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(main_menu_scene)
 

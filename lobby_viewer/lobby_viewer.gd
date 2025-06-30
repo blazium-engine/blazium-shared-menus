@@ -162,13 +162,15 @@ func _peer_ready(_peer: LobbyPeer, _p_ready: bool):
 
 
 func _disconnected_from_server(_reason: String):
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(loading_scene)
 
 
 func _lobby_left(_kicked: bool):
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(main_menu_scene)
 
@@ -176,9 +178,10 @@ func _lobby_left(_kicked: bool):
 func _received_lobby_data(data: Dictionary):
 	# Start game
 	if data.get("game_state", "setup") != "setup":
-		await get_tree().process_frame
 		if is_inside_tree():
-				get_tree().change_scene_to_packed(game_scene)
+			await get_tree().process_frame
+		if is_inside_tree():
+			get_tree().change_scene_to_packed(game_scene)
 
 
 func update_ready_button(is_ready: bool):

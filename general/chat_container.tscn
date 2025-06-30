@@ -47,8 +47,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -900.0
-offset_right = 900.0
+offset_left = 1.0
+offset_top = -416.0
+offset_right = 817.0
 grow_vertical = 0
 script = ExtResource("4_owajc")
 

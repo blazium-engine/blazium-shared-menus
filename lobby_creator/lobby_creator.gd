@@ -37,7 +37,8 @@ func _on_button_create_lobby_pressed() -> void:
 	var result: ViewLobbyResult = await GlobalLobbyClient.create_lobby(title_label.text, sealed_checkbox.button_pressed, tags, int(max_players_label.text), password_line_edit.text).finished
 
 	if not result.has_error():
-		await get_tree().process_frame
+		if is_inside_tree():
+			await get_tree().process_frame
 		if is_inside_tree():
 			get_tree().change_scene_to_packed(lobby_viewer_scene)
 
@@ -89,8 +90,8 @@ func _input(_event):
 func _disconnected_from_server(_reason: String):
 	if is_inside_tree():
 		await get_tree().process_frame
-		if is_inside_tree():
-			get_tree().change_scene_to_packed(loading_scene)
+	if is_inside_tree():
+		get_tree().change_scene_to_packed(loading_scene)
 
 
 func _on_sealed_toggled(toggled_on: bool) -> void:
@@ -99,6 +100,7 @@ func _on_sealed_toggled(toggled_on: bool) -> void:
 func _on_back_pressed() -> void:
 	click_sound.play()
 	await click_sound.finished
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(main_menu_scene)

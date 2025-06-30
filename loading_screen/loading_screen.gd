@@ -44,7 +44,8 @@ func _connected_to_server(_peer: LobbyPeer, _reconnection_token: String):
 	#await get_tree().create_timer(2).timeout
 	if GlobalLobbyClient.connected:
 		# It's possible we got disconnected
-		await get_tree().process_frame
+		if is_inside_tree():
+			await get_tree().process_frame
 		if is_inside_tree():
 			get_tree().change_scene_to_packed(main_menu_scene)
 

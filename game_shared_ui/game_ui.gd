@@ -48,7 +48,8 @@ func _ready() -> void:
 	_set_fallback_focus(chat.chat_text)
 
 func _lobby_left(_kicked: bool):
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(main_menu_scene)
 
@@ -67,7 +68,8 @@ func kick_peer(peer: LobbyPeer) -> void:
 
 
 func _disconnected_from_server(_reason: String):
-	await get_tree().process_frame
+	if is_inside_tree():
+		await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().change_scene_to_packed(loading_scene)
 
