@@ -24,7 +24,7 @@ func _ready() -> void:
 		reconnect_popup.show()
 	_play_loading_animation()
 	if GlobalLobbyClient.connected:
-		GlobalLobbyClient.connected_to_server.emit()
+		_connected_to_server(GlobalLobbyClient.peer, GlobalLobbyClient.reconnection_token)
 	GlobalLobbyClient.connected_to_server.connect(_connected_to_server)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 
@@ -41,7 +41,6 @@ func _play_loading_animation() -> void:
 	tween.tween_property(loading_label, "scale", Vector2(2.0, 1.5), 0.7).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
 func _connected_to_server(_peer: LobbyPeer, _reconnection_token: String):
-	#await get_tree().create_timer(2).timeout
 	if GlobalLobbyClient.connected:
 		# It's possible we got disconnected
 		if is_inside_tree():

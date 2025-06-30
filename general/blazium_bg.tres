@@ -11,8 +11,8 @@ uniform float rotation = 0.0;
 uniform vec2 rotation_center = vec2(0.0);
 
 // Ripple effect controls
-uniform vec2 click_positions[100];
-uniform float click_times[100];
+uniform vec2 click_positions[20];
+uniform float click_times[20];
 uniform float wave_speed = 200.0;
 uniform float wave_width = 40.0;
 uniform float base_amplitude = 0.02;
@@ -40,7 +40,7 @@ void fragment() {
     float color_mix = 0.0;
 
     // Apply ripple effects with decay
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 20; i++) {
         float t = click_times[i];
         if (t > 0.0) {
             // Calculate decay factor (quadratic for smooth fadeout)
@@ -70,7 +70,7 @@ void fragment() {
 
 [resource]
 shader = SubResource("Shader_uchyk")
-shader_parameter/motion = Vector2(50, 0)
+shader_parameter/motion = Vector2(100, 0)
 shader_parameter/scale = 1.0
 shader_parameter/translation = Vector2(0, 0)
 shader_parameter/rotation = 0.0

@@ -1,6 +1,6 @@
 extends TextureRect
 
-const MAX_RIPPLES = 100
+const MAX_RIPPLES = 20
 var click_positions := []
 var click_times := []
 @export var sound: AudioStreamPlayer
@@ -16,7 +16,7 @@ func _ready():
 	click_times.resize(MAX_RIPPLES)
 	for i in MAX_RIPPLES:
 		click_positions[i] = Vector2(-1000, -1000) # Offscreen
-		click_times[i] = 0.0
+		click_times[i] = -1.0
 	update_shader_params()
 
 func _lobby_notified(data: Dictionary):
@@ -35,14 +35,17 @@ func _select_colors():
 		panel.self_modulate = Color("A1A1A1")
 		texture_rect.self_modulate = Color("A1A1A1")
 
-func _process(delta):
+func _physics_process(delta: float) -> void:
+	var updated = false
 	for i in MAX_RIPPLES:
 		if click_times[i] > 0.0:
-			click_times[i] += delta
+			updated = true
+			click_times[i] += delta * 2
 			if click_times[i] > material.get_shader_parameter("max_duration"):
-				click_times[i] = 0.0
+				click_times[i] = -1.0
 				click_positions[i] = Vector2(-1000, -1000)
-	update_shader_params()
+	if updated:
+		update_shader_params()
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:

@@ -43,6 +43,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="EmojiPanel" type="PanelContainer" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
