@@ -6,7 +6,6 @@ extends BlaziumPanel
 var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 
 @export var rich_text_label: RichTextLabel
-@export var credits: GameCredits
 
 @export var left_spacer: Control
 @export var right_spacer: Control
@@ -17,7 +16,7 @@ func _ready() -> void:
 	resized.connect(_on_resized)
 	_on_resized()
 	back_button.grab_focus()
-	rich_text_label.text = credits.CREDITS
+	rich_text_label.text = tr("credits").format({version = ProjectSettings.get("application/config/version")})
 
 func _shortcut_input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_cancel"):

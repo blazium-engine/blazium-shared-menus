@@ -307,10 +307,6 @@ func _init() -> void:
 	kick_popup.hide()
 	add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
 
-func _on_copy_invite_link_pressed() -> void:
-	click_sound.play()
-	DisplayServer.clipboard_set("https://%s?code=%s" % [GameCredits.HOSTNAME, GlobalLobbyClient.lobby.id])
-
 func _update_max_players_buttons(players):
 	decrement_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_min", 2)
 	increment_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_max", 10)

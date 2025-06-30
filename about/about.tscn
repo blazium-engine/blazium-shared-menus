@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cn8bcqn8gwpxh"]
+[gd_scene load_steps=8 format=3 uid="uid://cn8bcqn8gwpxh"]
 
 [ext_resource type="Script" uid="uid://cwuj7caayyicl" path="res://addons/blazium_shared_menus/about/about.gd" id="1_grr0r"]
 [ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://addons/blazium_shared_menus/sfx/click.ogg" id="2_0pa0n"]
 [ext_resource type="PackedScene" uid="uid://qxcvedn11ub" path="res://addons/blazium_shared_menus/general/blazium_bg.tscn" id="2_e5ig4"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="2_w6h8l"]
-[ext_resource type="Script" uid="uid://p5duwa8ekih3" path="res://credits.gd" id="4_jjhrc"]
 
 [sub_resource type="FontVariation" id="FontVariation_fp7sa"]
 variation_opentype = {
@@ -22,7 +21,7 @@ variation_opentype = {
 2003265652: 600
 }
 
-[node name="About" type="PanelContainer" node_paths=PackedStringArray("back_button", "click_sound", "rich_text_label", "credits", "left_spacer", "right_spacer")]
+[node name="About" type="PanelContainer" node_paths=PackedStringArray("back_button", "click_sound", "rich_text_label", "left_spacer", "right_spacer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -33,7 +32,6 @@ script = ExtResource("1_grr0r")
 back_button = NodePath("BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/Back")
 click_sound = NodePath("Click1")
 rich_text_label = NodePath("BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/RichTextLabel")
-credits = NodePath("Credits")
 left_spacer = NodePath("BlaziumBG/HBoxContainer/LeftSpacer")
 right_spacer = NodePath("BlaziumBG/HBoxContainer/RightSpacer")
 metadata/_edit_lock_ = true
@@ -116,9 +114,6 @@ mouse_filter = 2
 
 [node name="Click1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0pa0n")
-
-[node name="Credits" type="Node" parent="."]
-script = ExtResource("4_jjhrc")
 
 [connection signal="meta_clicked" from="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/Discord" to="." method="_on_discord_pressed"]
