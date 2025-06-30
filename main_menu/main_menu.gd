@@ -23,7 +23,8 @@ var os_manages_quit: bool = OS.get_name() in ["Android", "iOS", "Web"]
 
 
 func _ready() -> void:
-	greet_vbox.add_child.call_deferred(menu_persona.instantiate())
+	if ResourceLoader.exists("res://game/menu_persona.tscn"):
+		greet_vbox.add_child.call_deferred(load("res://game/menu_persona.tscn").instantiate())
 	if Engine.is_editor_hint():
 		return
 	resized.connect(_on_resized)

@@ -13,6 +13,7 @@ const max_avatars := 28
 @export var mute_checkbutton: CheckButton
 @export var theme_mode: CheckButton
 @export var word_filter: CheckButton
+@export var box_settings: BoxContainer
 
 var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 var loading_scene: PackedScene = load("res://addons/blazium_shared_menus/loading_screen/loading_screen.tscn")
@@ -20,6 +21,11 @@ var loading_scene: PackedScene = load("res://addons/blazium_shared_menus/loading
 var disconnect_popup: CustomDialog
 
 func _ready() -> void:
+	if ResourceLoader.exists("res://game/settings_extra.tscn"):
+		var spacer = VSeparator.new()
+		box_settings.add_child(spacer)
+		spacer.set_script(load("res://addons/blazium_shared_menus/general/hide_if_orientation_mobile.gd"))
+		box_settings.add_child(load("res://game/settings_extra.tscn").instantiate())
 	if Engine.is_editor_hint():
 		return
 	resized.connect(_on_resized)
