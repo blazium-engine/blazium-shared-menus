@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://d1qjnqq2nagyi"]
 
 [ext_resource type="Script" uid="uid://c4ougwk0j4147" path="res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.gd" id="1_buss2"]
-[ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_gujum"]
+[ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://addons/blazium_shared_menus/sfx/click.ogg" id="2_gujum"]
 [ext_resource type="PackedScene" uid="uid://qxcvedn11ub" path="res://addons/blazium_shared_menus/general/blazium_bg.tscn" id="3_dm10q"]
 [ext_resource type="PackedScene" uid="uid://dl8npfol8dj2h" path="res://addons/blazium_shared_menus/general/chat_container.tscn" id="3_jpwet"]
 [ext_resource type="Script" uid="uid://chix1djhx5hj3" path="res://addons/blazium_shared_menus/game_shared_ui/vertical_box_container_break.gd" id="5_632ab"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="6_3ppu3"]
 [ext_resource type="Script" uid="uid://dbfmeu5kh7yv4" path="res://addons/blazium_theme_editor/classes/toggled_button.gd" id="8_ewirs"]
-[ext_resource type="Script" uid="uid://c6eim0n5qfl12" path="res://game/hide_if_orientation_mobile.gd" id="9_632ab"]
+[ext_resource type="Script" uid="uid://c6eim0n5qfl12" path="res://addons/blazium_shared_menus/general/hide_if_orientation_mobile.gd" id="9_632ab"]
 [ext_resource type="Script" uid="uid://bo40aahp0gd68" path="res://addons/blazium_shared_menus/lobby_viewer/mode_button.gd" id="9_dlx7h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_632ab"]

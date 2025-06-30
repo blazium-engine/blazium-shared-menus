@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dl8npfol8dj2h"]
 
 [ext_resource type="Script" uid="uid://d4m8ogoy0vjg4" path="res://addons/blazium_shared_menus/general/chat_container.gd" id="1_levib"]
-[ext_resource type="AudioStream" uid="uid://dkkii20codqu" path="res://game/assets/sfx/chat_msg.mp3" id="3_oya02"]
-[ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="3_wm4ih"]
+[ext_resource type="AudioStream" uid="uid://dkkii20codqu" path="res://addons/blazium_shared_menus/sfx/chat_msg.mp3" id="3_oya02"]
+[ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://addons/blazium_shared_menus/sfx/click.ogg" id="3_wm4ih"]
 [ext_resource type="Script" uid="uid://ck67g812npy46" path="res://addons/blazium_emoji_editor/emoji_panel.gd" id="4_owajc"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="5_bbuts"]
 
@@ -43,7 +43,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="EmojiPanel" type="PanelContainer" parent="Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

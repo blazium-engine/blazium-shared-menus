@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dhhxwmhy2mm0v"]
 
-[ext_resource type="Script" uid="uid://cwneq1qetwixx" path="res://addons/blazium_shared_menus/blazium_localization_editor.gd" id="1_61sri"]
+[ext_resource type="Script" uid="uid://cwneq1qetwixx" path="res://addons/blazium_shared_menus/localization_plugin/blazium_localization_editor.gd" id="1_61sri"]
 
 [node name="BlaziumLocalization" type="Control" node_paths=PackedStringArray("languages_hbox", "message_line_edit", "word_line_edit")]
 layout_mode = 3

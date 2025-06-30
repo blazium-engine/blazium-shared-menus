@@ -103,6 +103,7 @@ func try_login() -> bool:
 
 
 func _ready() -> void:
+	game_id = ProjectSettings.get("blazium/game/lobby_game_id")
 	_size_changed()
 	get_tree().root.size_changed.connect(_size_changed)
 	var local_server = ProjectSettings.get_setting("blazium/game/lobby_server_local", false)

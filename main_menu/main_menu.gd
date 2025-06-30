@@ -8,9 +8,8 @@ extends BlaziumPanel
 @export var left_spacer: Control
 @export var right_spacer: Control
 @export var click_sound: AudioStreamPlayer
-@export var player: HangmanPlayer
 
-var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
+var loading_scene: PackedScene = load("res://addons/blazium_shared_menus/loading_screen/loading_screen.tscn")
 var lobby_browser_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
 var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
 var lobby_creator_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/lobby_creator.tscn")

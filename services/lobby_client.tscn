@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8t11ds20n02q"]
+
+[ext_resource type="Script" uid="uid://75b7nw3kp48p" path="res://addons/blazium_shared_menus/services/lobby_client.gd" id="1_g047q"]
+[ext_resource type="Script" uid="uid://dw5ydegc5wgfc" path="res://addons/blazium_shared_menus/services/login_client.gd" id="2_ie5i6"]
+[ext_resource type="Script" uid="uid://ys83qtmlljsd" path="res://addons/blazium_shared_menus/services/steam_login.gd" id="3_mfg35"]
+[ext_resource type="Script" uid="uid://coplprd8tfiq" path="res://addons/blazium_shared_menus/services/discord_embedded_app_client.gd" id="4_0k841"]
+[ext_resource type="Script" uid="uid://do2n20667wlsq" path="res://addons/blazium_shared_menus/services/pogr_client.gd" id="5_7ay8i"]
+
+[sub_resource type="LobbyInfo" id="LobbyInfo_g047q"]
+
+[sub_resource type="LobbyPeer" id="LobbyPeer_ie5i6"]
+
+[node name="LobbyClient" type="ScriptedLobbyClient" node_paths=PackedStringArray("discord", "login", "pogr", "steam")]
+lobby = SubResource("LobbyInfo_g047q")
+peer = SubResource("LobbyPeer_ie5i6")
+script = ExtResource("1_g047q")
+discord = NodePath("LoginClient/DiscordEmbeddedAppClient")
+login = NodePath("LoginClient")
+pogr = NodePath("POGRClient")
+steam = NodePath("LoginClient/SteamLogin")
+
+[node name="LoginClient" type="LoginClient" parent="." node_paths=PackedStringArray("discord")]
+script = ExtResource("2_ie5i6")
+discord = NodePath("DiscordEmbeddedAppClient")
+
+[node name="SteamLogin" type="Node" parent="LoginClient"]
+script = ExtResource("3_mfg35")
+
+[node name="DiscordEmbeddedAppClient" type="DiscordEmbeddedAppClient" parent="LoginClient"]
+script = ExtResource("4_0k841")
+
+[node name="POGRClient" type="POGRClient" parent="." node_paths=PackedStringArray("discord")]
+script = ExtResource("5_7ay8i")
+discord = NodePath("../LoginClient/DiscordEmbeddedAppClient")

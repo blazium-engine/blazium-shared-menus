@@ -3,7 +3,7 @@ extends BlaziumPanel
 
 @export var back_button: Button
 @export var click_sound: AudioStreamPlayer
-var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
+var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 
 @export var rich_text_label: RichTextLabel
 @export var credits: GameCredits

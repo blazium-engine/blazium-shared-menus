@@ -4,6 +4,8 @@ extends POGRClient
 @export var discord: DiscordEmbeddedAppClient
 
 func _ready() -> void:
+	client_id = ProjectSettings.get("blazium/game/pogr_client_id")
+	build_id = ProjectSettings.get("blazium/game/pogr_build_id")
 	log_updated.connect(_log_updated)
 	if discord.is_discord_environment():
 		pogr_url = "https://" + discord.client_id + ".discordsays.com/.proxy/blazium/pogr"

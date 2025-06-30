@@ -5,6 +5,7 @@ extends LoginClient
 var jwt: String
 
 func _init() -> void:
+	game_id = ProjectSettings.get("blazium/game/login_game_id")
 	received_jwt.connect(_received_jwt)
 	log_updated.connect(_log_updated)
 

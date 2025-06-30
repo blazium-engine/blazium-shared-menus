@@ -25,8 +25,8 @@ extends BlaziumPanel
 @export var mode_options: OptionButton
 @export var players_scrollcontainer: ScrollContainer
 
-var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
-var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
+var loading_scene: PackedScene = load("res://addons/blazium_shared_menus/loading_screen/loading_screen.tscn")
+var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 var lobby_browser_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
 var game_scene: PackedScene = load("res://game/game.tscn")
 var container_peer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/container_peer.tscn")

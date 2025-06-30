@@ -14,8 +14,8 @@ const max_avatars := 28
 @export var theme_mode: CheckButton
 @export var word_filter: CheckButton
 
-var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
-var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
+var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
+var loading_scene: PackedScene = load("res://addons/blazium_shared_menus/loading_screen/loading_screen.tscn")
 
 var disconnect_popup: CustomDialog
 

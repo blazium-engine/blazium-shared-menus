@@ -8,8 +8,8 @@ extends BlaziumPanel
 @export var filter_foldable_container: FoldableContainer
 @export var click_sound: AudioStreamPlayer
 
-var loading_scene: PackedScene = load("res://game/loading_screen.tscn")
-var main_menu_scene: PackedScene = load(ProjectSettings.get_setting("blazium/game/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn"))
+var loading_scene: PackedScene = load("res://addons/blazium_shared_menus/loading_screen/loading_screen.tscn")
+var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 var lobby_creator_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/lobby_creator.tscn")
 var container_lobby_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/container_lobby.tscn")
 var lobby_viewer: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
