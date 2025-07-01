@@ -36,6 +36,7 @@ func _ready() -> void:
 	GlobalLobbyClient.connected_to_server.connect(_connected_to_server)
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	GlobalLobbyClient.lobby_joined.connect(_lobby_joined)
+	GlobalLobbyClient.lobby_created.connect(_lobby_joined)
 	if GlobalLobbyClient.lobby.id != "":
 		GlobalLobbyClient.lobby_joined.emit(GlobalLobbyClient.lobby, GlobalLobbyClient.peers)
 	if GlobalLobbyClient.connected:
