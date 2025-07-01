@@ -26,9 +26,9 @@ var os_manages_quit: bool = OS.get_name() in ["Android", "iOS", "Web"]
 func _ready() -> void:
 	if ResourceLoader.exists("res://game/menu_persona.tscn"):
 		greet_vbox.add_child.call_deferred(load("res://game/menu_persona.tscn").instantiate())
-	competitive_button.visible = ProjectSettings.get("blazium/game/menu_competitive_enabled")
 	if Engine.is_editor_hint():
 		return
+	competitive_button.visible = ProjectSettings.get("blazium/game/menu_competitive_enabled")
 	resized.connect(_on_resized)
 	_on_resized()
 	title_label.text = ProjectSettings.get("application/config/name")
