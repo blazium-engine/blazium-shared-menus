@@ -103,6 +103,7 @@ theme_override_styles/tab_focus = SubResource("StyleBoxFlat_632ab")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_dm10q")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_632ab")
 current_tab = 0
+use_hidden_tabs_for_min_size = true
 
 [node name="tab_players" type="PanelContainer" parent="BlaziumBG/HBoxContainer/ColorRect/VBoxContainer/TabContainer"]
 layout_mode = 2
