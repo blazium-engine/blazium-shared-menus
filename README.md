@@ -17,6 +17,7 @@ After enabling this addon, you need to set the following in `Project Settings` (
 | blazium/game/pogr_build_id | Your pogr build id. Used for analytics. | "" |
 | blazium/game/login_game_id | Your login game_id. Used for authentication. | "" |
 | blazium/game/lobby_game_id | Your lobby game_id. Used for multiplayer. | "" |
+| blazium/game/menu_competitive_enabled | If it should use the Competitive button on main menu or not | false |
 
 The lobby and login `game_id`'s are required. The pogr id's are only for analytics.
 
