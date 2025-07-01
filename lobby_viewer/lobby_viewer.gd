@@ -33,7 +33,6 @@ var container_peer_scene: PackedScene = load("res://addons/blazium_shared_menus/
 var exit_popup: CustomDialog
 var kick_popup: CustomDialog
 
-
 var showing_password := false
 var title := ""
 var peer_to_kick: String
@@ -67,7 +66,6 @@ func update_start_button():
 		start_button.disabled = false
 		start_button.text = "lobby_start"
 		start_button.theme_type_variation = "SelectedButton"
-	
 
 
 func _update_private_lobby_checkbox():
@@ -107,6 +105,7 @@ func _ready() -> void:
 	_received_lobby_data.call_deferred(GlobalLobbyClient.lobby.data)
 	_set_fallback_focus(ready_button)
 
+
 func _lobby_hosted(peer: LobbyPeer):
 	# Host changed, reload scene
 	var is_host := GlobalLobbyClient.is_host()
@@ -118,6 +117,7 @@ func _lobby_hosted(peer: LobbyPeer):
 	increment_button.disabled = !is_host
 	decrement_button.disabled = !is_host
 
+
 func _add_peer_container(peer: LobbyPeer):
 	var peer_container := container_peer_scene.instantiate()
 	peer_container.selected = GlobalLobbyClient.peer.id == peer.id
@@ -127,6 +127,7 @@ func _add_peer_container(peer: LobbyPeer):
 	lobby_grid.add_child(peer_container)
 	update_title()
 	update_start_button()
+
 
 func _lobby_tagged(tags: Dictionary):
 	match tags.get("game_mode", "normal_mode"):
@@ -139,8 +140,10 @@ func _lobby_tagged(tags: Dictionary):
 		"normal_last_wrong_dies":
 			mode_options.selected = 3
 
+
 func _lobby_resized(max_peers: int):
 	update_title()
+
 
 func _lobby_titled(title: String):
 	update_title()
@@ -311,8 +314,17 @@ func _init() -> void:
 	add_child(kick_popup, false, Node.INTERNAL_MODE_BACK)
 
 func _update_max_players_buttons(players):
-	decrement_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_min", 2)
-	increment_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_max", 10)
+	var min: int = ProjectSettings.get_setting("blazium/game/max_players_min", 2)
+	var max: int = ProjectSettings.get_setting("blazium/game/max_players_max", 10)
+	decrement_button.disabled = players == min
+	increment_button.disabled = players == max
+	if min == max:
+		decrement_button.hide()
+		increment_button.hide()
+	else:
+		decrement_button.show()
+		increment_button.show()
+
 
 func _on_button_increment_pressed() -> void:
 	click_sound.play()

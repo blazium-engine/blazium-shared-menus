@@ -18,6 +18,7 @@ var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_
 var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_viewer/lobby_viewer.tscn")
 var tag_setting_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/tag_setting.tscn")
 
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
@@ -25,6 +26,7 @@ func _ready() -> void:
 	title_label.grab_focus()
 	max_players_label.text = tr("players_max").format({players = ProjectSettings.get_setting("blazium/game/max_players_default", 10)})
 	_update_max_players_buttons(int(max_players_label.text))
+
 
 func _on_button_create_lobby_pressed() -> void:
 	click_sound.play()
@@ -66,8 +68,16 @@ func _on_button_decrement_pressed() -> void:
 
 
 func _update_max_players_buttons(players):
-	decrement_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_min", 2)
-	increment_button.disabled = players == ProjectSettings.get_setting("blazium/game/max_players_max", 10)
+	var min: int = ProjectSettings.get_setting("blazium/game/max_players_min", 2)
+	var max: int = ProjectSettings.get_setting("blazium/game/max_players_max", 10)
+	decrement_button.disabled = players == min
+	increment_button.disabled = players == max
+	if min == max:
+		decrement_button.hide()
+		increment_button.hide()
+	else:
+		decrement_button.show()
+		increment_button.show()
 
 
 func _on_title_text_submitted(_new_text: String) -> void:
@@ -96,6 +106,7 @@ func _disconnected_from_server(_reason: String):
 
 func _on_sealed_toggled(toggled_on: bool) -> void:
 	click_sound.play()
+
 
 func _on_back_pressed() -> void:
 	click_sound.play()
