@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://b38ckf4ccq5hd"]
+
+[ext_resource type="Script" uid="uid://dqijeujqsork1" path="res://addons/blazium_shared_menus/game_shared_ui/users_list.gd" id="1_0i8rt"]
+
+[node name="UsersList" type="ScrollContainer" node_paths=PackedStringArray("click_sfx", "player_list")]
+z_index = 1
+theme_type_variation = &"ScrollPanel"
+vertical_scroll_mode = 0
+script = ExtResource("1_0i8rt")
+click_sfx = NodePath("")
+player_list = NodePath("VBoxContainer2/PlayerList")
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerList" type="HBoxContainer" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4

@@ -15,7 +15,7 @@ variation_opentype = {
 2003265652: 600
 }
 
-[node name="MainMenu" type="PanelContainer" node_paths=PackedStringArray("title_label", "name_label", "multiplayer_button", "quit_button", "left_spacer", "right_spacer", "click_sound", "greet_vbox")]
+[node name="MainMenu" type="PanelContainer" node_paths=PackedStringArray("title_label", "name_label", "multiplayer_button", "quit_button", "left_spacer", "right_spacer", "click_sound", "greet_vbox", "competitive_button")]
 material = SubResource("ShaderMaterial_p1kc8")
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +33,7 @@ left_spacer = NodePath("BlaziumBG/HBoxContainer/LeftSpacer")
 right_spacer = NodePath("BlaziumBG/HBoxContainer/RightSpacer")
 click_sound = NodePath("Click1")
 greet_vbox = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/GreetVBox")
+competitive_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer/CompetitiveButton")
 metadata/_edit_lock_ = true
 metadata/_edit_horizontal_guides_ = [275.0, 382.0, 491.0]
 

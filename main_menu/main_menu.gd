@@ -9,6 +9,7 @@ extends BlaziumPanel
 @export var right_spacer: Control
 @export var click_sound: AudioStreamPlayer
 @export var greet_vbox: VBoxContainer
+@export var competitive_button: Button
 
 var loading_scene: PackedScene = load("res://addons/blazium_shared_menus/loading_screen/loading_screen.tscn")
 var lobby_browser_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_browser/lobby_browser.tscn")
@@ -25,6 +26,7 @@ var os_manages_quit: bool = OS.get_name() in ["Android", "iOS", "Web"]
 func _ready() -> void:
 	if ResourceLoader.exists("res://game/menu_persona.tscn"):
 		greet_vbox.add_child.call_deferred(load("res://game/menu_persona.tscn").instantiate())
+	competitive_button.visible = ProjectSettings.get("blazium/game/menu_competitive_enabled")
 	if Engine.is_editor_hint():
 		return
 	resized.connect(_on_resized)

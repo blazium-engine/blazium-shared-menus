@@ -36,6 +36,7 @@ h_frames = 8
 v_frames = 8
 
 [node name="Host" type="TextureRect" parent="HBoxContainer/Avatar"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -114,6 +115,7 @@ size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 expand_text = false
 icon_alignment = 1
+expand_icon = true
 script = ExtResource("8_idkgm")
 
 [node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Button"]

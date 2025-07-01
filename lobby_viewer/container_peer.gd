@@ -29,8 +29,9 @@ func _ready():
 	GlobalLobbyClient.peer_disconnected.connect(_peer_disconnected)
 	GlobalLobbyClient.peer_reconnected.connect(_peer_reconnected)
 	GlobalLobbyClient.lobby_hosted.connect(_lobby_hosted)
-	if peer.id == GlobalLobbyClient.lobby.host:
-		_lobby_hosted(peer)
+	for host in GlobalLobbyClient.peers:
+		if host.id == GlobalLobbyClient.lobby.host:
+			_lobby_hosted(host)
 	ThemeDB.scale_changed.connect(_resized)
 	_resized()
 	var user_name = peer.user_data.get("name", "")
@@ -47,7 +48,9 @@ func _ready():
 
 func _lobby_hosted(host: LobbyPeer):
 	host_texture.visible = peer.id == host.id
-	_kick_button.visible = GlobalLobbyClient.peer.id == host.id
+	# Cannot kick yourself
+	if peer.id != GlobalLobbyClient.peer.id:
+		_kick_button.visible = GlobalLobbyClient.peer.id == host.id 
 
 func _resized():
 	_peer_platform.texture_scale = GlobalLobbyClient.get_theme_scale().x * 0.7
