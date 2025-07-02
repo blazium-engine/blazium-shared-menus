@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dqijeujqsork1" path="res://addons/blazium_shared_menus/game_shared_ui/users_list.gd" id="1_0i8rt"]
 
-[node name="UsersList" type="ScrollContainer" node_paths=PackedStringArray("click_sfx", "player_list")]
+[node name="UsersList" type="ScrollContainer" node_paths=PackedStringArray("player_list")]
 z_index = 1
 theme_type_variation = &"ScrollPanel"
 vertical_scroll_mode = 0
 script = ExtResource("1_0i8rt")
-click_sfx = NodePath("")
 player_list = NodePath("VBoxContainer2/PlayerList")
 
 [node name="VBoxContainer2" type="HBoxContainer" parent="."]

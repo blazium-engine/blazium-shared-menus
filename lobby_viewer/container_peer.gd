@@ -12,7 +12,8 @@ var peer: LobbyPeer
 var enable_ready:bool
 var selected: bool
 
-@onready var _peer_name: Label = $HBoxContainer/VBoxContainer/Label
+@onready var _peer_name: Label = $HBoxContainer/PeerName
+@onready var _peer_points: Label = $HBoxContainer/PeerPoints
 @onready var _peer_platform: Avatar = $HBoxContainer/Avatar/Platform
 @onready var _peer_avatar: Avatar = $HBoxContainer/Avatar
 @onready var _peer_ready: CustomTextureRect = $HBoxContainer/Ready
@@ -29,6 +30,7 @@ func _ready():
 	GlobalLobbyClient.peer_disconnected.connect(_peer_disconnected)
 	GlobalLobbyClient.peer_reconnected.connect(_peer_reconnected)
 	GlobalLobbyClient.lobby_hosted.connect(_lobby_hosted)
+	GlobalLobbyClient.received_peer_data.connect(_received_peer_data)
 	for host in GlobalLobbyClient.peers:
 		if host.id == GlobalLobbyClient.lobby.host:
 			_lobby_hosted(host)
@@ -36,6 +38,7 @@ func _ready():
 	_resized()
 	var user_name = peer.user_data.get("name", "")
 	_peer_name.text = WordFilterAutoload.filter_message(user_name)
+	_update_peer_score()
 	_on_peer_ready(peer, peer.ready)
 	_peer_avatar.frame = peer.user_data.get("avatar", 0)
 	match peer.platform:
@@ -45,6 +48,15 @@ func _ready():
 			_peer_platform.frame = 1
 		"anon":
 			_peer_platform.frame = 2
+
+func _received_peer_data(data: Dictionary, to_peer: LobbyPeer, is_private: bool):
+	if to_peer.id == peer.id:
+		_update_peer_score()
+
+func _update_peer_score():
+	_peer_points.text = str(int(peer.data.get("total_points", "")))
+	if _peer_points.text == "0":
+		_peer_points.text = ""
 
 func _lobby_hosted(host: LobbyPeer):
 	host_texture.visible = peer.id == host.id
