@@ -157,7 +157,6 @@ mouse_default_cursor_shape = 2
 text = "Start"
 expand_text = false
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("7_uhal1")
 user_icon = "start"
 

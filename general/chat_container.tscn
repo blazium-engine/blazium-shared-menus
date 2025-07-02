@@ -31,7 +31,7 @@ stream = ExtResource("3_oya02")
 stream = ExtResource("3_wm4ih")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"ChatRichTextLabel"

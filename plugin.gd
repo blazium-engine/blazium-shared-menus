@@ -24,7 +24,7 @@ func _enter_tree() -> void:
 	ProjectSettings.set("display/window/vsync/vsync_mode", 0)
 	ProjectSettings.set("gui/theme/base_color", Color(0.0793, 0.10296, 0.13, 1))
 	ProjectSettings.set("gui/theme/accent_color", Color(0.2075, 0.581, 0.83, 1))
-	ProjectSettings.set("gui/theme/padding", 10)
+	ProjectSettings.set("gui/theme/padding", 0)
 	ProjectSettings.set("gui/theme/border_width", 4)
 	ProjectSettings.set("gui/theme/corner_radius", 16)
 	ProjectSettings.set("gui/theme/font_size", 32)
