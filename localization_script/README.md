@@ -45,6 +45,6 @@ cs,kočka
 Then run `update_files.py` with the msg_id as first param, eg:
 
 ```sh
-python update_files.py cat_message
+python update_files.py message_id
 ```
 
