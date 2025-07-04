@@ -21,8 +21,8 @@ response = client.responses.create(
     model="gpt-4.1",
     input="Translate the following: \"" + word + "\". As output give me exactly: on each line the language code and translated word, csv format. Translate to the following languages:\n" + ",".join(languages),
 )
-print(response.output_text)
 
+written_out = 0
 # Write them to input.csv
 with open("input.csv", "w") as f:
     f.write("lang,translation\n")
@@ -30,3 +30,8 @@ with open("input.csv", "w") as f:
         for lang in languages:
             if line.strip().startswith(lang + ","):
                 f.write(line.strip() + "\n")
+                written_out += 1
+
+print(f"Wrote {written_out} translations to input.csv.")
+if written_out != len(languages):
+    print(f"Warning: Not all languages were translated. Expected {len(languages)}, got {written_out}.")
