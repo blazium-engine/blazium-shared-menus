@@ -40,13 +40,17 @@ func _play_loading_animation() -> void:
 	tween.tween_property(loading_label, "scale", Vector2(0.95, 2.7), 0.7).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(loading_label, "scale", Vector2(2.0, 1.5), 0.7).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
-func _connected_to_server(_peer: LobbyPeer, _reconnection_token: String):
-	if GlobalLobbyClient.connected:
-		# It's possible we got disconnected
-		if is_inside_tree():
-			await get_tree().process_frame
-		if is_inside_tree():
-			get_tree().change_scene_to_packed(main_menu_scene)
+func _connected_to_server(peer: LobbyPeer, _reconnection_token: String):
+	var peer_name = peer.user_data.get("name", "")
+	# If no name
+	if peer_name == "":
+		peer_name = tr("player_name") + str(randi() % 1000)
+		var avatar := SettingsAutoload.config.get_value("Cosmetics", "avatar", randi() % 28)
+		await GlobalLobbyClient.add_peer_user_data({"name": peer_name, "avatar": avatar}).finished
+	if is_inside_tree():
+		await get_tree().process_frame
+	if is_inside_tree():
+		get_tree().change_scene_to_packed(main_menu_scene)
 
 
 func _on_reconnect_popup_confirmed() -> void:
