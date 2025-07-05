@@ -1,11 +1,11 @@
+#
 msgid ""
 msgstr ""
-
 "Language: th\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "chat_placeholder"
 msgstr "แชท"
@@ -16,11 +16,11 @@ msgstr "ส่ง"
 msgid "code_copy"
 msgstr "คัดลอก: {code}"
 
-msgid "dialog_yes"
-msgstr "ใช่"
-
 msgid "dialog_no"
 msgstr "ไม่ใช่"
+
+msgid "dialog_yes"
+msgstr "ใช่"
 
 msgid "hide"
 msgstr "ซ่อน"
@@ -28,14 +28,14 @@ msgstr "ซ่อน"
 msgid "join_discord"
 msgstr "เข้าร่วม Discord ของเรา"
 
-msgid "loading_text"
-msgstr "กำลังโหลด"
-
 msgid "loading_connection_lost"
 msgstr "การเชื่อมต่อหลุด!"
 
 msgid "loading_reconnect"
 msgstr "เชื่อมต่อใหม่"
+
+msgid "loading_text"
+msgstr "กำลังโหลด"
 
 msgid "lobby_filter_only_selected_language"
 msgstr "ซ่อนเกมที่ใช้ภาษาต่างกัน"
@@ -52,17 +52,14 @@ msgstr "เข้าร่วม"
 msgid "lobby_leave"
 msgstr "ออก"
 
-msgid "lobby_requires_players"
-msgstr "รอผู้เล่นเพิ่มเติม"
-
-msgid "lobby_requires_ready"
-msgstr "รอให้ผู้เล่นทุกคนพร้อม"
-
 msgid "lobby_placeholder_code"
 msgstr "รหัส: ABC123"
 
 msgid "lobby_prompt_full"
 msgstr "เกมนี้เต็มแล้ว"
+
+msgid "lobby_prompt_kick_player"
+msgstr "ไล่ {player} ออก"
 
 msgid "lobby_prompt_password_protected"
 msgstr "กรุณาใส่รหัสผ่าน"
@@ -70,11 +67,14 @@ msgstr "กรุณาใส่รหัสผ่าน"
 msgid "lobby_prompt_wrong_code"
 msgstr "รหัสเกมที่คุณใส่ไม่ถูกต้อง"
 
-msgid "lobby_prompt_kick_player"
-msgstr "ไล่ {player} ออก"
-
 msgid "lobby_ready"
 msgstr "พร้อม"
+
+msgid "lobby_requires_players"
+msgstr "รอผู้เล่นเพิ่มเติม"
+
+msgid "lobby_requires_ready"
+msgstr "รอให้ผู้เล่นทุกคนพร้อม"
 
 msgid "lobby_start"
 msgstr "เริ่ม"
@@ -100,35 +100,35 @@ msgstr "แข่งขัน"
 msgid "menu_create"
 msgstr "สร้าง"
 
+msgid "menu_options"
+msgstr "ตัวเลือก"
+
 msgid "menu_prompt_exit"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการออก?"
 
 msgid "menu_quit"
 msgstr "ออกจากเกม"
 
-msgid "menu_options"
-msgstr "ตัวเลือก"
-
 msgid "password_placeholder"
 msgstr "รหัสผ่าน"
-
-msgid "prompt_continue"
-msgstr "ดำเนินการต่อ"
-
-msgid "prompt_enter"
-msgstr "ยืนยัน"
-
-msgid "prompt_cancel"
-msgstr "ยกเลิก"
-
-msgid "players_max"
-msgstr "ผู้เล่น: {players}"
 
 msgid "player_greet"
 msgstr "สวัสดี, {player}"
 
 msgid "player_name"
 msgstr "ผู้เล่น"
+
+msgid "players_max"
+msgstr "ผู้เล่น: {players}"
+
+msgid "prompt_cancel"
+msgstr "ยกเลิก"
+
+msgid "prompt_continue"
+msgstr "ดำเนินการต่อ"
+
+msgid "prompt_enter"
+msgstr "ยืนยัน"
 
 msgid "settings_disconnect"
 msgstr "ยกเลิกการเชื่อมต่อ"

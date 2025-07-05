@@ -1,10 +1,10 @@
+#
 msgid ""
 msgstr ""
-
-
-
-
-
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 msgid "chat_placeholder"
 msgstr ""
@@ -21,10 +21,10 @@ msgstr ""
 msgid "code_reveal"
 msgstr ""
 
-msgid "dialog_yes"
+msgid "dialog_no"
 msgstr ""
 
-msgid "dialog_no"
+msgid "dialog_yes"
 msgstr ""
 
 msgid "header_create_lobby"
@@ -48,22 +48,22 @@ msgstr ""
 msgid "join_discord"
 msgstr ""
 
-msgid "loading_text"
-msgstr ""
-
 msgid "loading_connection_lost"
 msgstr ""
 
 msgid "loading_reconnect"
 msgstr ""
 
+msgid "loading_text"
+msgstr ""
+
 msgid "lobby_create"
 msgstr ""
 
-msgid "lobby_filter_only_selected_language"
+msgid "lobby_filter_full"
 msgstr ""
 
-msgid "lobby_filter_full"
+msgid "lobby_filter_only_selected_language"
 msgstr ""
 
 msgid "lobby_filter_password"
@@ -81,12 +81,6 @@ msgstr ""
 msgid "lobby_leave"
 msgstr ""
 
-msgid "lobby_requires_ready"
-msgstr ""
-
-msgid "lobby_requires_players"
-msgstr ""
-
 msgid "lobby_placeholder_code"
 msgstr ""
 
@@ -96,16 +90,22 @@ msgstr ""
 msgid "lobby_prompt_full"
 msgstr ""
 
+msgid "lobby_prompt_kick_player"
+msgstr ""
+
 msgid "lobby_prompt_password_protected"
 msgstr ""
 
 msgid "lobby_prompt_wrong_code"
 msgstr ""
 
-msgid "lobby_prompt_kick_player"
+msgid "lobby_ready"
 msgstr ""
 
-msgid "lobby_ready"
+msgid "lobby_requires_players"
+msgstr ""
+
+msgid "lobby_requires_ready"
 msgstr ""
 
 msgid "lobby_start"
@@ -144,15 +144,6 @@ msgstr ""
 msgid "password_placeholder"
 msgstr ""
 
-msgid "prompt_continue"
-msgstr ""
-
-msgid "prompt_enter"
-msgstr ""
-
-msgid "prompt_cancel"
-msgstr ""
-
 msgid "player_greet"
 msgstr ""
 
@@ -160,6 +151,15 @@ msgid "player_name"
 msgstr ""
 
 msgid "players_label"
+msgstr ""
+
+msgid "prompt_cancel"
+msgstr ""
+
+msgid "prompt_continue"
+msgstr ""
+
+msgid "prompt_enter"
 msgstr ""
 
 msgid "settings_disconnect"

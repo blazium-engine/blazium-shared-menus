@@ -1,11 +1,11 @@
+#
 msgid ""
 msgstr ""
-
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "chat_placeholder"
 msgstr "Discussion"
@@ -16,11 +16,11 @@ msgstr "Envoyer"
 msgid "code_copy"
 msgstr "Copier : {code}"
 
-msgid "dialog_yes"
-msgstr "Oui"
-
 msgid "dialog_no"
 msgstr "Non"
+
+msgid "dialog_yes"
+msgstr "Oui"
 
 msgid "hide"
 msgstr "Cacher"
@@ -28,14 +28,14 @@ msgstr "Cacher"
 msgid "join_discord"
 msgstr "Rejoignez notre Discord"
 
-msgid "loading_text"
-msgstr "Chargement"
-
 msgid "loading_connection_lost"
 msgstr "Connexion perdue !"
 
 msgid "loading_reconnect"
 msgstr "Reconnexion"
+
+msgid "loading_text"
+msgstr "Chargement"
 
 msgid "lobby_filter_only_selected_language"
 msgstr "Masquer les parties avec une autre langue"
@@ -52,17 +52,14 @@ msgstr "Rejoindre"
 msgid "lobby_leave"
 msgstr "Quitter"
 
-msgid "lobby_requires_players"
-msgstr "En attente d'autres joueurs"
-
-msgid "lobby_requires_ready"
-msgstr "En attente que tous les joueurs soient prêts"
-
 msgid "lobby_placeholder_code"
 msgstr "Code : ABC123"
 
 msgid "lobby_prompt_full"
 msgstr "Cette partie est déjà complète"
+
+msgid "lobby_prompt_kick_player"
+msgstr "Exclure {player}"
 
 msgid "lobby_prompt_password_protected"
 msgstr "Veuillez entrer le mot de passe"
@@ -70,11 +67,14 @@ msgstr "Veuillez entrer le mot de passe"
 msgid "lobby_prompt_wrong_code"
 msgstr "Le code de partie que vous avez entré est incorrect"
 
-msgid "lobby_prompt_kick_player"
-msgstr "Exclure {player}"
-
 msgid "lobby_ready"
 msgstr "Prêt"
+
+msgid "lobby_requires_players"
+msgstr "En attente d'autres joueurs"
+
+msgid "lobby_requires_ready"
+msgstr "En attente que tous les joueurs soient prêts"
 
 msgid "lobby_start"
 msgstr "Démarrer"
@@ -100,35 +100,35 @@ msgstr "Compétitif"
 msgid "menu_create"
 msgstr "Créer"
 
+msgid "menu_options"
+msgstr "Options"
+
 msgid "menu_prompt_exit"
 msgstr "Êtes-vous sûr de vouloir quitter ?"
 
 msgid "menu_quit"
 msgstr "Quitter"
 
-msgid "menu_options"
-msgstr "Options"
-
 msgid "password_placeholder"
 msgstr "Mot de passe"
-
-msgid "prompt_continue"
-msgstr "Continuer"
-
-msgid "prompt_enter"
-msgstr "Entrer"
-
-msgid "prompt_cancel"
-msgstr "Annuler"
-
-msgid "players_max"
-msgstr "Joueurs : {players}"
 
 msgid "player_greet"
 msgstr "Salut, {player}"
 
 msgid "player_name"
 msgstr "Joueur"
+
+msgid "players_max"
+msgstr "Joueurs : {players}"
+
+msgid "prompt_cancel"
+msgstr "Annuler"
+
+msgid "prompt_continue"
+msgstr "Continuer"
+
+msgid "prompt_enter"
+msgstr "Entrer"
 
 msgid "settings_disconnect"
 msgstr "Déconnexion"

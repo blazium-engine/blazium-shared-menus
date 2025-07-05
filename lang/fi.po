@@ -1,11 +1,11 @@
+#
 msgid ""
 msgstr ""
-
 "Language: fi\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "chat_placeholder"
 msgstr "Keskustelu"
@@ -16,11 +16,11 @@ msgstr "Lähetä"
 msgid "code_copy"
 msgstr "Kopioi: {code}"
 
-msgid "dialog_yes"
-msgstr "Kyllä"
-
 msgid "dialog_no"
 msgstr "Ei"
+
+msgid "dialog_yes"
+msgstr "Kyllä"
 
 msgid "hide"
 msgstr "Piilota"
@@ -28,14 +28,14 @@ msgstr "Piilota"
 msgid "join_discord"
 msgstr "Liity Discordiin"
 
-msgid "loading_text"
-msgstr "Ladataan"
-
 msgid "loading_connection_lost"
 msgstr "Yhteys katkesi!"
 
 msgid "loading_reconnect"
 msgstr "Yhdistä uudelleen"
+
+msgid "loading_text"
+msgstr "Ladataan"
 
 msgid "lobby_filter_only_selected_language"
 msgstr "Piilota pelit eri kielellä"
@@ -52,17 +52,14 @@ msgstr "Liity"
 msgid "lobby_leave"
 msgstr "Poistu"
 
-msgid "lobby_requires_players"
-msgstr "Odotetaan lisää pelaajia"
-
-msgid "lobby_requires_ready"
-msgstr "Odotetaan kaikkien olevan valmiita"
-
 msgid "lobby_placeholder_code"
 msgstr "Koodi: ABC123"
 
 msgid "lobby_prompt_full"
 msgstr "Tämä peli on jo täynnä"
+
+msgid "lobby_prompt_kick_player"
+msgstr "Poista pelaaja {player}"
 
 msgid "lobby_prompt_password_protected"
 msgstr "Anna salasana"
@@ -70,11 +67,14 @@ msgstr "Anna salasana"
 msgid "lobby_prompt_wrong_code"
 msgstr "Antamasi pelin koodi on virheellinen"
 
-msgid "lobby_prompt_kick_player"
-msgstr "Poista pelaaja {player}"
-
 msgid "lobby_ready"
 msgstr "Valmis"
+
+msgid "lobby_requires_players"
+msgstr "Odotetaan lisää pelaajia"
+
+msgid "lobby_requires_ready"
+msgstr "Odotetaan kaikkien olevan valmiita"
 
 msgid "lobby_start"
 msgstr "Aloita"
@@ -100,35 +100,35 @@ msgstr "Kilpailullinen"
 msgid "menu_create"
 msgstr "Luo"
 
+msgid "menu_options"
+msgstr "Asetukset"
+
 msgid "menu_prompt_exit"
 msgstr "Haluatko varmasti poistua?"
 
 msgid "menu_quit"
 msgstr "Lopeta"
 
-msgid "menu_options"
-msgstr "Asetukset"
-
 msgid "password_placeholder"
 msgstr "Salasana"
-
-msgid "prompt_continue"
-msgstr "Jatka"
-
-msgid "prompt_enter"
-msgstr "Syötä"
-
-msgid "prompt_cancel"
-msgstr "Peruuta"
-
-msgid "players_max"
-msgstr "Pelaajia: {players}"
 
 msgid "player_greet"
 msgstr "Hei, {player}"
 
 msgid "player_name"
 msgstr "Pelaaja"
+
+msgid "players_max"
+msgstr "Pelaajia: {players}"
+
+msgid "prompt_cancel"
+msgstr "Peruuta"
+
+msgid "prompt_continue"
+msgstr "Jatka"
+
+msgid "prompt_enter"
+msgstr "Syötä"
 
 msgid "settings_disconnect"
 msgstr "Katkaise yhteys"

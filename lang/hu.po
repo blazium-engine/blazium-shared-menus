@@ -1,11 +1,11 @@
+#
 msgid ""
 msgstr ""
-
 "Language: hu\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "chat_placeholder"
 msgstr "Csevegés"
@@ -16,11 +16,11 @@ msgstr "Küldés"
 msgid "code_copy"
 msgstr "Másolás: {code}"
 
-msgid "dialog_yes"
-msgstr "Igen"
-
 msgid "dialog_no"
 msgstr "Nem"
+
+msgid "dialog_yes"
+msgstr "Igen"
 
 msgid "hide"
 msgstr "Elrejtés"
@@ -28,14 +28,14 @@ msgstr "Elrejtés"
 msgid "join_discord"
 msgstr "Csatlakozz a Discordhoz"
 
-msgid "loading_text"
-msgstr "Betöltés"
-
 msgid "loading_connection_lost"
 msgstr "Kapcsolat megszakadt!"
 
 msgid "loading_reconnect"
 msgstr "Újracsatlakozás"
+
+msgid "loading_text"
+msgstr "Betöltés"
 
 msgid "lobby_filter_only_selected_language"
 msgstr "Idegen nyelvű játékok elrejtése"
@@ -52,17 +52,14 @@ msgstr "Csatlakozás"
 msgid "lobby_leave"
 msgstr "Kilépés"
 
-msgid "lobby_requires_players"
-msgstr "Várakozás további játékosokra"
-
-msgid "lobby_requires_ready"
-msgstr "Várakozás minden játékos készenlétére"
-
 msgid "lobby_placeholder_code"
 msgstr "Kód: ABC123"
 
 msgid "lobby_prompt_full"
 msgstr "Ez a játék már tele van"
+
+msgid "lobby_prompt_kick_player"
+msgstr "{player} kirúgása"
 
 msgid "lobby_prompt_password_protected"
 msgstr "Kérlek, add meg a jelszót"
@@ -70,11 +67,14 @@ msgstr "Kérlek, add meg a jelszót"
 msgid "lobby_prompt_wrong_code"
 msgstr "A megadott játék kód hibás"
 
-msgid "lobby_prompt_kick_player"
-msgstr "{player} kirúgása"
-
 msgid "lobby_ready"
 msgstr "Készen állok"
+
+msgid "lobby_requires_players"
+msgstr "Várakozás további játékosokra"
+
+msgid "lobby_requires_ready"
+msgstr "Várakozás minden játékos készenlétére"
 
 msgid "lobby_start"
 msgstr "Indítás"
@@ -100,35 +100,35 @@ msgstr "Versenyszerű"
 msgid "menu_create"
 msgstr "Létrehozás"
 
+msgid "menu_options"
+msgstr "Beállítások"
+
 msgid "menu_prompt_exit"
 msgstr "Biztosan ki akarsz lépni?"
 
 msgid "menu_quit"
 msgstr "Kilépés"
 
-msgid "menu_options"
-msgstr "Beállítások"
-
 msgid "password_placeholder"
 msgstr "Jelszó"
-
-msgid "prompt_continue"
-msgstr "Folytatás"
-
-msgid "prompt_enter"
-msgstr "Belépés"
-
-msgid "prompt_cancel"
-msgstr "Mégse"
-
-msgid "players_max"
-msgstr "Játékosok: {players}"
 
 msgid "player_greet"
 msgstr "Szia, {player}"
 
 msgid "player_name"
 msgstr "Játékos"
+
+msgid "players_max"
+msgstr "Játékosok: {players}"
+
+msgid "prompt_cancel"
+msgstr "Mégse"
+
+msgid "prompt_continue"
+msgstr "Folytatás"
+
+msgid "prompt_enter"
+msgstr "Belépés"
 
 msgid "settings_disconnect"
 msgstr "Lecsatlakozás"

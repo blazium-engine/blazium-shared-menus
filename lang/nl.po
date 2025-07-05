@@ -1,11 +1,11 @@
+#
 msgid ""
 msgstr ""
-
 "Language: nl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "chat_placeholder"
 msgstr "Chat"
@@ -16,11 +16,11 @@ msgstr "Verstuur"
 msgid "code_copy"
 msgstr "Kopieer: {code}"
 
-msgid "dialog_yes"
-msgstr "Ja"
-
 msgid "dialog_no"
 msgstr "Nee"
+
+msgid "dialog_yes"
+msgstr "Ja"
 
 msgid "hide"
 msgstr "Verbergen"
@@ -28,14 +28,14 @@ msgstr "Verbergen"
 msgid "join_discord"
 msgstr "Word lid van onze Discord"
 
-msgid "loading_text"
-msgstr "Laden"
-
 msgid "loading_connection_lost"
 msgstr "Verbinding verbroken!"
 
 msgid "loading_reconnect"
 msgstr "Opnieuw verbinden"
+
+msgid "loading_text"
+msgstr "Laden"
 
 msgid "lobby_filter_only_selected_language"
 msgstr "Verberg spellen met een andere taal"
@@ -52,17 +52,14 @@ msgstr "Deelnemen"
 msgid "lobby_leave"
 msgstr "Verlaten"
 
-msgid "lobby_requires_players"
-msgstr "Wacht op meer spelers"
-
-msgid "lobby_requires_ready"
-msgstr "Wacht tot alle spelers klaar zijn"
-
 msgid "lobby_placeholder_code"
 msgstr "Code: ABC123"
 
 msgid "lobby_prompt_full"
 msgstr "Dit spel is al vol"
+
+msgid "lobby_prompt_kick_player"
+msgstr "{player} verwijderen"
 
 msgid "lobby_prompt_password_protected"
 msgstr "Voer het wachtwoord in"
@@ -70,11 +67,14 @@ msgstr "Voer het wachtwoord in"
 msgid "lobby_prompt_wrong_code"
 msgstr "De spelcode die je hebt ingevoerd is onjuist"
 
-msgid "lobby_prompt_kick_player"
-msgstr "{player} verwijderen"
-
 msgid "lobby_ready"
 msgstr "Klaar"
+
+msgid "lobby_requires_players"
+msgstr "Wacht op meer spelers"
+
+msgid "lobby_requires_ready"
+msgstr "Wacht tot alle spelers klaar zijn"
 
 msgid "lobby_start"
 msgstr "Start"
@@ -100,35 +100,35 @@ msgstr "Competitief"
 msgid "menu_create"
 msgstr "Aanmaken"
 
+msgid "menu_options"
+msgstr "Opties"
+
 msgid "menu_prompt_exit"
 msgstr "Weet je zeker dat je wilt afsluiten?"
 
 msgid "menu_quit"
 msgstr "Afsluiten"
 
-msgid "menu_options"
-msgstr "Opties"
-
 msgid "password_placeholder"
 msgstr "Wachtwoord"
-
-msgid "prompt_continue"
-msgstr "Doorgaan"
-
-msgid "prompt_enter"
-msgstr "Invoeren"
-
-msgid "prompt_cancel"
-msgstr "Annuleren"
-
-msgid "players_max"
-msgstr "Spelers: {players}"
 
 msgid "player_greet"
 msgstr "Hallo, {player}"
 
 msgid "player_name"
 msgstr "Speler"
+
+msgid "players_max"
+msgstr "Spelers: {players}"
+
+msgid "prompt_cancel"
+msgstr "Annuleren"
+
+msgid "prompt_continue"
+msgstr "Doorgaan"
+
+msgid "prompt_enter"
+msgstr "Invoeren"
 
 msgid "settings_disconnect"
 msgstr "Verbinding verbreken"

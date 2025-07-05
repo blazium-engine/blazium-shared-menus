@@ -1,11 +1,11 @@
+#
 msgid ""
 msgstr ""
-
 "Language: ar\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 
 msgid "chat_placeholder"
 msgstr "الدردشة"
@@ -16,11 +16,11 @@ msgstr "إرسال"
 msgid "code_copy"
 msgstr "نسخ: {code}"
 
-msgid "dialog_yes"
-msgstr "نعم"
-
 msgid "dialog_no"
 msgstr "لا"
+
+msgid "dialog_yes"
+msgstr "نعم"
 
 msgid "hide"
 msgstr "إخفاء"
@@ -28,14 +28,14 @@ msgstr "إخفاء"
 msgid "join_discord"
 msgstr "انضم إلى Discord"
 
-msgid "loading_text"
-msgstr "جارٍ التحميل"
-
 msgid "loading_connection_lost"
 msgstr "تم فقد الاتصال!"
 
 msgid "loading_reconnect"
 msgstr "إعادة الاتصال"
+
+msgid "loading_text"
+msgstr "جارٍ التحميل"
 
 msgid "lobby_filter_only_selected_language"
 msgstr "إخفاء الألعاب بلغة مختلفة"
@@ -52,17 +52,14 @@ msgstr "انضمام"
 msgid "lobby_leave"
 msgstr "مغادرة"
 
-msgid "lobby_requires_players"
-msgstr "بانتظار لاعبين آخرين"
-
-msgid "lobby_requires_ready"
-msgstr "بانتظار استعداد جميع اللاعبين"
-
 msgid "lobby_placeholder_code"
 msgstr "الرمز: ABC123"
 
 msgid "lobby_prompt_full"
 msgstr "هذه اللعبة ممتلئة بالفعل"
+
+msgid "lobby_prompt_kick_player"
+msgstr "طرد {player}"
 
 msgid "lobby_prompt_password_protected"
 msgstr "يرجى إدخال كلمة المرور"
@@ -70,11 +67,14 @@ msgstr "يرجى إدخال كلمة المرور"
 msgid "lobby_prompt_wrong_code"
 msgstr "رمز اللعبة الذي أدخلته غير صحيح"
 
-msgid "lobby_prompt_kick_player"
-msgstr "طرد {player}"
-
 msgid "lobby_ready"
 msgstr "جاهز"
+
+msgid "lobby_requires_players"
+msgstr "بانتظار لاعبين آخرين"
+
+msgid "lobby_requires_ready"
+msgstr "بانتظار استعداد جميع اللاعبين"
 
 msgid "lobby_start"
 msgstr "ابدأ"
@@ -100,35 +100,35 @@ msgstr "تنافسي"
 msgid "menu_create"
 msgstr "إنشاء"
 
+msgid "menu_options"
+msgstr "خيارات"
+
 msgid "menu_prompt_exit"
 msgstr "هل أنت متأكد أنك تريد الخروج؟"
 
 msgid "menu_quit"
 msgstr "خروج"
 
-msgid "menu_options"
-msgstr "خيارات"
-
 msgid "password_placeholder"
 msgstr "كلمة المرور"
-
-msgid "prompt_continue"
-msgstr "متابعة"
-
-msgid "prompt_enter"
-msgstr "إدخال"
-
-msgid "prompt_cancel"
-msgstr "إلغاء"
-
-msgid "players_max"
-msgstr "اللاعبون: {players}"
 
 msgid "player_greet"
 msgstr "مرحبًا، {player}"
 
 msgid "player_name"
 msgstr "لاعب"
+
+msgid "players_max"
+msgstr "اللاعبون: {players}"
+
+msgid "prompt_cancel"
+msgstr "إلغاء"
+
+msgid "prompt_continue"
+msgstr "متابعة"
+
+msgid "prompt_enter"
+msgstr "إدخال"
 
 msgid "settings_disconnect"
 msgstr "قطع الاتصال"

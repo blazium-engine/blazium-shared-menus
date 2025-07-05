@@ -1,11 +1,11 @@
+#
 msgid ""
 msgstr ""
-
 "Language: pl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "chat_placeholder"
 msgstr "Czat"
@@ -16,11 +16,11 @@ msgstr "Wyślij"
 msgid "code_copy"
 msgstr "Kopiuj: {code}"
 
-msgid "dialog_yes"
-msgstr "Tak"
-
 msgid "dialog_no"
 msgstr "Nie"
+
+msgid "dialog_yes"
+msgstr "Tak"
 
 msgid "hide"
 msgstr "Ukryj"
@@ -28,14 +28,14 @@ msgstr "Ukryj"
 msgid "join_discord"
 msgstr "Dołącz do naszego Discorda"
 
-msgid "loading_text"
-msgstr "Ładowanie"
-
 msgid "loading_connection_lost"
 msgstr "Połączenie utracone!"
 
 msgid "loading_reconnect"
 msgstr "Połącz ponownie"
+
+msgid "loading_text"
+msgstr "Ładowanie"
 
 msgid "lobby_filter_only_selected_language"
 msgstr "Ukryj gry w innym języku"
@@ -52,17 +52,14 @@ msgstr "Dołącz"
 msgid "lobby_leave"
 msgstr "Opuść"
 
-msgid "lobby_requires_players"
-msgstr "Oczekiwanie na więcej graczy"
-
-msgid "lobby_requires_ready"
-msgstr "Czekamy aż wszyscy będą gotowi"
-
 msgid "lobby_placeholder_code"
 msgstr "Kod: ABC123"
 
 msgid "lobby_prompt_full"
 msgstr "Ta gra jest już pełna"
+
+msgid "lobby_prompt_kick_player"
+msgstr "Wyrzuć {player}"
 
 msgid "lobby_prompt_password_protected"
 msgstr "Proszę podać hasło"
@@ -70,11 +67,14 @@ msgstr "Proszę podać hasło"
 msgid "lobby_prompt_wrong_code"
 msgstr "Wprowadzony kod gry jest nieprawidłowy"
 
-msgid "lobby_prompt_kick_player"
-msgstr "Wyrzuć {player}"
-
 msgid "lobby_ready"
 msgstr "Gotowy"
+
+msgid "lobby_requires_players"
+msgstr "Oczekiwanie na więcej graczy"
+
+msgid "lobby_requires_ready"
+msgstr "Czekamy aż wszyscy będą gotowi"
 
 msgid "lobby_start"
 msgstr "Start"
@@ -100,35 +100,35 @@ msgstr "Rywalizacja"
 msgid "menu_create"
 msgstr "Utwórz"
 
+msgid "menu_options"
+msgstr "Opcje"
+
 msgid "menu_prompt_exit"
 msgstr "Czy na pewno chcesz wyjść?"
 
 msgid "menu_quit"
 msgstr "Zakończ"
 
-msgid "menu_options"
-msgstr "Opcje"
-
 msgid "password_placeholder"
 msgstr "Hasło"
-
-msgid "prompt_continue"
-msgstr "Kontynuuj"
-
-msgid "prompt_enter"
-msgstr "Wejdź"
-
-msgid "prompt_cancel"
-msgstr "Anuluj"
-
-msgid "players_max"
-msgstr "Gracze: {players}"
 
 msgid "player_greet"
 msgstr "Cześć, {player}"
 
 msgid "player_name"
 msgstr "Gracz"
+
+msgid "players_max"
+msgstr "Gracze: {players}"
+
+msgid "prompt_cancel"
+msgstr "Anuluj"
+
+msgid "prompt_continue"
+msgstr "Kontynuuj"
+
+msgid "prompt_enter"
+msgstr "Wejdź"
 
 msgid "settings_disconnect"
 msgstr "Rozłącz"

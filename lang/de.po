@@ -1,11 +1,11 @@
+#
 msgid ""
 msgstr ""
-
 "Language: de\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "chat_placeholder"
 msgstr "Chat"
@@ -16,11 +16,11 @@ msgstr "Senden"
 msgid "code_copy"
 msgstr "Kopieren: {code}"
 
-msgid "dialog_yes"
-msgstr "Ja"
-
 msgid "dialog_no"
 msgstr "Nein"
+
+msgid "dialog_yes"
+msgstr "Ja"
 
 msgid "hide"
 msgstr "Ausblenden"
@@ -28,14 +28,14 @@ msgstr "Ausblenden"
 msgid "join_discord"
 msgstr "Tritt unserem Discord bei"
 
-msgid "loading_text"
-msgstr "Lädt"
-
 msgid "loading_connection_lost"
 msgstr "Verbindung verloren!"
 
 msgid "loading_reconnect"
 msgstr "Wiederverbinden"
+
+msgid "loading_text"
+msgstr "Lädt"
 
 msgid "lobby_filter_only_selected_language"
 msgstr "Spiele mit anderer Sprache ausblenden"
@@ -52,17 +52,14 @@ msgstr "Beitreten"
 msgid "lobby_leave"
 msgstr "Verlassen"
 
-msgid "lobby_requires_players"
-msgstr "Warte auf weitere Spieler"
-
-msgid "lobby_requires_ready"
-msgstr "Warte, bis alle Spieler bereit sind"
-
 msgid "lobby_placeholder_code"
 msgstr "Code: ABC123"
 
 msgid "lobby_prompt_full"
 msgstr "Dieses Spiel ist bereits voll"
+
+msgid "lobby_prompt_kick_player"
+msgstr "{player} entfernen"
 
 msgid "lobby_prompt_password_protected"
 msgstr "Bitte Passwort eingeben"
@@ -70,11 +67,14 @@ msgstr "Bitte Passwort eingeben"
 msgid "lobby_prompt_wrong_code"
 msgstr "Der eingegebene Spielcode ist falsch"
 
-msgid "lobby_prompt_kick_player"
-msgstr "{player} entfernen"
-
 msgid "lobby_ready"
 msgstr "Bereit"
+
+msgid "lobby_requires_players"
+msgstr "Warte auf weitere Spieler"
+
+msgid "lobby_requires_ready"
+msgstr "Warte, bis alle Spieler bereit sind"
 
 msgid "lobby_start"
 msgstr "Starten"
@@ -100,35 +100,35 @@ msgstr "Wettkampf"
 msgid "menu_create"
 msgstr "Erstellen"
 
+msgid "menu_options"
+msgstr "Optionen"
+
 msgid "menu_prompt_exit"
 msgstr "Möchtest du wirklich beenden?"
 
 msgid "menu_quit"
 msgstr "Beenden"
 
-msgid "menu_options"
-msgstr "Optionen"
-
 msgid "password_placeholder"
 msgstr "Passwort"
-
-msgid "prompt_continue"
-msgstr "Fortfahren"
-
-msgid "prompt_enter"
-msgstr "Eingeben"
-
-msgid "prompt_cancel"
-msgstr "Abbrechen"
-
-msgid "players_max"
-msgstr "Spieler: {players}"
 
 msgid "player_greet"
 msgstr "Hallo, {player}"
 
 msgid "player_name"
 msgstr "Spieler"
+
+msgid "players_max"
+msgstr "Spieler: {players}"
+
+msgid "prompt_cancel"
+msgstr "Abbrechen"
+
+msgid "prompt_continue"
+msgstr "Fortfahren"
+
+msgid "prompt_enter"
+msgstr "Eingeben"
 
 msgid "settings_disconnect"
 msgstr "Verbindung trennen"

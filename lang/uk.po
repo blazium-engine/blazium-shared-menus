@@ -1,11 +1,11 @@
+#
 msgid ""
 msgstr ""
-
 "Language: uk\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "chat_placeholder"
 msgstr "Чат"
@@ -16,11 +16,11 @@ msgstr "Надіслати"
 msgid "code_copy"
 msgstr "Копіювати: {code}"
 
-msgid "dialog_yes"
-msgstr "Так"
-
 msgid "dialog_no"
 msgstr "Ні"
+
+msgid "dialog_yes"
+msgstr "Так"
 
 msgid "hide"
 msgstr "Приховати"
@@ -28,14 +28,14 @@ msgstr "Приховати"
 msgid "join_discord"
 msgstr "Приєднатися до нашого Discord"
 
-msgid "loading_text"
-msgstr "Завантаження"
-
 msgid "loading_connection_lost"
 msgstr "З’єднання втрачено!"
 
 msgid "loading_reconnect"
 msgstr "Повторне підключення"
+
+msgid "loading_text"
+msgstr "Завантаження"
 
 msgid "lobby_filter_only_selected_language"
 msgstr "Приховати ігри з іншою мовою"
@@ -52,17 +52,14 @@ msgstr "Приєднатися"
 msgid "lobby_leave"
 msgstr "Вийти"
 
-msgid "lobby_requires_players"
-msgstr "Очікуємо більше гравців"
-
-msgid "lobby_requires_ready"
-msgstr "Очікуємо готовності всіх гравців"
-
 msgid "lobby_placeholder_code"
 msgstr "Код: ABC123"
 
 msgid "lobby_prompt_full"
 msgstr "Ця гра вже заповнена"
+
+msgid "lobby_prompt_kick_player"
+msgstr "Вигнати {player}"
 
 msgid "lobby_prompt_password_protected"
 msgstr "Введіть пароль"
@@ -70,11 +67,14 @@ msgstr "Введіть пароль"
 msgid "lobby_prompt_wrong_code"
 msgstr "Неправильний код гри"
 
-msgid "lobby_prompt_kick_player"
-msgstr "Вигнати {player}"
-
 msgid "lobby_ready"
 msgstr "Готовий"
+
+msgid "lobby_requires_players"
+msgstr "Очікуємо більше гравців"
+
+msgid "lobby_requires_ready"
+msgstr "Очікуємо готовності всіх гравців"
 
 msgid "lobby_start"
 msgstr "Почати"
@@ -100,35 +100,35 @@ msgstr "Змагання"
 msgid "menu_create"
 msgstr "Створити"
 
+msgid "menu_options"
+msgstr "Параметри"
+
 msgid "menu_prompt_exit"
 msgstr "Ви впевнені, що хочете вийти?"
 
 msgid "menu_quit"
 msgstr "Вийти"
 
-msgid "menu_options"
-msgstr "Параметри"
-
 msgid "password_placeholder"
 msgstr "Пароль"
-
-msgid "prompt_continue"
-msgstr "Продовжити"
-
-msgid "prompt_enter"
-msgstr "Увійти"
-
-msgid "prompt_cancel"
-msgstr "Скасувати"
-
-msgid "players_max"
-msgstr "Гравців: {players}"
 
 msgid "player_greet"
 msgstr "Привіт, {player}"
 
 msgid "player_name"
 msgstr "Гравець"
+
+msgid "players_max"
+msgstr "Гравців: {players}"
+
+msgid "prompt_cancel"
+msgstr "Скасувати"
+
+msgid "prompt_continue"
+msgstr "Продовжити"
+
+msgid "prompt_enter"
+msgstr "Увійти"
 
 msgid "settings_disconnect"
 msgstr "Відключитися"

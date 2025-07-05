@@ -1,11 +1,11 @@
+#
 msgid ""
 msgstr ""
-
 "Language: vi\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "chat_placeholder"
 msgstr "Trò chuyện"
@@ -16,11 +16,11 @@ msgstr "Gửi"
 msgid "code_copy"
 msgstr "Sao chép: {code}"
 
-msgid "dialog_yes"
-msgstr "Có"
-
 msgid "dialog_no"
 msgstr "Không"
+
+msgid "dialog_yes"
+msgstr "Có"
 
 msgid "hide"
 msgstr "Ẩn"
@@ -28,14 +28,14 @@ msgstr "Ẩn"
 msgid "join_discord"
 msgstr "Tham gia Discord của chúng tôi"
 
-msgid "loading_text"
-msgstr "Đang tải"
-
 msgid "loading_connection_lost"
 msgstr "Mất kết nối!"
 
 msgid "loading_reconnect"
 msgstr "Kết nối lại"
+
+msgid "loading_text"
+msgstr "Đang tải"
 
 msgid "lobby_filter_only_selected_language"
 msgstr "Ẩn các trò chơi khác ngôn ngữ"
@@ -52,17 +52,14 @@ msgstr "Tham gia"
 msgid "lobby_leave"
 msgstr "Rời khỏi"
 
-msgid "lobby_requires_players"
-msgstr "Chờ thêm người chơi"
-
-msgid "lobby_requires_ready"
-msgstr "Chờ tất cả người chơi sẵn sàng"
-
 msgid "lobby_placeholder_code"
 msgstr "Mã: ABC123"
 
 msgid "lobby_prompt_full"
 msgstr "Trò chơi này đã đầy"
+
+msgid "lobby_prompt_kick_player"
+msgstr "Đuổi {player}"
 
 msgid "lobby_prompt_password_protected"
 msgstr "Vui lòng nhập mật khẩu"
@@ -70,11 +67,14 @@ msgstr "Vui lòng nhập mật khẩu"
 msgid "lobby_prompt_wrong_code"
 msgstr "Mã trò chơi bạn nhập không đúng"
 
-msgid "lobby_prompt_kick_player"
-msgstr "Đuổi {player}"
-
 msgid "lobby_ready"
 msgstr "Sẵn sàng"
+
+msgid "lobby_requires_players"
+msgstr "Chờ thêm người chơi"
+
+msgid "lobby_requires_ready"
+msgstr "Chờ tất cả người chơi sẵn sàng"
 
 msgid "lobby_start"
 msgstr "Bắt đầu"
@@ -100,35 +100,35 @@ msgstr "Cạnh tranh"
 msgid "menu_create"
 msgstr "Tạo"
 
+msgid "menu_options"
+msgstr "Tùy chọn"
+
 msgid "menu_prompt_exit"
 msgstr "Bạn có chắc chắn muốn thoát không?"
 
 msgid "menu_quit"
 msgstr "Thoát"
 
-msgid "menu_options"
-msgstr "Tùy chọn"
-
 msgid "password_placeholder"
 msgstr "Mật khẩu"
-
-msgid "prompt_continue"
-msgstr "Tiếp tục"
-
-msgid "prompt_enter"
-msgstr "Nhập"
-
-msgid "prompt_cancel"
-msgstr "Hủy"
-
-msgid "players_max"
-msgstr "Người chơi: {players}"
 
 msgid "player_greet"
 msgstr "Chào, {player}"
 
 msgid "player_name"
 msgstr "Người chơi"
+
+msgid "players_max"
+msgstr "Người chơi: {players}"
+
+msgid "prompt_cancel"
+msgstr "Hủy"
+
+msgid "prompt_continue"
+msgstr "Tiếp tục"
+
+msgid "prompt_enter"
+msgstr "Nhập"
 
 msgid "settings_disconnect"
 msgstr "Ngắt kết nối"

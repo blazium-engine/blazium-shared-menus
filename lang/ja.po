@@ -1,11 +1,11 @@
+#
 msgid ""
 msgstr ""
-
 "Language: ja\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "chat_placeholder"
 msgstr "チャット"
@@ -16,11 +16,11 @@ msgstr "送信"
 msgid "code_copy"
 msgstr "コピー: {code}"
 
-msgid "dialog_yes"
-msgstr "はい"
-
 msgid "dialog_no"
 msgstr "いいえ"
+
+msgid "dialog_yes"
+msgstr "はい"
 
 msgid "hide"
 msgstr "非表示"
@@ -28,14 +28,14 @@ msgstr "非表示"
 msgid "join_discord"
 msgstr "Discordに参加する"
 
-msgid "loading_text"
-msgstr "読み込み中"
-
 msgid "loading_connection_lost"
 msgstr "接続が失われました！"
 
 msgid "loading_reconnect"
 msgstr "再接続"
+
+msgid "loading_text"
+msgstr "読み込み中"
 
 msgid "lobby_filter_only_selected_language"
 msgstr "他言語のゲームを非表示"
@@ -52,17 +52,14 @@ msgstr "参加"
 msgid "lobby_leave"
 msgstr "退出"
 
-msgid "lobby_requires_players"
-msgstr "他のプレイヤーを待っています"
-
-msgid "lobby_requires_ready"
-msgstr "全員の準備完了を待っています"
-
 msgid "lobby_placeholder_code"
 msgstr "コード: ABC123"
 
 msgid "lobby_prompt_full"
 msgstr "このゲームは満員です"
+
+msgid "lobby_prompt_kick_player"
+msgstr "{player} をキックする"
 
 msgid "lobby_prompt_password_protected"
 msgstr "パスワードを入力してください"
@@ -70,11 +67,14 @@ msgstr "パスワードを入力してください"
 msgid "lobby_prompt_wrong_code"
 msgstr "入力したゲームコードが間違っています"
 
-msgid "lobby_prompt_kick_player"
-msgstr "{player} をキックする"
-
 msgid "lobby_ready"
 msgstr "準備完了"
+
+msgid "lobby_requires_players"
+msgstr "他のプレイヤーを待っています"
+
+msgid "lobby_requires_ready"
+msgstr "全員の準備完了を待っています"
 
 msgid "lobby_start"
 msgstr "開始"
@@ -100,35 +100,35 @@ msgstr "競技モード"
 msgid "menu_create"
 msgstr "作成"
 
+msgid "menu_options"
+msgstr "オプション"
+
 msgid "menu_prompt_exit"
 msgstr "本当に終了しますか？"
 
 msgid "menu_quit"
 msgstr "終了"
 
-msgid "menu_options"
-msgstr "オプション"
-
 msgid "password_placeholder"
 msgstr "パスワード"
-
-msgid "prompt_continue"
-msgstr "続行"
-
-msgid "prompt_enter"
-msgstr "入力"
-
-msgid "prompt_cancel"
-msgstr "キャンセル"
-
-msgid "players_max"
-msgstr "プレイヤー数: {players}"
 
 msgid "player_greet"
 msgstr "こんにちは、{player}さん"
 
 msgid "player_name"
 msgstr "プレイヤー"
+
+msgid "players_max"
+msgstr "プレイヤー数: {players}"
+
+msgid "prompt_cancel"
+msgstr "キャンセル"
+
+msgid "prompt_continue"
+msgstr "続行"
+
+msgid "prompt_enter"
+msgstr "入力"
 
 msgid "settings_disconnect"
 msgstr "切断"

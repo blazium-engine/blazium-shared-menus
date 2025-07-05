@@ -1,11 +1,11 @@
+#
 msgid ""
 msgstr ""
-
 "Language: bg\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "chat_placeholder"
 msgstr "Чат"
@@ -16,11 +16,11 @@ msgstr "Изпрати"
 msgid "code_copy"
 msgstr "Копирай: {code}"
 
-msgid "dialog_yes"
-msgstr "Да"
-
 msgid "dialog_no"
 msgstr "Не"
+
+msgid "dialog_yes"
+msgstr "Да"
 
 msgid "hide"
 msgstr "Скрий"
@@ -28,14 +28,14 @@ msgstr "Скрий"
 msgid "join_discord"
 msgstr "Присъедини се към нашия Discord"
 
-msgid "loading_text"
-msgstr "Зареждане"
-
 msgid "loading_connection_lost"
 msgstr "Връзката е загубена!"
 
 msgid "loading_reconnect"
 msgstr "Повтори опит за връзка"
+
+msgid "loading_text"
+msgstr "Зареждане"
 
 msgid "lobby_filter_only_selected_language"
 msgstr "Скрий игрите с различен език"
@@ -52,17 +52,14 @@ msgstr "Присъедини се"
 msgid "lobby_leave"
 msgstr "Напусни"
 
-msgid "lobby_requires_players"
-msgstr "Изчакване на още играчи"
-
-msgid "lobby_requires_ready"
-msgstr "Изчакване всички играчи да са готови"
-
 msgid "lobby_placeholder_code"
 msgstr "Код: ABC123"
 
 msgid "lobby_prompt_full"
 msgstr "Играта вече е пълна"
+
+msgid "lobby_prompt_kick_player"
+msgstr "Изгони {player}"
 
 msgid "lobby_prompt_password_protected"
 msgstr "Моля, въведи паролата"
@@ -70,11 +67,14 @@ msgstr "Моля, въведи паролата"
 msgid "lobby_prompt_wrong_code"
 msgstr "Въведеният код за игра е неправилен"
 
-msgid "lobby_prompt_kick_player"
-msgstr "Изгони {player}"
-
 msgid "lobby_ready"
 msgstr "Готов"
+
+msgid "lobby_requires_players"
+msgstr "Изчакване на още играчи"
+
+msgid "lobby_requires_ready"
+msgstr "Изчакване всички играчи да са готови"
 
 msgid "lobby_start"
 msgstr "Старт"
@@ -100,35 +100,35 @@ msgstr "Състезателен"
 msgid "menu_create"
 msgstr "Създай"
 
+msgid "menu_options"
+msgstr "Настройки"
+
 msgid "menu_prompt_exit"
 msgstr "Сигурен ли си, че искаш да излезеш?"
 
 msgid "menu_quit"
 msgstr "Изход"
 
-msgid "menu_options"
-msgstr "Настройки"
-
 msgid "password_placeholder"
 msgstr "Парола"
-
-msgid "prompt_continue"
-msgstr "Продължи"
-
-msgid "prompt_enter"
-msgstr "Въведи"
-
-msgid "prompt_cancel"
-msgstr "Отказ"
-
-msgid "players_max"
-msgstr "Играч(и): {players}"
 
 msgid "player_greet"
 msgstr "Здравей, {player}"
 
 msgid "player_name"
 msgstr "Играч"
+
+msgid "players_max"
+msgstr "Играч(и): {players}"
+
+msgid "prompt_cancel"
+msgstr "Отказ"
+
+msgid "prompt_continue"
+msgstr "Продължи"
+
+msgid "prompt_enter"
+msgstr "Въведи"
 
 msgid "settings_disconnect"
 msgstr "Прекъсни връзката"
