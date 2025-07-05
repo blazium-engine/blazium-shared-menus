@@ -19,7 +19,7 @@ if msg_id == "":
         pofile = polib.pofile(po_file_path, check_for_duplicates=True)
         pofile.sort()
         pofile.save(po_file_path)
-        print(f"Sorted {po_file_path} with translation for {lang}.")
+        print(f"Sorted {po_file_path} with translation for {translation}.")
     exit(0)
 with open("input.csv", "r") as f:
     reader = csv.DictReader(f)
@@ -27,8 +27,13 @@ with open("input.csv", "r") as f:
     translations["localization"] = ""
     for lang, translation in translations.items():
         po_file_path = f"{folder_path}/{lang}.po"
+        if lang == "localization":
+            po_file_path = f"{folder_path}/{lang}.pot"
+        print(f"Adding {po_file_path} with translation for {translation}.")
         pofile = polib.pofile(po_file_path, check_for_duplicates=True)
+        entry = pofile.find(msg_id)
+        if entry:
+            pofile.remove(entry)
         pofile.append(polib.POEntry(msgid=msg_id, msgstr=translation))
         pofile.sort()
         pofile.save(po_file_path)
-        print(f"Added {po_file_path} with translation for {lang}.")
