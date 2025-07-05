@@ -37,6 +37,11 @@ func _enter_tree() -> void:
 	ProjectSettings.set("rendering/renderer/rendering_method", "gl_compatibility")
 	ProjectSettings.set("rendering/renderer/rendering_method.mobile", "gl_compatibility")
 	ProjectSettings.set("rendering/textures/vram_compression/import_etc2_astc", true)
+	ProjectSettings.set("display/window/handheld/orientation", DisplayServer.ScreenOrientation.SCREEN_SENSOR)
+	ProjectSettings.set("display/window/vsync/vsync_mode", DisplayServer.VSyncMode.VSYNC_DISABLED)
+	if ProjectSettings.get("application/config/version") == "":
+		ProjectSettings.set("application/config/version", "1.0.0")
+	ProjectSettings.set("application/run/main_scene", "res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 
 func set_default_setting(setting_name: String, description: String, value: Variant):
 	if !ProjectSettings.has_setting(setting_name):
