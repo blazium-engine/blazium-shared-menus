@@ -17,7 +17,6 @@ var lobby_viewer_scene: PackedScene = load("res://addons/blazium_shared_menus/lo
 var lobby_creator_scene: PackedScene = load("res://addons/blazium_shared_menus/lobby_creator/lobby_creator.tscn")
 var settings_scene: PackedScene = load("res://addons/blazium_shared_menus/settings/settings.tscn")
 var about_scene: PackedScene = load("res://addons/blazium_shared_menus/about/about.tscn")
-var menu_persona: PackedScene = load("res://game/menu_persona.tscn")
 var exit_popup: CustomDialog
 
 var os_manages_quit: bool = OS.get_name() in ["Android", "iOS", "Web"]
