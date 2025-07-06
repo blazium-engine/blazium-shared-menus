@@ -6,6 +6,9 @@ extends POGRClient
 func _ready() -> void:
 	client_id = ProjectSettings.get("blazium/game/pogr_client_id")
 	build_id = ProjectSettings.get("blazium/game/pogr_build_id")
+	if !client_id || !build_id:
+		print("Not using pogr analytics. client_id or build_id not set up")
+		return
 	log_updated.connect(_log_updated)
 	if discord.is_discord_environment():
 		pogr_url = "https://" + discord.client_id + ".discordsays.com/.proxy/blazium/pogr"
@@ -19,6 +22,9 @@ func _ready() -> void:
 
 
 func add_event(event_name: String):
+	if !client_id || !build_id:
+		print("Not using pogr analytics. client_id or build_id not set up")
+		return
 	await event("application_" + event_name,
 		"game_" + event_name,
 		"app_" + event_name,
@@ -29,6 +35,9 @@ func add_event(event_name: String):
 
 
 func _add_start_data():
+	if !client_id || !build_id:
+		print("Not using pogr analytics. client_id or build_id not set up")
+		return
 	var store_name : = ProjectSettings.get("blazium/game/store_name")
 	if discord.is_discord_environment():
 		store_name = "discord"
@@ -61,6 +70,9 @@ func _add_start_data():
 
 
 func _add_metrics():
+	if !client_id || !build_id:
+		print("Not using pogr analytics. client_id or build_id not set up")
+		return
 	await metrics({"engine_fps": Engine.get_frames_per_second(),
 				"memory": OS.get_memory_info()}).finished
 

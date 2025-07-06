@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://chix1djhx5hj3" path="res://addons/blazium_shared_menus/game_shared_ui/vertical_box_container_break.gd" id="3_pb6x5"]
 [ext_resource type="Script" uid="uid://c6eim0n5qfl12" path="res://addons/blazium_shared_menus/general/hide_if_orientation_mobile.gd" id="6_m5tf8"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="7_uhal1"]
-[ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="8_30t10"]
+[ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://addons/blazium_shared_menus/sfx/click.ogg" id="8_30t10"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p1kc8"]
 
