@@ -145,6 +145,9 @@ msgstr "你確定要斷線嗎？"
 msgid "settings_sound"
 msgstr "音效"
 
+msgid "settings_word_filter"
+msgstr " 過濾不雅用語"
+
 msgid "tab_players"
 msgstr "玩家"
 

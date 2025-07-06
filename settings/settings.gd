@@ -32,6 +32,7 @@ func _ready() -> void:
 	_on_resized()
 	mute_checkbutton.set_pressed_no_signal(!SettingsAutoload.config.get_value("Settings", "mute", false))
 	theme_mode.set_pressed_no_signal(SettingsAutoload.config.get_value("Settings", "light_mode", false))
+	GlobalLobbyClient.update_theme(!theme_mode.toggle_mode)
 	word_filter.set_pressed_no_signal(WordFilterAutoload.filter_enabled)
 	mute_checkbutton._update_text_and_icon()
 	theme_mode._update_text_and_icon()

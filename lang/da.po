@@ -145,6 +145,9 @@ msgstr "Er du sikker på, at du vil afbryde forbindelsen?"
 msgid "settings_sound"
 msgstr "Lyd"
 
+msgid "settings_word_filter"
+msgstr " Filtrer grimme ord"
+
 msgid "tab_players"
 msgstr "Spillere"
 

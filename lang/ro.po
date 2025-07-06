@@ -145,6 +145,9 @@ msgstr "Ești sigur că vrei să te deconectezi?"
 msgid "settings_sound"
 msgstr "Sunet"
 
+msgid "settings_word_filter"
+msgstr " Filtrează cuvintele obscene"
+
 msgid "tab_players"
 msgstr "Jucători"
 

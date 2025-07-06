@@ -145,6 +145,9 @@ msgstr "Biztosan le akarsz csatlakozni?"
 msgid "settings_sound"
 msgstr "Hang"
 
+msgid "settings_word_filter"
+msgstr " Szűrje a trágár szavakat"
+
 msgid "tab_players"
 msgstr "Játékosok"
 

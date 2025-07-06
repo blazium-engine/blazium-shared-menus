@@ -145,6 +145,9 @@ msgstr "Είστε σίγουροι ότι θέλετε να αποσυνδεθ�
 msgid "settings_sound"
 msgstr "Ήχος"
 
+msgid "settings_word_filter"
+msgstr " Φιλτράρισμα άσεμνων λέξεων"
+
 msgid "tab_players"
 msgstr "Παίκτες"
 

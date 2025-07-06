@@ -23,7 +23,8 @@ func get_dlcs() -> Array[Dictionary]:
 	var owned :Array[Dictionary]= []
 	for dlc_data in dlc_array:
 		# Add them all for now
-		owned.push_back(dlc_data)
+		if dlc_data.get("available", false):
+			owned.push_back(dlc_data)
 	return owned
 
 func dlc_installed(app: int):

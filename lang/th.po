@@ -145,6 +145,9 @@ msgstr "คุณแน่ใจหรือไม่ว่าต้องกา
 msgid "settings_sound"
 msgstr "เสียง"
 
+msgid "settings_word_filter"
+msgstr " กรองคำหยาบ"
+
 msgid "tab_players"
 msgstr "ผู้เล่น"
 

@@ -180,6 +180,9 @@ msgstr ""
 msgid "settings_sound_on"
 msgstr ""
 
+msgid "settings_word_filter"
+msgstr ""
+
 msgid "tab_players"
 msgstr ""
 

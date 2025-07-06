@@ -145,6 +145,9 @@ msgstr "Sei sicuro di voler disconnetterti?"
 msgid "settings_sound"
 msgstr "Suono"
 
+msgid "settings_word_filter"
+msgstr " Filtra Parole Inappropriate"
+
 msgid "tab_players"
 msgstr "Giocatori"
 

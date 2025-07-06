@@ -145,6 +145,9 @@ msgstr "Tem certeza de que deseja se desconectar?"
 msgid "settings_sound"
 msgstr "Som"
 
+msgid "settings_word_filter"
+msgstr " Filtrar palavras inadequadas"
+
 msgid "tab_players"
 msgstr "Jogadores"
 

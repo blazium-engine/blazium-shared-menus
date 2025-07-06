@@ -145,6 +145,9 @@ msgstr "Opravdu se chcete odpojit?"
 msgid "settings_sound"
 msgstr "Zvuk"
 
+msgid "settings_word_filter"
+msgstr " Filtrovat nevhodná slova"
+
 msgid "tab_players"
 msgstr "Hráči"
 

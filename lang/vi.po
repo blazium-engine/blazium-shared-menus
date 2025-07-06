@@ -145,6 +145,9 @@ msgstr "Bạn có chắc chắn muốn ngắt kết nối không?"
 msgid "settings_sound"
 msgstr "Âm thanh"
 
+msgid "settings_word_filter"
+msgstr " Lọc từ ngữ xấu"
+
 msgid "tab_players"
 msgstr "Người chơi"
 

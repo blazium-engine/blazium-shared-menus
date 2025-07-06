@@ -145,6 +145,9 @@ msgstr "Czy na pewno chcesz się rozłączyć?"
 msgid "settings_sound"
 msgstr "Dźwięk"
 
+msgid "settings_word_filter"
+msgstr " Filtrować wulgaryzmy"
+
 msgid "tab_players"
 msgstr "Gracze"
 

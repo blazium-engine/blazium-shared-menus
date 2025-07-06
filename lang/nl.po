@@ -145,6 +145,9 @@ msgstr "Weet je zeker dat je de verbinding wilt verbreken?"
 msgid "settings_sound"
 msgstr "Geluid"
 
+msgid "settings_word_filter"
+msgstr " Filter slechte woorden"
+
 msgid "tab_players"
 msgstr "Spelers"
 

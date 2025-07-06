@@ -145,6 +145,9 @@ msgstr "Ви впевнені, що хочете відключитися?"
 msgid "settings_sound"
 msgstr "Звук"
 
+msgid "settings_word_filter"
+msgstr " Фільтрувати нецензурні слова"
+
 msgid "tab_players"
 msgstr "Гравці"
 

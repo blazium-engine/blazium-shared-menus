@@ -204,11 +204,13 @@ user_icon = "language"
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "settings_word_filter"
+alignment = 1
 expand_text = false
+autowrap_mode = 3
 icon_alignment = 1
 script = ExtResource("8_6v4tp")
-pressed_icon = "password"
-unpressed_icon = "password"
+pressed_icon = "sentiment_very_satisfied"
+unpressed_icon = "sentiment_very_dissatisfied"
 pressed_text = "settings_word_filter"
 unpressed_text = "settings_word_filter"
 

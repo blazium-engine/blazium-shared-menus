@@ -145,6 +145,9 @@ msgstr "Möchtest du die Verbindung wirklich trennen?"
 msgid "settings_sound"
 msgstr "Ton"
 
+msgid "settings_word_filter"
+msgstr " Schimpfwörter filtern"
+
 msgid "tab_players"
 msgstr "Spieler"
 

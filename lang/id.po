@@ -145,6 +145,9 @@ msgstr "Apakah Anda yakin ingin memutuskan koneksi?"
 msgid "settings_sound"
 msgstr "Suara"
 
+msgid "settings_word_filter"
+msgstr " Saring Kata-Kata Kasar"
+
 msgid "tab_players"
 msgstr "Pemain"
 

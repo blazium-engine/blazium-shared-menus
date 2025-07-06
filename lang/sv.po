@@ -145,6 +145,9 @@ msgstr "Är du säker på att du vill koppla från?"
 msgid "settings_sound"
 msgstr "Ljud"
 
+msgid "settings_word_filter"
+msgstr " Filtrera svordomar"
+
 msgid "tab_players"
 msgstr "Spelare"
 

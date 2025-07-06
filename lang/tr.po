@@ -145,6 +145,9 @@ msgstr "Bağlantıyı kesmek istediğinizden emin misiniz?"
 msgid "settings_sound"
 msgstr "Ses"
 
+msgid "settings_word_filter"
+msgstr " Kötü Kelimeleri Filtrele"
+
 msgid "tab_players"
 msgstr "Oyuncular"
 

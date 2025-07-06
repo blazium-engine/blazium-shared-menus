@@ -145,6 +145,9 @@ msgstr "Сигурен ли си, че искаш да прекъснеш връ
 msgid "settings_sound"
 msgstr "Звук"
 
+msgid "settings_word_filter"
+msgstr " Филтрирай нецензурни думи"
+
 msgid "tab_players"
 msgstr "Играч(и)"
 

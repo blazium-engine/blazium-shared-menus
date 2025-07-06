@@ -145,6 +145,9 @@ msgstr "هل أنت متأكد أنك تريد قطع الاتصال؟"
 msgid "settings_sound"
 msgstr "الصوت"
 
+msgid "settings_word_filter"
+msgstr " تصفية الكلمات البذيئة"
+
 msgid "tab_players"
 msgstr "اللاعبون"
 

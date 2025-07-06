@@ -145,6 +145,9 @@ msgstr "Er du sikker på at du vil koble fra?"
 msgid "settings_sound"
 msgstr "Lyd"
 
+msgid "settings_word_filter"
+msgstr " Filtrer stygge ord"
+
 msgid "tab_players"
 msgstr "Spillere"
 

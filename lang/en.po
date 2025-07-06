@@ -145,6 +145,9 @@ msgstr "Are you sure you want to disconnect?"
 msgid "settings_sound"
 msgstr "Sound"
 
+msgid "settings_word_filter"
+msgstr " Filter Bad Words"
+
 msgid "tab_players"
 msgstr "Players"
 
