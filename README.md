@@ -2,6 +2,8 @@
 
 Shared menus used for settings, lobby management and game starting.
 
+![example](./docs/shared_menus.gif)
+
 ## Project Settings
 
 After enabling this addon, you need to set the following in `Project Settings` (Some have default values, some don't):

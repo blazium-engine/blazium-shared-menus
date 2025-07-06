@@ -41,7 +41,7 @@ float radial_shape(vec2 uv, int p_segments) {
 	radial = atan(uv.y, uv.x);
 	radial = map_range(-PI, PI, 0.0, float(p_segments), radial);
 	radial = mod(radial, 1.0);
-	
+
 	return radial;
 }
 
@@ -49,28 +49,28 @@ void fragment() {
 	vec2 uv = UV;
 	uv = rotate_uv(uv, PI/2.0); // Rotate 90 degrees, so origin pointing at north be default
 	uv = rotate_uv(uv, rotation * PI);
-	
+
 	float t = radial_shape(uv, 1);
 	if (use_value_gradient) {
 		t = value;
 	}
 	float radius_t = get_gradient_color(radius_curve, radial_shape(uv, 1)).r;
-	
+
 	float shape = radial_shape(uv, segments);
 	float border_size = (1.0-margin)/2.0;
 	shape *= step(border_size, shape);
 	shape *= step(shape, 1.0 - border_size);
 	shape = step(shape, 0.0);
-	
+
 	uv = rotate_uv(uv, progress_rotation * PI);
 	float arc = radial_shape(uv, 1);
 	arc = step(arc, value);
-	
+
 	float bounds = circle_shape(uv, radius * radius_t);
 	float hollow = 1.0-circle_shape(uv, hollow_radius * radius_t);
-	
+
 	shape = shape * arc * bounds * hollow;
-	
+
 	vec4 gradient_color = get_gradient_color(gradient, t);
 	COLOR = vec4(gradient_color.rgb, shape);
 }
