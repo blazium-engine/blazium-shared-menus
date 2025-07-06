@@ -33,7 +33,17 @@ func _enter_tree() -> void:
 	ProjectSettings.set("gui/theme/default_font_multichannel_signed_distance_field", true)
 	ProjectSettings.set("gui/theme/custom", "uid://c8qig4a3cme6e")
 	ProjectSettings.set("input_devices/pointing/emulate_touch_from_mouse", true)
-	ProjectSettings.set("internationalization/locale/translations", PackedStringArray(["res://addons/blazium_shared_menus/lang/ro.po", "res://addons/blazium_shared_menus/lang/ar.po", "res://addons/blazium_shared_menus/lang/bg.po", "res://addons/blazium_shared_menus/lang/cs.po", "res://addons/blazium_shared_menus/lang/da.po", "res://addons/blazium_shared_menus/lang/de.po", "res://addons/blazium_shared_menus/lang/el.po", "res://addons/blazium_shared_menus/lang/es.po", "res://addons/blazium_shared_menus/lang/es_ES.po", "res://addons/blazium_shared_menus/lang/fi.po", "res://addons/blazium_shared_menus/lang/fr.po", "res://addons/blazium_shared_menus/lang/hu.po", "res://addons/blazium_shared_menus/lang/id.po", "res://addons/blazium_shared_menus/lang/it.po", "res://addons/blazium_shared_menus/lang/ja.po", "res://addons/blazium_shared_menus/lang/ko.po", "res://addons/blazium_shared_menus/lang/nl.po", "res://addons/blazium_shared_menus/lang/no.po", "res://addons/blazium_shared_menus/lang/pl.po", "res://addons/blazium_shared_menus/lang/pt.po", "res://addons/blazium_shared_menus/lang/pt_BR.po", "res://addons/blazium_shared_menus/lang/ru.po", "res://addons/blazium_shared_menus/lang/sv.po", "res://addons/blazium_shared_menus/lang/th.po", "res://addons/blazium_shared_menus/lang/tr.po", "res://addons/blazium_shared_menus/lang/uk.po", "res://addons/blazium_shared_menus/lang/vi.po", "res://addons/blazium_shared_menus/lang/zh_CN.po", "res://addons/blazium_shared_menus/lang/zh_TW.po", "res://addons/blazium_shared_menus/lang/en.po"]))
+	var languages = []
+	# Add addon languages
+	for file in DirAccess.get_files_at("res://addons/blazium_shared_menus/lang"):
+		if file.ends_with("po"):
+			languages.append("res://addons/blazium_shared_menus/lang/" + file)
+	# Add project languages
+	if DirAccess.dir_exists_absolute("res://lang"):
+		for file in DirAccess.get_files_at("res://lang"):
+			if file.ends_with("po"):
+				languages.append("res://lang/" + file)
+	ProjectSettings.set("internationalization/locale/translations", PackedStringArray(languages))
 	ProjectSettings.set("rendering/renderer/rendering_method", "gl_compatibility")
 	ProjectSettings.set("rendering/renderer/rendering_method.mobile", "gl_compatibility")
 	ProjectSettings.set("rendering/textures/vram_compression/import_etc2_astc", true)

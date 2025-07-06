@@ -18,7 +18,7 @@ else:
     word = "cat"
 
 response = client.responses.create(
-    model="gpt-4.1",
+    model="gpt-4o",
     input="Translate the following: \"" + word + "\". As output give me exactly: on each line the language code and translated word, csv format. Translate to the following languages:\n" + ",".join(languages),
 )
 
