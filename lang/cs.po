@@ -109,6 +109,9 @@ msgstr "Opravdu chcete ukončit?"
 msgid "menu_quit"
 msgstr "Ukončit"
 
+msgid "normal_mode"
+msgstr "Režim: Normální"
+
 msgid "password_placeholder"
 msgstr "Heslo"
 

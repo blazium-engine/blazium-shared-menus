@@ -109,6 +109,9 @@ msgstr "Weet je zeker dat je wilt afsluiten?"
 msgid "menu_quit"
 msgstr "Afsluiten"
 
+msgid "normal_mode"
+msgstr "Modus: Normaal"
+
 msgid "password_placeholder"
 msgstr "Wachtwoord"
 

@@ -109,6 +109,9 @@ msgstr "Haluatko varmasti poistua?"
 msgid "menu_quit"
 msgstr "Lopeta"
 
+msgid "normal_mode"
+msgstr "Tila: Normaali"
+
 msgid "password_placeholder"
 msgstr "Salasana"
 

@@ -109,6 +109,9 @@ msgstr "정말로 종료하시겠습니까?"
 msgid "menu_quit"
 msgstr "종료"
 
+msgid "normal_mode"
+msgstr "모드: 정상"
+
 msgid "password_placeholder"
 msgstr "비밀번호"
 

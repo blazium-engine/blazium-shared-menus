@@ -109,6 +109,9 @@ msgstr "你確定要退出嗎？"
 msgid "menu_quit"
 msgstr "退出"
 
+msgid "normal_mode"
+msgstr "模式：正常"
+
 msgid "password_placeholder"
 msgstr "密碼"
 

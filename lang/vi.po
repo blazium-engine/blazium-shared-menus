@@ -109,6 +109,9 @@ msgstr "Bạn có chắc chắn muốn thoát không?"
 msgid "menu_quit"
 msgstr "Thoát"
 
+msgid "normal_mode"
+msgstr "Chế độ: Bình thường"
+
 msgid "password_placeholder"
 msgstr "Mật khẩu"
 

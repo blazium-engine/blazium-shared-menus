@@ -109,6 +109,9 @@ msgstr "Είστε σίγουροι ότι θέλετε να εξέλθετε;"
 msgid "menu_quit"
 msgstr "Έξοδος"
 
+msgid "normal_mode"
+msgstr "Λειτουργία: Κανονική"
+
 msgid "password_placeholder"
 msgstr "Κωδικός πρόσβασης"
 

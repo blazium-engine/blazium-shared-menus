@@ -109,6 +109,9 @@ msgstr "Apakah Anda yakin ingin keluar?"
 msgid "menu_quit"
 msgstr "Keluar"
 
+msgid "normal_mode"
+msgstr "Mode: Normal"
+
 msgid "password_placeholder"
 msgstr "Kata Sandi"
 

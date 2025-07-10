@@ -109,6 +109,9 @@ msgstr "Çıkmak istediğinizden emin misiniz?"
 msgid "menu_quit"
 msgstr "Çık"
 
+msgid "normal_mode"
+msgstr "Mod: Normal"
+
 msgid "password_placeholder"
 msgstr "Şifre"
 

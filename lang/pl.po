@@ -109,6 +109,9 @@ msgstr "Czy na pewno chcesz wyjść?"
 msgid "menu_quit"
 msgstr "Zakończ"
 
+msgid "normal_mode"
+msgstr "Tryb: Normalny"
+
 msgid "password_placeholder"
 msgstr "Hasło"
 

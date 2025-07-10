@@ -109,6 +109,9 @@ msgstr "Möchtest du wirklich beenden?"
 msgid "menu_quit"
 msgstr "Beenden"
 
+msgid "normal_mode"
+msgstr "Modus: Normal"
+
 msgid "password_placeholder"
 msgstr "Passwort"
 

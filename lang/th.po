@@ -109,6 +109,9 @@ msgstr "คุณแน่ใจหรือไม่ว่าต้องกา
 msgid "menu_quit"
 msgstr "ออกจากเกม"
 
+msgid "normal_mode"
+msgstr "โหมด: ปกติ"
+
 msgid "password_placeholder"
 msgstr "รหัสผ่าน"
 

@@ -141,6 +141,9 @@ msgstr ""
 msgid "menu_settings"
 msgstr ""
 
+msgid "normal_mode"
+msgstr ""
+
 msgid "password_placeholder"
 msgstr ""
 

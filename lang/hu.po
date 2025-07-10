@@ -109,6 +109,9 @@ msgstr "Biztosan ki akarsz lépni?"
 msgid "menu_quit"
 msgstr "Kilépés"
 
+msgid "normal_mode"
+msgstr "Mód: Normál"
+
 msgid "password_placeholder"
 msgstr "Jelszó"
 

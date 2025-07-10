@@ -109,6 +109,9 @@ msgstr "Are you sure you want to exit?"
 msgid "menu_quit"
 msgstr "Quit"
 
+msgid "normal_mode"
+msgstr "Mode: Normal"
+
 msgid "password_placeholder"
 msgstr "Password"
 

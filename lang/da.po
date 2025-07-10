@@ -109,6 +109,9 @@ msgstr "Er du sikker på, at du vil afslutte?"
 msgid "menu_quit"
 msgstr "Afslut"
 
+msgid "normal_mode"
+msgstr "Tilstand: Normal"
+
 msgid "password_placeholder"
 msgstr "Adgangskode"
 

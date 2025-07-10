@@ -109,6 +109,9 @@ msgstr "Tens a certeza de que queres sair?"
 msgid "menu_quit"
 msgstr "Sair"
 
+msgid "normal_mode"
+msgstr "Modo: Normal"
+
 msgid "password_placeholder"
 msgstr "Palavra-passe"
 

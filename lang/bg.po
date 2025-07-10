@@ -109,6 +109,9 @@ msgstr "Сигурен ли си, че искаш да излезеш?"
 msgid "menu_quit"
 msgstr "Изход"
 
+msgid "normal_mode"
+msgstr "Режим: Нормален"
+
 msgid "password_placeholder"
 msgstr "Парола"
 

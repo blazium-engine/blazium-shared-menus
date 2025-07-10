@@ -109,6 +109,9 @@ msgstr "Ești sigur că vrei să ieși?"
 msgid "menu_quit"
 msgstr "Ieșire"
 
+msgid "normal_mode"
+msgstr "Mod: Normal"
+
 msgid "password_placeholder"
 msgstr "Parolă"
 
