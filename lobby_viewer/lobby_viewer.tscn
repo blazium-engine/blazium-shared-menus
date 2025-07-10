@@ -304,8 +304,8 @@ text = "lobby_ready"
 expand_text = false
 icon_alignment = 1
 script = ExtResource("8_ewirs")
-pressed_icon = "looks_one"
-unpressed_icon = "looks_one"
+pressed_icon = "sentiment_very_satisfied"
+unpressed_icon = "sentiment_very_dissatisfied"
 pressed_text = "lobby_unready"
 unpressed_text = "lobby_ready"
 
