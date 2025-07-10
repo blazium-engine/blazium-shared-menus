@@ -19,7 +19,7 @@ else:
 
 response = client.responses.create(
     model="gpt-4o",
-    input="Translate the following: \"" + word + "\". As output give me exactly: on each line the language code and translated word, csv format. Translate to the following languages:\n" + ",".join(languages),
+    input="Translate the following: \"\"" + word + "\"\". As output give me exactly: on each line the language code and translated word, csv format. Translate to the following languages:\n" + ",".join(languages),
 )
 
 written_out = 0
