@@ -130,16 +130,11 @@ func _add_peer_container(peer: LobbyPeer):
 
 
 func _lobby_tagged(tags: Dictionary):
-	match tags.get("game_mode", "normal_mode"):
-		"normal_mode":
-			mode_options.selected = 0
-		"normal_abunch_hanging":
-			mode_options.selected = 1
-		"normal_all_or_nothing":
-			mode_options.selected = 2
-		"normal_last_wrong_dies":
-			mode_options.selected = 3
-
+	var index = 0
+	for tag in mode_options.get_tags():
+		if tag == tags.get("game_mode", "normal_mode"):
+			mode_options.selected = index
+		index += 1
 
 func _lobby_resized(max_peers: int):
 	update_title()
@@ -366,12 +361,4 @@ func _on_sealed_toggled(toggled_on: bool) -> void:
 
 
 func _on_option_button_item_selected(index: int) -> void:
-	match index:
-		0:
-			GlobalLobbyClient.add_lobby_tags({"game_mode": "normal_mode"})
-		1:
-			GlobalLobbyClient.add_lobby_tags({"game_mode": "normal_abunch_hanging"})
-		2:
-			GlobalLobbyClient.add_lobby_tags({"game_mode": "normal_all_or_nothing"})
-		3:
-			GlobalLobbyClient.add_lobby_tags({"game_mode": "normal_last_wrong_dies"})
+	GlobalLobbyClient.add_lobby_tags({"game_mode": mode_options.get_tags()[index]})

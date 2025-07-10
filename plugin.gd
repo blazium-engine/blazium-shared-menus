@@ -13,6 +13,7 @@ func _enter_tree() -> void:
 	set_default_setting("blazium/game/login_game_id", "Your login game_id. Used for authentication.", "")
 	set_default_setting("blazium/game/lobby_game_id", "Your lobby game_id. Used for multiplayer.", "")
 	set_default_setting("blazium/game/menu_competitive_enabled", "Should it show the competitive mode?", false)
+	set_default_setting("blazium/game/lobby_modes", "Lobby Modes", ["normal_mode"])
 	
 	add_autoload_singleton.call_deferred("SettingsAutoload", "res://addons/blazium_shared_menus/settings/settings_autoload.gd")
 	add_autoload_singleton.call_deferred("GlobalLobbyClient", "res://addons/blazium_shared_menus/services/lobby_client.tscn")

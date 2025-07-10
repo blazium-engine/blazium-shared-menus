@@ -34,11 +34,13 @@ mouse_filter = 2
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="BlaziumBG/VBoxContainer"]
+custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("1_78jp3")
+expand_mode = 2
 
 [node name="Label" type="Label" parent="BlaziumBG/VBoxContainer"]
 layout_mode = 2
