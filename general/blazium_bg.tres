@@ -9,16 +9,7 @@ uniform float scale = 1.0;
 uniform vec2 translation = vec2(0.0);
 uniform float rotation = 0.0;
 uniform vec2 rotation_center = vec2(0.0);
-
-// Ripple effect controls
-uniform vec2 click_positions[20];
-uniform float click_times[20];
-uniform float wave_speed = 200.0;
-uniform float wave_width = 40.0;
-uniform float base_amplitude = 0.02;
-uniform float max_duration = 6.0;
-uniform vec4 ripple_color : source_color = vec4(0.3, 0.5, 1.0, 0.3);
-uniform vec4 hint_color : source_color = vec4(0.3, 0.5, 1.0, 0.3);
+uniform vec4 hint_color : source_color = vec4(0.122, 0.145, 0.176, 0.671);
 
 void fragment() {
     // Calculate base position with transformations
@@ -36,36 +27,8 @@ void fragment() {
     pos += center;
 
     vec2 uv = pos;
-    vec2 net_offset = vec2(0.0);
-    float color_mix = 0.0;
 
-    // Apply ripple effects with decay
-    for (int i = 0; i < 20; i++) {
-        float t = click_times[i];
-        if (t > 0.0) {
-            // Calculate decay factor (quadratic for smooth fadeout)
-            float decay = 1.0 - smoothstep(0.0, max_duration, t);
-
-            // Adjust for scroll and calculate ripple
-            vec2 click_pos = click_positions[i] - motion * t;
-            float dist = distance(pixel_pos, click_pos);
-            float wave_radius = t * wave_speed;
-            float wave_pos = dist - wave_radius;
-
-            float falloff = 1.0 - smoothstep(0.0, wave_width * decay, abs(wave_pos));
-            float ripple = sin(wave_pos * 10.0) * base_amplitude * falloff * decay;
-
-            vec2 dir = normalize(pixel_pos - click_pos);
-            net_offset += dir * ripple;
-
-            // Color tint (stronger near wave center)
-            color_mix = max(color_mix, falloff * decay * 0.5);
-        }
-    }
-
-    // Apply final texture with transformations and ripples
-    vec4 tex_color = texture(TEXTURE, uv + net_offset);
-    COLOR = mix(tex_color * hint_color, ripple_color, color_mix);
+    COLOR = texture(TEXTURE, uv) * hint_color;
 }"
 
 [resource]
@@ -75,11 +38,4 @@ shader_parameter/scale = 1.0
 shader_parameter/translation = Vector2(0, 0)
 shader_parameter/rotation = 0.0
 shader_parameter/rotation_center = Vector2(0, 0)
-shader_parameter/click_positions = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-shader_parameter/click_times = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-shader_parameter/wave_speed = 200.0
-shader_parameter/wave_width = 120.0
-shader_parameter/base_amplitude = 0.1
-shader_parameter/max_duration = 6.0
-shader_parameter/ripple_color = Color(0.87451, 0.47451, 0.882353, 0.85098)
-shader_parameter/hint_color = Color(0.121569, 0.145098, 0.176471, 0.607843)
+shader_parameter/hint_color = Color(0.122, 0.145, 0.176, 0.671)
