@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cn8bcqn8gwpxh"]
 
 [ext_resource type="Script" uid="uid://cwuj7caayyicl" path="res://addons/blazium_shared_menus/about/about.gd" id="1_grr0r"]
-[ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://game/assets/sfx/click.ogg" id="2_0pa0n"]
+[ext_resource type="AudioStream" uid="uid://cv1h8uw3x4qil" path="res://addons/blazium_shared_menus/sfx/click.ogg" id="2_0pa0n"]
 [ext_resource type="PackedScene" uid="uid://qxcvedn11ub" path="res://addons/blazium_shared_menus/general/blazium_bg.tscn" id="2_e5ig4"]
 [ext_resource type="Script" uid="uid://bnschyfkc8jm0" path="res://addons/blazium_theme_editor/classes/custom_button.gd" id="2_w6h8l"]
 
