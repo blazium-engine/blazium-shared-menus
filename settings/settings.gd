@@ -15,6 +15,11 @@ const max_avatars := 28
 @export var word_filter: CheckButton
 @export var box_settings: BoxContainer
 
+@export var master_volume_slider : HSlider
+@export var music_volume_slider : HSlider
+@export var effect_volume_slider : HSlider
+
+
 var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 var loading_scene: PackedScene = load("res://addons/blazium_shared_menus/loading_screen/loading_screen.tscn")
 
@@ -39,6 +44,17 @@ func _ready() -> void:
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
 	avatar.frame = GlobalLobbyClient.peer.user_data.get("avatar", 0)
 	_update_other_avatars()
+	
+	master_volume_slider.value = SettingsAutoload.config.get_value("Settings","master_volume")
+	SoundController._get_instance()._set_master_volume(SettingsAutoload.config.get_value("Settings","master_volume"))
+	music_volume_slider.value = SettingsAutoload.config.get_value("Settings","music_volume")
+	SoundController._get_instance()._set_music_volume(SettingsAutoload.config.get_value("Settings","music_volume"))
+	effect_volume_slider.value = SettingsAutoload.config.get_value("Settings","effect_volume")
+	SoundController._get_instance()._set_effect_volume(SettingsAutoload.config.get_value("Settings","effect_volume"))
+	
+	#master_volume_slider.value_changed.connect(_on_master_volume_changed)
+	#music_volume_slider.value_changed.connect(_on_music_volume_changed)
+	#effect_volume_slider.value_changed.connect(_on_effect_volume_changed)
 
 
 func _on_resized() -> void:
@@ -116,12 +132,22 @@ func _on_sounds_toggled(toggled_on: bool) -> void:
 	SettingsAutoload.config.set_value("Settings", "mute", !toggled_on)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), !toggled_on)
 
+func _on_master_volume_changed(value: float)->void:
+	SettingsAutoload.config.set_value("Settings", "master_volume", value)
+	SoundController._get_instance()._set_master_volume(value)
+
+func _on_music_volume_changed(value: float)->void:
+	SettingsAutoload.config.set_value("Settings", "music_volume", value)
+	SoundController._get_instance()._set_music_volume(value)
+
+func _on_effect_volume_changed(value: float)->void:
+	SettingsAutoload.config.set_value("Settings", "effect_volume", value)
+	SoundController._get_instance()._set_effect_volume(value)
 
 func _on_theme_mode_toggled(toggled_on: bool) -> void:
 	click_sound.play()
 	GlobalLobbyClient.update_theme(toggled_on)
 	SettingsAutoload.config.set_value("Settings", "light_mode", toggled_on)
-
 
 func _init() -> void:
 	disconnect_popup = CustomDialog.new("settings_prompt_disconnect")
