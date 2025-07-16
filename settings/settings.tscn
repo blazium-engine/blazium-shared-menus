@@ -193,6 +193,7 @@ theme_type_variation = &"CustomPopupVBox"
 
 [node name="ButtonLanguage" type="OptionButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/HBoxSettings/VBoxContainer2"]
 auto_translate_mode = 2
+visible = false
 layout_mode = 2
 alignment = 1
 expand_text = false

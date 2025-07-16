@@ -3,69 +3,11 @@ class_name LanguageButton
 extends CustomOptionButton
 
 var locales: PackedStringArray = [
-	"ar",  # Arabic
-	"bg",  # Bulgarian
-	"cs",  # Czech
-	"da",  # Danish
-	"de",  # German
-	"el",  # Greek
-	"en",  # English
-	"es_ES",  # Spanish - Spain
-	"es",  # Spanish - Latin America
-	"fi",  # Finnish
-	"fr",  # French
-	"hu",  # Hungarian
-	"id",  # Indonesian
-	"it",  # Italian
-	"ja",  # Japanese
-	"ko",  # Korean
-	"nl",  # Dutch
-	"no",  # Norwegian
-	"pl",  # Polish
-	"pt",  # Portuguese - Portugal
-	"pt_BR",  # Portuguese - Brazil
-	"ro",  # Romanian
-	"ru",  # Russian
-	"sv",  # Swedish
-	"th",  # Thai
-	"tr",  # Turkish
-	"uk",  # Ukrainian
-	"vi",  # Vietnamese
-	"zh_CN",  # Chinese - Simplified
-	"zh_TW"   # Chinese - Traditional
+	"en"
 ]
 
 var locale_names: PackedStringArray = [
-	"العربية",                # Arabic
-	"български език",       # Bulgarian
-	"čeština",              # Czech
-	"Dansk",                # Danish
-	"Deutsch",              # German
-	"Ελληνικά",             # Greek
-	"English",              # English
-	"Español (España)",     # Spanish - Spain
-	"Español (Latinoamérica)",  # Spanish - Latin America
-	"suomi",                # Finnish
-	"Français",             # French
-	"magyar",               # Hungarian
-	"Bahasa Indonesia",     # Indonesian
-	"Italiano",             # Italian
-	"日本語",                 # Japanese
-	"한국어",                 # Korean
-	"Nederlands",           # Dutch
-	"Norsk",                # Norwegian
-	"Polski",               # Polish
-	"Português",            # Portuguese - Portugal
-	"Português do Brasil",  # Portuguese - Brazil
-	"Română",               # Romanian
-	"Русский",              # Russian
-	"Svenska",              # Swedish
-	"ไทย",                  # Thai
-	"Türkçe",               # Turkish
-	"Українська",           # Ukrainian
-	"Tiếng Việt",           # Vietnamese
-	"简体中文",              # Chinese - Simplified
-	"繁體中文"               # Chinese - Traditional
+	"English"
 ]
 
 func _ready():
