@@ -26,13 +26,13 @@ grow_vertical = 2
 theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_pogt4")
 title_label = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/Title")
-name_label = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/GreetVBox/NameLabel")
+name_label = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/MarginContainer/GreetVBox/NameLabel")
 multiplayer_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer/ButtonFindLobby")
 quit_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer2/QuitButton")
 left_spacer = NodePath("BlaziumBG/HBoxContainer/LeftSpacer")
 right_spacer = NodePath("BlaziumBG/HBoxContainer/RightSpacer")
 click_sound = NodePath("Click1")
-greet_vbox = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/GreetVBox")
+greet_vbox = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/MarginContainer/GreetVBox")
 competitive_button = NodePath("BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer/CompetitiveButton")
 metadata/_edit_lock_ = true
 metadata/_edit_horizontal_guides_ = [275.0, 382.0, 491.0]
@@ -67,6 +67,8 @@ theme_type_variation = &"FlatPanelContainer"
 [node name="MarginContainer" type="MarginContainer" parent="BlaziumBG/HBoxContainer/ColorRect"]
 layout_mode = 2
 theme_type_variation = &"PaddedMarginContainer"
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer"]
 layout_mode = 2
@@ -86,18 +88,38 @@ layout_mode = 2
 theme_override_constants/separation = 24
 script = ExtResource("3_pb6x5")
 
-[node name="GreetVBox" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 64
+
+[node name="GreetVBox" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
+alignment = 1
 
-[node name="NameLabel" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/GreetVBox"]
+[node name="NameLabel" type="Label" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/MarginContainer/GreetVBox"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 text = "player_greet"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="CustomizationButton" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/MarginContainer/GreetVBox"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SelectedButton"
+text = "customize"
+expand_text = false
+icon_alignment = 1
+script = ExtResource("7_uhal1")
+user_icon = "videogame_asset"
 
 [node name="VSeparator2" type="VSeparator" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer"]
 custom_minimum_size = Vector2(0, 350)
@@ -148,17 +170,6 @@ expand_text = false
 icon_alignment = 1
 script = ExtResource("7_uhal1")
 user_icon = "search"
-
-[node name="StartButton" type="Button" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "Start"
-expand_text = false
-icon_alignment = 1
-script = ExtResource("7_uhal1")
-user_icon = "start"
 
 [node name="VSeparator" type="VSeparator" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer"]
 custom_minimum_size = Vector2(0, 350)
@@ -219,7 +230,6 @@ stream = ExtResource("8_30t10")
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer/CompetitiveButton" to="." method="_on_competitive_button_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer/CreateLobby" to="." method="_on_create_lobby_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer/ButtonFindLobby" to="." method="_on_button_join_public_pressed"]
-[connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer/StartButton" to="." method="_on_button_start_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer2/ButtonSettings" to="." method="_on_button_settings_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer2/AboutButton" to="." method="_on_about_button_pressed"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer2/QuitButton" to="." method="_on_quit_button_pressed"]
