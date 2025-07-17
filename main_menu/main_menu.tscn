@@ -119,7 +119,7 @@ text = "customize"
 expand_text = false
 icon_alignment = 1
 script = ExtResource("7_uhal1")
-user_icon = "videogame_asset"
+user_icon = "accessibility"
 
 [node name="VSeparator2" type="VSeparator" parent="BlaziumBG/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/BoxContainer"]
 custom_minimum_size = Vector2(0, 350)
