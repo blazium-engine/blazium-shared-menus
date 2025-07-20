@@ -3,34 +3,38 @@ extends BlaziumPanel
 
 const max_avatars := 28
 
+@export var game_tab_button : Button
+@export var music_tab_button : Button
+
 @export var disconnect_button: Button
 @export var left_spacer: Control
 @export var right_spacer: Control
-@export var prev_avatar: Avatar
-@export var avatar: Avatar
-@export var next_avatar: Avatar
 @export var click_sound: AudioStreamPlayer
-@export var mute_checkbutton: CheckButton
-@export var theme_mode: CheckButton
-@export var word_filter: CheckButton
+@export var mute_checkbutton: ToggledButton
+@export var theme_mode: ToggledButton
+@export var word_filter: ToggledButton
 @export var box_settings: BoxContainer
 
 @export var master_volume_slider : HSlider
 @export var music_volume_slider : HSlider
 @export var effect_volume_slider : HSlider
 
+@export var game_settings_container : MarginContainer
+@export var sound_settings_container : MarginContainer
 
 var main_menu_scene: PackedScene = load("res://addons/blazium_shared_menus/main_menu/main_menu.tscn")
 var loading_scene: PackedScene = load("res://addons/blazium_shared_menus/loading_screen/loading_screen.tscn")
 
 var disconnect_popup: CustomDialog
 
+enum activeOptions {
+	Game,
+	Sound
+}
+
+var _active_options: activeOptions = activeOptions.Game
+
 func _ready() -> void:
-	if ResourceLoader.exists("res://game/settings_extra.tscn"):
-		var spacer = VSeparator.new()
-		box_settings.add_child(spacer)
-		spacer.set_script(load("res://addons/blazium_shared_menus/general/hide_if_orientation_mobile.gd"))
-		box_settings.add_child(load("res://game/settings_extra.tscn").instantiate())
 	if Engine.is_editor_hint():
 		return
 	resized.connect(_on_resized)
@@ -42,19 +46,16 @@ func _ready() -> void:
 	mute_checkbutton._update_text_and_icon()
 	theme_mode._update_text_and_icon()
 	GlobalLobbyClient.disconnected_from_server.connect(_disconnected_from_server)
-	avatar.frame = GlobalLobbyClient.peer.user_data.get("avatar", 0)
-	_update_other_avatars()
 	
-	master_volume_slider.value = SettingsAutoload.config.get_value("Settings","master_volume")
-	SoundController._get_instance()._set_master_volume(SettingsAutoload.config.get_value("Settings","master_volume"))
-	music_volume_slider.value = SettingsAutoload.config.get_value("Settings","music_volume")
-	SoundController._get_instance()._set_music_volume(SettingsAutoload.config.get_value("Settings","music_volume"))
-	effect_volume_slider.value = SettingsAutoload.config.get_value("Settings","effect_volume")
-	SoundController._get_instance()._set_effect_volume(SettingsAutoload.config.get_value("Settings","effect_volume"))
+	master_volume_slider.value = SettingsAutoload.config.get_value("Settings","master_volume", 0.75)
+	SoundController._get_instance()._set_master_volume(SettingsAutoload.config.get_value("Settings","master_volume", 0.75))
 	
-	#master_volume_slider.value_changed.connect(_on_master_volume_changed)
-	#music_volume_slider.value_changed.connect(_on_music_volume_changed)
-	#effect_volume_slider.value_changed.connect(_on_effect_volume_changed)
+	music_volume_slider.value = SettingsAutoload.config.get_value("Settings","music_volume", 0.75)
+	SoundController._get_instance()._set_music_volume(SettingsAutoload.config.get_value("Settings","music_volume", 0.75))
+	
+	effect_volume_slider.value = SettingsAutoload.config.get_value("Settings","effect_volume", 0.75)
+	SoundController._get_instance()._set_effect_volume(SettingsAutoload.config.get_value("Settings","effect_volume", 0.75))
+	
 
 
 func _on_resized() -> void:
@@ -89,21 +90,34 @@ func _on_button_disconnect_pressed() -> void:
 	disconnect_popup.confirm_button.grab_focus()
 
 
-func _on_switch_avatar(_dir: int) -> void:
-	click_sound.play()
-	avatar.frame = wrapi(avatar.frame + _dir, 0, max_avatars)
-	_update_other_avatars()
+#func _on_switch_avatar(_dir: int) -> void:
+	#click_sound.play()
+	#avatar.frame = wrapi(avatar.frame + _dir, 0, max_avatars)
+	#_update_other_avatars()
+#
+#
+#func _update_other_avatars():
+	#prev_avatar.frame = wrapi(avatar.frame - 1, 0, max_avatars)
+	#next_avatar.frame = wrapi(avatar.frame + 1, 0, max_avatars)
 
+func _tab_to_game_settings()->void:
+	if _active_options == activeOptions.Game:
+		return
+	
+	game_settings_container.visible = true
+	sound_settings_container.visible = false
 
-func _update_other_avatars():
-	prev_avatar.frame = wrapi(avatar.frame - 1, 0, max_avatars)
-	next_avatar.frame = wrapi(avatar.frame + 1, 0, max_avatars)
-
+func _tab_to_sound_settings()->void:
+	if _active_options == activeOptions.Sound:
+		return
+	
+	game_settings_container.visible = false
+	sound_settings_container.visible = true
 
 func _on_back_pressed() -> void:
-	SettingsAutoload.config.set_value("Cosmetics", "avatar", avatar.frame)
+	#SettingsAutoload.config.set_value("Cosmetics", "avatar", avatar.frame)
 	SettingsAutoload.save_config()
-	_on_button_save_pressed({"avatar": avatar.frame})
+	#_on_button_save_pressed({"avatar": avatar.frame})
 	click_sound.play()
 	await click_sound.finished
 	if is_inside_tree():
@@ -119,18 +133,21 @@ func _on_disconnect_popup_confirmed() -> void:
 
 
 func _on_disconnect_popup_cancelled() -> void:
-	click_sound.play()
+	SoundController._get_instance()._play_sound("click")
 	disconnect_button.grab_focus()
 
 
 func _play_click_sound() -> void:
-	click_sound.play()
+	SoundController._get_instance()._play_sound("click")
 
 
 func _on_sounds_toggled(toggled_on: bool) -> void:
-	click_sound.play()
+	SoundController._get_instance()._play_sound("click")
 	SettingsAutoload.config.set_value("Settings", "mute", !toggled_on)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), !toggled_on)
+
+func _master_volume_drag_ended(changed: bool)->void:
+	pass
 
 func _on_master_volume_changed(value: float)->void:
 	SettingsAutoload.config.set_value("Settings", "master_volume", value)
