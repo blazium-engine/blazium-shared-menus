@@ -56,9 +56,6 @@ func _ready() -> void:
 	effect_volume_slider.value = SettingsAutoload.config.get_value("Settings","effect_volume", 0.75)
 	SoundController._get_instance()._set_effect_volume(SettingsAutoload.config.get_value("Settings","effect_volume", 0.75))
 	
-	#master_volume_slider.value_changed.connect(_on_master_volume_changed)
-	#music_volume_slider.value_changed.connect(_on_music_volume_changed)
-	#effect_volume_slider.value_changed.connect(_on_effect_volume_changed)
 
 
 func _on_resized() -> void:
@@ -148,6 +145,9 @@ func _on_sounds_toggled(toggled_on: bool) -> void:
 	SoundController._get_instance()._play_sound("click")
 	SettingsAutoload.config.set_value("Settings", "mute", !toggled_on)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), !toggled_on)
+
+func _master_volume_drag_ended(changed: bool)->void:
+	pass
 
 func _on_master_volume_changed(value: float)->void:
 	SettingsAutoload.config.set_value("Settings", "master_volume", value)

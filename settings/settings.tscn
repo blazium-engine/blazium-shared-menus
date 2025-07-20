@@ -24,19 +24,19 @@ theme_type_variation = &"FlatNormalPanel"
 script = ExtResource("1_qnsfk")
 game_tab_button = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/GameOptionsButton")
 music_tab_button = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/SoundOptionsButton")
-disconnect_button = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer/HBoxSettings/VBoxContainer2/ButtonDisconnect")
+disconnect_button = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game/HBoxSettings/VBoxContainer2/ButtonDisconnect")
 left_spacer = NodePath("BlaziumBG/HBoxContainer/LeftSpacer")
 right_spacer = NodePath("BlaziumBG/HBoxContainer/RightSpacer")
 click_sound = NodePath("Click1")
-mute_checkbutton = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer/VBoxContainer/MuteButton")
-theme_mode = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer/HBoxSettings/VBoxContainer2/ThemeButton")
-word_filter = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer/HBoxSettings/VBoxContainer2/Filter")
-box_settings = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer/HBoxSettings")
-master_volume_slider = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer/VBoxContainer/MasterVolume")
-music_volume_slider = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer/VBoxContainer/MusicVolume")
-effect_volume_slider = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer/VBoxContainer/EffectVolume")
-game_settings_container = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer")
-sound_settings_container = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer")
+mute_checkbutton = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound/VBoxContainer/MuteButton")
+theme_mode = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game/HBoxSettings/VBoxContainer2/ThemeButton")
+word_filter = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game/HBoxSettings/VBoxContainer2/Filter")
+box_settings = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game/HBoxSettings")
+master_volume_slider = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound/VBoxContainer/MasterVolume")
+music_volume_slider = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound/VBoxContainer/MusicVolume")
+effect_volume_slider = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound/VBoxContainer/EffectVolume")
+game_settings_container = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game")
+sound_settings_container = NodePath("BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound")
 metadata/_edit_lock_ = true
 
 [node name="Click1" type="AudioStreamPlayer" parent="."]
@@ -117,23 +117,28 @@ icon_alignment = 1
 script = ExtResource("6_m4ikw")
 user_icon = "volume_up"
 
-[node name="GameSettingsContainer" type="MarginContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+current_tab = 0
+
+[node name="Game" type="MarginContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_right = 32
+metadata/_tab_index = 0
 
-[node name="HBoxSettings" type="BoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer"]
+[node name="HBoxSettings" type="BoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game"]
 layout_mode = 2
 theme_override_constants/separation = 24
 script = ExtResource("4_oqwwc")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer/HBoxSettings"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game/HBoxSettings"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"CustomPopupVBox"
 
-[node name="ButtonLanguage" type="OptionButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer/HBoxSettings/VBoxContainer2"]
+[node name="ButtonLanguage" type="OptionButton" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game/HBoxSettings/VBoxContainer2"]
 auto_translate_mode = 2
 visible = false
 layout_mode = 2
@@ -143,7 +148,7 @@ icon_alignment = 1
 script = ExtResource("11_vmsml")
 user_icon = "language"
 
-[node name="ButtonDisconnect" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer/HBoxSettings/VBoxContainer2"]
+[node name="ButtonDisconnect" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game/HBoxSettings/VBoxContainer2"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -153,7 +158,7 @@ icon_alignment = 1
 script = ExtResource("6_m4ikw")
 user_icon = "signal_wifi_bad"
 
-[node name="Filter" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer/HBoxSettings/VBoxContainer2"]
+[node name="Filter" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game/HBoxSettings/VBoxContainer2"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -168,7 +173,7 @@ pressed_text = "settings_word_filter"
 unpressed_text = "settings_word_unfilter"
 metadata/_custom_type_script = "uid://dbfmeu5kh7yv4"
 
-[node name="ThemeButton" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer/HBoxSettings/VBoxContainer2"]
+[node name="ThemeButton" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game/HBoxSettings/VBoxContainer2"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -183,16 +188,17 @@ pressed_text = "settings_mode_light"
 unpressed_text = "settings_mode_dark"
 metadata/_custom_type_script = "uid://dbfmeu5kh7yv4"
 
-[node name="SoundContainer" type="MarginContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer"]
+[node name="Sound" type="MarginContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer"]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_right = 32
+metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound"]
 layout_mode = 2
 
-[node name="MuteButton" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer/VBoxContainer"]
+[node name="MuteButton" type="Button" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -206,34 +212,34 @@ pressed_text = "settings_mute"
 unpressed_text = "settings_mute"
 metadata/_custom_type_script = "uid://dbfmeu5kh7yv4"
 
-[node name="MasterVolumeLabel" type="Label" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer/VBoxContainer"]
+[node name="MasterVolumeLabel" type="Label" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound/VBoxContainer"]
 layout_mode = 2
 text = "settings_master_volume"
 horizontal_alignment = 1
 
-[node name="MasterVolume" type="HSlider" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer/VBoxContainer"]
+[node name="MasterVolume" type="HSlider" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"CustomSlider"
 max_value = 1.0
 step = 0.01
 
-[node name="EffectVolumeLabel" type="Label" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer/VBoxContainer"]
+[node name="EffectVolumeLabel" type="Label" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound/VBoxContainer"]
 layout_mode = 2
 text = "settings_effect_volume"
 horizontal_alignment = 1
 
-[node name="EffectVolume" type="HSlider" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer/VBoxContainer"]
+[node name="EffectVolume" type="HSlider" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"CustomSlider"
 max_value = 1.0
 step = 0.01
 
-[node name="MusicVolumeLabel" type="Label" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer/VBoxContainer"]
+[node name="MusicVolumeLabel" type="Label" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound/VBoxContainer"]
 layout_mode = 2
 text = "settings_music_volume"
 horizontal_alignment = 1
 
-[node name="MusicVolume" type="HSlider" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/SoundContainer/VBoxContainer"]
+[node name="MusicVolume" type="HSlider" parent="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Sound/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"CustomSlider"
 max_value = 1.0
@@ -257,7 +263,7 @@ mouse_filter = 2
 
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/GameOptionsButton" to="." method="_tab_to_game_settings"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/SoundOptionsButton" to="." method="_tab_to_sound_settings"]
-[connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer/HBoxSettings/VBoxContainer2/ButtonDisconnect" to="." method="_on_button_disconnect_pressed"]
-[connection signal="toggled" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer/HBoxSettings/VBoxContainer2/Filter" to="." method="_on_filter_toggled"]
-[connection signal="toggled" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/GameSettingsContainer/HBoxSettings/VBoxContainer2/ThemeButton" to="." method="_on_theme_mode_toggled"]
+[connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game/HBoxSettings/VBoxContainer2/ButtonDisconnect" to="." method="_on_button_disconnect_pressed"]
+[connection signal="toggled" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game/HBoxSettings/VBoxContainer2/Filter" to="." method="_on_filter_toggled"]
+[connection signal="toggled" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/MarginContainer2/TabContainer/Game/HBoxSettings/VBoxContainer2/ThemeButton" to="." method="_on_theme_mode_toggled"]
 [connection signal="pressed" from="BlaziumBG/HBoxContainer/MarginContainer/ColorRect/VBoxContainer/ButtonBack" to="." method="_on_back_pressed"]
